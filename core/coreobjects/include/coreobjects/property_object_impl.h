@@ -35,6 +35,7 @@
 #include <coreobjects/property_object_protected_ptr.h>
 #include <coreobjects/property_object_ptr.h>
 #include <coreobjects/property_ptr.h>
+#include <iostream>
 #include <coreobjects/property_value_event_args_factory.h>
 #include <coreobjects/object_lock_guard_ptr.h>
 #include <coretypes/cloneable.h>
@@ -1958,6 +1959,8 @@ ErrCode GenericPropertyObjectImpl<PropObjInterface, Interfaces...>::getPropertyV
     try
     {
         auto propName = StringPtr::Borrow(propertyName);
+
+    std::cout << "getPropertyValueInternal called for property: " << propName << std::endl;
         BaseObjectPtr valuePtr;
         ErrCode err;
 

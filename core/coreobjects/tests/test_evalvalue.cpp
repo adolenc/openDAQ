@@ -528,6 +528,95 @@ TEST_F(EvalValueTest, UnaryMinusListItem)
     ASSERT_EQ(-321.8, result);
 }
 
+TEST_F(EvalValueTest, NestedProperties)
+{
+    GenericPropertyObjectPtr parent = PropertyObject();
+    parent.addProperty(FloatProperty("Test", 1.5));
+
+    GenericPropertyObjectPtr child = PropertyObject();
+    child.addProperty(FloatProperty("Test", 2.5));
+    parent.addProperty(ObjectProperty("Child", child));
+
+    GenericPropertyObjectPtr grandchild = PropertyObject();
+    grandchild.addProperty(FloatProperty("Test", 3.5));
+    child.addProperty(ObjectProperty("Grandchild", grandchild));
+
+    {
+        auto e = EvalValue("$Test", parent);
+        e.asPtr<IOwnable>().setOwner(parent);
+        Float result = e.getResult();
+        ASSERT_EQ(1.5, result);
+    }
+    {
+        auto e = EvalValue("$Child.Test", parent);
+        e.asPtr<IOwnable>().setOwner(parent);
+        Float result = e.getResult();
+        ASSERT_EQ(2.5, result);
+    }
+    {
+        auto e = EvalValue("$Child.Grandchild.Test", parent);
+        e.asPtr<IOwnable>().setOwner(parent);
+        Float result = e.getResult();
+        ASSERT_EQ(3.5, result);
+    }
+}
+
+TEST_F(EvalValueTest, ParentProperties)
+{
+    // Dots work the same as in Python imports; single dot is the same as no dot, double dot is parent, triple dot is grandparent, etc.
+    GenericPropertyObjectPtr parent = PropertyObject();
+    parent.addProperty(FloatProperty("Test", 1.5));
+
+    GenericPropertyObjectPtr child = PropertyObject();
+    child.addProperty(FloatProperty("Test", 2.5));
+    parent.addProperty(ObjectProperty("Child", child));
+
+    GenericPropertyObjectPtr grandchild = PropertyObject();
+    grandchild.addProperty(FloatProperty("Test", 3.5));
+    child.addProperty(ObjectProperty("Grandchild", grandchild));
+
+    {
+        std::cout << "Parent 1" << std::endl;
+        auto e = EvalValue("$Test", child);
+        e.asPtr<IOwnable>().setOwner(child);
+        Float result = e.getResult();
+        ASSERT_EQ(2.5, result);
+    }
+    {
+        std::cout << "Parent 2" << std::endl;
+        auto e = EvalValue("$Test", grandchild);
+        e.asPtr<IOwnable>().setOwner(grandchild);
+        Float result = e.getResult();
+        ASSERT_EQ(3.5, result);
+    }
+    {
+        std::cout << "Parent 3" << std::endl;
+        auto e = EvalValue("$.Test", child);
+        e.asPtr<IOwnable>().setOwner(child);
+        Float result = e.getResult();
+        ASSERT_EQ(2.5, result);
+    }
+    {
+        std::cout << "Parent 4" << std::endl;
+        auto e = EvalValue("$..Test", child);
+        e.asPtr<IOwnable>().setOwner(child);
+        Float result = e.getResult();
+        ASSERT_EQ(1.5, result);
+    }
+    {
+        auto e = EvalValue("$...Test", grandchild);
+        e.asPtr<IOwnable>().setOwner(grandchild);
+        Float result = e.getResult();
+        ASSERT_EQ(1.5, result);
+    }
+    {
+        auto e = EvalValue("$...Child.Test", grandchild);
+        e.asPtr<IOwnable>().setOwner(grandchild);
+        Float result = e.getResult();
+        ASSERT_EQ(2.5, result);
+    }
+}
+
 TEST_F(EvalValueTest, FuncOneTag)
 {
     auto hasTagFunc = Function([](const BaseObjectPtr& tag)

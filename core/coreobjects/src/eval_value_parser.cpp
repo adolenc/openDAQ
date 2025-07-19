@@ -16,6 +16,7 @@
 
 #include <coreobjects/eval_value_parser.h>
 #include <memory>
+#include <iostream>
 
 
 using TokenType = EvalValueToken::Type;
@@ -255,8 +256,18 @@ std::unique_ptr<daq::BaseNode> EvalValueParser::valref()
     // just somehow use the fact that we already parsed the
     // refvar token into individual components and fill that
     // into daq::RefNode instead.
-    assertIsAt(TokenType::Identifier);
-    std::string str = std::get<std::string>(advance().value);
+    std::string str;
+    while (isAt(TokenType::Identifier) || isAt(TokenType::Dot))
+    {
+        if (isAt(TokenType::Dot))
+        {
+            str += ".";
+            advance();
+        }
+        else
+            str += std::get<std::string>(advance().value);
+    }
+    std::cout << "valref: " << str << std::endl;
 
     if (isAt(TokenType::OpenBracket))
     {
@@ -272,8 +283,17 @@ std::unique_ptr<daq::BaseNode> EvalValueParser::valref()
 
 std::unique_ptr<daq::BaseNode> EvalValueParser::propref()
 {
-    assertIsAt(TokenType::Identifier);
-    std::string str = std::get<std::string>(advance().value);
+    std::string str;
+    while (isAt(TokenType::Identifier) || isAt(TokenType::Dot))
+    {
+        if (isAt(TokenType::Dot))
+        {
+            str += ".";
+            advance();
+        }
+        else
+            str += std::get<std::string>(advance().value);
+    }
     auto refType = daq::RefType::Property;
     if (isAt(TokenType::Colon))
     {
@@ -297,6 +317,7 @@ std::unique_ptr<daq::BaseNode> EvalValueParser::propref()
         consume(TokenType::CloseParen);
     }
 
+    std::cout << "propref: " << str << std::endl;
     if (refType == daq::RefType::Property)
         propertyReferences.insert(str);
 

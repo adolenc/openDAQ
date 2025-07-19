@@ -1,5 +1,6 @@
 #include <coreobjects/eval_value_impl.h>
 #include <coreobjects/eval_value_parser.h>
+#include <iostream>
 #include <functional>
 #include <coreobjects/eval_value_ptr.h>
 #include <coreobjects/property_object_internal_ptr.h>
@@ -166,12 +167,13 @@ BaseObjectPtr EvalValueImpl::getReferenceFromPrefix(const PropertyObjectPtr& pro
         }
         value = propNames;
     }
-    
+
     return value;
 }
 
 BaseObjectPtr EvalValueImpl::getReference(const std::string& str, RefType refType, int argIndex, std::string& postRef, bool lock) const
 {
+    std::cout << "EvalValueImpl::getReference: " << str << "reftype" << (int)refType << std::endl;
     if (argIndex > -1)
     {
         if (!arguments.assigned() || argIndex > int(arguments.getCount()))
