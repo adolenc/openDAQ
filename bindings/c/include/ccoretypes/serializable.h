@@ -34,7 +34,12 @@ extern "C"
 
 #include <ccommon.h>
 
+    /*!
+     * @ingroup types_serialization
+     * @defgroup types_serializable Serializable
+     */
     // DECLARE_OPENDAQ_INTERFACE(daqSerializable, daqBaseObject)
+
     typedef struct daqSerializable daqSerializable;
     typedef struct daqSerializer daqSerializer;
 
@@ -42,6 +47,7 @@ extern "C"
     void EXPORTED daqSerializable_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqSerializable_serialize(daqSerializable* self, daqSerializer* serializer);
+
     daqErrCode EXPORTED daqSerializable_getSerializeId(daqSerializable* self, daqConstCharPtr* id);
 
 #ifdef __cplusplus

@@ -35,6 +35,7 @@ extern "C"
 #include <ccommon.h>
 
     // DECLARE_OPENDAQ_INTERFACE(daqComponentDeserializeContext, daqBaseObject)
+
     typedef struct daqComponentDeserializeContext daqComponentDeserializeContext;
     typedef struct daqComponent daqComponent;
     typedef struct daqString daqString;
@@ -45,12 +46,19 @@ extern "C"
     void EXPORTED daqComponentDeserializeContext_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqComponentDeserializeContext_getParent(daqComponentDeserializeContext* self, daqComponent** parent);
+
     daqErrCode EXPORTED daqComponentDeserializeContext_getRoot(daqComponentDeserializeContext* self, daqComponent** root);
+
     daqErrCode EXPORTED daqComponentDeserializeContext_getLocalId(daqComponentDeserializeContext* self, daqString** localId);
+
     daqErrCode EXPORTED daqComponentDeserializeContext_getContext(daqComponentDeserializeContext* self, daqContext** context);
+
     daqErrCode EXPORTED daqComponentDeserializeContext_getIntfID(daqComponentDeserializeContext* self, daqIntfID* intfID);
+
     daqErrCode EXPORTED daqComponentDeserializeContext_getTriggerCoreEvent(daqComponentDeserializeContext* self, daqProcedure** triggerCoreEvent);
+
     daqErrCode EXPORTED daqComponentDeserializeContext_clone(daqComponentDeserializeContext* self, daqComponent* newParent, daqString* newLocalId, daqComponentDeserializeContext** newComponentDeserializeContext, daqIntfID* newIntfID, daqProcedure* newTriggerCoreEvent);
+
     daqErrCode EXPORTED daqComponentDeserializeContext_createComponentDeserializeContext(daqComponentDeserializeContext** obj, daqContext* context, daqComponent* root, daqComponent* parent, daqString* localId, daqIntfID* intfID, daqProcedure* triggerCoreEvent);
 
 #ifdef __cplusplus

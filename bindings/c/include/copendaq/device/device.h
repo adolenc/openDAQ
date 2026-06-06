@@ -34,7 +34,35 @@ extern "C"
 
 #include <ccommon.h>
 
+    /*!
+     * @brief Represents an openDAQ device. The device contains a list of signals and physical channels. Some devices support adding function blocks, or connecting to devices. The list of available function blocks/devices can be obtained via the `getAvailable` functions, and added via the `add` functions.
+     *
+     * Devices can be split up into three different types, with each devices supporting one or more:
+     * 1. Physical devices
+     * Physical devices provide access to physical channels. They measure real-world data and send
+     * it via packets through output signals of channels. The list of channels can be obtained via
+     * `getChannels` as a flat list.
+     * 2. Client devices
+     * Client devices can connect to other devices via their supported connection protocol. openDAQ
+     * natively supports connecting to TMS devices via its openDAQ OpcUa Client Module. A list of available
+     * devices a client device can connect to can be obtained via `getAvailableDevices`. The
+     * `addDevice` is used to connect to/add a device.
+     * 3. Function block devices
+     * Function block devices provide a dictionary of available function block types that can be added to them
+     * and configured. The calculation of function blocks is done on the device itself. The dictionary
+     * of available function block types can be obtained via `getAvailableFunctionBlockTypes`. They
+     * can then be added via `addFunctionBlock`.
+     *
+     * All devices also provide access to their Device information, containing metadata such as the
+     * device's serial number, location... They can also be queried for their current domain values
+     * (time) through its device domain.
+     *
+     * As each device is a property object, a device has access to all Property object methods, allowing
+     * each device to expose a list of custom properties such as sample rate, scaling factor and many
+     * others. By default, openDAQ devices have the UserName and Location string Properties.
+     */
     // DECLARE_OPENDAQ_INTERFACE(daqDevice, daqFolder)
+
     typedef struct daqDevice daqDevice;
     typedef struct daqDeviceInfo daqDeviceInfo;
     typedef struct daqDeviceDomain daqDeviceDomain;
@@ -54,41 +82,297 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_DEVICE_INTF_ID;
     void EXPORTED daqDevice_getInterfaceId(daqIntfID* intfId);
 
+    /*!
+     * @brief Gets the device info. It contains data about the device such as the device's serial number, location, and connection string.
+     * @param[out] info The device info.
+     */
     daqErrCode EXPORTED daqDevice_getInfo(daqDevice* self, daqDeviceInfo** info);
+
+    /*!
+     * @brief Gets the device's domain data. It allows for querying the device for its domain (time) values.
+     * @param[out] domain The device domain.
+     */
     daqErrCode EXPORTED daqDevice_getDomain(daqDevice* self, daqDeviceDomain** domain);
+
+    // [templateType(inputsOutputsFolder, Folder)]
+    /*!
+     * @brief Gets a folder containing channels.
+     * @param[out] inputsOutputsFolder The folder that contains channels.
+     *
+     * The InputsOutputs folder can contain other folders that themselves contain channels.
+     */
     daqErrCode EXPORTED daqDevice_getInputsOutputsFolder(daqDevice* self, daqFolder** inputsOutputsFolder);
+
+    // [elementType(customComponents, Component)]
+    /*!
+     * @brief Gets a list of all components/folders in a device that are not titled 'IO', 'Sig', 'Dev', 'Synchronization' or 'FB'
+     * @param[out] customComponents The list of custom components.
+     */
     daqErrCode EXPORTED daqDevice_getCustomComponents(daqDevice* self, daqList** customComponents);
+
+    // [elementType(signals, Signal)]
+    /*!
+     * @brief Gets a list of the device's signals.
+     * @param searchFilter Provides an optional filter that filters out unwanted components and allows for recursion.
+     * @param[out] signals The flat list of signals.
+     *
+     * If searchFilter is not provided, the returned list contains only visible signals and does not include those of
+     * child function blocks, devices, or channels.
+     *
+     * Device signals are most often domain signals shared by other signals that belong to channels and/or function blocks.
+     */
     daqErrCode EXPORTED daqDevice_getSignals(daqDevice* self, daqList** signals, daqSearchFilter* searchFilter);
+
+    // [elementType(signals, Signal)]
+    /*!
+     * @brief Gets a list of the signals that belong to the device.
+     * @param searchFilter Provides an optional filter that filters out unwanted components and allows for recursion.
+     * @param[out] signals The flat list of signals.
+     *
+     * The list includes visible signals that belong to visible channels, function blocks, or sub devices
+     * of the device.
+     */
     daqErrCode EXPORTED daqDevice_getSignalsRecursive(daqDevice* self, daqList** signals, daqSearchFilter* searchFilter);
+
+    // [elementType(channels, Channel)]
+    /*!
+     * @brief Gets a flat list of the device's physical channels.
+     * @param searchFilter Provides an optional filter that filters out unwanted components and allows for recursion.
+     * @param[out] channels The flat list of channels.
+     *
+     * If searchFilter is not provided, the returned list contains only visible channels and does not include those of
+     * child devices.
+     */
     daqErrCode EXPORTED daqDevice_getChannels(daqDevice* self, daqList** channels, daqSearchFilter* searchFilter);
+
+    // [elementType(channels, Channel)]
+    /*!
+     * @brief Gets a flat list of the device's physical channels. Also finds all visible channels of visible child devices
+     * @param searchFilter Provides an optional filter that filters out unwanted components and allows for recursion.
+     * @param[out] channels The flat list of channels.
+     */
     daqErrCode EXPORTED daqDevice_getChannelsRecursive(daqDevice* self, daqList** channels, daqSearchFilter* searchFilter);
+
+    // [elementType(devices, Device)]
+    /*!
+     * @brief Gets a list of child devices that the device is connected to.
+     * @param searchFilter Provides an optional filter that filters out unwanted components and allows for recursion.
+     * @param[out] devices The list of devices.
+     *
+     * If searchFilter is not provided, the returned list contains only visible devices and does not include those of
+     * child devices.
+     */
     daqErrCode EXPORTED daqDevice_getDevices(daqDevice* self, daqList** devices, daqSearchFilter* searchFilter);
+
+    // [elementType(availableDevices, DeviceInfo)]
+    /*!
+     * @brief Gets a list of available devices, containing their Device Info.
+     * @param[out] availableDevices The list of available devices.
+     *
+     * The getAvailableDevices most often runs a discovery client, querying for available devices that
+     * a device module can connect to. The replies are formed into Device Info objects and inserted to the
+     * list of available devices.
+     */
     daqErrCode EXPORTED daqDevice_getAvailableDevices(daqDevice* self, daqList** availableDevices);
+
+    // [templateType(deviceTypes, String, DeviceType)]
+    /*!
+     * @brief Get a dictionary of available device types as <IString, IDeviceType> pairs
+     * @param[out] deviceTypes The dictionary of available device types.
+     */
     daqErrCode EXPORTED daqDevice_getAvailableDeviceTypes(daqDevice* self, daqDict** deviceTypes);
+
+    // [templateType(device, Device)]
+    /*!
+     * @brief Connects to a device at the given connection string and returns it.
+     * @param[out] device The added device.
+     * @param connectionString The connection string containing the address of the device. In example an IPv4/IPv6 address. The connection string can be found in the Device Info objects returned by `getAvailableDevices`.
+     * @param config A config object to configure a client device. This object can contain properties like max sample rate, port to use for 3rd party communication, number of channels to generate, or other device specific settings. Can be created from its corresponding Device type object. In case of a null value, it will use the default configuration.
+     */
     daqErrCode EXPORTED daqDevice_addDevice(daqDevice* self, daqDevice** device, daqString* connectionString, daqPropertyObject* config);
+
+    // [templateType(device, Device)]
+    /*!
+     * @brief Disconnects from the device provided as argument and removes it from the internal list of devices.
+     * @param device The device to be removed.
+     */
     daqErrCode EXPORTED daqDevice_removeDevice(daqDevice* self, daqDevice* device);
+
+    // [elementType(functionBlocks, FunctionBlock)]
+    /*!
+     * @brief Gets the list of added function blocks.
+     * @param searchFilter Provides an optional filter that filters out unwanted components and allows for recursion.
+     * @param[out] functionBlocks The list of added function blocks.
+     *
+     * If searchFilter is not provided, the returned list contains only visible function blocks and does not include those of
+     * child function blocks, devices, or channels.
+     */
     daqErrCode EXPORTED daqDevice_getFunctionBlocks(daqDevice* self, daqList** functionBlocks, daqSearchFilter* searchFilter);
+
+    // [templateType(functionBlockTypes, String, FunctionBlockType)]
+    /*!
+     * @brief Gets all function block types that are supported by the device, containing their description.
+     * @param[out] functionBlockTypes A dictionary of available function block types.
+     */
     daqErrCode EXPORTED daqDevice_getAvailableFunctionBlockTypes(daqDevice* self, daqDict** functionBlockTypes);
+
+    /*!
+     * @brief Creates and adds a function block to the device with the provided unique ID and returns it.
+     * @param[out] functionBlock The added function block.
+     * @param typeId The unique ID of the function block. Can be obtained from its corresponding Function Block Info object.
+     * @param config A config object to configure a function block with custom settings specific to that function block type.
+     */
     daqErrCode EXPORTED daqDevice_addFunctionBlock(daqDevice* self, daqFunctionBlock** functionBlock, daqString* typeId, daqPropertyObject* config);
+
+    /*!
+     * @brief Removes the function block provided as argument, disconnecting its signals and input ports.
+     * @param functionBlock The function block to be removed.
+     */
     daqErrCode EXPORTED daqDevice_removeFunctionBlock(daqDevice* self, daqFunctionBlock* functionBlock);
+
+    /*!
+     * @brief Saves the configuration of the device to string.
+     * @param[out] configuration Serialized configuration of the device.
+     */
     daqErrCode EXPORTED daqDevice_saveConfiguration(daqDevice* self, daqString** configuration);
+
+    /*!
+     * @brief Loads the configuration of the device from string.
+     * @param configuration Serialized configuration of the device.
+     */
     daqErrCode EXPORTED daqDevice_loadConfiguration(daqDevice* self, daqString* configuration, daqUpdateParameters* config);
+
+    /*!
+     * @brief Gets the number of ticks passed since the device's absolute origin.
+     * @param[out] ticks The number of ticks.
+     *
+     * To scale the ticks into a domain unit, the Device's Domain should be used.
+     */
     daqErrCode EXPORTED daqDevice_getTicksSinceOrigin(daqDevice* self, daqUInt* ticks);
+
+    /*!
+     * @brief Connects to a streaming at the given connection string, adds it as a streaming source of device and returns created streaming object.
+     * @param[out] streaming The added streaming source.
+     * @param connectionString The connection string containing the address of the streaming. In example an IPv4/IPv6 address. The connection string can be found in the Server Capability objects returned by `getInfo().getServerCapabilities()`.
+     * @param config A config object to configure a streaming connection. This object can contain properties like various connection timeouts or other streaming protocol specific settings. Can be created from its corresponding Streaming type object. In case of a null value, it will use the default configuration.
+     */
     daqErrCode EXPORTED daqDevice_addStreaming(daqDevice* self, daqStreaming** streaming, daqString* connectionString, daqPropertyObject* config);
+
+    /*!
+     * @brief Creates config object that can be used when adding a device. Contains Device and Streaming default configuration for all available Device/Streaming types. Also contains general add-device configuration settings.
+     * @param[out] defaultConfig The configuration object containing default settings for adding a device.
+     *
+     * The default config object is organized to always have 3 object-type properties:
+     * - "General" Contains general properties such as "AutomaticallyConnectStreaming"
+     * - "Device": Contains a child object-type property for each available device type, with the key of each property
+     * being the ID of the device type. These can be configured to customize the `addDevice` call when using
+     * connecting to the selected device type (eg. via the native or OPC UA protocols).
+     * - "Streaming": Same as device, but used to configure each individual streaming connection established
+     * when calling `addDevice`.
+     */
     daqErrCode EXPORTED daqDevice_createDefaultAddDeviceConfig(daqDevice* self, daqPropertyObject** defaultConfig);
+
+    /*!
+     * @brief Gets the sync component of the device.
+     * @param[out] sync The sync component.
+     */
     daqErrCode EXPORTED daqDevice_getSyncComponent(daqDevice* self, daqSyncComponent** sync);
+
+    /*!
+     * @brief Creates and adds to the device a server with the provided unique type ID and returns it.
+     * @param[out] server The added server.
+     * @param typeId The unique type ID of the server. Can be obtained from its corresponding Server type object.
+     * @param config A config object to configure a server with custom settings specific to that server type.
+     */
     daqErrCode EXPORTED daqDevice_addServer(daqDevice* self, daqString* typeId, daqPropertyObject* config, daqServer** server);
+
+    /*!
+     * @brief Removes the server provided as argument.
+     * @param server The server to be removed.
+     */
     daqErrCode EXPORTED daqDevice_removeServer(daqDevice* self, daqServer* server);
+
+    // [elementType(servers, Server)]
+    /*!
+     * @brief Get list of added servers.
+     * @param[out] servers List of added servers.
+     */
     daqErrCode EXPORTED daqDevice_getServers(daqDevice* self, daqList** servers);
+
+    /*!
+     * @brief Lock a device with a session user. Once locked, no properties of the device can be changed via the protocol layer. Only the same user who locked the device can unlock it. If no user was specified when the device was locked, any user will be able to unlock it.
+     */
     daqErrCode EXPORTED daqDevice_lock(daqDevice* self);
+
+    /*!
+     * @brief Unlock a device with a session user. A device can only be unlocked by the same user who locked it. If no user was specified when the device was locked, any user will be able to unlock it.
+     */
     daqErrCode EXPORTED daqDevice_unlock(daqDevice* self);
+
+    /*!
+     * @brief Returns true if device is locked. Once locked, no properties of the device can be changed via the protocol layer.
+     * @param[out] locked True if device is locked.
+     */
     daqErrCode EXPORTED daqDevice_isLocked(daqDevice* self, daqBool* locked);
+
+    // [elementType(logFileInfos, LogFileInfo)]
+    /*!
+     * @brief Gets a list of available log files.
+     * @param[out] logFileInfos The list of available log files.
+     */
     daqErrCode EXPORTED daqDevice_getLogFileInfos(daqDevice* self, daqList** logFileInfos);
+
+    /*!
+     * @brief Retrieves a chunk of the log file with the provided ID.
+     * This function extracts a specified portion (or the entire content) of the log file, starting at the given offset.
+     * If the size and offset are not specified, it will attempt to return the entire log file by default.
+     * @param[out] log A string which stores requested log chunk.
+     * @param id Rhe ID of the log file to retrieve.
+     * @param size The size of the log chunk to retrieve in bytes. Defaults to -1, which means it will return all remaining bytes from the offset.
+     * @param offset The offset, in bytes, from where the log chunk should be read. Defaults to 0 (start of the file).
+     * If size is set to -1, and offset is 0, the entire log file will be returned.
+     */
     daqErrCode EXPORTED daqDevice_getLog(daqDevice* self, daqString** log, daqString* id, daqInt size, daqInt offset);
+
+    /*!
+     * @brief Gets the container holding the statuses of device configuration and streaming connections.
+     * @param[out] statusContainer The container for the device connection statuses.
+     */
     daqErrCode EXPORTED daqDevice_getConnectionStatusContainer(daqDevice* self, daqComponentStatusContainer** statusContainer);
+
+    // [elementType(availableOpModes, Integer)]
+    /*!
+     * @brief Gets a list of available operation modes for the device.
+     * @param[out] availableOpModes The list of available operation modes.
+     */
     daqErrCode EXPORTED daqDevice_getAvailableOperationModes(daqDevice* self, daqList** availableOpModes);
+
+    /*!
+     * @brief Sets the operation mode of the device subtree excluding the sub-devices.
+     * @param modeType The operation mode to set.
+     */
     daqErrCode EXPORTED daqDevice_setOperationMode(daqDevice* self, daqOperationModeType modeType);
+
+    /*!
+     * @brief Sets the operation mode of the device subtree including the sub-devices.
+     * @param modeType The operation mode to set.
+     */
     daqErrCode EXPORTED daqDevice_setOperationModeRecursive(daqDevice* self, daqOperationModeType modeType);
+
+    // [templateType(devices, String, Device)]
+    // [templateType(connectionArgs, String, PropertyObject)]
+    // [templateType(errCodes, String, Integer)]
+    // [templateType(errorInfos, String, ErrorInfo)]
+    /*!
+     * @brief Connects to multiple devices in parallel using the provided connection strings and returns the connected devices. Each connection is established concurrently to improve performance when handling multiple devices. The additions, in turn, are performed sequentially in the order specified by connectionArgs.
+     * @param[out] devices A dictionary that maps each connection string to the corresponding added device object. If a device connection or addition attempt fails, the value will be `nullptr` for that entry.
+     * @param connectionArgs A dictionary where each key is a connection string identifying the target device (e.g., IPv4/IPv6), and each value is a configuration object that customizes the connection. The configuration may specify parameters such as maximum sample rate, communication port, number of channels, or other device-specific settings. A `nullptr` value indicates that the default configuration should be used.
+     * @param errCodes An optional dictionary used to populate error codes for failed connection or addition attempts. For each failed attempt, the key is the connection string, and the value contains the error code.
+     * @param errorInfos An optional dictionary used to populate detailed error info for failed connection or addition attempts. For each failed attempt, the key is the connection string, and the value contains the error info object.
+     * @return OPENDAQ_PARTIAL_SUCCESS if at least one device was successfully created and added, but not all of them;
+         *         OPENDAQ_ERR_GENERALERROR if no devices were created or added;
+         *         OPENDAQ_IGNORED if adding the devices from modules is not allowed within the device.
+     */
     daqErrCode EXPORTED daqDevice_addDevices(daqDevice* self, daqDict** devices, daqDict* connectionArgs, daqDict* errCodes, daqDict* errorInfos);
 
 #ifdef __cplusplus

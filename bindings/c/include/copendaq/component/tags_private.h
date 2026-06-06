@@ -34,7 +34,14 @@ extern "C"
 
 #include <ccommon.h>
 
+    /*!
+     * @brief Private interface to component tags. Allows for adding/removing tags.
+     *
+     * Modifying the tags of a component might have unintended sideffects and should in most cases only be done
+     * by the component owner module.
+     */
     // DECLARE_OPENDAQ_INTERFACE(daqTagsPrivate, daqBaseObject)
+
     typedef struct daqTagsPrivate daqTagsPrivate;
     typedef struct daqString daqString;
     typedef struct daqList daqList;
@@ -42,8 +49,25 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_TAGS_PRIVATE_INTF_ID;
     void EXPORTED daqTagsPrivate_getInterfaceId(daqIntfID* intfId);
 
+    /*!
+     * @brief Adds a new tag to the list.
+     * @param name The name of the tag to be added.
+     * @retval OPENDAQ_IGNORED if a node with the `name` is already in the list of tags.
+     */
     daqErrCode EXPORTED daqTagsPrivate_add(daqTagsPrivate* self, daqString* name);
+
+    /*!
+     * @brief Removes a new tag from the list.
+     * @param name The name of the tag to be removed.
+     * @retval OPENDAQ_IGNORED if a node with the `name` is not in the list of tags.
+     */
     daqErrCode EXPORTED daqTagsPrivate_remove(daqTagsPrivate* self, daqString* name);
+
+    // [elementType(tags, String)]
+    /*!
+     * @brief Replaces all tags.
+     * @param tags The new list of tags.
+     */
     daqErrCode EXPORTED daqTagsPrivate_replace(daqTagsPrivate* self, daqList* tags);
 
 #ifdef __cplusplus

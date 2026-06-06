@@ -34,7 +34,12 @@ extern "C"
 
 #include <ccommon.h>
 
+    /*!
+     * @ingroup types_events
+     * @defgroup types_event_handler EventHandler
+     */
     // DECLARE_OPENDAQ_INTERFACE(daqEventHandler, daqBaseObject)
+
     typedef struct daqEventHandler daqEventHandler;
     typedef struct daqEventArgs daqEventArgs;
 

@@ -34,7 +34,11 @@ extern "C"
 
 #include <ccommon.h>
 
+    /*!
+     * @brief Config provider is an interface that was made for populating an options dictionary of an instance builder from external sources like a config file, environment variables, or command line arguments. The process of population of the dictionary have to be alligned with rules: - all keys are set in lowercase. Values are set without case changes. - if a provider is trying to override an existing value, it has to have the same type. For example provider can not replace integer value with string or object with list - if a provider is overriding a list, it replaces old list items with a new one.
+     */
     // DECLARE_OPENDAQ_INTERFACE(daqConfigProvider, daqBaseObject)
+
     typedef struct daqConfigProvider daqConfigProvider;
     typedef struct daqDict daqDict;
     typedef struct daqString daqString;
@@ -43,9 +47,17 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_CONFIG_PROVIDER_INTF_ID;
     void EXPORTED daqConfigProvider_getInterfaceId(daqIntfID* intfId);
 
+    // [templateType(options, String, BaseObject)]
+    /*!
+     * @brief Populate the existing options dictionary with variables from config provider
+     * @param options The options dictionary
+     */
     daqErrCode EXPORTED daqConfigProvider_populateOptions(daqConfigProvider* self, daqDict* options);
+
     daqErrCode EXPORTED daqConfigProvider_createJsonConfigProvider(daqConfigProvider** obj, daqString* filename);
+
     daqErrCode EXPORTED daqConfigProvider_createEnvConfigProvider(daqConfigProvider** obj);
+
     daqErrCode EXPORTED daqConfigProvider_createCmdLineArgsConfigProvider(daqConfigProvider** obj, daqList* cmdLineArgs);
 
 #ifdef __cplusplus

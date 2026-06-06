@@ -34,15 +34,33 @@ extern "C"
 
 #include <ccommon.h>
 
+    /*!
+     * @brief IUpdateParameters interface provides a set of methods to give user flexibility to load instance configuration.
+     */
     // DECLARE_OPENDAQ_INTERFACE(daqUpdateParameters, daqPropertyObject)
+
     typedef struct daqUpdateParameters daqUpdateParameters;
     typedef struct daqDeviceUpdateOptions daqDeviceUpdateOptions;
 
     EXPORTED extern const daqIntfID DAQ_UPDATE_PARAMETERS_INTF_ID;
     void EXPORTED daqUpdateParameters_getInterfaceId(daqIntfID* intfId);
 
+    /*!
+     * @brief Gets the device update options object that allows for specifying how a device and its subdevices are to be updated.
+     * @param options The device update options object.
+     */
     daqErrCode EXPORTED daqUpdateParameters_getDeviceUpdateOptions(daqUpdateParameters* self, daqDeviceUpdateOptions** options);
+
+    /*!
+     * @brief Sets the device update options object that allows for specifying how a device and its subdevices are to be updated.
+     * @param options The device update options object.
+     */
     daqErrCode EXPORTED daqUpdateParameters_setDeviceUpdateOptions(daqUpdateParameters* self, daqDeviceUpdateOptions* options);
+
+    /*!
+     * @ingroup opendaq_update_parameters
+     * @addtogroup opendaq_update_parameters Factories
+     */
     daqErrCode EXPORTED daqUpdateParameters_createUpdateParameters(daqUpdateParameters** obj);
 
 #ifdef __cplusplus

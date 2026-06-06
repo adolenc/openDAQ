@@ -34,7 +34,11 @@ extern "C"
 
 #include <ccommon.h>
 
+    /*!
+     * @brief ITailReaderStatus inherits from IReaderStatus to expand information returned read function
+     */
     // DECLARE_OPENDAQ_INTERFACE(daqTailReaderStatus, daqReaderStatus)
+
     typedef struct daqTailReaderStatus daqTailReaderStatus;
     typedef struct daqEventPacket daqEventPacket;
     typedef struct daqNumber daqNumber;
@@ -43,6 +47,7 @@ extern "C"
     void EXPORTED daqTailReaderStatus_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqTailReaderStatus_getSufficientHistory(daqTailReaderStatus* self, daqBool* status);
+
     daqErrCode EXPORTED daqTailReaderStatus_createTailReaderStatus(daqTailReaderStatus** obj, daqEventPacket* eventPacket, daqBool valid, daqNumber* offset, daqBool sufficientHistory);
 
 #ifdef __cplusplus

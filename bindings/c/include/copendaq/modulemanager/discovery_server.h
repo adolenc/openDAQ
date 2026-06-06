@@ -34,7 +34,12 @@ extern "C"
 
 #include <ccommon.h>
 
+    /*!
+     * @ingroup opendaq_utility
+     * @addtogroup opendaq_discovery_service Discovery service
+     */
     // DECLARE_OPENDAQ_INTERFACE(daqDiscoveryServer, daqBaseObject)
+
     typedef struct daqDiscoveryServer daqDiscoveryServer;
     typedef struct daqString daqString;
     typedef struct daqPropertyObject daqPropertyObject;
@@ -46,8 +51,11 @@ extern "C"
     void EXPORTED daqDiscoveryServer_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqDiscoveryServer_registerService(daqDiscoveryServer* self, daqString* id, daqPropertyObject* config, daqDeviceInfo* deviceInfo);
+
     daqErrCode EXPORTED daqDiscoveryServer_unregisterService(daqDiscoveryServer* self, daqString* id);
+
     daqErrCode EXPORTED daqDiscoveryServer_setRootDevice(daqDiscoveryServer* self, daqDevice* device);
+
     daqErrCode EXPORTED daqDiscoveryServer_createMdnsDiscoveryServer(daqDiscoveryServer** obj, daqLogger* logger);
 
 #ifdef __cplusplus

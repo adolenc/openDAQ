@@ -34,13 +34,22 @@ extern "C"
 
 #include <ccommon.h>
 
+    /*!
+     * @brief Internal Permissions interface. It should be used only in openDAQ core implementation files.
+     */
     // DECLARE_OPENDAQ_INTERFACE(daqPermissionsInternal, daqBaseObject)
+
     typedef struct daqPermissionsInternal daqPermissionsInternal;
     typedef struct daqDict daqDict;
 
     EXPORTED extern const daqIntfID DAQ_PERMISSIONS_INTERNAL_INTF_ID;
     void EXPORTED daqPermissionsInternal_getInterfaceId(daqIntfID* intfId);
 
+    // [templateType(permissions, String, Integer)]
+    /*!
+     * @brief Returns a dictionary of assigned permissions for each group.
+     * @param permissions[out] A dictionary of assigned permissions for each group.
+     */
     daqErrCode EXPORTED daqPermissionsInternal_getAssigned(daqPermissionsInternal* self, daqDict** permissions);
 
 #ifdef __cplusplus

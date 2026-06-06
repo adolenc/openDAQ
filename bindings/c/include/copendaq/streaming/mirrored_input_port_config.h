@@ -34,7 +34,16 @@ extern "C"
 
 #include <ccommon.h>
 
+    /*!
+     * @brief Represents the configuration interface for mirrored input ports.
+     *
+     * Allows listing available streaming sources and selecting the active source for a mirrored input port.
+     * Only sources that support client-to-device streaming are allowed. The active sources sends client signal
+     * (and the associated domain signal) data to the device, which is then consumed by the connection formed
+     * by the input port origin and the mirrored signal connected to it.
+     */
     // DECLARE_OPENDAQ_INTERFACE(daqMirroredInputPortConfig, daqInputPortConfig)
+
     typedef struct daqMirroredInputPortConfig daqMirroredInputPortConfig;
     typedef struct daqString daqString;
     typedef struct daqList daqList;
@@ -42,9 +51,30 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_MIRRORED_INPUT_PORT_CONFIG_INTF_ID;
     void EXPORTED daqMirroredInputPortConfig_getInterfaceId(daqIntfID* intfId);
 
+    /*!
+     * @brief Gets the global ID of the input port as it appears on the remote device.
+     * @param[out] id The input port ID.
+     */
     daqErrCode EXPORTED daqMirroredInputPortConfig_getRemoteId(daqMirroredInputPortConfig* self, daqString** id);
+
+    // [elementType(streamingConnectionStrings, String)]
+    /*!
+     * @brief Gets a list of connection strings of all available streaming sources of the input port.
+     * @param[out] streamingConnectionStrings The list of streaming connection strings.
+     */
     daqErrCode EXPORTED daqMirroredInputPortConfig_getStreamingSources(daqMirroredInputPortConfig* self, daqList** streamingConnectionStrings);
+
+    /*!
+     * @brief Sets the active streaming source of the input port.
+     * @param streamingConnectionString The connection string of streaming source to be set as active.
+     * @retval OPENDAQ_ERR_NOTFOUND if the streaming source with the corresponding connection string is not part of the available streaming sources for the input port.
+     */
     daqErrCode EXPORTED daqMirroredInputPortConfig_setActiveStreamingSource(daqMirroredInputPortConfig* self, daqString* streamingConnectionString);
+
+    /*!
+     * @brief Gets a connection strings of the active streaming source of the input port.
+     * @param[out] streamingConnectionString The connection string of active streaming source.
+     */
     daqErrCode EXPORTED daqMirroredInputPortConfig_getActiveStreamingSource(daqMirroredInputPortConfig* self, daqString** streamingConnectionString);
 
 #ifdef __cplusplus
