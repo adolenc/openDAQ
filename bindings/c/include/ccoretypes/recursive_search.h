@@ -34,6 +34,7 @@ extern "C"
 
 #include <ccommon.h>
 
+    // DECLARE_OPENDAQ_INTERFACE(daqRecursiveSearch, daqBaseObject)
 
     EXPORTED extern const daqIntfID DAQ_RECURSIVE_SEARCH_INTF_ID;
     void EXPORTED daqRecursiveSearch_getInterfaceId(daqIntfID* intfId);

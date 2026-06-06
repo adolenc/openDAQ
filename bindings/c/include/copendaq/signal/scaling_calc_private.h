@@ -34,6 +34,7 @@ extern "C"
 
 #include <ccommon.h>
 
+    // DECLARE_OPENDAQ_INTERFACE(daqScalingCalcPrivate, daqBaseObject)
     typedef struct daqScalingCalcPrivate daqScalingCalcPrivate;
 
     EXPORTED extern const daqIntfID DAQ_SCALING_CALC_PRIVATE_INTF_ID;

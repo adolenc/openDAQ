@@ -34,6 +34,7 @@ extern "C"
 
 #include <ccommon.h>
 
+    // DECLARE_OPENDAQ_INTERFACE(daqChannel, daqFunctionBlock)
 
     EXPORTED extern const daqIntfID DAQ_CHANNEL_INTF_ID;
     void EXPORTED daqChannel_getInterfaceId(daqIntfID* intfId);

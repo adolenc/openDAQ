@@ -34,6 +34,7 @@ extern "C"
 
 #include <ccommon.h>
 
+    // DECLARE_OPENDAQ_INTERFACE(daqFunctionBlock, daqFolder)
     typedef struct daqFunctionBlock daqFunctionBlock;
     typedef struct daqFunctionBlockType daqFunctionBlockType;
     typedef struct daqList daqList;

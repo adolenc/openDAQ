@@ -34,6 +34,7 @@ extern "C"
 
 #include <ccommon.h>
 
+    // DECLARE_OPENDAQ_INTERFACE(daqIoFolderConfig, daqFolderConfig)
 
     EXPORTED extern const daqIntfID DAQ_IO_FOLDER_CONFIG_INTF_ID;
     void EXPORTED daqIoFolderConfig_getInterfaceId(daqIntfID* intfId);

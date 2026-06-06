@@ -34,6 +34,7 @@ extern "C"
 
 #include <ccommon.h>
 
+    // DECLARE_OPENDAQ_INTERFACE(daqList, daqBaseObject)
     typedef struct daqList daqList;
     typedef struct daqIterator daqIterator;
 

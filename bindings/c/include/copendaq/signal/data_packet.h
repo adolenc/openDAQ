@@ -34,6 +34,7 @@ extern "C"
 
 #include <ccommon.h>
 
+    // DECLARE_OPENDAQ_INTERFACE(daqDataPacket, daqPacket)
     typedef struct daqDataPacket daqDataPacket;
     typedef struct daqDataDescriptor daqDataDescriptor;
     typedef struct daqNumber daqNumber;

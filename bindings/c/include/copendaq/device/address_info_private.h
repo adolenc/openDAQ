@@ -34,6 +34,7 @@ extern "C"
 
 #include <ccommon.h>
 
+    // DECLARE_OPENDAQ_INTERFACE(daqAddressInfoPrivate, daqBaseObject)
     typedef struct daqAddressInfoPrivate daqAddressInfoPrivate;
 
     EXPORTED extern const daqIntfID DAQ_ADDRESS_INFO_PRIVATE_INTF_ID;

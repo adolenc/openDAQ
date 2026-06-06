@@ -34,6 +34,7 @@ extern "C"
 
 #include <ccommon.h>
 
+    // DECLARE_OPENDAQ_INTERFACE(daqLockGuard, daqBaseObject)
 
     EXPORTED extern const daqIntfID DAQ_LOCK_GUARD_INTF_ID;
     void EXPORTED daqLockGuard_getInterfaceId(daqIntfID* intfId);

@@ -34,6 +34,7 @@ extern "C"
 
 #include <ccommon.h>
 
+    // DECLARE_OPENDAQ_INTERFACE(daqSignalEvents, daqBaseObject)
     typedef struct daqSignalEvents daqSignalEvents;
     typedef struct daqConnection daqConnection;
     typedef struct daqSignal daqSignal;

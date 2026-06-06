@@ -34,6 +34,7 @@ extern "C"
 
 #include <ccommon.h>
 
+    // DECLARE_OPENDAQ_INTERFACE(daqLoggerComponent, daqBaseObject)
     typedef struct daqLoggerComponent daqLoggerComponent;
     typedef struct daqString daqString;
     typedef struct daqList daqList;
@@ -45,7 +46,7 @@ extern "C"
     daqErrCode EXPORTED daqLoggerComponent_getName(daqLoggerComponent* self, daqString** name);
     daqErrCode EXPORTED daqLoggerComponent_setLevel(daqLoggerComponent* self, daqLogLevel level);
     daqErrCode EXPORTED daqLoggerComponent_getLevel(daqLoggerComponent* self, daqLogLevel* level);
-    // daqErrCode EXPORTED daqLoggerComponent_logMessage(daqLoggerComponent* self, daqSourceLocation location, daqConstCharPtr msg, daqLogLevel level);
+    daqErrCode EXPORTED daqLoggerComponent_logMessage(daqLoggerComponent* self, daqSourceLocation location, daqConstCharPtr msg, daqLogLevel level);
     daqErrCode EXPORTED daqLoggerComponent_setPattern(daqLoggerComponent* self, daqString* pattern);
     daqErrCode EXPORTED daqLoggerComponent_shouldLog(daqLoggerComponent* self, daqLogLevel level, daqBool* willLog);
     daqErrCode EXPORTED daqLoggerComponent_flush(daqLoggerComponent* self);

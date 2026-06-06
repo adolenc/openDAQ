@@ -34,6 +34,7 @@ extern "C"
 
 #include <ccommon.h>
 
+    // DECLARE_OPENDAQ_INTERFACE(daqDimensionRuleBuilder, daqBaseObject)
     typedef struct daqDimensionRuleBuilder daqDimensionRuleBuilder;
     typedef struct daqDimensionRule daqDimensionRule;
     typedef struct daqDict daqDict;

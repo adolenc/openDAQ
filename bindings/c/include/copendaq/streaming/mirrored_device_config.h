@@ -34,6 +34,7 @@ extern "C"
 
 #include <ccommon.h>
 
+    // DECLARE_OPENDAQ_INTERFACE(daqMirroredDeviceConfig, daqMirroredDevice)
     typedef struct daqMirroredDeviceConfig daqMirroredDeviceConfig;
     typedef struct daqStreaming daqStreaming;
     typedef struct daqString daqString;

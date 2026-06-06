@@ -34,6 +34,7 @@ extern "C"
 
 #include <ccommon.h>
 
+    // DECLARE_OPENDAQ_INTERFACE(daqPermissions, daqBaseObject)
     typedef struct daqPermissions daqPermissions;
     typedef struct daqDict daqDict;
 

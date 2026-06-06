@@ -34,6 +34,7 @@ extern "C"
 
 #include <ccommon.h>
 
+    // DECLARE_OPENDAQ_INTERFACE(daqBoolean, daqBaseObject)
     typedef struct daqBoolean daqBoolean;
 
     EXPORTED extern const daqIntfID DAQ_BOOLEAN_INTF_ID;

@@ -34,6 +34,7 @@ extern "C"
 
 #include <ccommon.h>
 
+    // DECLARE_OPENDAQ_INTERFACE(daqDeviceUpdateOptions, daqBaseObject)
     typedef struct daqDeviceUpdateOptions daqDeviceUpdateOptions;
     typedef struct daqString daqString;
     typedef struct daqList daqList;

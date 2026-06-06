@@ -34,6 +34,7 @@ extern "C"
 
 #include <ccommon.h>
 
+    // DECLARE_OPENDAQ_INTERFACE(daqStreamReaderBuilder, daqBaseObject)
     typedef struct daqStreamReaderBuilder daqStreamReaderBuilder;
     typedef struct daqStreamReader daqStreamReader;
     typedef struct daqSignal daqSignal;

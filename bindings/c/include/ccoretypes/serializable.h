@@ -34,6 +34,7 @@ extern "C"
 
 #include <ccommon.h>
 
+    // DECLARE_OPENDAQ_INTERFACE(daqSerializable, daqBaseObject)
     typedef struct daqSerializable daqSerializable;
     typedef struct daqSerializer daqSerializer;
 

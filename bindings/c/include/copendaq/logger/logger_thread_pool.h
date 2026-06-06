@@ -34,6 +34,7 @@ extern "C"
 
 #include <ccommon.h>
 
+    // DECLARE_OPENDAQ_INTERFACE(daqLoggerThreadPool, daqBaseObject)
     typedef struct daqLoggerThreadPool daqLoggerThreadPool;
 
     EXPORTED extern const daqIntfID DAQ_LOGGER_THREAD_POOL_INTF_ID;

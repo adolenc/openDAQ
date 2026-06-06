@@ -34,6 +34,7 @@ extern "C"
 
 #include <ccommon.h>
 
+    // DECLARE_OPENDAQ_INTERFACE(daqScheduler, daqBaseObject)
     typedef struct daqScheduler daqScheduler;
     typedef struct daqFunction daqFunction;
     typedef struct daqAwaitable daqAwaitable;
