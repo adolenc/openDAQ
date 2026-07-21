@@ -56,7 +56,9 @@ extern "C"
     daqErrCode EXPORTED daqInstance_addStandardServers(daqInstance* self, daqList** servers);
     daqErrCode EXPORTED daqInstance_createInstance(daqInstance** obj, daqContext* context, daqString* localId);
     daqErrCode EXPORTED daqInstance_createInstanceFromBuilder(daqInstance** obj, daqInstanceBuilder* builder);
+/*
     daqErrCode EXPORTED daqDevice_createClient(daqDevice** obj, daqContext* ctx, daqString* localId, daqDeviceInfo* defaultDeviceInfo, daqComponent* parent);
+*/
 
 #ifdef __cplusplus
 }

@@ -12,6 +12,7 @@
 #include <ccoreobjects/callable_info.h>
 
 #include <opendaq/opendaq.h>
+#include <coreobjects/callable_info.h>
 
 #include <copendaq_private.h>
 

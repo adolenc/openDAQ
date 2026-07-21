@@ -5,17 +5,23 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 //
-//     RTGen (CGenerator v0.7.0) on 03.06.2025 17:17:49.
+//     RTGen (CGenerator v0.7.0).
 // </auto-generated>
 //------------------------------------------------------------------------------
 
 #include <ccoretypes/errorinfo.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/errorinfo.h>
 
 #include <copendaq_private.h>
 
 const daqIntfID DAQ_ERROR_INFO_INTF_ID = { daq::IErrorInfo::Id.Data1, daq::IErrorInfo::Id.Data2, daq::IErrorInfo::Id.Data3, daq::IErrorInfo::Id.Data4_UInt64 };
+
+void daqErrorInfo_getInterfaceId(daqIntfID* intfId)
+{
+    *intfId = DAQ_ERROR_INFO_INTF_ID;
+}
 
 daqErrCode daqErrorInfo_setMessage(daqErrorInfo* self, daqString* message)
 {
@@ -55,6 +61,31 @@ daqErrCode daqErrorInfo_setFileLine(daqErrorInfo* self, daqInt fileLine)
 daqErrCode daqErrorInfo_getFileLine(daqErrorInfo* self, daqInt* fileLine)
 {
     return reinterpret_cast<daq::IErrorInfo*>(self)->getFileLine(fileLine);
+}
+
+daqErrCode daqErrorInfo_setErrorCode(daqErrorInfo* self, daqErrCode errorCode)
+{
+    return reinterpret_cast<daq::IErrorInfo*>(self)->setErrorCode(static_cast<daq::ErrCode>(errorCode));
+}
+
+daqErrCode daqErrorInfo_getErrorCode(daqErrorInfo* self, daqErrCode* errorCode)
+{
+    return reinterpret_cast<daq::IErrorInfo*>(self)->getErrorCode(reinterpret_cast<daq::ErrCode*>(errorCode));
+}
+
+daqErrCode daqErrorInfo_setPreviousErrorCode(daqErrorInfo* self, daqErrCode prevErrCode)
+{
+    return reinterpret_cast<daq::IErrorInfo*>(self)->setPreviousErrorCode(static_cast<daq::ErrCode>(prevErrCode));
+}
+
+daqErrCode daqErrorInfo_getPreviousErrorCode(daqErrorInfo* self, daqErrCode* prevErrCode)
+{
+    return reinterpret_cast<daq::IErrorInfo*>(self)->getPreviousErrorCode(reinterpret_cast<daq::ErrCode*>(prevErrCode));
+}
+
+daqErrCode daqErrorInfo_getFormattedMessage(daqErrorInfo* self, daqString** message)
+{
+    return reinterpret_cast<daq::IErrorInfo*>(self)->getFormattedMessage(reinterpret_cast<daq::IString**>(message));
 }
 
 daqErrCode daqErrorInfo_createErrorInfo(daqErrorInfo** obj)

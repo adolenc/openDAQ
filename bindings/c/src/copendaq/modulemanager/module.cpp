@@ -12,6 +12,7 @@
 #include <copendaq/modulemanager/module.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/module.h>
 
 #include <copendaq_private.h>
 

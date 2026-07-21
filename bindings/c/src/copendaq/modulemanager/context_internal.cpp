@@ -12,6 +12,7 @@
 #include <copendaq/modulemanager/context_internal.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/context_internal.h>
 
 #include <copendaq_private.h>
 

@@ -5,7 +5,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 //
-//     RTGen (CGenerator v0.7.0) on 03.06.2025 17:17:49.
+//     RTGen (CGenerator v0.7.0).
 // </auto-generated>
 //------------------------------------------------------------------------------
 
@@ -38,6 +38,7 @@ extern "C"
     typedef struct daqString daqString;
 
     EXPORTED extern const daqIntfID DAQ_ERROR_INFO_INTF_ID;
+    void EXPORTED daqErrorInfo_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqErrorInfo_setMessage(daqErrorInfo* self, daqString* message);
     daqErrCode EXPORTED daqErrorInfo_getMessage(daqErrorInfo* self, daqString** message);
@@ -47,6 +48,11 @@ extern "C"
     daqErrCode EXPORTED daqErrorInfo_getFileName(daqErrorInfo* self, daqConstCharPtr* fileName);
     daqErrCode EXPORTED daqErrorInfo_setFileLine(daqErrorInfo* self, daqInt fileLine);
     daqErrCode EXPORTED daqErrorInfo_getFileLine(daqErrorInfo* self, daqInt* fileLine);
+    daqErrCode EXPORTED daqErrorInfo_setErrorCode(daqErrorInfo* self, daqErrCode errorCode);
+    daqErrCode EXPORTED daqErrorInfo_getErrorCode(daqErrorInfo* self, daqErrCode* errorCode);
+    daqErrCode EXPORTED daqErrorInfo_setPreviousErrorCode(daqErrorInfo* self, daqErrCode prevErrCode);
+    daqErrCode EXPORTED daqErrorInfo_getPreviousErrorCode(daqErrorInfo* self, daqErrCode* prevErrCode);
+    daqErrCode EXPORTED daqErrorInfo_getFormattedMessage(daqErrorInfo* self, daqString** message);
     daqErrCode EXPORTED daqErrorInfo_createErrorInfo(daqErrorInfo** obj);
 
 #ifdef __cplusplus

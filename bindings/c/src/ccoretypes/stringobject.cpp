@@ -12,6 +12,7 @@
 #include <ccoretypes/stringobject.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/stringobject.h>
 
 #include <copendaq_private.h>
 

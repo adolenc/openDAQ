@@ -12,6 +12,7 @@
 #include <ccoreobjects/permission_manager.h>
 
 #include <opendaq/opendaq.h>
+#include <coreobjects/permission_manager.h>
 
 #include <copendaq_private.h>
 

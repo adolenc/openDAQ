@@ -5,7 +5,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 //
-//     RTGen (CGenerator v0.7.0) on 03.06.2025 17:17:53.
+//     RTGen (CGenerator v0.7.0).
 // </auto-generated>
 //------------------------------------------------------------------------------
 
@@ -38,8 +38,11 @@ extern "C"
     typedef struct daqString daqString;
 
     EXPORTED extern const daqIntfID DAQ_INSPECTABLE_INTF_ID;
+    void EXPORTED daqInspectable_getInterfaceId(daqIntfID* intfId);
 
-    // daqErrCode EXPORTED daqInspectable_getInterfaceIds(daqInspectable* self, daqSizeT* idCount, daqIntfID** ids);
+/*
+    daqErrCode EXPORTED daqInspectable_getInterfaceIds(daqInspectable* self, daqSizeT* idCount, daqIntfID** ids);
+*/
     daqErrCode EXPORTED daqInspectable_getRuntimeClassName(daqInspectable* self, daqString** implementationName);
 
 #ifdef __cplusplus

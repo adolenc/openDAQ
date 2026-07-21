@@ -12,6 +12,7 @@
 #include <ccoretypes/type.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/type.h>
 
 #include <copendaq_private.h>
 

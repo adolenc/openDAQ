@@ -12,6 +12,7 @@
 #include <copendaq/device/user_lock.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/user_lock.h>
 
 #include <copendaq_private.h>
 

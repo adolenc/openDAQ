@@ -5,17 +5,23 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 //
-//     RTGen (CGenerator v0.7.0) on 03.06.2025 17:17:47.
+//     RTGen (CGenerator v0.7.0).
 // </auto-generated>
 //------------------------------------------------------------------------------
 
 #include <ccoretypes/deserializer.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/deserializer.h>
 
 #include <copendaq_private.h>
 
 const daqIntfID DAQ_DESERIALIZER_INTF_ID = { daq::IDeserializer::Id.Data1, daq::IDeserializer::Id.Data2, daq::IDeserializer::Id.Data3, daq::IDeserializer::Id.Data4_UInt64 };
+
+void daqDeserializer_getInterfaceId(daqIntfID* intfId)
+{
+    *intfId = DAQ_DESERIALIZER_INTF_ID;
+}
 
 daqErrCode daqDeserializer_deserialize(daqDeserializer* self, daqString* serialized, daqBaseObject* context, daqFunction* factoryCallback, daqBaseObject** object)
 {

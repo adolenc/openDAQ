@@ -12,6 +12,7 @@
 #include <copendaq/reader/stream_reader_builder.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/stream_reader_builder.h>
 
 #include <copendaq_private.h>
 

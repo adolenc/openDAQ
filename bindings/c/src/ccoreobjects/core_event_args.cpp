@@ -12,6 +12,7 @@
 #include <ccoreobjects/core_event_args.h>
 
 #include <opendaq/opendaq.h>
+#include <coreobjects/core_event_args.h>
 
 #include <copendaq_private.h>
 

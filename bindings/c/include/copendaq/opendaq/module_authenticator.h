@@ -34,12 +34,15 @@ extern "C"
 
 #include <ccommon.h>
 
-    typedef struct daqListElementType daqListElementType;
+    typedef struct daqModuleAuthenticator daqModuleAuthenticator;
+    typedef struct daqString daqString;
+    typedef struct daqLogger daqLogger;
 
-    EXPORTED extern const daqIntfID DAQ_LIST_ELEMENT_TYPE_INTF_ID;
-    void EXPORTED daqListElementType_getInterfaceId(daqIntfID* intfId);
+    EXPORTED extern const daqIntfID DAQ_MODULE_AUTHENTICATOR_INTF_ID;
+    void EXPORTED daqModuleAuthenticator_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqListElementType_getElementInterfaceId(daqListElementType* self, daqIntfID* id);
+    daqErrCode EXPORTED daqModuleAuthenticator_authenticateModuleBinary(daqModuleAuthenticator* self, daqBool* binaryValid, daqString** vendorKey, daqString* binaryPath);
+    daqErrCode EXPORTED daqModuleAuthenticator_setLogger(daqModuleAuthenticator* self, daqLogger* logger);
 
 #ifdef __cplusplus
 }

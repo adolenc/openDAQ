@@ -5,13 +5,14 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 //
-//     RTGen (CGenerator v0.7.0) on 03.06.2025 17:17:51.
+//     RTGen (CGenerator v0.7.0).
 // </auto-generated>
 //------------------------------------------------------------------------------
 
 #include <ccoretypes/float.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/float.h>
 
 #include <copendaq_private.h>
 

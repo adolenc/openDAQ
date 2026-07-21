@@ -34,14 +34,19 @@ extern "C"
 
 #include <ccommon.h>
 
-    typedef struct daqPropertyObjectClassInternal daqPropertyObjectClassInternal;
-    typedef struct daqPropertyObjectClass daqPropertyObjectClass;
-    typedef struct daqTypeManager daqTypeManager;
+    typedef struct daqPacketBufferBuilder daqPacketBufferBuilder;
+    typedef struct daqContext daqContext;
+    typedef struct daqPacketBuffer daqPacketBuffer;
 
-    EXPORTED extern const daqIntfID DAQ_PROPERTY_OBJECT_CLASS_INTERNAL_INTF_ID;
-    void EXPORTED daqPropertyObjectClassInternal_getInterfaceId(daqIntfID* intfId);
+    EXPORTED extern const daqIntfID DAQ_PACKET_BUFFER_BUILDER_INTF_ID;
+    void EXPORTED daqPacketBufferBuilder_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqPropertyObjectClassInternal_clone(daqPropertyObjectClassInternal* self, daqPropertyObjectClass** cloned, daqTypeManager* typeManager);
+    daqErrCode EXPORTED daqPacketBufferBuilder_getContext(daqPacketBufferBuilder* self, daqContext** context);
+    daqErrCode EXPORTED daqPacketBufferBuilder_setContext(daqPacketBufferBuilder* self, daqContext* context);
+    daqErrCode EXPORTED daqPacketBufferBuilder_getSizeInBytes(daqPacketBufferBuilder* self, daqSizeT* sizeInBytes);
+    daqErrCode EXPORTED daqPacketBufferBuilder_setSizeInBytes(daqPacketBufferBuilder* self, daqSizeT sizeInBytes);
+    daqErrCode EXPORTED daqPacketBufferBuilder_build(daqPacketBufferBuilder* self, daqPacketBuffer** buffer);
+    daqErrCode EXPORTED daqPacketBufferBuilder_createPacketBufferBuilder(daqPacketBufferBuilder** obj);
 
 #ifdef __cplusplus
 }

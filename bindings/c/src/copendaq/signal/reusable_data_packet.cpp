@@ -12,6 +12,7 @@
 #include <copendaq/signal/reusable_data_packet.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/reusable_data_packet.h>
 
 #include <copendaq_private.h>
 

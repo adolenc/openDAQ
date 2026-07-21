@@ -34,14 +34,13 @@ extern "C"
 
 #include <ccommon.h>
 
-    typedef struct daqUserInternal daqUserInternal;
-    typedef struct daqString daqString;
+    typedef struct daqSupportsWeakRef daqSupportsWeakRef;
+    typedef struct daqWeakRef daqWeakRef;
 
-    EXPORTED extern const daqIntfID DAQ_USER_INTERNAL_INTF_ID;
-    void EXPORTED daqUserInternal_getInterfaceId(daqIntfID* intfId);
+    EXPORTED extern const daqIntfID DAQ_SUPPORTS_WEAK_REF_INTF_ID;
+    void EXPORTED daqSupportsWeakRef_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqUserInternal_getPasswordHash(daqUserInternal* self, daqString** passwordHash);
-    daqErrCode EXPORTED daqUserInternal_isAnonymous(daqUserInternal* self, daqBool* anonymous);
+    daqErrCode EXPORTED daqSupportsWeakRef_getWeakRef(daqSupportsWeakRef* self, daqWeakRef** weakRef);
 
 #ifdef __cplusplus
 }

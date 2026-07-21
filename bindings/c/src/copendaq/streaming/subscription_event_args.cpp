@@ -12,6 +12,7 @@
 #include <copendaq/streaming/subscription_event_args.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/subscription_event_args.h>
 
 #include <copendaq_private.h>
 

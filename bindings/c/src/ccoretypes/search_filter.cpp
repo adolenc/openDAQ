@@ -12,6 +12,7 @@
 #include <ccoretypes/search_filter.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/search_filter.h>
 
 #include <copendaq_private.h>
 

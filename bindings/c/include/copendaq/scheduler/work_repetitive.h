@@ -34,13 +34,12 @@ extern "C"
 
 #include <ccommon.h>
 
-    typedef struct daqPermissionsInternal daqPermissionsInternal;
-    typedef struct daqDict daqDict;
+    typedef struct daqWorkRepetitive daqWorkRepetitive;
 
-    EXPORTED extern const daqIntfID DAQ_PERMISSIONS_INTERNAL_INTF_ID;
-    void EXPORTED daqPermissionsInternal_getInterfaceId(daqIntfID* intfId);
+    EXPORTED extern const daqIntfID DAQ_WORK_REPETITIVE_INTF_ID;
+    void EXPORTED daqWorkRepetitive_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqPermissionsInternal_getAssigned(daqPermissionsInternal* self, daqDict** permissions);
+    daqErrCode EXPORTED daqWorkRepetitive_executeRepetitively(daqWorkRepetitive* self, daqBool* repeatAfter);
 
 #ifdef __cplusplus
 }

@@ -34,14 +34,18 @@ extern "C"
 
 #include <ccommon.h>
 
-    typedef struct daqScalingCalcPrivate daqScalingCalcPrivate;
+    typedef struct daqErrorGuard daqErrorGuard;
+    typedef struct daqString daqString;
+    typedef struct daqErrorInfo daqErrorInfo;
+    typedef struct daqList daqList;
 
-    EXPORTED extern const daqIntfID DAQ_SCALING_CALC_PRIVATE_INTF_ID;
-    void EXPORTED daqScalingCalcPrivate_getInterfaceId(daqIntfID* intfId);
+    EXPORTED extern const daqIntfID DAQ_ERROR_GUARD_INTF_ID;
+    void EXPORTED daqErrorGuard_getInterfaceId(daqIntfID* intfId);
 
-    void EXPORTED daqScalingCalcPrivate_scaleData(daqScalingCalcPrivate* self, void* data, daqSizeT sampleCount);
-    void EXPORTED daqScalingCalcPrivate_scaleDataOutput(daqScalingCalcPrivate* self, void* data, daqSizeT sampleCount, void** output);
-    daqBool EXPORTED daqScalingCalcPrivate_hasScalingCalc(daqScalingCalcPrivate* self);
+    daqErrCode EXPORTED daqErrorGuard_getFormattedMessage(daqErrorGuard* self, daqString** message);
+    daqErrCode EXPORTED daqErrorGuard_getLastErrorInfo(daqErrorGuard* self, daqErrorInfo** errorInfo);
+    daqErrCode EXPORTED daqErrorGuard_getErrorInfoList(daqErrorGuard* self, daqList** errorInfos);
+    daqErrCode EXPORTED daqErrorGuard_createErrorGuard(daqErrorGuard** obj, daqConstCharPtr fileName, daqInt fileLine);
 
 #ifdef __cplusplus
 }

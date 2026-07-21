@@ -12,6 +12,7 @@
 #include <copendaq/modulemanager/discovery_server.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/discovery_server.h>
 
 #include <copendaq_private.h>
 

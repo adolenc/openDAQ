@@ -127,10 +127,10 @@ TEST_F(CCoretypesTest, CoreType)
     daqInteger_createInteger(&i, 1);
 
     daqCoreTypeObject* coreTypeObj = nullptr;
-    daqBaseObject_borrowInterface(i, DAQ_CORE_TYPE_INTF_ID, (daqBaseObject**) &coreTypeObj);
+    daqBaseObject_borrowInterface(i, DAQ_CORE_TYPE_OBJECT_INTF_ID, (daqBaseObject**) &coreTypeObj);
 
     daqCoreType coreType = daqCoreType::daqCtUndefined;
-    daqCoreType_getCoreType(coreTypeObj, &coreType);
+    daqCoreTypeObject_getCoreType(coreTypeObj, &coreType);
 
     ASSERT_EQ(coreType, daqCoreType::daqCtInt);
 

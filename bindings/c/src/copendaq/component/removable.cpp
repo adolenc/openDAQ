@@ -12,6 +12,7 @@
 #include <copendaq/component/removable.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/removable.h>
 
 #include <copendaq_private.h>
 

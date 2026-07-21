@@ -34,13 +34,16 @@ extern "C"
 
 #include <ccommon.h>
 
-    typedef struct daqTypeManagerPrivate daqTypeManagerPrivate;
-    typedef struct daqProcedure daqProcedure;
+    typedef struct daqPropertyMetadataReadArgs daqPropertyMetadataReadArgs;
+    typedef struct daqProperty daqProperty;
 
-    EXPORTED extern const daqIntfID DAQ_TYPE_MANAGER_PRIVATE_INTF_ID;
-    void EXPORTED daqTypeManagerPrivate_getInterfaceId(daqIntfID* intfId);
+    EXPORTED extern const daqIntfID DAQ_PROPERTY_METADATA_READ_ARGS_INTF_ID;
+    void EXPORTED daqPropertyMetadataReadArgs_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqTypeManagerPrivate_setCoreEventCallback(daqTypeManagerPrivate* self, daqProcedure* callback);
+    daqErrCode EXPORTED daqPropertyMetadataReadArgs_getProperty(daqPropertyMetadataReadArgs* self, daqProperty** property);
+    daqErrCode EXPORTED daqPropertyMetadataReadArgs_getValue(daqPropertyMetadataReadArgs* self, daqBaseObject** value);
+    daqErrCode EXPORTED daqPropertyMetadataReadArgs_setValue(daqPropertyMetadataReadArgs* self, daqBaseObject* value);
+    daqErrCode EXPORTED daqPropertyMetadataReadArgs_createPropertyMetadataReadArgs(daqPropertyMetadataReadArgs** obj, daqProperty* prop);
 
 #ifdef __cplusplus
 }

@@ -12,6 +12,7 @@
 #include <ccoreobjects/validator.h>
 
 #include <opendaq/opendaq.h>
+#include <coreobjects/validator.h>
 
 #include <copendaq_private.h>
 

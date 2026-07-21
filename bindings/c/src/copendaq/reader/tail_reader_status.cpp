@@ -12,6 +12,7 @@
 #include <copendaq/reader/tail_reader_status.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/tail_reader_status.h>
 
 #include <copendaq_private.h>
 

@@ -12,6 +12,7 @@
 #include <ccoreobjects/authentication_provider.h>
 
 #include <opendaq/opendaq.h>
+#include <coreobjects/authentication_provider.h>
 
 #include <copendaq_private.h>
 

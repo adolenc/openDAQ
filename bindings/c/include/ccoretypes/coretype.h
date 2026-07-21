@@ -5,7 +5,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 //
-//     RTGen (CGenerator v0.7.0) on 03.06.2025 17:17:46.
+//     RTGen (CGenerator v0.7.0).
 // </auto-generated>
 //------------------------------------------------------------------------------
 
@@ -36,9 +36,10 @@ extern "C"
 
     typedef struct daqCoreTypeObject daqCoreTypeObject;
 
-    EXPORTED extern const daqIntfID DAQ_CORE_TYPE_INTF_ID;
+    EXPORTED extern const daqIntfID DAQ_CORE_TYPE_OBJECT_INTF_ID;
+    void EXPORTED daqCoreTypeObject_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqCoreType_getCoreType(daqCoreTypeObject* self, daqCoreType* coreType);
+    daqErrCode EXPORTED daqCoreTypeObject_getCoreType(daqCoreTypeObject* self, daqCoreType* coreType);
 
 #ifdef __cplusplus
 }

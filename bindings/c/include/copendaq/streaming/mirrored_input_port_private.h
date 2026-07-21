@@ -34,13 +34,18 @@ extern "C"
 
 #include <ccommon.h>
 
-    typedef struct daqDictElementType daqDictElementType;
+    typedef struct daqMirroredInputPortPrivate daqMirroredInputPortPrivate;
+    typedef struct daqStreaming daqStreaming;
+    typedef struct daqString daqString;
+    typedef struct daqList daqList;
 
-    EXPORTED extern const daqIntfID DAQ_DICT_ELEMENT_TYPE_INTF_ID;
-    void EXPORTED daqDictElementType_getInterfaceId(daqIntfID* intfId);
+    EXPORTED extern const daqIntfID DAQ_MIRRORED_INPUT_PORT_PRIVATE_INTF_ID;
+    void EXPORTED daqMirroredInputPortPrivate_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqDictElementType_getKeyInterfaceId(daqDictElementType* self, daqIntfID* id);
-    daqErrCode EXPORTED daqDictElementType_getValueInterfaceId(daqDictElementType* self, daqIntfID* id);
+    daqErrCode EXPORTED daqMirroredInputPortPrivate_addStreamingSource(daqMirroredInputPortPrivate* self, daqStreaming* streaming);
+    daqErrCode EXPORTED daqMirroredInputPortPrivate_removeStreamingSource(daqMirroredInputPortPrivate* self, daqString* streamingConnectionString);
+    daqErrCode EXPORTED daqMirroredInputPortPrivate_getActiveStreamingSourceObject(daqMirroredInputPortPrivate* self, daqStreaming** streaming);
+    daqErrCode EXPORTED daqMirroredInputPortPrivate_getStreamingSourceObjects(daqMirroredInputPortPrivate* self, daqList** objects);
 
 #ifdef __cplusplus
 }

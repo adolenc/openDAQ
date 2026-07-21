@@ -12,6 +12,7 @@
 #include <ccoretypes/freezable.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/freezable.h>
 
 #include <copendaq_private.h>
 
