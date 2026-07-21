@@ -1,0 +1,2 @@
+The C discovery step (--config) drives the per-interface c.template / c.header.template;
+this file only satisfies the template lookup rtgen performs before generation starts.

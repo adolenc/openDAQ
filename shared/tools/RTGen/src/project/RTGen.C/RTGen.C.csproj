@@ -39,18 +39,26 @@
     <Reference Include="LightInject, Version=6.6.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LightInject.6.6.4\lib\net462\LightInject.dll</HintPath>
     </Reference>
+    <Reference Include="RTGen.Cpp">
+      <HintPath>..\bin\Debug\RTGen.Cpp.dll</HintPath>
+    </Reference>
     <Reference Include="RTGen.Library">
       <HintPath>..\bin\Debug\RTGen.Library.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CCompositionRoot.cs" />
     <Compile Include="Generators\CGenerator.cs" />
+    <Compile Include="Generators\CConfigGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Templates\c.config.template">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Templates\c.header.template">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

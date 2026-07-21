@@ -27,11 +27,74 @@ namespace RTGen.C.Generators
 
         protected static ISet<string> ForbiddenTypes => new HashSet<string>
         {
-            "ComplexFloat64"
+            "ComplexFloat64",
+            "SourceLocation"
+        };
+
+        // Factories whose C++ symbol is not universally available (platform-specific /
+        // optional); their C wrappers are commented out, matching the curated bindings.
+        protected static ISet<string> ForbiddenFactories => new HashSet<string>
+        {
+            "createMiMallocAllocator",
+            // Declared on IInstance but constructs an IDevice (mismatched out-parameter type
+            // the mechanical factory wrapper cannot express); left out of the curated bindings.
+            "createClient"
+        };
+
+        // Methods commented out of the bindings: getInterfaceIds returns an IntfID** array
+        // that has no clean C ownership marshalling (matches the curated bindings).
+        protected static ISet<string> ForbiddenMethods => new HashSet<string>
+        {
+            "getInterfaceIds"
+        };
+
+        // Function-pointer callback typedefs that need a reinterpret_cast when forwarded.
+        protected static ISet<string> CallbackTypes => new HashSet<string>
+        {
+            "FuncCall", "ProcCall", "EventCall"
+        };
+
+        // Factories declared behind #ifdef _WIN32 in the core headers (the C++ parser drops
+        // preprocessor conditionals); their C wrappers must be guarded the same way so the
+        // non-Windows build does not reference a symbol that only exists on Windows.
+        protected static ISet<string> WindowsOnlyFactories => new HashSet<string>
+        {
+            "createWinDebugLoggerSink"
         };
 
         protected static readonly String Prefix = "daq";
         protected static readonly String PrefixUpper = "DAQ_";
+
+        // Name-collision renames: these interfaces share their C name with a value type
+        // declared in ccommon.h (IFloat vs the daqFloat double alias, ICoreType vs the
+        // daqCoreType enum), so their C-facing symbols get an "Object" suffix. Matched on
+        // the full interface name (with the leading I) so the colliding value types, whose
+        // names have no I, are left untouched.
+        protected static string CNonInterfaceName(ITypeName type)
+        {
+            switch (type.Name)
+            {
+                case "IFloat":    return "FloatObject";
+                case "ICoreType": return "CoreTypeObject";
+                default:          return type.NonInterfaceName;
+            }
+        }
+
+        // Same collision rename for factories, which carry the constructed interface name as
+        // a plain string; strips the leading I for the non-colliding common case.
+        protected static string CNonInterfaceNameFromInterface(string interfaceName)
+        {
+            if (string.IsNullOrEmpty(interfaceName))
+            {
+                return "";
+            }
+            switch (interfaceName)
+            {
+                case "IFloat":    return "FloatObject";
+                case "ICoreType": return "CoreTypeObject";
+                default:          return interfaceName.Remove(0, 1);
+            }
+        }
 
         protected GeneratorType _generatorType = GeneratorType.Header;
         protected ISet<string> _typesToDeclare = new HashSet<string>();
@@ -110,6 +173,14 @@ namespace RTGen.C.Generators
                 sb.AppendLine($"#include <{header}>");
                 sb.AppendLine();
                 sb.AppendLine("#include <opendaq/opendaq.h>");
+                // The opendaq.h umbrella does not pull in every interface (private /
+                // internal / newer ones); include the interface's own core C++ header so
+                // its daq::I<Name> type is always declared for the reinterpret_casts below.
+                string coreHeader = CoreHeaderPath(lib, file);
+                if (coreHeader != null)
+                {
+                    sb.AppendLine($"#include <{coreHeader}>");
+                }
                 sb.AppendLine();
                 sb.AppendLine("#include <copendaq_private.h>");
             }
@@ -152,8 +223,8 @@ namespace RTGen.C.Generators
         protected string GetIntfIDDeclaration()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine(base.Indentation + $"EXPORTED extern const {Prefix}IntfID {PrefixUpper}{RtFile.CurrentClass.Type.NonInterfaceName.ToLowerSnakeCase().ToUpper()}_INTF_ID;");
-            sb.AppendLine(base.Indentation + $"void EXPORTED {Prefix}{RtFile.CurrentClass.Type.NonInterfaceName}_getInterfaceId({Prefix}IntfID* intfId);");
+            sb.AppendLine(base.Indentation + $"EXPORTED extern const {Prefix}IntfID {PrefixUpper}{CNonInterfaceName(RtFile.CurrentClass.Type).ToLowerSnakeCase().ToUpper()}_INTF_ID;");
+            sb.AppendLine(base.Indentation + $"void EXPORTED {Prefix}{CNonInterfaceName(RtFile.CurrentClass.Type)}_getInterfaceId({Prefix}IntfID* intfId);");
             return sb.ToString();
         }
 
@@ -163,12 +234,12 @@ namespace RTGen.C.Generators
             string ns = RtFile.CurrentClass.Type.Namespace.ToString();
             string iface = RtFile.CurrentClass.Type.Name;
 
-            sb.Append($"const {Prefix}IntfID {PrefixUpper}{RtFile.CurrentClass.Type.NonInterfaceName.ToLowerSnakeCase().ToUpper()}_INTF_ID = ");
+            sb.Append($"const {Prefix}IntfID {PrefixUpper}{CNonInterfaceName(RtFile.CurrentClass.Type).ToLowerSnakeCase().ToUpper()}_INTF_ID = ");
             sb.AppendLine($"{{ {ns}::{iface}::Id.Data1, {ns}::{iface}::Id.Data2, {ns}::{iface}::Id.Data3, {ns}::{iface}::Id.Data4_UInt64 }};");
             sb.AppendLine("");
-            sb.AppendLine($"void {Prefix}{RtFile.CurrentClass.Type.NonInterfaceName}_getInterfaceId({Prefix}IntfID* intfId)");
+            sb.AppendLine($"void {Prefix}{CNonInterfaceName(RtFile.CurrentClass.Type)}_getInterfaceId({Prefix}IntfID* intfId)");
             sb.AppendLine("{");
-            sb.AppendLine(base.Indentation + $"*intfId = {PrefixUpper}{RtFile.CurrentClass.Type.NonInterfaceName.ToLowerSnakeCase().ToUpper()}_INTF_ID;");
+            sb.AppendLine(base.Indentation + $"*intfId = {PrefixUpper}{CNonInterfaceName(RtFile.CurrentClass.Type).ToLowerSnakeCase().ToUpper()}_INTF_ID;");
             sb.AppendLine("}");
             return sb.ToString();
         }
@@ -185,6 +256,30 @@ namespace RTGen.C.Generators
                 sb.AppendLine(base.Indentation + $"typedef struct {Prefix}{type} {Prefix}{type};");
             }
             return sb.ToString();
+        }
+
+        // Maps the C library directory to the core C++ include for the same interface:
+        // ccoretypes -> <coretypes/x.h>, ccoreobjects -> <coreobjects/x.h>,
+        // copendaq/<sub> -> <opendaq/x.h> (the core opendaq headers are flat under opendaq/).
+        protected static string CoreHeaderPath(string lib, string file)
+        {
+            if (string.IsNullOrEmpty(file))
+            {
+                return null;
+            }
+            if (lib == "ccoretypes")
+            {
+                return "coretypes/" + file + ".h";
+            }
+            if (lib == "ccoreobjects")
+            {
+                return "coreobjects/" + file + ".h";
+            }
+            if (lib != null && lib.StartsWith("copendaq"))
+            {
+                return "opendaq/" + file + ".h";
+            }
+            return null;
         }
 
         protected string GetOutputPath(string overridenExtension = null)
@@ -234,12 +329,12 @@ namespace RTGen.C.Generators
                 else if (!arg.Type.Flags.IsValueType)
                 {
                     //filling types for typedefs
-                    if (arg.Type.Name != "void") _typesToDeclare.Add(arg.Type.NonInterfaceName);
+                    if (arg.Type.Name != "void") _typesToDeclare.Add(CNonInterfaceName(arg.Type));
                 }
 
                 if (listType == ArgsListType.MethodDeclaration)
                 {
-                    sb.Append($"{(arg.Type.Name != "void" ? Prefix : "")}{arg.Type.NonInterfaceName}{arg.Type.Modifiers} {arg.Name}");
+                    sb.Append($"{(arg.Type.Name != "void" ? Prefix : "")}{CNonInterfaceName(arg.Type)}{arg.Type.Modifiers} {arg.Name}");
                 }
                 else
                 {
@@ -254,7 +349,11 @@ namespace RTGen.C.Generators
                     {
                         if ((!arg.Type.Flags.IsCoreType && arg.Type.Name != "void" && arg.Type.Name != "IntfID") || arg.Type.Name == "CoreType")
                         {
-                            if (String.IsNullOrEmpty(arg.Type.Modifiers))
+                            // Callback typedefs (FuncCall/ProcCall/EventCall) are function
+                            // pointers whose C and C++ forms differ only in opaque pointer
+                            // types, so they need a reinterpret_cast, not a static_cast, even
+                            // though they carry no pointer modifier.
+                            if (String.IsNullOrEmpty(arg.Type.Modifiers) && !CallbackTypes.Contains(arg.Type.Name))
                             {
                                 sb.Append($"static_cast<{arg.Type.Namespace}::{arg.Type.Name}>({arg.Name})");
                             }
@@ -371,14 +470,16 @@ namespace RTGen.C.Generators
                     case "Name":
                         return method != null ? method.Name : factory.Name ?? "";
                     case "ReturnType":
-                        return method != null ? method.ReturnType.NonInterfaceName : "ErrCode";
-                    case "NonInterfaceType":
-                        string typeName = method != null ? iface.Type.NonInterfaceName : factory.InterfaceName ?? "";
-                        if (factory != null && !String.IsNullOrEmpty(typeName))
                         {
-                            typeName = typeName.Remove(0, 1);
+                            // Full C return type. void-returning methods keep the bare C
+                            // "void"; everything else (ErrCode, and factories) is daq-prefixed.
+                            string rt = method != null ? method.ReturnType.NonInterfaceName : "ErrCode";
+                            return rt == "void" ? "void" : Prefix + rt;
                         }
-                        return typeName;
+                    case "NonInterfaceType":
+                        return method != null
+                            ? CNonInterfaceName(iface.Type)
+                            : CNonInterfaceNameFromInterface(factory.InterfaceName);
                     case "Arguments":
                         return ArgumentsToString(methodOrFactory, ArgsListType.MethodDeclaration);
                     default:
@@ -395,14 +496,16 @@ namespace RTGen.C.Generators
                     case "Name":
                         return method != null ? method.Name : factory.Name ?? "";
                     case "ReturnType":
-                        return method != null ? method.ReturnType.NonInterfaceName : "ErrCode";
-                    case "NonInterfaceType":
-                        string typeName = method != null ? iface.Type.NonInterfaceName : factory.InterfaceName ?? "";
-                        if (factory != null && !String.IsNullOrEmpty(typeName))
                         {
-                            typeName = typeName.Remove(0, 1);
+                            // Full C return type. void-returning methods keep the bare C
+                            // "void"; everything else (ErrCode, and factories) is daq-prefixed.
+                            string rt = method != null ? method.ReturnType.NonInterfaceName : "ErrCode";
+                            return rt == "void" ? "void" : Prefix + rt;
                         }
-                        return typeName;
+                    case "NonInterfaceType":
+                        return method != null
+                            ? CNonInterfaceName(iface.Type)
+                            : CNonInterfaceNameFromInterface(factory.InterfaceName);
                     case "ArgTypeFull":
                         return iface.Type.FullName();
                     case "FactoryName":
@@ -449,7 +552,8 @@ namespace RTGen.C.Generators
                     return ReplaceVariable(variable, GeneratorType.Header, rtClass, method, templatePath);
                 });
 
-                bool isCommentedOut = _methodNamesToCommentOut.Contains(method.Name);
+                bool isCommentedOut = _methodNamesToCommentOut.Contains(method.Name)
+                    || ForbiddenMethods.Contains(method.Name);
                 if (isCommentedOut) methods.AppendLine("/*");
                 methods.AppendLine(base.Indentation + generatedMethod);
                 if (isCommentedOut) methods.AppendLine("*/");
@@ -464,10 +568,14 @@ namespace RTGen.C.Generators
                     return ReplaceVariable(variable, GeneratorType.Header, rtClass, factory, templatePath);
                 });
 
-                bool isCommentedOut = _methodNamesToCommentOut.Contains(factory.Name);
+                bool isCommentedOut = _methodNamesToCommentOut.Contains(factory.Name)
+                    || ForbiddenFactories.Contains(factory.Name);
+                bool winOnly = WindowsOnlyFactories.Contains(factory.Name);
+                if (winOnly) methods.AppendLine("#ifdef _WIN32");
                 if (isCommentedOut) methods.AppendLine("/*");
                 methods.AppendLine(base.Indentation + generatedFactory);
                 if (isCommentedOut) methods.AppendLine("*/");
+                if (winOnly) methods.AppendLine("#endif");
             }
 
             return methods;
@@ -525,7 +633,8 @@ namespace RTGen.C.Generators
                     return ReplaceVariable(variable, GeneratorType.Source, rtClass, method, templatePath);
                 });
 
-                bool isCommentedOut = _methodNamesToCommentOut.Contains(method.Name);
+                bool isCommentedOut = _methodNamesToCommentOut.Contains(method.Name)
+                    || ForbiddenMethods.Contains(method.Name);
 
                 if (isCommentedOut) methods.AppendLine("/*");
                 methods.AppendLine(generatedMethod);
@@ -556,8 +665,11 @@ namespace RTGen.C.Generators
                     ReplaceVariable(m.Groups[1].Value, GeneratorType.Source, rtClass, factory, templatePath)
                 );
 
-                bool isCommentedOut = _methodNamesToCommentOut.Contains(factory.Name);
+                bool isCommentedOut = _methodNamesToCommentOut.Contains(factory.Name)
+                    || ForbiddenFactories.Contains(factory.Name);
+                bool winOnly = WindowsOnlyFactories.Contains(factory.Name);
 
+                if (winOnly) methods.AppendLine("#ifdef _WIN32");
                 if (isCommentedOut) methods.AppendLine("/*");
                 methods.AppendLine(generatedFactory);
                 methods.AppendLine("{");
@@ -567,6 +679,7 @@ namespace RTGen.C.Generators
                 methods.AppendLine(base.Indentation + returnErrorTemplate);
                 methods.AppendLine("}");
                 if (isCommentedOut) methods.AppendLine("*/");
+                if (winOnly) methods.AppendLine("#endif");
                 methods.AppendLine();
             }
             return methods;
