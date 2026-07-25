@@ -7,10 +7,7 @@ constructors. Every wrapper is a `reinterpret_cast` back to the C++ interface pl
 a forwarded call, so the C bindings add no behaviour of their own.
 
 The bindings are **generated**, not hand-maintained. RTGen discovers every
-bindable core interface and emits it; the file list is not curated anywhere (the
-CMake target globs whatever was generated). Do not hand-edit generated files — a
-manual fix is a bug in the generator or an entry missing from the exception lists
-below.
+bindable core interface and emits it.
 
 ## Regenerating the bindings
 
@@ -19,25 +16,6 @@ From this directory:
 ```sh
 ./run_rtgen.sh
 ```
-
-This runs, from the repository root:
-
-```sh
-rtgen --language=c --config --namespace=daq --source=core --outputDir=bindings/c
-```
-
-`--config` selects discovery mode (`CConfigGenerator`): rtgen walks `core/`, finds
-every header that declares an interface or class factory, parses each with the C++
-parser (retrying unparseable headers from a sanitized copy), and writes
-`include/<lib>/<name>.h` + `src/<lib>/<name>.cpp` per interface. It generates over
-the existing tree (it does not wipe it); stale files must be removed by hand.
-
-`<lib>` is the C library directory: `ccoretypes` (coretypes + corecontainers),
-`ccoreobjects`, or `copendaq/<subsystem>` for each opendaq subsystem.
-
-`mono` is used automatically to run `rtgen.exe` where available.
-
-## Rebuilding the RTGen C plugin
 
 The generator lives in `shared/tools/RTGen/src/project/RTGen.C/`
 (`CConfigGenerator.cs` = discovery/driver, `CGenerator.cs` = per-interface
@@ -73,7 +51,7 @@ Notable mechanical rules encoded in `CGenerator`:
   (`double`) and `daqCoreType` (enum) value types declared in `ccommon.h`, so their
   C symbols get an `Object` suffix everywhere: `daqFloatObject`, `daqCoreTypeObject`,
   `DAQ_FLOAT_OBJECT_INTF_ID`, `daqFloatObject_getValue`, etc. Matched on the leading
-  `I`, so the value types themselves are untouched.
+  `I`, so the value types themselves are untouched. TODO: should just use Object suffix for every core type
 - void-returning methods emit a bare `void` return type (not `daqvoid`).
 - Callback typedefs (`FuncCall`/`ProcCall`/`EventCall`) are forwarded with
   `reinterpret_cast`, not `static_cast`.
