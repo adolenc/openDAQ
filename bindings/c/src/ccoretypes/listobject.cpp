@@ -12,6 +12,7 @@
 #include <ccoretypes/listobject.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/listobject.h>
 
 #include <copendaq_private.h>
 

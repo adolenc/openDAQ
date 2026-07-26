@@ -12,6 +12,7 @@
 #include <ccoretypes/struct.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/struct.h>
 
 #include <copendaq_private.h>
 

@@ -12,6 +12,7 @@
 #include <ccoreobjects/eval_value.h>
 
 #include <opendaq/opendaq.h>
+#include <coreobjects/eval_value.h>
 
 #include <copendaq_private.h>
 

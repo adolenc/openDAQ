@@ -29,6 +29,7 @@ namespace copendaq::utils
 {
 daq::IntfID toDaqIntfId(daqIntfID id);
 daq::ComplexFloat64 toDaqComplexFloat64(daqComplexFloat64 value);
+daq::SourceLocation toDaqSourceLocation(daqSourceLocation location);
 daq::PropertyEventType toDaqPropertyEventType(daqPropertyEventType type);
 daqPropertyEventType toCPropertyEventType(daq::PropertyEventType type);
 

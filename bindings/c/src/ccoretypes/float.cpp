@@ -12,6 +12,7 @@
 #include <ccoretypes/float.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/float.h>
 
 #include <copendaq_private.h>
 

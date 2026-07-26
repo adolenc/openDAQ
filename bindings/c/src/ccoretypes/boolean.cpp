@@ -12,6 +12,7 @@
 #include <ccoretypes/boolean.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/boolean.h>
 
 #include <copendaq_private.h>
 

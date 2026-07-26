@@ -12,6 +12,7 @@
 #include <copendaq/context/context.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/context.h>
 
 #include <copendaq_private.h>
 
@@ -65,6 +66,11 @@ daqErrCode daqContext_getModuleOptions(daqContext* self, daqString* moduleId, da
 daqErrCode daqContext_getDiscoveryServers(daqContext* self, daqDict** servers)
 {
     return reinterpret_cast<daq::IContext*>(self)->getDiscoveryServers(reinterpret_cast<daq::IDict**>(servers));
+}
+
+daqErrCode daqContext_getRootDevice(daqContext* self, daqBaseObject** device)
+{
+    return reinterpret_cast<daq::IContext*>(self)->getRootDevice(reinterpret_cast<daq::IBaseObject**>(device));
 }
 
 daqErrCode daqContext_createContext(daqContext** obj, daqScheduler* Scheduler, daqLogger* Logger, daqTypeManager* typeManager, daqModuleManager* moduleManager, daqAuthenticationProvider* authenticationProvider, daqDict* options, daqDict* discoveryServers)

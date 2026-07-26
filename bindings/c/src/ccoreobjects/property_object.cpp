@@ -12,6 +12,7 @@
 #include <ccoreobjects/property_object.h>
 
 #include <opendaq/opendaq.h>
+#include <coreobjects/property_object.h>
 
 #include <copendaq_private.h>
 

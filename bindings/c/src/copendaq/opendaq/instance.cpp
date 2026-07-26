@@ -12,6 +12,7 @@
 #include <copendaq/opendaq/instance.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/instance.h>
 
 #include <copendaq_private.h>
 

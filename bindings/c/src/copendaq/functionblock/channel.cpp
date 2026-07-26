@@ -12,6 +12,7 @@
 #include <copendaq/functionblock/channel.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/channel.h>
 
 #include <copendaq_private.h>
 

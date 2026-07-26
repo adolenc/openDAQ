@@ -48,7 +48,7 @@ extern "C"
     daqErrCode EXPORTED daqComponentUpdateContext_setInputPortConnection(daqComponentUpdateContext* self, daqString* parentId, daqString* portId, daqString* signalId);
     daqErrCode EXPORTED daqComponentUpdateContext_getInputPortConnections(daqComponentUpdateContext* self, daqString* parentId, daqDict** connections);
     daqErrCode EXPORTED daqComponentUpdateContext_removeInputPortConnection(daqComponentUpdateContext* self, daqString* parentId);
-    daqErrCode EXPORTED daqComponentUpdateContext_setRootComponent(daqComponentUpdateContext* self, daqComponent* rootComponent);
+    daqErrCode EXPORTED daqComponentUpdateContext_setRootComponent(daqComponentUpdateContext* self, daqComponent* baseComponent);
     daqErrCode EXPORTED daqComponentUpdateContext_getRootComponent(daqComponentUpdateContext* self, daqComponent** rootComponent);
     daqErrCode EXPORTED daqComponentUpdateContext_getSignal(daqComponentUpdateContext* self, daqString* parentId, daqString* portId, daqSignal** signal);
     daqErrCode EXPORTED daqComponentUpdateContext_setSignalDependency(daqComponentUpdateContext* self, daqString* signalId, daqString* parentId);

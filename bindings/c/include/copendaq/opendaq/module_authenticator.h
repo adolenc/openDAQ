@@ -5,7 +5,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 //
-//     RTGen (CGenerator v0.7.0) on 03.06.2025 22:06:58.
+//     RTGen (CGenerator v0.7.0).
 // </auto-generated>
 //------------------------------------------------------------------------------
 
@@ -34,10 +34,15 @@ extern "C"
 
 #include <ccommon.h>
 
+    typedef struct daqModuleAuthenticator daqModuleAuthenticator;
+    typedef struct daqString daqString;
+    typedef struct daqLogger daqLogger;
 
-    EXPORTED extern const daqIntfID DAQ_RECURSIVE_SEARCH_INTF_ID;
+    EXPORTED extern const daqIntfID DAQ_MODULE_AUTHENTICATOR_INTF_ID;
+    void EXPORTED daqModuleAuthenticator_getInterfaceId(daqIntfID* intfId);
 
-
+    daqErrCode EXPORTED daqModuleAuthenticator_authenticateModuleBinary(daqModuleAuthenticator* self, daqCBool* binaryValid, daqString** vendorKey, daqString* binaryPath);
+    daqErrCode EXPORTED daqModuleAuthenticator_setLogger(daqModuleAuthenticator* self, daqLogger* logger);
 
 #ifdef __cplusplus
 }

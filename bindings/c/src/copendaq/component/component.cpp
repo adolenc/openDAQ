@@ -12,6 +12,7 @@
 #include <copendaq/component/component.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/component.h>
 
 #include <copendaq_private.h>
 

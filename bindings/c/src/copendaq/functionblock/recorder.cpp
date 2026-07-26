@@ -12,6 +12,7 @@
 #include <copendaq/functionblock/recorder.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/recorder.h>
 
 #include <copendaq_private.h>
 

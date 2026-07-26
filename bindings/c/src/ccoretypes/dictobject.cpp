@@ -12,6 +12,7 @@
 #include <ccoretypes/dictobject.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/dictobject.h>
 
 #include <copendaq_private.h>
 

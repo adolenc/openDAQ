@@ -21,6 +21,16 @@ extern "C"
 {
 #endif
 
+    /* Layout-compatible with daq::SourceLocation, which is packed. */
+#pragma pack(push, 1)
+    typedef struct daqSourceLocation
+    {
+        daqCConstCharPtr fileName;
+        daqCInt line;
+        daqCConstCharPtr funcName;
+    } daqSourceLocation;
+#pragma pack(pop)
+
 #define DAQ_LOG_LEVEL_TRACE 0
 #define DAQ_LOG_LEVEL_DEBUG 1
 #define DAQ_LOG_LEVEL_INFO 2

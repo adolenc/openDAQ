@@ -12,6 +12,7 @@
 #include <ccoreobjects/object_lock_guard.h>
 
 #include <opendaq/opendaq.h>
+#include <coreobjects/object_lock_guard.h>
 
 #include <copendaq_private.h>
 

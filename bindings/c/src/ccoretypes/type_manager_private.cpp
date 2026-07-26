@@ -12,6 +12,7 @@
 #include <ccoretypes/type_manager_private.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/type_manager_private.h>
 
 #include <copendaq_private.h>
 

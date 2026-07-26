@@ -12,6 +12,7 @@
 #include <copendaq/logger/logger_sink_last_message_private.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/logger_sink_last_message_private.h>
 
 #include <copendaq_private.h>
 

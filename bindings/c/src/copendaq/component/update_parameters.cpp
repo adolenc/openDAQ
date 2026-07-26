@@ -12,6 +12,7 @@
 #include <copendaq/component/update_parameters.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/update_parameters.h>
 
 #include <copendaq_private.h>
 

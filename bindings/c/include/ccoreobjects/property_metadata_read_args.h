@@ -34,14 +34,16 @@ extern "C"
 
 #include <ccommon.h>
 
-    typedef struct daqScalingCalcPrivate daqScalingCalcPrivate;
+    typedef struct daqPropertyMetadataReadArgs daqPropertyMetadataReadArgs;
+    typedef struct daqProperty daqProperty;
 
-    EXPORTED extern const daqIntfID DAQ_SCALING_CALC_PRIVATE_INTF_ID;
-    void EXPORTED daqScalingCalcPrivate_getInterfaceId(daqIntfID* intfId);
+    EXPORTED extern const daqIntfID DAQ_PROPERTY_METADATA_READ_ARGS_INTF_ID;
+    void EXPORTED daqPropertyMetadataReadArgs_getInterfaceId(daqIntfID* intfId);
 
-    void EXPORTED daqScalingCalcPrivate_scaleData(daqScalingCalcPrivate* self, void* data, daqCSizeT sampleCount);
-    void EXPORTED daqScalingCalcPrivate_scaleDataOutput(daqScalingCalcPrivate* self, void* data, daqCSizeT sampleCount, void** output);
-    daqCBool EXPORTED daqScalingCalcPrivate_hasScalingCalc(daqScalingCalcPrivate* self);
+    daqErrCode EXPORTED daqPropertyMetadataReadArgs_getProperty(daqPropertyMetadataReadArgs* self, daqProperty** property);
+    daqErrCode EXPORTED daqPropertyMetadataReadArgs_getValue(daqPropertyMetadataReadArgs* self, daqBaseObject** value);
+    daqErrCode EXPORTED daqPropertyMetadataReadArgs_setValue(daqPropertyMetadataReadArgs* self, daqBaseObject* value);
+    daqErrCode EXPORTED daqPropertyMetadataReadArgs_createPropertyMetadataReadArgs(daqPropertyMetadataReadArgs** obj, daqProperty* prop);
 
 #ifdef __cplusplus
 }

@@ -12,6 +12,7 @@
 #include <copendaq/reader/packet_reader.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/packet_reader.h>
 
 #include <copendaq_private.h>
 

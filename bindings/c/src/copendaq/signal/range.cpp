@@ -12,6 +12,7 @@
 #include <copendaq/signal/range.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/range.h>
 
 #include <copendaq_private.h>
 

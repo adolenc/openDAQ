@@ -12,6 +12,7 @@
 #include <copendaq/device/connected_client_info.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/connected_client_info.h>
 
 #include <copendaq_private.h>
 

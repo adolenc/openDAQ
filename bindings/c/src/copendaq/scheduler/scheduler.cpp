@@ -12,6 +12,7 @@
 #include <copendaq/scheduler/scheduler.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/scheduler.h>
 
 #include <copendaq_private.h>
 

@@ -50,6 +50,7 @@ extern "C"
     daqErrCode EXPORTED daqSignal_getStreamed(daqSignal* self, daqCBool* streamed);
     daqErrCode EXPORTED daqSignal_setStreamed(daqSignal* self, daqCBool streamed);
     daqErrCode EXPORTED daqSignal_getLastValue(daqSignal* self, daqBaseObject** value);
+    daqErrCode EXPORTED daqSignal_getLastValueWithTimestamp(daqSignal* self, daqBaseObject** value, daqBaseObject** timestamp);
 
 #ifdef __cplusplus
 }

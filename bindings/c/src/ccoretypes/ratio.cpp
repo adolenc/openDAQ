@@ -12,6 +12,7 @@
 #include <ccoretypes/ratio.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/ratio.h>
 
 #include <copendaq_private.h>
 

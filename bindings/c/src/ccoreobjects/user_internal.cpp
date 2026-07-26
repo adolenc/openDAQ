@@ -12,6 +12,7 @@
 #include <ccoreobjects/user_internal.h>
 
 #include <opendaq/opendaq.h>
+#include <coreobjects/user_internal.h>
 
 #include <copendaq_private.h>
 

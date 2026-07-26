@@ -12,6 +12,7 @@
 #include <ccoretypes/enumeration_type.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/enumeration_type.h>
 
 #include <copendaq_private.h>
 

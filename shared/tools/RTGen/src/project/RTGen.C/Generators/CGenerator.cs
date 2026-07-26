@@ -3,6 +3,7 @@ using RTGen.Generation;
 using RTGen.Interfaces;
 using RTGen.Types;
 using RTGen.Util;
+using RTGen.Cpp;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -34,7 +35,8 @@ namespace RTGen.C.Generators
         protected static readonly IDictionary<string, string> ValueTypeConverters = new Dictionary<string, string>
         {
             { "IntfID", "copendaq::utils::toDaqIntfId" },
-            { "ComplexFloat64", "copendaq::utils::toDaqComplexFloat64" }
+            { "ComplexFloat64", "copendaq::utils::toDaqComplexFloat64" },
+            { "SourceLocation", "copendaq::utils::toDaqSourceLocation" }
         };
 
         /// <summary>Renames the C name of a CoreTypes value type (the interface names are left untouched).</summary>
@@ -65,6 +67,8 @@ namespace RTGen.C.Generators
         protected static readonly String PrefixUpper = "DAQ_";
 
         protected GeneratorType _generatorType = GeneratorType.Header;
+        /// <summary>Exact file to write, used when generating a whole tree at once.</summary>
+        protected string _outputPathOverride;
         protected ISet<string> _typesToDeclare = new HashSet<string>();
 
         //Overriden
@@ -136,6 +140,18 @@ namespace RTGen.C.Generators
             return null;
         }
 
+        /// <summary>Gets the core include directory that corresponds to a generated library.</summary>
+        /// <param name="library">Generated library, for example "ccoretypes" or "copendaq/signal".</param>
+        protected static string GetCoreIncludeDir(string library)
+        {
+            switch (library)
+            {
+                case "ccoretypes":   return "coretypes";
+                case "ccoreobjects": return "coreobjects";
+                default:             return "opendaq";
+            }
+        }
+
         protected override string GetIncludes(IRTFile rtFile)
         {
             StringBuilder sb = new StringBuilder();
@@ -154,14 +170,117 @@ namespace RTGen.C.Generators
                 sb.AppendLine($"#include <{header}>");
                 sb.AppendLine();
                 sb.AppendLine("#include <opendaq/opendaq.h>");
+                //the interface being wrapped is not necessarily reachable through the umbrella header
+                sb.AppendLine($"#include <{GetCoreIncludeDir(lib)}/{RtFile.SourceFileName}>");
                 sb.AppendLine();
                 sb.AppendLine("#include <copendaq_private.h>");
             }
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Generates bindings for every interface below the source directory, so that no list of files has
+        /// to be kept in sync with the repository. Entered when the input is a source tree rather than a
+        /// single header (see <see cref="CBatchParser"/>).
+        /// </summary>
+        private void GenerateAll(CBatchFile batch, string templatePath)
+        {
+            string bindingsRoot = String.IsNullOrEmpty(Options.OutputDir) ? "." : Options.OutputDir;
+            IParserOptions parserOptions = Options as IParserOptions;
+
+            int generated = 0;
+            int excluded = 0;
+            List<string> withoutOutput = new List<string>();
+            HashSet<string> expected = new HashSet<string>();
+
+            foreach (BindingTarget target in CBatchGeneration.Discover(batch.SourceDir))
+            {
+                string headerPath = Path.Combine(bindingsRoot, "include", target.Library, target.Name + ".h");
+                string sourcePath = Path.Combine(bindingsRoot, "src", target.Library, target.Name + ".cpp");
+                expected.Add(Path.GetFullPath(headerPath));
+                expected.Add(Path.GetFullPath(sourcePath));
+
+                if (CBatchGeneration.IsExcluded(target.HeaderPath, out string reason))
+                {
+                    Log.Info($"excluded {target.Library}/{target.Name}: {reason}");
+                    excluded++;
+                    continue;
+                }
+
+                IRTFile parsed;
+                try
+                {
+                    parsed = new CppParser().Parse(target.HeaderPath, parserOptions);
+                    parsed.SourceFileName = Path.GetFileName(target.HeaderPath) ?? "";
+                }
+                catch (Exception)
+                {
+                    withoutOutput.Add($"{target.Library}/{target.Name}");
+                    continue;
+                }
+
+                if (parsed.Classes.Count == 0)
+                {
+                    withoutOutput.Add($"{target.Library}/{target.Name}");
+                    continue;
+                }
+
+                foreach (var output in new[] { new { Ext = ".h", Path = headerPath },
+                                               new { Ext = ".cpp", Path = sourcePath } })
+                {
+                    Directory.CreateDirectory(Path.GetDirectoryName(output.Path) ?? ".");
+
+                    IGeneratorOptions fileOptions = (IGeneratorOptions) Options.Clone();
+                    fileOptions.Filename = target.Name;
+                    fileOptions.GeneratedExtension = output.Ext;
+                    fileOptions.LibraryInfo = new LibraryInfo
+                    {
+                        Name = target.Library,
+                        Namespace = Options.LibraryInfo.Namespace,
+                        Version = Options.LibraryInfo.Version,
+                        OutputName = Options.LibraryInfo.OutputName
+                    };
+
+                    CGenerator generator = new CGenerator
+                    {
+                        Options = fileOptions,
+                        RtFile = parsed,
+                        _outputPathOverride = output.Path
+                    };
+                    generator.GenerateFile(templatePath);
+                }
+
+                generated++;
+            }
+
+            IList<string> orphans = CBatchGeneration.PruneOrphans(bindingsRoot, expected);
+            foreach (string orphan in orphans)
+            {
+                Log.Info($"removed {orphan}: no longer generated by any interface");
+            }
+
+            CBatchGeneration.WriteUmbrellaHeader(bindingsRoot);
+
+            Log.Info($"generated {generated}, excluded {excluded}, removed {orphans.Count}, no output {withoutOutput.Count}");
+            if (withoutOutput.Count > 0)
+            {
+                Log.Info("No output produced (no interface found, or the header could not be parsed). "
+                         + "Previously generated files were left untouched:");
+                foreach (string name in withoutOutput)
+                {
+                    Log.Info($"    {name}");
+                }
+            }
+        }
+
         public override void GenerateFile(string templatePath)
         {
+            if (RtFile is CBatchFile batch)
+            {
+                GenerateAll(batch, templatePath);
+                return;
+            }
+
             string headerTemplatePath = GetHeaderTemplatePath(templatePath);
             if (Log.Verbose)
             {
@@ -233,6 +352,10 @@ namespace RTGen.C.Generators
 
         protected string GetOutputPath(string overridenExtension = null)
         {
+            if (!String.IsNullOrEmpty(_outputPathOverride))
+            {
+                return _outputPathOverride;
+            }
             return String.IsNullOrWhiteSpace(overridenExtension) ? GetOutputFilePath() : Path.ChangeExtension(GetOutputFilePath(), overridenExtension);
         }
 
@@ -449,7 +572,10 @@ namespace RTGen.C.Generators
                         }
                         return typeName;
                     case "ArgTypeFull":
-                        return iface.Type.FullName();
+                        //a factory can create an interface other than the one the file declares
+                        return factory != null && !String.IsNullOrEmpty(factory.InterfaceName)
+                                   ? $"{iface.Type.Namespace}::{factory.InterfaceName}"
+                                   : iface.Type.FullName();
                     case "FactoryName":
                         return iface.Type.Namespace.ToString() + "::" + overload.Method.Name;
                     case "Arguments":

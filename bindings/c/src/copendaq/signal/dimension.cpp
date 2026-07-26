@@ -12,6 +12,7 @@
 #include <copendaq/signal/dimension.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/dimension.h>
 
 #include <copendaq_private.h>
 

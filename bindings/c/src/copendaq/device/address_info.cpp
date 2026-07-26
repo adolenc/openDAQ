@@ -12,6 +12,7 @@
 #include <copendaq/device/address_info.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/address_info.h>
 
 #include <copendaq_private.h>
 

@@ -12,6 +12,7 @@
 #include <ccoretypes/number.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/number.h>
 
 #include <copendaq_private.h>
 

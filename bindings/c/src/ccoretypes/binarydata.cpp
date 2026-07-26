@@ -12,6 +12,7 @@
 #include <ccoretypes/binarydata.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/binarydata.h>
 
 #include <copendaq_private.h>
 
