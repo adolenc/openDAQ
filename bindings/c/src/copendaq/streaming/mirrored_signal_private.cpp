@@ -22,7 +22,7 @@ void daqMirroredSignalPrivate_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_MIRRORED_SIGNAL_PRIVATE_INTF_ID;
 }
 
-daqErrCode daqMirroredSignalPrivate_triggerEvent(daqMirroredSignalPrivate* self, daqEventPacket* eventPacket, daqBool* forward)
+daqErrCode daqMirroredSignalPrivate_triggerEvent(daqMirroredSignalPrivate* self, daqEventPacket* eventPacket, daqCBool* forward)
 {
     return reinterpret_cast<daq::IMirroredSignalPrivate*>(self)->triggerEvent(reinterpret_cast<daq::IEventPacket*>(eventPacket), forward);
 }

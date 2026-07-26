@@ -50,7 +50,7 @@ extern "C"
     daqErrCode EXPORTED daqComponentPrivate_updateOperationMode(daqComponentPrivate* self, daqOperationModeType modeType);
     daqErrCode EXPORTED daqComponentPrivate_setComponentConfig(daqComponentPrivate* self, daqPropertyObject* config);
     daqErrCode EXPORTED daqComponentPrivate_getComponentConfig(daqComponentPrivate* self, daqPropertyObject** config);
-    daqErrCode EXPORTED daqComponentPrivate_setParentActive(daqComponentPrivate* self, daqBool parentActive, daqBool onUpdate);
+    daqErrCode EXPORTED daqComponentPrivate_setParentActive(daqComponentPrivate* self, daqCBool parentActive, daqCBool onUpdate);
 
 #ifdef __cplusplus
 }

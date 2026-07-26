@@ -48,7 +48,7 @@ TEST_F(COpendaqSynchronizationTest, SyncComponent)
     daqDict* interfaces = nullptr;
     daqSyncComponent_getInterfaces(syncComponent, &interfaces);
     ASSERT_NE(interfaces, nullptr);
-    daqSizeT size = 0u;
+    daqCSizeT size = 0u;
     daqDict_getCount(interfaces, &size);
     ASSERT_EQ(size, 1u);
 

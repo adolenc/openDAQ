@@ -27,7 +27,7 @@ daqErrCode daqDataPacket_getDataDescriptor(daqDataPacket* self, daqDataDescripto
     return reinterpret_cast<daq::IDataPacket*>(self)->getDataDescriptor(reinterpret_cast<daq::IDataDescriptor**>(descriptor));
 }
 
-daqErrCode daqDataPacket_getSampleCount(daqDataPacket* self, daqSizeT* sampleCount)
+daqErrCode daqDataPacket_getSampleCount(daqDataPacket* self, daqCSizeT* sampleCount)
 {
     return reinterpret_cast<daq::IDataPacket*>(self)->getSampleCount(sampleCount);
 }
@@ -47,12 +47,12 @@ daqErrCode daqDataPacket_getRawData(daqDataPacket* self, void** address)
     return reinterpret_cast<daq::IDataPacket*>(self)->getRawData(address);
 }
 
-daqErrCode daqDataPacket_getDataSize(daqDataPacket* self, daqSizeT* dataSize)
+daqErrCode daqDataPacket_getDataSize(daqDataPacket* self, daqCSizeT* dataSize)
 {
     return reinterpret_cast<daq::IDataPacket*>(self)->getDataSize(dataSize);
 }
 
-daqErrCode daqDataPacket_getRawDataSize(daqDataPacket* self, daqSizeT* rawDataSize)
+daqErrCode daqDataPacket_getRawDataSize(daqDataPacket* self, daqCSizeT* rawDataSize)
 {
     return reinterpret_cast<daq::IDataPacket*>(self)->getRawDataSize(rawDataSize);
 }
@@ -62,7 +62,7 @@ daqErrCode daqDataPacket_getDomainPacket(daqDataPacket* self, daqDataPacket** pa
     return reinterpret_cast<daq::IDataPacket*>(self)->getDomainPacket(reinterpret_cast<daq::IDataPacket**>(packet));
 }
 
-daqErrCode daqDataPacket_getPacketId(daqDataPacket* self, daqInt* packetId)
+daqErrCode daqDataPacket_getPacketId(daqDataPacket* self, daqCInt* packetId)
 {
     return reinterpret_cast<daq::IDataPacket*>(self)->getPacketId(packetId);
 }
@@ -72,7 +72,7 @@ daqErrCode daqDataPacket_getLastValue(daqDataPacket* self, daqBaseObject** value
     return reinterpret_cast<daq::IDataPacket*>(self)->getLastValue(reinterpret_cast<daq::IBaseObject**>(value), reinterpret_cast<daq::ITypeManager*>(typeManager));
 }
 
-daqErrCode daqDataPacket_getValueByIndex(daqDataPacket* self, daqBaseObject** value, daqSizeT index, daqTypeManager* typeManager)
+daqErrCode daqDataPacket_getValueByIndex(daqDataPacket* self, daqBaseObject** value, daqCSizeT index, daqTypeManager* typeManager)
 {
     return reinterpret_cast<daq::IDataPacket*>(self)->getValueByIndex(reinterpret_cast<daq::IBaseObject**>(value), index, reinterpret_cast<daq::ITypeManager*>(typeManager));
 }
@@ -82,12 +82,12 @@ daqErrCode daqDataPacket_getRawLastValue(daqDataPacket* self, void** value)
     return reinterpret_cast<daq::IDataPacket*>(self)->getRawLastValue(value);
 }
 
-daqErrCode daqDataPacket_getRawValueByIndex(daqDataPacket* self, void** value, daqSizeT index)
+daqErrCode daqDataPacket_getRawValueByIndex(daqDataPacket* self, void** value, daqCSizeT index)
 {
     return reinterpret_cast<daq::IDataPacket*>(self)->getRawValueByIndex(value, index);
 }
 
-daqErrCode daqDataPacket_createDataPacket(daqDataPacket** obj, daqDataDescriptor* descriptor, daqSizeT sampleCount, daqNumber* offset)
+daqErrCode daqDataPacket_createDataPacket(daqDataPacket** obj, daqDataDescriptor* descriptor, daqCSizeT sampleCount, daqNumber* offset)
 {
     daq::IDataPacket* ptr = nullptr;
     daqErrCode err = daq::createDataPacket(&ptr, reinterpret_cast<daq::IDataDescriptor*>(descriptor), sampleCount, reinterpret_cast<daq::INumber*>(offset));
@@ -95,7 +95,7 @@ daqErrCode daqDataPacket_createDataPacket(daqDataPacket** obj, daqDataDescriptor
     return err;
 }
 
-daqErrCode daqDataPacket_createDataPacketWithExternalMemory(daqDataPacket** obj, daqDataPacket* domainPacket, daqDataDescriptor* descriptor, daqSizeT sampleCount, daqNumber* offset, void* externalMemory, daqDeleter* deleter, daqSizeT bufferSize)
+daqErrCode daqDataPacket_createDataPacketWithExternalMemory(daqDataPacket** obj, daqDataPacket* domainPacket, daqDataDescriptor* descriptor, daqCSizeT sampleCount, daqNumber* offset, void* externalMemory, daqDeleter* deleter, daqCSizeT bufferSize)
 {
     daq::IDataPacket* ptr = nullptr;
     daqErrCode err = daq::createDataPacketWithExternalMemory(&ptr, reinterpret_cast<daq::IDataPacket*>(domainPacket), reinterpret_cast<daq::IDataDescriptor*>(descriptor), sampleCount, reinterpret_cast<daq::INumber*>(offset), externalMemory, reinterpret_cast<daq::IDeleter*>(deleter), bufferSize);
@@ -103,7 +103,7 @@ daqErrCode daqDataPacket_createDataPacketWithExternalMemory(daqDataPacket** obj,
     return err;
 }
 
-daqErrCode daqDataPacket_createDataPacketWithDomain(daqDataPacket** obj, daqDataPacket* domainPacket, daqDataDescriptor* descriptor, daqSizeT sampleCount, daqNumber* offset)
+daqErrCode daqDataPacket_createDataPacketWithDomain(daqDataPacket** obj, daqDataPacket* domainPacket, daqDataDescriptor* descriptor, daqCSizeT sampleCount, daqNumber* offset)
 {
     daq::IDataPacket* ptr = nullptr;
     daqErrCode err = daq::createDataPacketWithDomain(&ptr, reinterpret_cast<daq::IDataPacket*>(domainPacket), reinterpret_cast<daq::IDataDescriptor*>(descriptor), sampleCount, reinterpret_cast<daq::INumber*>(offset));
@@ -111,7 +111,7 @@ daqErrCode daqDataPacket_createDataPacketWithDomain(daqDataPacket** obj, daqData
     return err;
 }
 
-daqErrCode daqDataPacket_createConstantDataPacketWithDomain(daqDataPacket** obj, daqDataPacket* domainPacket, daqDataDescriptor* descriptor, daqSizeT sampleCount, void* initialValue, void* otherValues, daqSizeT otherValueCount)
+daqErrCode daqDataPacket_createConstantDataPacketWithDomain(daqDataPacket** obj, daqDataPacket* domainPacket, daqDataDescriptor* descriptor, daqCSizeT sampleCount, void* initialValue, void* otherValues, daqCSizeT otherValueCount)
 {
     daq::IDataPacket* ptr = nullptr;
     daqErrCode err = daq::createConstantDataPacketWithDomain(&ptr, reinterpret_cast<daq::IDataPacket*>(domainPacket), reinterpret_cast<daq::IDataDescriptor*>(descriptor), sampleCount, initialValue, otherValues, otherValueCount);

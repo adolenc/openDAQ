@@ -48,11 +48,11 @@ extern "C"
     daqErrCode EXPORTED daqSerializedList_readList(daqSerializedList* self, daqBaseObject* context, daqFunction* factoryCallback, daqList** list);
     daqErrCode EXPORTED daqSerializedList_readObject(daqSerializedList* self, daqBaseObject* context, daqFunction* factoryCallback, daqBaseObject** obj);
     daqErrCode EXPORTED daqSerializedList_readString(daqSerializedList* self, daqString** string);
-    daqErrCode EXPORTED daqSerializedList_readBool(daqSerializedList* self, daqBool* boolean);
-    daqErrCode EXPORTED daqSerializedList_readFloat(daqSerializedList* self, daqFloat* real);
-    daqErrCode EXPORTED daqSerializedList_readInt(daqSerializedList* self, daqInt* integer);
-    daqErrCode EXPORTED daqSerializedList_getCount(daqSerializedList* self, daqSizeT* size);
-    daqErrCode EXPORTED daqSerializedList_getCurrentItemType(daqSerializedList* self, daqCoreType* size);
+    daqErrCode EXPORTED daqSerializedList_readBool(daqSerializedList* self, daqCBool* boolean);
+    daqErrCode EXPORTED daqSerializedList_readFloat(daqSerializedList* self, daqCFloat* real);
+    daqErrCode EXPORTED daqSerializedList_readInt(daqSerializedList* self, daqCInt* integer);
+    daqErrCode EXPORTED daqSerializedList_getCount(daqSerializedList* self, daqCSizeT* size);
+    daqErrCode EXPORTED daqSerializedList_getCurrentItemType(daqSerializedList* self, daqCCoreType* size);
 
 #ifdef __cplusplus
 }

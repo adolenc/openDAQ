@@ -30,6 +30,30 @@ namespace RTGen.C.Generators
             "ComplexFloat64"
         };
 
+        /// <summary>Renames the C name of a CoreTypes value type (the interface names are left untouched).</summary>
+        /// <remarks>
+        /// Plain C values get a "daqC" prefix, openDAQ objects keep the plain "daq" prefix, so that every
+        /// interface "IX" maps to "daqX" without exception. Without this the C bindings, which drop the "I"
+        /// prefix from interface names, would emit the same identifier for an interface and a value type
+        /// that share a name (Float/IFloat, CoreType/ICoreType).
+        /// Only the aliases of C fundamental types are renamed; openDAQ's own enums (SampleType, PacketType,
+        /// LogLevel, ...) as well as ErrCode and IntfID are domain types rather than C values and keep their
+        /// "daq" prefix.
+        /// </remarks>
+        protected static readonly IDictionary<string, string> ValueTypeNames = new Dictionary<string, string>
+        {
+            { "Bool", "CBool" },
+            { "Int", "CInt" },
+            { "UInt", "CUInt" },
+            { "Float", "CFloat" },
+            { "CharPtr", "CCharPtr" },
+            { "ConstCharPtr", "CConstCharPtr" },
+            { "VoidPtr", "CVoidPtr" },
+            { "SizeT", "CSizeT" },
+            { "EnumType", "CEnumType" },
+            { "CoreType", "CCoreType" }
+        };
+
         protected static readonly String Prefix = "daq";
         protected static readonly String PrefixUpper = "DAQ_";
 
@@ -83,11 +107,25 @@ namespace RTGen.C.Generators
             return new StringBuilder();
         }
 
+        /// <summary>Applies the value type renames to an already resolved type name.</summary>
+        /// <param name="name">The type name without the "daq" prefix.</param>
+        protected static string MapValueTypeName(string name)
+        {
+            return ValueTypeNames.TryGetValue(name, out string renamed) ? renamed : name;
+        }
+
+        /// <summary>Gets the C name of the type (without the "daq" prefix), honouring the value type renames.</summary>
+        /// <param name="type">The type as parsed from the RT interface file.</param>
+        protected static string GetCTypeName(ITypeName type)
+        {
+            return type.Flags.IsValueType ? MapValueTypeName(type.NonInterfaceName) : type.NonInterfaceName;
+        }
+
         protected override string GetMethodArgumentVariable(IArgument arg, IOverload overload, string variable)
         {
             if (variable == "ArgTypeNameNonInterface")
             {
-                return Prefix + arg.Type.NonInterfaceName;
+                return Prefix + GetCTypeName(arg.Type);
             }
             return null;
         }
@@ -239,7 +277,7 @@ namespace RTGen.C.Generators
 
                 if (listType == ArgsListType.MethodDeclaration)
                 {
-                    sb.Append($"{(arg.Type.Name != "void" ? Prefix : "")}{arg.Type.NonInterfaceName}{arg.Type.Modifiers} {arg.Name}");
+                    sb.Append($"{(arg.Type.Name != "void" ? Prefix : "")}{GetCTypeName(arg.Type)}{arg.Type.Modifiers} {arg.Name}");
                 }
                 else
                 {
@@ -371,7 +409,9 @@ namespace RTGen.C.Generators
                     case "Name":
                         return method != null ? method.Name : factory.Name ?? "";
                     case "ReturnType":
-                        return method != null ? method.ReturnType.NonInterfaceName : "ErrCode";
+                        return method != null ? GetCTypeName(method.ReturnType) : MapValueTypeName("ErrCode");
+                    case "ErrCodeType":
+                        return MapValueTypeName("ErrCode");
                     case "NonInterfaceType":
                         string typeName = method != null ? iface.Type.NonInterfaceName : factory.InterfaceName ?? "";
                         if (factory != null && !String.IsNullOrEmpty(typeName))
@@ -395,7 +435,9 @@ namespace RTGen.C.Generators
                     case "Name":
                         return method != null ? method.Name : factory.Name ?? "";
                     case "ReturnType":
-                        return method != null ? method.ReturnType.NonInterfaceName : "ErrCode";
+                        return method != null ? GetCTypeName(method.ReturnType) : MapValueTypeName("ErrCode");
+                    case "ErrCodeType":
+                        return MapValueTypeName("ErrCode");
                     case "NonInterfaceType":
                         string typeName = method != null ? iface.Type.NonInterfaceName : factory.InterfaceName ?? "";
                         if (factory != null && !String.IsNullOrEmpty(typeName))

@@ -45,7 +45,7 @@ extern "C"
 
     daqErrCode EXPORTED daqEnumeration_getEnumerationType(daqEnumeration* self, daqEnumerationType** type);
     daqErrCode EXPORTED daqEnumeration_getValue(daqEnumeration* self, daqString** value);
-    daqErrCode EXPORTED daqEnumeration_getIntValue(daqEnumeration* self, daqInt* value);
+    daqErrCode EXPORTED daqEnumeration_getIntValue(daqEnumeration* self, daqCInt* value);
     daqErrCode EXPORTED daqEnumeration_createEnumeration(daqEnumeration** obj, daqString* name, daqString* value, daqTypeManager* typeManager);
     daqErrCode EXPORTED daqEnumeration_createEnumerationWithIntValue(daqEnumeration** obj, daqString* name, daqInteger* value, daqTypeManager* typeManager);
     daqErrCode EXPORTED daqEnumeration_createEnumerationWithType(daqEnumeration** obj, daqEnumerationType* type, daqString* value);

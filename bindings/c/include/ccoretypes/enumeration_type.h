@@ -44,9 +44,9 @@ extern "C"
 
     daqErrCode EXPORTED daqEnumerationType_getEnumeratorNames(daqEnumerationType* self, daqList** names);
     daqErrCode EXPORTED daqEnumerationType_getAsDictionary(daqEnumerationType* self, daqDict** dictionary);
-    daqErrCode EXPORTED daqEnumerationType_getEnumeratorIntValue(daqEnumerationType* self, daqString* name, daqInt* value);
-    daqErrCode EXPORTED daqEnumerationType_getCount(daqEnumerationType* self, daqSizeT* count);
-    daqErrCode EXPORTED daqEnumerationType_createEnumerationType(daqEnumerationType** obj, daqString* typeName, daqList* enumeratorNames, daqInt firstEnumeratorIntValue);
+    daqErrCode EXPORTED daqEnumerationType_getEnumeratorIntValue(daqEnumerationType* self, daqString* name, daqCInt* value);
+    daqErrCode EXPORTED daqEnumerationType_getCount(daqEnumerationType* self, daqCSizeT* count);
+    daqErrCode EXPORTED daqEnumerationType_createEnumerationType(daqEnumerationType** obj, daqString* typeName, daqList* enumeratorNames, daqCInt firstEnumeratorIntValue);
     daqErrCode EXPORTED daqEnumerationType_createEnumerationTypeWithValues(daqEnumerationType** obj, daqString* typeName, daqDict* enumerators);
 
 #ifdef __cplusplus

@@ -47,22 +47,22 @@ daqErrCode daqSerializedObject_readString(daqSerializedObject* self, daqString* 
     return reinterpret_cast<daq::ISerializedObject*>(self)->readString(reinterpret_cast<daq::IString*>(key), reinterpret_cast<daq::IString**>(string));
 }
 
-daqErrCode daqSerializedObject_readBool(daqSerializedObject* self, daqString* key, daqBool* boolean)
+daqErrCode daqSerializedObject_readBool(daqSerializedObject* self, daqString* key, daqCBool* boolean)
 {
     return reinterpret_cast<daq::ISerializedObject*>(self)->readBool(reinterpret_cast<daq::IString*>(key), boolean);
 }
 
-daqErrCode daqSerializedObject_readFloat(daqSerializedObject* self, daqString* key, daqFloat* real)
+daqErrCode daqSerializedObject_readFloat(daqSerializedObject* self, daqString* key, daqCFloat* real)
 {
     return reinterpret_cast<daq::ISerializedObject*>(self)->readFloat(reinterpret_cast<daq::IString*>(key), real);
 }
 
-daqErrCode daqSerializedObject_readInt(daqSerializedObject* self, daqString* key, daqInt* integer)
+daqErrCode daqSerializedObject_readInt(daqSerializedObject* self, daqString* key, daqCInt* integer)
 {
     return reinterpret_cast<daq::ISerializedObject*>(self)->readInt(reinterpret_cast<daq::IString*>(key), integer);
 }
 
-daqErrCode daqSerializedObject_hasKey(daqSerializedObject* self, daqString* key, daqBool* hasKey)
+daqErrCode daqSerializedObject_hasKey(daqSerializedObject* self, daqString* key, daqCBool* hasKey)
 {
     return reinterpret_cast<daq::ISerializedObject*>(self)->hasKey(reinterpret_cast<daq::IString*>(key), hasKey);
 }
@@ -72,12 +72,12 @@ daqErrCode daqSerializedObject_getKeys(daqSerializedObject* self, daqList** list
     return reinterpret_cast<daq::ISerializedObject*>(self)->getKeys(reinterpret_cast<daq::IList**>(list));
 }
 
-daqErrCode daqSerializedObject_getType(daqSerializedObject* self, daqString* key, daqCoreType* type)
+daqErrCode daqSerializedObject_getType(daqSerializedObject* self, daqString* key, daqCCoreType* type)
 {
     return reinterpret_cast<daq::ISerializedObject*>(self)->getType(reinterpret_cast<daq::IString*>(key), reinterpret_cast<daq::CoreType*>(type));
 }
 
-daqErrCode daqSerializedObject_isRoot(daqSerializedObject* self, daqBool* isRoot)
+daqErrCode daqSerializedObject_isRoot(daqSerializedObject* self, daqCBool* isRoot)
 {
     return reinterpret_cast<daq::ISerializedObject*>(self)->isRoot(isRoot);
 }

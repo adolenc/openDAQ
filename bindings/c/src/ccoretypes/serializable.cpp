@@ -27,7 +27,7 @@ daqErrCode daqSerializable_serialize(daqSerializable* self, daqSerializer* seria
     return reinterpret_cast<daq::ISerializable*>(self)->serialize(reinterpret_cast<daq::ISerializer*>(serializer));
 }
 
-daqErrCode daqSerializable_getSerializeId(daqSerializable* self, daqConstCharPtr* id)
+daqErrCode daqSerializable_getSerializeId(daqSerializable* self, daqCConstCharPtr* id)
 {
     return reinterpret_cast<daq::ISerializable*>(self)->getSerializeId(reinterpret_cast<daq::ConstCharPtr*>(id));
 }

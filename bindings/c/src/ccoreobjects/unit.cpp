@@ -22,7 +22,7 @@ void daqUnit_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_UNIT_INTF_ID;
 }
 
-daqErrCode daqUnit_getId(daqUnit* self, daqInt* id)
+daqErrCode daqUnit_getId(daqUnit* self, daqCInt* id)
 {
     return reinterpret_cast<daq::IUnit*>(self)->getId(id);
 }
@@ -42,7 +42,7 @@ daqErrCode daqUnit_getQuantity(daqUnit* self, daqString** quantity)
     return reinterpret_cast<daq::IUnit*>(self)->getQuantity(reinterpret_cast<daq::IString**>(quantity));
 }
 
-daqErrCode daqUnit_createUnit(daqUnit** obj, daqInt id, daqString* symbol, daqString* name, daqString* quantity)
+daqErrCode daqUnit_createUnit(daqUnit** obj, daqCInt id, daqString* symbol, daqString* name, daqString* quantity)
 {
     daq::IUnit* ptr = nullptr;
     daqErrCode err = daq::createUnit(&ptr, id, reinterpret_cast<daq::IString*>(symbol), reinterpret_cast<daq::IString*>(name), reinterpret_cast<daq::IString*>(quantity));

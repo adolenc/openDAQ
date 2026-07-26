@@ -117,7 +117,7 @@ daqErrCode daqDevice_loadConfiguration(daqDevice* self, daqString* configuration
     return reinterpret_cast<daq::IDevice*>(self)->loadConfiguration(reinterpret_cast<daq::IString*>(configuration), reinterpret_cast<daq::IUpdateParameters*>(config));
 }
 
-daqErrCode daqDevice_getTicksSinceOrigin(daqDevice* self, daqUInt* ticks)
+daqErrCode daqDevice_getTicksSinceOrigin(daqDevice* self, daqCUInt* ticks)
 {
     return reinterpret_cast<daq::IDevice*>(self)->getTicksSinceOrigin(reinterpret_cast<daq::UInt*>(ticks));
 }
@@ -162,7 +162,7 @@ daqErrCode daqDevice_unlock(daqDevice* self)
     return reinterpret_cast<daq::IDevice*>(self)->unlock();
 }
 
-daqErrCode daqDevice_isLocked(daqDevice* self, daqBool* locked)
+daqErrCode daqDevice_isLocked(daqDevice* self, daqCBool* locked)
 {
     return reinterpret_cast<daq::IDevice*>(self)->isLocked(locked);
 }
@@ -172,7 +172,7 @@ daqErrCode daqDevice_getLogFileInfos(daqDevice* self, daqList** logFileInfos)
     return reinterpret_cast<daq::IDevice*>(self)->getLogFileInfos(reinterpret_cast<daq::IList**>(logFileInfos));
 }
 
-daqErrCode daqDevice_getLog(daqDevice* self, daqString** log, daqString* id, daqInt size, daqInt offset)
+daqErrCode daqDevice_getLog(daqDevice* self, daqString** log, daqString* id, daqCInt size, daqCInt offset)
 {
     return reinterpret_cast<daq::IDevice*>(self)->getLog(reinterpret_cast<daq::IString**>(log), reinterpret_cast<daq::IString*>(id), size, offset);
 }

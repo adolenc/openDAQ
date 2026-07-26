@@ -44,8 +44,8 @@ extern "C"
     void EXPORTED daqFolder_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqFolder_getItems(daqFolder* self, daqList** items, daqSearchFilter* searchFilter);
-    daqErrCode EXPORTED daqFolder_isEmpty(daqFolder* self, daqBool* empty);
-    daqErrCode EXPORTED daqFolder_hasItem(daqFolder* self, daqString* localId, daqBool* value);
+    daqErrCode EXPORTED daqFolder_isEmpty(daqFolder* self, daqCBool* empty);
+    daqErrCode EXPORTED daqFolder_hasItem(daqFolder* self, daqString* localId, daqCBool* value);
     daqErrCode EXPORTED daqFolder_getItem(daqFolder* self, daqString* localId, daqComponent** item);
 
 #ifdef __cplusplus

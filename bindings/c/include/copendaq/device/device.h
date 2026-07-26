@@ -72,7 +72,7 @@ extern "C"
     daqErrCode EXPORTED daqDevice_removeFunctionBlock(daqDevice* self, daqFunctionBlock* functionBlock);
     daqErrCode EXPORTED daqDevice_saveConfiguration(daqDevice* self, daqString** configuration);
     daqErrCode EXPORTED daqDevice_loadConfiguration(daqDevice* self, daqString* configuration, daqUpdateParameters* config);
-    daqErrCode EXPORTED daqDevice_getTicksSinceOrigin(daqDevice* self, daqUInt* ticks);
+    daqErrCode EXPORTED daqDevice_getTicksSinceOrigin(daqDevice* self, daqCUInt* ticks);
     daqErrCode EXPORTED daqDevice_addStreaming(daqDevice* self, daqStreaming** streaming, daqString* connectionString, daqPropertyObject* config);
     daqErrCode EXPORTED daqDevice_createDefaultAddDeviceConfig(daqDevice* self, daqPropertyObject** defaultConfig);
     daqErrCode EXPORTED daqDevice_getSyncComponent(daqDevice* self, daqSyncComponent** sync);
@@ -81,9 +81,9 @@ extern "C"
     daqErrCode EXPORTED daqDevice_getServers(daqDevice* self, daqList** servers);
     daqErrCode EXPORTED daqDevice_lock(daqDevice* self);
     daqErrCode EXPORTED daqDevice_unlock(daqDevice* self);
-    daqErrCode EXPORTED daqDevice_isLocked(daqDevice* self, daqBool* locked);
+    daqErrCode EXPORTED daqDevice_isLocked(daqDevice* self, daqCBool* locked);
     daqErrCode EXPORTED daqDevice_getLogFileInfos(daqDevice* self, daqList** logFileInfos);
-    daqErrCode EXPORTED daqDevice_getLog(daqDevice* self, daqString** log, daqString* id, daqInt size, daqInt offset);
+    daqErrCode EXPORTED daqDevice_getLog(daqDevice* self, daqString** log, daqString* id, daqCInt size, daqCInt offset);
     daqErrCode EXPORTED daqDevice_getConnectionStatusContainer(daqDevice* self, daqComponentStatusContainer** statusContainer);
     daqErrCode EXPORTED daqDevice_getAvailableOperationModes(daqDevice* self, daqList** availableOpModes);
     daqErrCode EXPORTED daqDevice_setOperationMode(daqDevice* self, daqOperationModeType modeType);

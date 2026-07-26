@@ -48,20 +48,20 @@ extern "C"
     daqErrCode EXPORTED daqConnection_enqueueOnThisThread(daqConnection* self, daqPacket* packet);
     daqErrCode EXPORTED daqConnection_dequeue(daqConnection* self, daqPacket** packet);
     daqErrCode EXPORTED daqConnection_peek(daqConnection* self, daqPacket** packet);
-    daqErrCode EXPORTED daqConnection_getPacketCount(daqConnection* self, daqSizeT* packetCount);
+    daqErrCode EXPORTED daqConnection_getPacketCount(daqConnection* self, daqCSizeT* packetCount);
     daqErrCode EXPORTED daqConnection_getSignal(daqConnection* self, daqSignal** signal);
     daqErrCode EXPORTED daqConnection_getInputPort(daqConnection* self, daqInputPort** inputPort);
-    daqErrCode EXPORTED daqConnection_getAvailableSamples(daqConnection* self, daqSizeT* samples);
-    daqErrCode EXPORTED daqConnection_getSamplesUntilNextDescriptor(daqConnection* self, daqSizeT* samples);
-    daqErrCode EXPORTED daqConnection_isRemote(daqConnection* self, daqBool* remote);
+    daqErrCode EXPORTED daqConnection_getAvailableSamples(daqConnection* self, daqCSizeT* samples);
+    daqErrCode EXPORTED daqConnection_getSamplesUntilNextDescriptor(daqConnection* self, daqCSizeT* samples);
+    daqErrCode EXPORTED daqConnection_isRemote(daqConnection* self, daqCBool* remote);
     daqErrCode EXPORTED daqConnection_enqueueAndStealRef(daqConnection* self, daqPacket* packet);
     daqErrCode EXPORTED daqConnection_enqueueMultiple(daqConnection* self, daqList* packets);
     daqErrCode EXPORTED daqConnection_enqueueMultipleAndStealRef(daqConnection* self, daqList* packets);
     daqErrCode EXPORTED daqConnection_dequeueAll(daqConnection* self, daqList** packets);
-    daqErrCode EXPORTED daqConnection_getSamplesUntilNextEventPacket(daqConnection* self, daqSizeT* samples);
-    daqErrCode EXPORTED daqConnection_getSamplesUntilNextGapPacket(daqConnection* self, daqSizeT* samples);
-    daqErrCode EXPORTED daqConnection_hasEventPacket(daqConnection* self, daqBool* hasEventPacket);
-    daqErrCode EXPORTED daqConnection_hasGapPacket(daqConnection* self, daqBool* hasGapPacket);
+    daqErrCode EXPORTED daqConnection_getSamplesUntilNextEventPacket(daqConnection* self, daqCSizeT* samples);
+    daqErrCode EXPORTED daqConnection_getSamplesUntilNextGapPacket(daqConnection* self, daqCSizeT* samples);
+    daqErrCode EXPORTED daqConnection_hasEventPacket(daqConnection* self, daqCBool* hasEventPacket);
+    daqErrCode EXPORTED daqConnection_hasGapPacket(daqConnection* self, daqCBool* hasGapPacket);
     daqErrCode EXPORTED daqConnection_enqueueWithScheduler(daqConnection* self, daqPacket* packet);
     daqErrCode EXPORTED daqConnection_createConnection(daqConnection** obj, daqInputPort* inputPort, daqSignal* signal, daqContext* context);
 

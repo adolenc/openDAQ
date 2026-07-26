@@ -27,12 +27,12 @@ daqErrCode daqPropertyBuilder_build(daqPropertyBuilder* self, daqProperty** prop
     return reinterpret_cast<daq::IPropertyBuilder*>(self)->build(reinterpret_cast<daq::IProperty**>(property));
 }
 
-daqErrCode daqPropertyBuilder_setValueType(daqPropertyBuilder* self, daqCoreType type)
+daqErrCode daqPropertyBuilder_setValueType(daqPropertyBuilder* self, daqCCoreType type)
 {
     return reinterpret_cast<daq::IPropertyBuilder*>(self)->setValueType(static_cast<daq::CoreType>(type));
 }
 
-daqErrCode daqPropertyBuilder_getValueType(daqPropertyBuilder* self, daqCoreType* type)
+daqErrCode daqPropertyBuilder_getValueType(daqPropertyBuilder* self, daqCCoreType* type)
 {
     return reinterpret_cast<daq::IPropertyBuilder*>(self)->getValueType(reinterpret_cast<daq::CoreType*>(type));
 }
@@ -217,12 +217,12 @@ daqErrCode daqPropertyBuilder_getOnSelectionValuesRead(daqPropertyBuilder* self,
     return reinterpret_cast<daq::IPropertyBuilder*>(self)->getOnSelectionValuesRead(reinterpret_cast<daq::IEvent**>(event));
 }
 
-daqErrCode daqPropertyBuilder_setIsIntegerValueSelection(daqPropertyBuilder* self, daqBool isIntegerValueSelection)
+daqErrCode daqPropertyBuilder_setIsIntegerValueSelection(daqPropertyBuilder* self, daqCBool isIntegerValueSelection)
 {
     return reinterpret_cast<daq::IPropertyBuilder*>(self)->setIsIntegerValueSelection(isIntegerValueSelection);
 }
 
-daqErrCode daqPropertyBuilder_getIsIntegerValueSelection(daqPropertyBuilder* self, daqBool* isIntegerValueSelection)
+daqErrCode daqPropertyBuilder_getIsIntegerValueSelection(daqPropertyBuilder* self, daqCBool* isIntegerValueSelection)
 {
     return reinterpret_cast<daq::IPropertyBuilder*>(self)->getIsIntegerValueSelection(isIntegerValueSelection);
 }
@@ -251,7 +251,7 @@ daqErrCode daqPropertyBuilder_createIntPropertyBuilder(daqPropertyBuilder** obj,
     return err;
 }
 
-daqErrCode daqPropertyBuilder_createFloatPropertyBuilder(daqPropertyBuilder** obj, daqString* name, daqFloatObject* defaultValue)
+daqErrCode daqPropertyBuilder_createFloatPropertyBuilder(daqPropertyBuilder** obj, daqString* name, daqFloat* defaultValue)
 {
     daq::IPropertyBuilder* ptr = nullptr;
     daqErrCode err = daq::createFloatPropertyBuilder(&ptr, reinterpret_cast<daq::IString*>(name), reinterpret_cast<daq::IFloat*>(defaultValue));

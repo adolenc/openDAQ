@@ -22,12 +22,12 @@ void daqSignal_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_SIGNAL_INTF_ID;
 }
 
-daqErrCode daqSignal_getPublic(daqSignal* self, daqBool* isPublic)
+daqErrCode daqSignal_getPublic(daqSignal* self, daqCBool* isPublic)
 {
     return reinterpret_cast<daq::ISignal*>(self)->getPublic(isPublic);
 }
 
-daqErrCode daqSignal_setPublic(daqSignal* self, daqBool isPublic)
+daqErrCode daqSignal_setPublic(daqSignal* self, daqCBool isPublic)
 {
     return reinterpret_cast<daq::ISignal*>(self)->setPublic(isPublic);
 }
@@ -52,12 +52,12 @@ daqErrCode daqSignal_getConnections(daqSignal* self, daqList** connections)
     return reinterpret_cast<daq::ISignal*>(self)->getConnections(reinterpret_cast<daq::IList**>(connections));
 }
 
-daqErrCode daqSignal_getStreamed(daqSignal* self, daqBool* streamed)
+daqErrCode daqSignal_getStreamed(daqSignal* self, daqCBool* streamed)
 {
     return reinterpret_cast<daq::ISignal*>(self)->getStreamed(streamed);
 }
 
-daqErrCode daqSignal_setStreamed(daqSignal* self, daqBool streamed)
+daqErrCode daqSignal_setStreamed(daqSignal* self, daqCBool streamed)
 {
     return reinterpret_cast<daq::ISignal*>(self)->setStreamed(streamed);
 }

@@ -39,10 +39,10 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_VERSION_INFO_INTF_ID;
     void EXPORTED daqVersionInfo_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqVersionInfo_getMajor(daqVersionInfo* self, daqSizeT* major);
-    daqErrCode EXPORTED daqVersionInfo_getMinor(daqVersionInfo* self, daqSizeT* minor);
-    daqErrCode EXPORTED daqVersionInfo_getPatch(daqVersionInfo* self, daqSizeT* patch);
-    daqErrCode EXPORTED daqVersionInfo_createVersionInfo(daqVersionInfo** obj, daqSizeT major, daqSizeT minor, daqSizeT patch);
+    daqErrCode EXPORTED daqVersionInfo_getMajor(daqVersionInfo* self, daqCSizeT* major);
+    daqErrCode EXPORTED daqVersionInfo_getMinor(daqVersionInfo* self, daqCSizeT* minor);
+    daqErrCode EXPORTED daqVersionInfo_getPatch(daqVersionInfo* self, daqCSizeT* patch);
+    daqErrCode EXPORTED daqVersionInfo_createVersionInfo(daqVersionInfo** obj, daqCSizeT major, daqCSizeT minor, daqCSizeT patch);
 
 #ifdef __cplusplus
 }

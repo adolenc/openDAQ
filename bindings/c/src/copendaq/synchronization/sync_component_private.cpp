@@ -22,7 +22,7 @@ void daqSyncComponentPrivate_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_SYNC_COMPONENT_PRIVATE_INTF_ID;
 }
 
-daqErrCode daqSyncComponentPrivate_setSyncLocked(daqSyncComponentPrivate* self, daqBool synchronizationLocked)
+daqErrCode daqSyncComponentPrivate_setSyncLocked(daqSyncComponentPrivate* self, daqCBool synchronizationLocked)
 {
     return reinterpret_cast<daq::ISyncComponentPrivate*>(self)->setSyncLocked(synchronizationLocked);
 }

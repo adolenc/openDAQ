@@ -22,17 +22,17 @@ void daqConvertible_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_CONVERTIBLE_INTF_ID;
 }
 
-daqErrCode daqConvertible_toFloat(daqConvertible* self, daqFloat* val)
+daqErrCode daqConvertible_toFloat(daqConvertible* self, daqCFloat* val)
 {
     return reinterpret_cast<daq::IConvertible*>(self)->toFloat(val);
 }
 
-daqErrCode daqConvertible_toInt(daqConvertible* self, daqInt* val)
+daqErrCode daqConvertible_toInt(daqConvertible* self, daqCInt* val)
 {
     return reinterpret_cast<daq::IConvertible*>(self)->toInt(val);
 }
 
-daqErrCode daqConvertible_toBool(daqConvertible* self, daqBool* val)
+daqErrCode daqConvertible_toBool(daqConvertible* self, daqCBool* val)
 {
     return reinterpret_cast<daq::IConvertible*>(self)->toBool(val);
 }

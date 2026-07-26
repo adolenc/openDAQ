@@ -42,8 +42,8 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_STREAMING_INTF_ID;
     void EXPORTED daqStreaming_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqStreaming_getActive(daqStreaming* self, daqBool* active);
-    daqErrCode EXPORTED daqStreaming_setActive(daqStreaming* self, daqBool active);
+    daqErrCode EXPORTED daqStreaming_getActive(daqStreaming* self, daqCBool* active);
+    daqErrCode EXPORTED daqStreaming_setActive(daqStreaming* self, daqCBool active);
     daqErrCode EXPORTED daqStreaming_addSignals(daqStreaming* self, daqList* signals);
     daqErrCode EXPORTED daqStreaming_removeSignals(daqStreaming* self, daqList* signals);
     daqErrCode EXPORTED daqStreaming_removeAllSignals(daqStreaming* self);
@@ -54,7 +54,7 @@ extern "C"
     daqErrCode EXPORTED daqStreaming_removeAllInputPorts(daqStreaming* self);
     daqErrCode EXPORTED daqStreaming_getOwnerDeviceRemoteId(daqStreaming* self, daqString** deviceRemoteId);
     daqErrCode EXPORTED daqStreaming_getProtocolId(daqStreaming* self, daqString** protocolId);
-    daqErrCode EXPORTED daqStreaming_getClientToDeviceStreamingEnabled(daqStreaming* self, daqBool* enabled);
+    daqErrCode EXPORTED daqStreaming_getClientToDeviceStreamingEnabled(daqStreaming* self, daqCBool* enabled);
 
 #ifdef __cplusplus
 }

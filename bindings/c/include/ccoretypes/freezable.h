@@ -40,7 +40,7 @@ extern "C"
     void EXPORTED daqFreezable_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqFreezable_freeze(daqFreezable* self);
-    daqErrCode EXPORTED daqFreezable_isFrozen(daqFreezable* self, daqBool* isFrozen);
+    daqErrCode EXPORTED daqFreezable_isFrozen(daqFreezable* self, daqCBool* isFrozen);
 
 #ifdef __cplusplus
 }

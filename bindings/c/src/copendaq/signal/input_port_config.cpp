@@ -32,7 +32,7 @@ daqErrCode daqInputPortConfig_getNotificationMethod(daqInputPortConfig* self, da
     return reinterpret_cast<daq::IInputPortConfig*>(self)->getNotificationMethod(reinterpret_cast<daq::PacketReadyNotification*>(method));
 }
 
-daqErrCode daqInputPortConfig_notifyPacketEnqueued(daqInputPortConfig* self, daqBool queueWasEmpty)
+daqErrCode daqInputPortConfig_notifyPacketEnqueued(daqInputPortConfig* self, daqCBool queueWasEmpty)
 {
     return reinterpret_cast<daq::IInputPortConfig*>(self)->notifyPacketEnqueued(queueWasEmpty);
 }
@@ -57,12 +57,12 @@ daqErrCode daqInputPortConfig_setCustomData(daqInputPortConfig* self, daqBaseObj
     return reinterpret_cast<daq::IInputPortConfig*>(self)->setCustomData(reinterpret_cast<daq::IBaseObject*>(customData));
 }
 
-daqErrCode daqInputPortConfig_setRequiresSignal(daqInputPortConfig* self, daqBool requiresSignal)
+daqErrCode daqInputPortConfig_setRequiresSignal(daqInputPortConfig* self, daqCBool requiresSignal)
 {
     return reinterpret_cast<daq::IInputPortConfig*>(self)->setRequiresSignal(requiresSignal);
 }
 
-daqErrCode daqInputPortConfig_getGapCheckingEnabled(daqInputPortConfig* self, daqBool* gapCheckingEnabled)
+daqErrCode daqInputPortConfig_getGapCheckingEnabled(daqInputPortConfig* self, daqCBool* gapCheckingEnabled)
 {
     return reinterpret_cast<daq::IInputPortConfig*>(self)->getGapCheckingEnabled(gapCheckingEnabled);
 }
@@ -77,7 +77,7 @@ daqErrCode daqInputPortConfig_getListener(daqInputPortConfig* self, daqInputPort
     return reinterpret_cast<daq::IInputPortConfig*>(self)->getListener(reinterpret_cast<daq::IInputPortNotifications**>(port));
 }
 
-daqErrCode daqInputPortConfig_createInputPort(daqInputPortConfig** obj, daqContext* context, daqComponent* parent, daqString* localId, daqBool gapChecking)
+daqErrCode daqInputPortConfig_createInputPort(daqInputPortConfig** obj, daqContext* context, daqComponent* parent, daqString* localId, daqCBool gapChecking)
 {
     daq::IInputPortConfig* ptr = nullptr;
     daqErrCode err = daq::createInputPort(&ptr, reinterpret_cast<daq::IContext*>(context), reinterpret_cast<daq::IComponent*>(parent), reinterpret_cast<daq::IString*>(localId), gapChecking);

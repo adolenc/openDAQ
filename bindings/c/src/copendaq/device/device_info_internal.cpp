@@ -42,12 +42,12 @@ daqErrCode daqDeviceInfoInternal_addNetworkInteface(daqDeviceInfoInternal* self,
     return reinterpret_cast<daq::IDeviceInfoInternal*>(self)->addNetworkInteface(reinterpret_cast<daq::IString*>(name), reinterpret_cast<daq::INetworkInterface*>(networkInterface));
 }
 
-daqErrCode daqDeviceInfoInternal_addConnectedClient(daqDeviceInfoInternal* self, daqSizeT* clientNumber, daqConnectedClientInfo* clientInfo)
+daqErrCode daqDeviceInfoInternal_addConnectedClient(daqDeviceInfoInternal* self, daqCSizeT* clientNumber, daqConnectedClientInfo* clientInfo)
 {
     return reinterpret_cast<daq::IDeviceInfoInternal*>(self)->addConnectedClient(clientNumber, reinterpret_cast<daq::IConnectedClientInfo*>(clientInfo));
 }
 
-daqErrCode daqDeviceInfoInternal_removeConnectedClient(daqDeviceInfoInternal* self, daqSizeT clientNumber)
+daqErrCode daqDeviceInfoInternal_removeConnectedClient(daqDeviceInfoInternal* self, daqCSizeT clientNumber)
 {
     return reinterpret_cast<daq::IDeviceInfoInternal*>(self)->removeConnectedClient(clientNumber);
 }

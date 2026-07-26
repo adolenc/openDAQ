@@ -67,12 +67,12 @@ daqErrCode daqLogFileInfoBuilder_setDescription(daqLogFileInfoBuilder* self, daq
     return reinterpret_cast<daq::ILogFileInfoBuilder*>(self)->setDescription(reinterpret_cast<daq::IString*>(description));
 }
 
-daqErrCode daqLogFileInfoBuilder_getSize(daqLogFileInfoBuilder* self, daqSizeT* size)
+daqErrCode daqLogFileInfoBuilder_getSize(daqLogFileInfoBuilder* self, daqCSizeT* size)
 {
     return reinterpret_cast<daq::ILogFileInfoBuilder*>(self)->getSize(size);
 }
 
-daqErrCode daqLogFileInfoBuilder_setSize(daqLogFileInfoBuilder* self, daqSizeT size)
+daqErrCode daqLogFileInfoBuilder_setSize(daqLogFileInfoBuilder* self, daqCSizeT size)
 {
     return reinterpret_cast<daq::ILogFileInfoBuilder*>(self)->setSize(size);
 }

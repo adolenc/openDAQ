@@ -141,9 +141,9 @@ protected:
         daqBaseObject_releaseRef(domainPacket);
         daqBaseObject_releaseRef(offsetNum);
 
-        daqFloat values[] = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
+        daqCFloat values[] = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
 
-        daqFloat* data = nullptr;
+        daqCFloat* data = nullptr;
         daqDataPacket_getRawData(packet, (void**) &data);
         memcpy(data, values, sizeof(values));
 
@@ -212,10 +212,10 @@ TEST_F(COpendaqReaderTest, daqBlockReader)
     daqSignalConfig_sendPacket(signalConfig, packet);
     daqBaseObject_releaseRef(packet);
 
-    daqFloat data[10] = {0};
+    daqCFloat data[10] = {0};
     daqBlockReaderStatus* status = nullptr;
-    daqSizeT count = 5;
-    daqSizeT timeoutMs = 1000;
+    daqCSizeT count = 5;
+    daqCSizeT timeoutMs = 1000;
 
     daqBlockReader_read(blockReader, data, &count, timeoutMs, &status);
     ASSERT_EQ(count, 0u);
@@ -229,9 +229,9 @@ TEST_F(COpendaqReaderTest, daqBlockReader)
     daqReaderStatus_getReadStatus((daqReaderStatus*) status, &statusValue2);
     ASSERT_EQ(statusValue2, daqReadStatus::daqReadStatusOk);
     ASSERT_EQ(count, 5u);
-    for (daqSizeT i = 0; i < count; ++i)
+    for (daqCSizeT i = 0; i < count; ++i)
     {
-        ASSERT_EQ(data[i], (daqFloat) i + 1);
+        ASSERT_EQ(data[i], (daqCFloat) i + 1);
     }
     daqBaseObject_releaseRef(status);
     daqBaseObject_releaseRef(blockReader);
@@ -276,9 +276,9 @@ TEST_F(COpendaqReaderTest, daqReader)
     daqSignalConfig_sendPacket(signalConfig, packet);
     daqBaseObject_releaseRef(packet);
 
-    daqFloat data[10] = {0};
-    daqSizeT count = 10;
-    daqSizeT timeoutMs = 1000;
+    daqCFloat data[10] = {0};
+    daqCSizeT count = 10;
+    daqCSizeT timeoutMs = 1000;
     daqReaderStatus* status = nullptr;
 
     daqStreamReader_read(streamReader, data, &count, timeoutMs, &status);
@@ -306,10 +306,10 @@ TEST_F(COpendaqReaderTest, daqStreamReader)
     daqSignalConfig_sendPacket(signalConfig, packet);
     daqBaseObject_releaseRef(packet);
 
-    daqFloat data[10] = {0};
+    daqCFloat data[10] = {0};
     daqReaderStatus* status = nullptr;
-    daqSizeT count = 10;
-    daqSizeT timeoutMs = 1000;
+    daqCSizeT count = 10;
+    daqCSizeT timeoutMs = 1000;
 
     daqStreamReader_read(streamReader, data, &count, timeoutMs, &status);
     ASSERT_EQ(count, 0u);
@@ -323,9 +323,9 @@ TEST_F(COpendaqReaderTest, daqStreamReader)
     daqReaderStatus_getReadStatus(status, &statusValue2);
     ASSERT_EQ(statusValue2, daqReadStatus::daqReadStatusOk);
     ASSERT_EQ(count, 10u);
-    for (daqSizeT i = 0; i < count; ++i)
+    for (daqCSizeT i = 0; i < count; ++i)
     {
-        ASSERT_EQ(data[i], (daqFloat) i + 1);
+        ASSERT_EQ(data[i], (daqCFloat) i + 1);
     }
     daqBaseObject_releaseRef(status);
     daqBaseObject_releaseRef(streamReader);
@@ -341,9 +341,9 @@ TEST_F(COpendaqReaderTest, daqTailReader)
     daqSignalConfig_sendPacket(signalConfig, packet);
     daqBaseObject_releaseRef(packet);
 
-    daqFloat data[10] = {0};
+    daqCFloat data[10] = {0};
     daqTailReaderStatus* status = nullptr;
-    daqSizeT count = 10;
+    daqCSizeT count = 10;
 
     daqTailReader_read(tailReader, data, &count, &status);
     ASSERT_EQ(count, 0u);
@@ -357,9 +357,9 @@ TEST_F(COpendaqReaderTest, daqTailReader)
     daqReaderStatus_getReadStatus((daqReaderStatus*) status, &statusValue2);
     ASSERT_EQ(statusValue2, daqReadStatus::daqReadStatusOk);
     ASSERT_EQ(count, 10u);
-    for (daqSizeT i = 0; i < count; ++i)
+    for (daqCSizeT i = 0; i < count; ++i)
     {
-        ASSERT_EQ(data[i], (daqFloat) i + 1);
+        ASSERT_EQ(data[i], (daqCFloat) i + 1);
     }
     daqBaseObject_releaseRef(status);
     daqBaseObject_releaseRef(tailReader);

@@ -42,8 +42,8 @@ extern "C"
     void EXPORTED daqTags_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqTags_getList(daqTags* self, daqList** value);
-    daqErrCode EXPORTED daqTags_contains(daqTags* self, daqString* name, daqBool* value);
-    daqErrCode EXPORTED daqTags_query(daqTags* self, daqString* query, daqBool* value);
+    daqErrCode EXPORTED daqTags_contains(daqTags* self, daqString* name, daqCBool* value);
+    daqErrCode EXPORTED daqTags_query(daqTags* self, daqString* query, daqCBool* value);
     daqErrCode EXPORTED daqTags_createTags(daqTags** obj);
 
 #ifdef __cplusplus

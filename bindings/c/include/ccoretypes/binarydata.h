@@ -40,8 +40,8 @@ extern "C"
     void EXPORTED daqBinaryData_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqBinaryData_getAddress(daqBinaryData* self, void** data);
-    daqErrCode EXPORTED daqBinaryData_getSize(daqBinaryData* self, daqSizeT* size);
-    daqErrCode EXPORTED daqBinaryData_createBinaryData(daqBinaryData** obj, daqSizeT size);
+    daqErrCode EXPORTED daqBinaryData_getSize(daqBinaryData* self, daqCSizeT* size);
+    daqErrCode EXPORTED daqBinaryData_createBinaryData(daqBinaryData** obj, daqCSizeT size);
 
 #ifdef __cplusplus
 }

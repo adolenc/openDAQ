@@ -51,7 +51,7 @@ extern "C"
     daqErrCode EXPORTED daqPropertyObject_getPropertyValue(daqPropertyObject* self, daqString* propertyName, daqBaseObject** value);
     daqErrCode EXPORTED daqPropertyObject_getPropertySelectionValue(daqPropertyObject* self, daqString* propertyName, daqBaseObject** value);
     daqErrCode EXPORTED daqPropertyObject_clearPropertyValue(daqPropertyObject* self, daqString* propertyName);
-    daqErrCode EXPORTED daqPropertyObject_hasProperty(daqPropertyObject* self, daqString* propertyName, daqBool* hasProperty);
+    daqErrCode EXPORTED daqPropertyObject_hasProperty(daqPropertyObject* self, daqString* propertyName, daqCBool* hasProperty);
     daqErrCode EXPORTED daqPropertyObject_getProperty(daqPropertyObject* self, daqString* propertyName, daqProperty** property);
     daqErrCode EXPORTED daqPropertyObject_addProperty(daqPropertyObject* self, daqProperty* property);
     daqErrCode EXPORTED daqPropertyObject_removeProperty(daqPropertyObject* self, daqString* propertyName);
@@ -64,7 +64,7 @@ extern "C"
     daqErrCode EXPORTED daqPropertyObject_setPropertyOrder(daqPropertyObject* self, daqList* orderedPropertyNames);
     daqErrCode EXPORTED daqPropertyObject_beginUpdate(daqPropertyObject* self);
     daqErrCode EXPORTED daqPropertyObject_endUpdate(daqPropertyObject* self);
-    daqErrCode EXPORTED daqPropertyObject_getUpdating(daqPropertyObject* self, daqBool* updating);
+    daqErrCode EXPORTED daqPropertyObject_getUpdating(daqPropertyObject* self, daqCBool* updating);
     daqErrCode EXPORTED daqPropertyObject_getOnEndUpdate(daqPropertyObject* self, daqEvent** event);
     daqErrCode EXPORTED daqPropertyObject_getPermissionManager(daqPropertyObject* self, daqPermissionManager** permissionManager);
     daqErrCode EXPORTED daqPropertyObject_findProperties(daqPropertyObject* self, daqList** properties, daqSearchFilter* propertyFilter, daqSearchFilter* componentFilter);

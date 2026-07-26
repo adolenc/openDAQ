@@ -44,7 +44,7 @@ extern "C"
 
     daqErrCode EXPORTED daqMultiReaderStatus_getEventPackets(daqMultiReaderStatus* self, daqDict** eventPackets);
     daqErrCode EXPORTED daqMultiReaderStatus_getMainDescriptor(daqMultiReaderStatus* self, daqEventPacket** descriptor);
-    daqErrCode EXPORTED daqMultiReaderStatus_createMultiReaderStatus(daqMultiReaderStatus** obj, daqEventPacket* mainDescriptor, daqDict* eventPackets, daqBool valid, daqNumber* offset);
+    daqErrCode EXPORTED daqMultiReaderStatus_createMultiReaderStatus(daqMultiReaderStatus** obj, daqEventPacket* mainDescriptor, daqDict* eventPackets, daqCBool valid, daqNumber* offset);
 
 #ifdef __cplusplus
 }

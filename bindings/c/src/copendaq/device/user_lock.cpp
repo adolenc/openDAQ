@@ -37,7 +37,7 @@ daqErrCode daqUserLock_forceUnlock(daqUserLock* self)
     return reinterpret_cast<daq::IUserLock*>(self)->forceUnlock();
 }
 
-daqErrCode daqUserLock_isLocked(daqUserLock* self, daqBool* isLockedOut)
+daqErrCode daqUserLock_isLocked(daqUserLock* self, daqCBool* isLockedOut)
 {
     return reinterpret_cast<daq::IUserLock*>(self)->isLocked(isLockedOut);
 }

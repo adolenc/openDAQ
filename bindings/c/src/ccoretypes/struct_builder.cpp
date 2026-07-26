@@ -57,7 +57,7 @@ daqErrCode daqStructBuilder_get(daqStructBuilder* self, daqString* name, daqBase
     return reinterpret_cast<daq::IStructBuilder*>(self)->get(reinterpret_cast<daq::IString*>(name), reinterpret_cast<daq::IBaseObject**>(field));
 }
 
-daqErrCode daqStructBuilder_hasField(daqStructBuilder* self, daqString* name, daqBool* contains)
+daqErrCode daqStructBuilder_hasField(daqStructBuilder* self, daqString* name, daqCBool* contains)
 {
     return reinterpret_cast<daq::IStructBuilder*>(self)->hasField(reinterpret_cast<daq::IString*>(name), contains);
 }

@@ -127,12 +127,12 @@ daqErrCode daqInstanceBuilder_getAuthenticationProvider(daqInstanceBuilder* self
     return reinterpret_cast<daq::IInstanceBuilder*>(self)->getAuthenticationProvider(reinterpret_cast<daq::IAuthenticationProvider**>(authenticationProvider));
 }
 
-daqErrCode daqInstanceBuilder_setSchedulerWorkerNum(daqInstanceBuilder* self, daqSizeT numWorkers)
+daqErrCode daqInstanceBuilder_setSchedulerWorkerNum(daqInstanceBuilder* self, daqCSizeT numWorkers)
 {
     return reinterpret_cast<daq::IInstanceBuilder*>(self)->setSchedulerWorkerNum(numWorkers);
 }
 
-daqErrCode daqInstanceBuilder_getSchedulerWorkerNum(daqInstanceBuilder* self, daqSizeT* numWorkers)
+daqErrCode daqInstanceBuilder_getSchedulerWorkerNum(daqInstanceBuilder* self, daqCSizeT* numWorkers)
 {
     return reinterpret_cast<daq::IInstanceBuilder*>(self)->getSchedulerWorkerNum(numWorkers);
 }
@@ -187,7 +187,7 @@ daqErrCode daqInstanceBuilder_getOptions(daqInstanceBuilder* self, daqDict** opt
     return reinterpret_cast<daq::IInstanceBuilder*>(self)->getOptions(reinterpret_cast<daq::IDict**>(options));
 }
 
-daqErrCode daqInstanceBuilder_enableStandardProviders(daqInstanceBuilder* self, daqBool flag)
+daqErrCode daqInstanceBuilder_enableStandardProviders(daqInstanceBuilder* self, daqCBool flag)
 {
     return reinterpret_cast<daq::IInstanceBuilder*>(self)->enableStandardProviders(flag);
 }
@@ -202,12 +202,12 @@ daqErrCode daqInstanceBuilder_addDiscoveryServer(daqInstanceBuilder* self, daqSt
     return reinterpret_cast<daq::IInstanceBuilder*>(self)->addDiscoveryServer(reinterpret_cast<daq::IString*>(serverName));
 }
 
-daqErrCode daqInstanceBuilder_setUsingSchedulerMainLoop(daqInstanceBuilder* self, daqBool useMainLoop)
+daqErrCode daqInstanceBuilder_setUsingSchedulerMainLoop(daqInstanceBuilder* self, daqCBool useMainLoop)
 {
     return reinterpret_cast<daq::IInstanceBuilder*>(self)->setUsingSchedulerMainLoop(useMainLoop);
 }
 
-daqErrCode daqInstanceBuilder_getUsingSchedulerMainLoop(daqInstanceBuilder* self, daqBool* useMainLoop)
+daqErrCode daqInstanceBuilder_getUsingSchedulerMainLoop(daqInstanceBuilder* self, daqCBool* useMainLoop)
 {
     return reinterpret_cast<daq::IInstanceBuilder*>(self)->getUsingSchedulerMainLoop(useMainLoop);
 }
@@ -222,12 +222,12 @@ daqErrCode daqInstanceBuilder_getModuleAuthenticator(daqInstanceBuilder* self, d
     return reinterpret_cast<daq::IInstanceBuilder*>(self)->getModuleAuthenticator(reinterpret_cast<daq::IModuleAuthenticator**>(authenticator));
 }
 
-daqErrCode daqInstanceBuilder_setLoadAuthenticatedModulesOnly(daqInstanceBuilder* self, daqBool authOnly)
+daqErrCode daqInstanceBuilder_setLoadAuthenticatedModulesOnly(daqInstanceBuilder* self, daqCBool authOnly)
 {
     return reinterpret_cast<daq::IInstanceBuilder*>(self)->setLoadAuthenticatedModulesOnly(authOnly);
 }
 
-daqErrCode daqInstanceBuilder_getLoadAuthenticatedModulesOnly(daqInstanceBuilder* self, daqBool* authOnly)
+daqErrCode daqInstanceBuilder_getLoadAuthenticatedModulesOnly(daqInstanceBuilder* self, daqCBool* authOnly)
 {
     return reinterpret_cast<daq::IInstanceBuilder*>(self)->getLoadAuthenticatedModulesOnly(authOnly);
 }

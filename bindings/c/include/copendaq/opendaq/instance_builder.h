@@ -74,8 +74,8 @@ extern "C"
     daqErrCode EXPORTED daqInstanceBuilder_getModuleManager(daqInstanceBuilder* self, daqModuleManager** moduleManager);
     daqErrCode EXPORTED daqInstanceBuilder_setAuthenticationProvider(daqInstanceBuilder* self, daqAuthenticationProvider* authenticationProvider);
     daqErrCode EXPORTED daqInstanceBuilder_getAuthenticationProvider(daqInstanceBuilder* self, daqAuthenticationProvider** authenticationProvider);
-    daqErrCode EXPORTED daqInstanceBuilder_setSchedulerWorkerNum(daqInstanceBuilder* self, daqSizeT numWorkers);
-    daqErrCode EXPORTED daqInstanceBuilder_getSchedulerWorkerNum(daqInstanceBuilder* self, daqSizeT* numWorkers);
+    daqErrCode EXPORTED daqInstanceBuilder_setSchedulerWorkerNum(daqInstanceBuilder* self, daqCSizeT numWorkers);
+    daqErrCode EXPORTED daqInstanceBuilder_getSchedulerWorkerNum(daqInstanceBuilder* self, daqCSizeT* numWorkers);
     daqErrCode EXPORTED daqInstanceBuilder_setScheduler(daqInstanceBuilder* self, daqScheduler* scheduler);
     daqErrCode EXPORTED daqInstanceBuilder_getScheduler(daqInstanceBuilder* self, daqScheduler** scheduler);
     daqErrCode EXPORTED daqInstanceBuilder_setDefaultRootDeviceLocalId(daqInstanceBuilder* self, daqString* localId);
@@ -86,15 +86,15 @@ extern "C"
     daqErrCode EXPORTED daqInstanceBuilder_setDefaultRootDeviceInfo(daqInstanceBuilder* self, daqDeviceInfo* deviceInfo);
     daqErrCode EXPORTED daqInstanceBuilder_getDefaultRootDeviceInfo(daqInstanceBuilder* self, daqDeviceInfo** deviceInfo);
     daqErrCode EXPORTED daqInstanceBuilder_getOptions(daqInstanceBuilder* self, daqDict** options);
-    daqErrCode EXPORTED daqInstanceBuilder_enableStandardProviders(daqInstanceBuilder* self, daqBool flag);
+    daqErrCode EXPORTED daqInstanceBuilder_enableStandardProviders(daqInstanceBuilder* self, daqCBool flag);
     daqErrCode EXPORTED daqInstanceBuilder_getDiscoveryServers(daqInstanceBuilder* self, daqList** serverNames);
     daqErrCode EXPORTED daqInstanceBuilder_addDiscoveryServer(daqInstanceBuilder* self, daqString* serverName);
-    daqErrCode EXPORTED daqInstanceBuilder_setUsingSchedulerMainLoop(daqInstanceBuilder* self, daqBool useMainLoop);
-    daqErrCode EXPORTED daqInstanceBuilder_getUsingSchedulerMainLoop(daqInstanceBuilder* self, daqBool* useMainLoop);
+    daqErrCode EXPORTED daqInstanceBuilder_setUsingSchedulerMainLoop(daqInstanceBuilder* self, daqCBool useMainLoop);
+    daqErrCode EXPORTED daqInstanceBuilder_getUsingSchedulerMainLoop(daqInstanceBuilder* self, daqCBool* useMainLoop);
     daqErrCode EXPORTED daqInstanceBuilder_setModuleAuthenticator(daqInstanceBuilder* self, daqModuleAuthenticator* authenticator);
     daqErrCode EXPORTED daqInstanceBuilder_getModuleAuthenticator(daqInstanceBuilder* self, daqModuleAuthenticator** authenticator);
-    daqErrCode EXPORTED daqInstanceBuilder_setLoadAuthenticatedModulesOnly(daqInstanceBuilder* self, daqBool authOnly);
-    daqErrCode EXPORTED daqInstanceBuilder_getLoadAuthenticatedModulesOnly(daqInstanceBuilder* self, daqBool* authOnly);
+    daqErrCode EXPORTED daqInstanceBuilder_setLoadAuthenticatedModulesOnly(daqInstanceBuilder* self, daqCBool authOnly);
+    daqErrCode EXPORTED daqInstanceBuilder_getLoadAuthenticatedModulesOnly(daqInstanceBuilder* self, daqCBool* authOnly);
     daqErrCode EXPORTED daqInstanceBuilder_createInstanceBuilder(daqInstanceBuilder** obj);
 
 #ifdef __cplusplus

@@ -37,7 +37,7 @@ daqErrCode daqPropertyValueEventArgs_getPropertyEventType(daqPropertyValueEventA
     return reinterpret_cast<daq::IPropertyValueEventArgs*>(self)->getPropertyEventType(reinterpret_cast<daq::PropertyEventType*>(changeType));
 }
 
-daqErrCode daqPropertyValueEventArgs_getIsUpdating(daqPropertyValueEventArgs* self, daqBool* isUpdating)
+daqErrCode daqPropertyValueEventArgs_getIsUpdating(daqPropertyValueEventArgs* self, daqCBool* isUpdating)
 {
     return reinterpret_cast<daq::IPropertyValueEventArgs*>(self)->getIsUpdating(isUpdating);
 }
@@ -47,7 +47,7 @@ daqErrCode daqPropertyValueEventArgs_getOldValue(daqPropertyValueEventArgs* self
     return reinterpret_cast<daq::IPropertyValueEventArgs*>(self)->getOldValue(reinterpret_cast<daq::IBaseObject**>(value));
 }
 
-daqErrCode daqPropertyValueEventArgs_createPropertyValueEventArgs(daqPropertyValueEventArgs** obj, daqProperty* prop, daqBaseObject* value, daqBaseObject* oldValue, daqPropertyEventType type, daqBool isUpdating)
+daqErrCode daqPropertyValueEventArgs_createPropertyValueEventArgs(daqPropertyValueEventArgs** obj, daqProperty* prop, daqBaseObject* value, daqBaseObject* oldValue, daqPropertyEventType type, daqCBool isUpdating)
 {
     daq::IPropertyValueEventArgs* ptr = nullptr;
     daqErrCode err = daq::createPropertyValueEventArgs(&ptr, reinterpret_cast<daq::IProperty*>(prop), reinterpret_cast<daq::IBaseObject*>(value), reinterpret_cast<daq::IBaseObject*>(oldValue), static_cast<daq::PropertyEventType>(type), isUpdating);

@@ -49,7 +49,7 @@ extern "C"
     daqErrCode EXPORTED daqServerCapability_getProtocolType(daqServerCapability* self, daqProtocolType* type);
     daqErrCode EXPORTED daqServerCapability_getPrefix(daqServerCapability* self, daqString** prefix);
     daqErrCode EXPORTED daqServerCapability_getConnectionType(daqServerCapability* self, daqString** type);
-    daqErrCode EXPORTED daqServerCapability_getCoreEventsEnabled(daqServerCapability* self, daqBool* enabled);
+    daqErrCode EXPORTED daqServerCapability_getCoreEventsEnabled(daqServerCapability* self, daqCBool* enabled);
     daqErrCode EXPORTED daqServerCapability_getAddresses(daqServerCapability* self, daqList** addresses);
     daqErrCode EXPORTED daqServerCapability_getPort(daqServerCapability* self, daqInteger** port);
     daqErrCode EXPORTED daqServerCapability_getAddressInfo(daqServerCapability* self, daqList** addressInfo);

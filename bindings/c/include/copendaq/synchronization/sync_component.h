@@ -43,9 +43,9 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_SYNC_COMPONENT_INTF_ID;
     void EXPORTED daqSyncComponent_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqSyncComponent_getSyncLocked(daqSyncComponent* self, daqBool* synchronizationLocked);
-    daqErrCode EXPORTED daqSyncComponent_getSelectedSource(daqSyncComponent* self, daqInt* selectedSource);
-    daqErrCode EXPORTED daqSyncComponent_setSelectedSource(daqSyncComponent* self, daqInt selectedSource);
+    daqErrCode EXPORTED daqSyncComponent_getSyncLocked(daqSyncComponent* self, daqCBool* synchronizationLocked);
+    daqErrCode EXPORTED daqSyncComponent_getSelectedSource(daqSyncComponent* self, daqCInt* selectedSource);
+    daqErrCode EXPORTED daqSyncComponent_setSelectedSource(daqSyncComponent* self, daqCInt selectedSource);
     daqErrCode EXPORTED daqSyncComponent_getInterfaces(daqSyncComponent* self, daqDict** interfaces);
     daqErrCode EXPORTED daqSyncComponent_createSyncComponent(daqSyncComponent** obj, daqContext* context, daqComponent* ParseFailedException, daqString* localId);
 

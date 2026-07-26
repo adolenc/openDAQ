@@ -46,7 +46,7 @@ extern "C"
     daqErrCode EXPORTED daqDevicePrivate_getDeviceConfig(daqDevicePrivate* self, daqPropertyObject** config);
     daqErrCode EXPORTED daqDevicePrivate_lock(daqDevicePrivate* self, daqUser* user);
     daqErrCode EXPORTED daqDevicePrivate_unlock(daqDevicePrivate* self, daqUser* user);
-    daqErrCode EXPORTED daqDevicePrivate_isLockedInternal(daqDevicePrivate* self, daqBool* locked);
+    daqErrCode EXPORTED daqDevicePrivate_isLockedInternal(daqDevicePrivate* self, daqCBool* locked);
     daqErrCode EXPORTED daqDevicePrivate_forceUnlock(daqDevicePrivate* self);
 
 #ifdef __cplusplus

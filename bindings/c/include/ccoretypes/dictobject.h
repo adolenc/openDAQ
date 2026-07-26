@@ -46,8 +46,8 @@ extern "C"
     daqErrCode EXPORTED daqDict_remove(daqDict* self, daqBaseObject* key, daqBaseObject** value);
     daqErrCode EXPORTED daqDict_deleteItem(daqDict* self, daqBaseObject* key);
     daqErrCode EXPORTED daqDict_clear(daqDict* self);
-    daqErrCode EXPORTED daqDict_getCount(daqDict* self, daqSizeT* size);
-    daqErrCode EXPORTED daqDict_hasKey(daqDict* self, daqBaseObject* key, daqBool* hasKey);
+    daqErrCode EXPORTED daqDict_getCount(daqDict* self, daqCSizeT* size);
+    daqErrCode EXPORTED daqDict_hasKey(daqDict* self, daqBaseObject* key, daqCBool* hasKey);
     daqErrCode EXPORTED daqDict_getKeyList(daqDict* self, daqList** keys);
     daqErrCode EXPORTED daqDict_getValueList(daqDict* self, daqList** values);
     daqErrCode EXPORTED daqDict_getKeys(daqDict* self, daqIterable** iterable);

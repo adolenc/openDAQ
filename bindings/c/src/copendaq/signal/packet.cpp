@@ -32,7 +32,7 @@ daqErrCode daqPacket_subscribeForDestructNotification(daqPacket* self, daqPacket
     return reinterpret_cast<daq::IPacket*>(self)->subscribeForDestructNotification(reinterpret_cast<daq::IPacketDestructCallback*>(packetDestructCallback));
 }
 
-daqErrCode daqPacket_getRefCount(daqPacket* self, daqSizeT* refCount)
+daqErrCode daqPacket_getRefCount(daqPacket* self, daqCSizeT* refCount)
 {
     return reinterpret_cast<daq::IPacket*>(self)->getRefCount(refCount);
 }

@@ -22,7 +22,7 @@ void daqPermissionsBuilder_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_PERMISSIONS_BUILDER_INTF_ID;
 }
 
-daqErrCode daqPermissionsBuilder_inherit(daqPermissionsBuilder* self, daqBool inherit)
+daqErrCode daqPermissionsBuilder_inherit(daqPermissionsBuilder* self, daqCBool inherit)
 {
     return reinterpret_cast<daq::IPermissionsBuilder*>(self)->inherit(inherit);
 }

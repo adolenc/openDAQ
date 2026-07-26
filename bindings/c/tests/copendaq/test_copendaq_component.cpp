@@ -81,14 +81,14 @@ TEST_F(COpendaqComponentTest, ComponentPrivate)
     daqComponent_getName(component, &outName);
     daqString* outDesc = nullptr;
     daqComponent_getDescription(component, &outDesc);
-    daqBool active = False;
+    daqCBool active = False;
     daqComponent_getActive(component, &active);
-    daqBool visible = False;
+    daqCBool visible = False;
     daqComponent_getVisible(component, &visible);
 
-    daqConstCharPtr nameStr = nullptr;
+    daqCConstCharPtr nameStr = nullptr;
     daqString_getCharPtr(outName, &nameStr);
-    daqConstCharPtr descStr = nullptr;
+    daqCConstCharPtr descStr = nullptr;
     daqString_getCharPtr(outDesc, &descStr);
 
     ASSERT_STREQ(nameStr, "Name");
@@ -144,12 +144,12 @@ TEST_F(COpendaqComponentTest, Component)
 
     daqString* childLocalId = nullptr;
     daqComponent_getLocalId(child, &childLocalId);
-    daqConstCharPtr childLocalIdStr = nullptr;
+    daqCConstCharPtr childLocalIdStr = nullptr;
     daqString_getCharPtr(childLocalId, &childLocalIdStr);
 
     daqString* childGlobalId = nullptr;
     daqComponent_getGlobalId(child, &childGlobalId);
-    daqConstCharPtr childGlobalIdStr = nullptr;
+    daqCConstCharPtr childGlobalIdStr = nullptr;
     daqString_getCharPtr(childGlobalId, &childGlobalIdStr);
 
     ASSERT_STREQ(childLocalIdStr, "child");
@@ -181,7 +181,7 @@ TEST_F(COpendaqComponentTest, Folder)
     daqFolder* f = nullptr;
     daqBaseObject_borrowInterface(folder, DAQ_FOLDER_INTF_ID, (void**) &f);
 
-    daqBool empty = false;
+    daqCBool empty = false;
     daqFolder_isEmpty(f, &empty);
     ASSERT_EQ(empty, false);
 
@@ -207,7 +207,7 @@ TEST_F(COpendaqComponentTest, Removable)
     daqBaseObject_borrowInterface(component, DAQ_REMOVABLE_INTF_ID, (void**) &rm);
 
     daqRemovable_remove(rm);
-    daqBool isRemoved = False;
+    daqCBool isRemoved = False;
     daqRemovable_isRemoved(rm, &isRemoved);
 
     ASSERT_EQ(isRemoved, True);
@@ -229,7 +229,7 @@ TEST_F(COpendaqComponentTest, Tags)
 
     daqTagsPrivate_add(priv, tag);
 
-    daqBool result = false;
+    daqCBool result = false;
     daqTags_contains(tags, tag, &result);
 
     ASSERT_TRUE(result);

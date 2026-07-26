@@ -5,7 +5,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 //
-//     RTGen (CGenerator v0.7.0) on 03.06.2025 17:17:46.
+//     RTGen (CGenerator v0.7.0).
 // </auto-generated>
 //------------------------------------------------------------------------------
 
@@ -17,7 +17,12 @@
 
 const daqIntfID DAQ_CORE_TYPE_INTF_ID = { daq::ICoreType::Id.Data1, daq::ICoreType::Id.Data2, daq::ICoreType::Id.Data3, daq::ICoreType::Id.Data4_UInt64 };
 
-daqErrCode daqCoreType_getCoreType(daqCoreTypeObject* self, daqCoreType* coreType)
+void daqCoreType_getInterfaceId(daqIntfID* intfId)
+{
+    *intfId = DAQ_CORE_TYPE_INTF_ID;
+}
+
+daqErrCode daqCoreType_getCoreType(daqCoreType* self, daqCCoreType* coreType)
 {
     return reinterpret_cast<daq::ICoreType*>(self)->getCoreType(reinterpret_cast<daq::CoreType*>(coreType));
 }

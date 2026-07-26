@@ -87,32 +87,32 @@ daqErrCode daqBlockReaderBuilder_getReadMode(daqBlockReaderBuilder* self, daqRea
     return reinterpret_cast<daq::IBlockReaderBuilder*>(self)->getReadMode(reinterpret_cast<daq::ReadMode*>(mode));
 }
 
-daqErrCode daqBlockReaderBuilder_setBlockSize(daqBlockReaderBuilder* self, daqSizeT size)
+daqErrCode daqBlockReaderBuilder_setBlockSize(daqBlockReaderBuilder* self, daqCSizeT size)
 {
     return reinterpret_cast<daq::IBlockReaderBuilder*>(self)->setBlockSize(size);
 }
 
-daqErrCode daqBlockReaderBuilder_getBlockSize(daqBlockReaderBuilder* self, daqSizeT* size)
+daqErrCode daqBlockReaderBuilder_getBlockSize(daqBlockReaderBuilder* self, daqCSizeT* size)
 {
     return reinterpret_cast<daq::IBlockReaderBuilder*>(self)->getBlockSize(size);
 }
 
-daqErrCode daqBlockReaderBuilder_setOverlap(daqBlockReaderBuilder* self, daqSizeT overlap)
+daqErrCode daqBlockReaderBuilder_setOverlap(daqBlockReaderBuilder* self, daqCSizeT overlap)
 {
     return reinterpret_cast<daq::IBlockReaderBuilder*>(self)->setOverlap(overlap);
 }
 
-daqErrCode daqBlockReaderBuilder_getOverlap(daqBlockReaderBuilder* self, daqSizeT* overlap)
+daqErrCode daqBlockReaderBuilder_getOverlap(daqBlockReaderBuilder* self, daqCSizeT* overlap)
 {
     return reinterpret_cast<daq::IBlockReaderBuilder*>(self)->getOverlap(overlap);
 }
 
-daqErrCode daqBlockReaderBuilder_setSkipEvents(daqBlockReaderBuilder* self, daqBool skipEvents)
+daqErrCode daqBlockReaderBuilder_setSkipEvents(daqBlockReaderBuilder* self, daqCBool skipEvents)
 {
     return reinterpret_cast<daq::IBlockReaderBuilder*>(self)->setSkipEvents(skipEvents);
 }
 
-daqErrCode daqBlockReaderBuilder_getSkipEvents(daqBlockReaderBuilder* self, daqBool* skipEvents)
+daqErrCode daqBlockReaderBuilder_getSkipEvents(daqBlockReaderBuilder* self, daqCBool* skipEvents)
 {
     return reinterpret_cast<daq::IBlockReaderBuilder*>(self)->getSkipEvents(skipEvents);
 }

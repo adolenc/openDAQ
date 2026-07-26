@@ -41,7 +41,7 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_INPUT_PORT_NOTIFICATIONS_INTF_ID;
     void EXPORTED daqInputPortNotifications_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqInputPortNotifications_acceptsSignal(daqInputPortNotifications* self, daqInputPort* port, daqSignal* signal, daqBool* accept);
+    daqErrCode EXPORTED daqInputPortNotifications_acceptsSignal(daqInputPortNotifications* self, daqInputPort* port, daqSignal* signal, daqCBool* accept);
     daqErrCode EXPORTED daqInputPortNotifications_connected(daqInputPortNotifications* self, daqInputPort* port);
     daqErrCode EXPORTED daqInputPortNotifications_disconnected(daqInputPortNotifications* self, daqInputPort* port);
     daqErrCode EXPORTED daqInputPortNotifications_packetReceived(daqInputPortNotifications* self, daqInputPort* port);

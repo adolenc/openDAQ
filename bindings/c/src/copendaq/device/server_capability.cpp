@@ -57,7 +57,7 @@ daqErrCode daqServerCapability_getConnectionType(daqServerCapability* self, daqS
     return reinterpret_cast<daq::IServerCapability*>(self)->getConnectionType(reinterpret_cast<daq::IString**>(type));
 }
 
-daqErrCode daqServerCapability_getCoreEventsEnabled(daqServerCapability* self, daqBool* enabled)
+daqErrCode daqServerCapability_getCoreEventsEnabled(daqServerCapability* self, daqCBool* enabled)
 {
     return reinterpret_cast<daq::IServerCapability*>(self)->getCoreEventsEnabled(enabled);
 }

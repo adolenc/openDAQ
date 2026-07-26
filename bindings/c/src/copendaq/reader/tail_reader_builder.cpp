@@ -77,22 +77,22 @@ daqErrCode daqTailReaderBuilder_getReadMode(daqTailReaderBuilder* self, daqReadM
     return reinterpret_cast<daq::ITailReaderBuilder*>(self)->getReadMode(reinterpret_cast<daq::ReadMode*>(mode));
 }
 
-daqErrCode daqTailReaderBuilder_setHistorySize(daqTailReaderBuilder* self, daqSizeT historySize)
+daqErrCode daqTailReaderBuilder_setHistorySize(daqTailReaderBuilder* self, daqCSizeT historySize)
 {
     return reinterpret_cast<daq::ITailReaderBuilder*>(self)->setHistorySize(historySize);
 }
 
-daqErrCode daqTailReaderBuilder_getHistorySize(daqTailReaderBuilder* self, daqSizeT* historySize)
+daqErrCode daqTailReaderBuilder_getHistorySize(daqTailReaderBuilder* self, daqCSizeT* historySize)
 {
     return reinterpret_cast<daq::ITailReaderBuilder*>(self)->getHistorySize(historySize);
 }
 
-daqErrCode daqTailReaderBuilder_setSkipEvents(daqTailReaderBuilder* self, daqBool skipEvents)
+daqErrCode daqTailReaderBuilder_setSkipEvents(daqTailReaderBuilder* self, daqCBool skipEvents)
 {
     return reinterpret_cast<daq::ITailReaderBuilder*>(self)->setSkipEvents(skipEvents);
 }
 
-daqErrCode daqTailReaderBuilder_getSkipEvents(daqTailReaderBuilder* self, daqBool* skipEvents)
+daqErrCode daqTailReaderBuilder_getSkipEvents(daqTailReaderBuilder* self, daqCBool* skipEvents)
 {
     return reinterpret_cast<daq::ITailReaderBuilder*>(self)->getSkipEvents(skipEvents);
 }

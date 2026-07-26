@@ -45,9 +45,9 @@ extern "C"
     daqErrCode EXPORTED daqLoggerComponent_getName(daqLoggerComponent* self, daqString** name);
     daqErrCode EXPORTED daqLoggerComponent_setLevel(daqLoggerComponent* self, daqLogLevel level);
     daqErrCode EXPORTED daqLoggerComponent_getLevel(daqLoggerComponent* self, daqLogLevel* level);
-    // daqErrCode EXPORTED daqLoggerComponent_logMessage(daqLoggerComponent* self, daqSourceLocation location, daqConstCharPtr msg, daqLogLevel level);
+    // daqErrCode EXPORTED daqLoggerComponent_logMessage(daqLoggerComponent* self, daqSourceLocation location, daqCConstCharPtr msg, daqLogLevel level);
     daqErrCode EXPORTED daqLoggerComponent_setPattern(daqLoggerComponent* self, daqString* pattern);
-    daqErrCode EXPORTED daqLoggerComponent_shouldLog(daqLoggerComponent* self, daqLogLevel level, daqBool* willLog);
+    daqErrCode EXPORTED daqLoggerComponent_shouldLog(daqLoggerComponent* self, daqLogLevel level, daqCBool* willLog);
     daqErrCode EXPORTED daqLoggerComponent_flush(daqLoggerComponent* self);
     daqErrCode EXPORTED daqLoggerComponent_flushOnLevel(daqLoggerComponent* self, daqLogLevel level);
     daqErrCode EXPORTED daqLoggerComponent_createLoggerComponent(daqLoggerComponent** obj, daqString* name, daqList* sinks, daqLoggerThreadPool* threadPool, daqLogLevel level);

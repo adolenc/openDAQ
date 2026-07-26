@@ -45,8 +45,8 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_PROPERTY_OBJECT_INTERNAL_INTF_ID;
     void EXPORTED daqPropertyObjectInternal_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqPropertyObjectInternal_checkForReferences(daqPropertyObjectInternal* self, daqProperty* property, daqBool* isReferenced);
-    daqErrCode EXPORTED daqPropertyObjectInternal_checkForReferencesNoLock(daqPropertyObjectInternal* self, daqProperty* property, daqBool* isReferenced);
+    daqErrCode EXPORTED daqPropertyObjectInternal_checkForReferences(daqPropertyObjectInternal* self, daqProperty* property, daqCBool* isReferenced);
+    daqErrCode EXPORTED daqPropertyObjectInternal_checkForReferencesNoLock(daqPropertyObjectInternal* self, daqProperty* property, daqCBool* isReferenced);
     daqErrCode EXPORTED daqPropertyObjectInternal_enableCoreEventTrigger(daqPropertyObjectInternal* self);
     daqErrCode EXPORTED daqPropertyObjectInternal_disableCoreEventTrigger(daqPropertyObjectInternal* self);
     daqErrCode EXPORTED daqPropertyObjectInternal_getCoreEventTrigger(daqPropertyObjectInternal* self, daqProcedure** trigger);
@@ -54,8 +54,8 @@ extern "C"
     daqErrCode EXPORTED daqPropertyObjectInternal_clone(daqPropertyObjectInternal* self, daqPropertyObject** cloned);
     daqErrCode EXPORTED daqPropertyObjectInternal_setPath(daqPropertyObjectInternal* self, daqString* path);
     daqErrCode EXPORTED daqPropertyObjectInternal_getPath(daqPropertyObjectInternal* self, daqString** path);
-    daqErrCode EXPORTED daqPropertyObjectInternal_isUpdating(daqPropertyObjectInternal* self, daqBool* updating);
-    daqErrCode EXPORTED daqPropertyObjectInternal_hasUserReadAccess(daqPropertyObjectInternal* self, daqBaseObject* userContext, daqBool* hasAccessOut);
+    daqErrCode EXPORTED daqPropertyObjectInternal_isUpdating(daqPropertyObjectInternal* self, daqCBool* updating);
+    daqErrCode EXPORTED daqPropertyObjectInternal_hasUserReadAccess(daqPropertyObjectInternal* self, daqBaseObject* userContext, daqCBool* hasAccessOut);
     daqErrCode EXPORTED daqPropertyObjectInternal_getPropertyValueNoLock(daqPropertyObjectInternal* self, daqString* name, daqBaseObject** value);
     daqErrCode EXPORTED daqPropertyObjectInternal_getPropertySelectionValueNoLock(daqPropertyObjectInternal* self, daqString* name, daqBaseObject** value);
     daqErrCode EXPORTED daqPropertyObjectInternal_setPropertyValueNoLock(daqPropertyObjectInternal* self, daqString* name, daqBaseObject* value);

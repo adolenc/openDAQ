@@ -27,12 +27,12 @@ daqErrCode daqFolder_getItems(daqFolder* self, daqList** items, daqSearchFilter*
     return reinterpret_cast<daq::IFolder*>(self)->getItems(reinterpret_cast<daq::IList**>(items), reinterpret_cast<daq::ISearchFilter*>(searchFilter));
 }
 
-daqErrCode daqFolder_isEmpty(daqFolder* self, daqBool* empty)
+daqErrCode daqFolder_isEmpty(daqFolder* self, daqCBool* empty)
 {
     return reinterpret_cast<daq::IFolder*>(self)->isEmpty(empty);
 }
 
-daqErrCode daqFolder_hasItem(daqFolder* self, daqString* localId, daqBool* value)
+daqErrCode daqFolder_hasItem(daqFolder* self, daqString* localId, daqCBool* value)
 {
     return reinterpret_cast<daq::IFolder*>(self)->hasItem(reinterpret_cast<daq::IString*>(localId), value);
 }

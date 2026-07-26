@@ -44,7 +44,7 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_MIRRORED_SIGNAL_PRIVATE_INTF_ID;
     void EXPORTED daqMirroredSignalPrivate_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqMirroredSignalPrivate_triggerEvent(daqMirroredSignalPrivate* self, daqEventPacket* eventPacket, daqBool* forward);
+    daqErrCode EXPORTED daqMirroredSignalPrivate_triggerEvent(daqMirroredSignalPrivate* self, daqEventPacket* eventPacket, daqCBool* forward);
     daqErrCode EXPORTED daqMirroredSignalPrivate_addStreamingSource(daqMirroredSignalPrivate* self, daqStreaming* streaming);
     daqErrCode EXPORTED daqMirroredSignalPrivate_removeStreamingSource(daqMirroredSignalPrivate* self, daqString* streamingConnectionString);
     daqErrCode EXPORTED daqMirroredSignalPrivate_subscribeCompleted(daqMirroredSignalPrivate* self, daqString* streamingConnectionString);

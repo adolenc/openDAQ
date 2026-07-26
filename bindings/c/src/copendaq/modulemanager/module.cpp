@@ -67,7 +67,7 @@ daqErrCode daqModule_createStreaming(daqModule* self, daqStreaming** streaming, 
     return reinterpret_cast<daq::IModule*>(self)->createStreaming(reinterpret_cast<daq::IStreaming**>(streaming), reinterpret_cast<daq::IString*>(connectionString), reinterpret_cast<daq::IPropertyObject*>(config));
 }
 
-daqErrCode daqModule_completeServerCapability(daqModule* self, daqBool* succeeded, daqServerCapability* source, daqServerCapabilityConfig* target)
+daqErrCode daqModule_completeServerCapability(daqModule* self, daqCBool* succeeded, daqServerCapability* source, daqServerCapabilityConfig* target)
 {
     return reinterpret_cast<daq::IModule*>(self)->completeServerCapability(succeeded, reinterpret_cast<daq::IServerCapability*>(source), reinterpret_cast<daq::IServerCapabilityConfig*>(target));
 }
@@ -77,7 +77,7 @@ daqErrCode daqModule_getAvailableStreamingTypes(daqModule* self, daqDict** strea
     return reinterpret_cast<daq::IModule*>(self)->getAvailableStreamingTypes(reinterpret_cast<daq::IDict**>(streamingTypes));
 }
 
-daqErrCode daqModule_loadLicense(daqModule* self, daqBool* succeeded, daqDict* licenseConfig)
+daqErrCode daqModule_loadLicense(daqModule* self, daqCBool* succeeded, daqDict* licenseConfig)
 {
     return reinterpret_cast<daq::IModule*>(self)->loadLicense(succeeded, reinterpret_cast<daq::IDict*>(licenseConfig));
 }
@@ -87,7 +87,7 @@ daqErrCode daqModule_getLicenseConfig(daqModule* self, daqDict** licenseConfig)
     return reinterpret_cast<daq::IModule*>(self)->getLicenseConfig(reinterpret_cast<daq::IDict**>(licenseConfig));
 }
 
-daqErrCode daqModule_licenseLoaded(daqModule* self, daqBool* loaded)
+daqErrCode daqModule_licenseLoaded(daqModule* self, daqCBool* loaded)
 {
     return reinterpret_cast<daq::IModule*>(self)->licenseLoaded(loaded);
 }

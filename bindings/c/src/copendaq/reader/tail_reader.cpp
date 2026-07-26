@@ -22,22 +22,22 @@ void daqTailReader_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_TAIL_READER_INTF_ID;
 }
 
-daqErrCode daqTailReader_read(daqTailReader* self, void* values, daqSizeT* count, daqTailReaderStatus** status)
+daqErrCode daqTailReader_read(daqTailReader* self, void* values, daqCSizeT* count, daqTailReaderStatus** status)
 {
     return reinterpret_cast<daq::ITailReader*>(self)->read(values, count, reinterpret_cast<daq::ITailReaderStatus**>(status));
 }
 
-daqErrCode daqTailReader_readWithDomain(daqTailReader* self, void* values, void* domain, daqSizeT* count, daqTailReaderStatus** status)
+daqErrCode daqTailReader_readWithDomain(daqTailReader* self, void* values, void* domain, daqCSizeT* count, daqTailReaderStatus** status)
 {
     return reinterpret_cast<daq::ITailReader*>(self)->readWithDomain(values, domain, count, reinterpret_cast<daq::ITailReaderStatus**>(status));
 }
 
-daqErrCode daqTailReader_getHistorySize(daqTailReader* self, daqSizeT* size)
+daqErrCode daqTailReader_getHistorySize(daqTailReader* self, daqCSizeT* size)
 {
     return reinterpret_cast<daq::ITailReader*>(self)->getHistorySize(size);
 }
 
-daqErrCode daqTailReader_createTailReader(daqTailReader** obj, daqSignal* signal, daqSizeT historySize, daqSampleType valueReadType, daqSampleType domainReadType, daqReadMode mode)
+daqErrCode daqTailReader_createTailReader(daqTailReader** obj, daqSignal* signal, daqCSizeT historySize, daqSampleType valueReadType, daqSampleType domainReadType, daqReadMode mode)
 {
     daq::ITailReader* ptr = nullptr;
     daqErrCode err = daq::createTailReader(&ptr, reinterpret_cast<daq::ISignal*>(signal), historySize, static_cast<daq::SampleType>(valueReadType), static_cast<daq::SampleType>(domainReadType), static_cast<daq::ReadMode>(mode));
@@ -45,7 +45,7 @@ daqErrCode daqTailReader_createTailReader(daqTailReader** obj, daqSignal* signal
     return err;
 }
 
-daqErrCode daqTailReader_createTailReaderFromPort(daqTailReader** obj, daqInputPortConfig* port, daqSizeT historySize, daqSampleType valueReadType, daqSampleType domainReadType, daqReadMode mode)
+daqErrCode daqTailReader_createTailReaderFromPort(daqTailReader** obj, daqInputPortConfig* port, daqCSizeT historySize, daqSampleType valueReadType, daqSampleType domainReadType, daqReadMode mode)
 {
     daq::ITailReader* ptr = nullptr;
     daqErrCode err = daq::createTailReaderFromPort(&ptr, reinterpret_cast<daq::IInputPortConfig*>(port), historySize, static_cast<daq::SampleType>(valueReadType), static_cast<daq::SampleType>(domainReadType), static_cast<daq::ReadMode>(mode));
@@ -53,7 +53,7 @@ daqErrCode daqTailReader_createTailReaderFromPort(daqTailReader** obj, daqInputP
     return err;
 }
 
-daqErrCode daqTailReader_createTailReaderFromExisting(daqTailReader** obj, daqTailReader* invalidatedReader, daqSizeT historySize, daqSampleType valueReadType, daqSampleType domainReadType)
+daqErrCode daqTailReader_createTailReaderFromExisting(daqTailReader** obj, daqTailReader* invalidatedReader, daqCSizeT historySize, daqSampleType valueReadType, daqSampleType domainReadType)
 {
     daq::ITailReader* ptr = nullptr;
     daqErrCode err = daq::createTailReaderFromExisting(&ptr, reinterpret_cast<daq::ITailReader*>(invalidatedReader), historySize, static_cast<daq::SampleType>(valueReadType), static_cast<daq::SampleType>(domainReadType));

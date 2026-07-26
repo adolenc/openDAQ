@@ -22,17 +22,17 @@ void daqSyncComponent_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_SYNC_COMPONENT_INTF_ID;
 }
 
-daqErrCode daqSyncComponent_getSyncLocked(daqSyncComponent* self, daqBool* synchronizationLocked)
+daqErrCode daqSyncComponent_getSyncLocked(daqSyncComponent* self, daqCBool* synchronizationLocked)
 {
     return reinterpret_cast<daq::ISyncComponent*>(self)->getSyncLocked(synchronizationLocked);
 }
 
-daqErrCode daqSyncComponent_getSelectedSource(daqSyncComponent* self, daqInt* selectedSource)
+daqErrCode daqSyncComponent_getSelectedSource(daqSyncComponent* self, daqCInt* selectedSource)
 {
     return reinterpret_cast<daq::ISyncComponent*>(self)->getSelectedSource(selectedSource);
 }
 
-daqErrCode daqSyncComponent_setSelectedSource(daqSyncComponent* self, daqInt selectedSource)
+daqErrCode daqSyncComponent_setSelectedSource(daqSyncComponent* self, daqCInt selectedSource)
 {
     return reinterpret_cast<daq::ISyncComponent*>(self)->setSelectedSource(selectedSource);
 }

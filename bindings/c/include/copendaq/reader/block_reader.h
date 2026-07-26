@@ -42,13 +42,13 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_BLOCK_READER_INTF_ID;
     void EXPORTED daqBlockReader_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqBlockReader_read(daqBlockReader* self, void* blocks, daqSizeT* count, daqSizeT timeoutMs, daqBlockReaderStatus** status);
-    daqErrCode EXPORTED daqBlockReader_readWithDomain(daqBlockReader* self, void* dataBlocks, void* domainBlocks, daqSizeT* count, daqSizeT timeoutMs, daqBlockReaderStatus** status);
-    daqErrCode EXPORTED daqBlockReader_getBlockSize(daqBlockReader* self, daqSizeT* size);
-    daqErrCode EXPORTED daqBlockReader_getOverlap(daqBlockReader* self, daqSizeT* overlap);
-    daqErrCode EXPORTED daqBlockReader_createBlockReader(daqBlockReader** obj, daqSignal* signal, daqSizeT blockSize, daqSampleType valueReadType, daqSampleType domainReadType, daqReadMode mode);
-    daqErrCode EXPORTED daqBlockReader_createBlockReaderFromExisting(daqBlockReader** obj, daqBlockReader* invalidatedReader, daqSampleType valueReadType, daqSampleType domainReadType, daqSizeT blockSize);
-    daqErrCode EXPORTED daqBlockReader_createBlockReaderFromPort(daqBlockReader** obj, daqInputPortConfig* port, daqSizeT blockSize, daqSampleType valueReadType, daqSampleType domainReadType, daqReadMode mode);
+    daqErrCode EXPORTED daqBlockReader_read(daqBlockReader* self, void* blocks, daqCSizeT* count, daqCSizeT timeoutMs, daqBlockReaderStatus** status);
+    daqErrCode EXPORTED daqBlockReader_readWithDomain(daqBlockReader* self, void* dataBlocks, void* domainBlocks, daqCSizeT* count, daqCSizeT timeoutMs, daqBlockReaderStatus** status);
+    daqErrCode EXPORTED daqBlockReader_getBlockSize(daqBlockReader* self, daqCSizeT* size);
+    daqErrCode EXPORTED daqBlockReader_getOverlap(daqBlockReader* self, daqCSizeT* overlap);
+    daqErrCode EXPORTED daqBlockReader_createBlockReader(daqBlockReader** obj, daqSignal* signal, daqCSizeT blockSize, daqSampleType valueReadType, daqSampleType domainReadType, daqReadMode mode);
+    daqErrCode EXPORTED daqBlockReader_createBlockReaderFromExisting(daqBlockReader** obj, daqBlockReader* invalidatedReader, daqSampleType valueReadType, daqSampleType domainReadType, daqCSizeT blockSize);
+    daqErrCode EXPORTED daqBlockReader_createBlockReaderFromPort(daqBlockReader** obj, daqInputPortConfig* port, daqCSizeT blockSize, daqSampleType valueReadType, daqSampleType domainReadType, daqReadMode mode);
 
 #ifdef __cplusplus
 }

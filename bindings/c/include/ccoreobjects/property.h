@@ -46,7 +46,7 @@ extern "C"
     typedef struct daqEvent daqEvent;
     typedef struct daqBoolean daqBoolean;
     typedef struct daqInteger daqInteger;
-    typedef struct daqFloatObject daqFloatObject;
+    typedef struct daqFloat daqFloat;
     typedef struct daqDict daqDict;
     typedef struct daqRatio daqRatio;
     typedef struct daqPropertyObject daqPropertyObject;
@@ -57,9 +57,9 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_PROPERTY_INTF_ID;
     void EXPORTED daqProperty_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqProperty_getValueType(daqProperty* self, daqCoreType* type);
-    daqErrCode EXPORTED daqProperty_getKeyType(daqProperty* self, daqCoreType* type);
-    daqErrCode EXPORTED daqProperty_getItemType(daqProperty* self, daqCoreType* type);
+    daqErrCode EXPORTED daqProperty_getValueType(daqProperty* self, daqCCoreType* type);
+    daqErrCode EXPORTED daqProperty_getKeyType(daqProperty* self, daqCCoreType* type);
+    daqErrCode EXPORTED daqProperty_getItemType(daqProperty* self, daqCCoreType* type);
     daqErrCode EXPORTED daqProperty_getName(daqProperty* self, daqString** name);
     daqErrCode EXPORTED daqProperty_getDescription(daqProperty* self, daqString** description);
     daqErrCode EXPORTED daqProperty_getUnit(daqProperty* self, daqUnit** unit);
@@ -67,11 +67,11 @@ extern "C"
     daqErrCode EXPORTED daqProperty_getMaxValue(daqProperty* self, daqNumber** max);
     daqErrCode EXPORTED daqProperty_getDefaultValue(daqProperty* self, daqBaseObject** value);
     daqErrCode EXPORTED daqProperty_getSuggestedValues(daqProperty* self, daqList** values);
-    daqErrCode EXPORTED daqProperty_getVisible(daqProperty* self, daqBool* visible);
-    daqErrCode EXPORTED daqProperty_getReadOnly(daqProperty* self, daqBool* readOnly);
+    daqErrCode EXPORTED daqProperty_getVisible(daqProperty* self, daqCBool* visible);
+    daqErrCode EXPORTED daqProperty_getReadOnly(daqProperty* self, daqCBool* readOnly);
     daqErrCode EXPORTED daqProperty_getSelectionValues(daqProperty* self, daqBaseObject** values);
     daqErrCode EXPORTED daqProperty_getReferencedProperty(daqProperty* self, daqProperty** property);
-    daqErrCode EXPORTED daqProperty_getIsReferenced(daqProperty* self, daqBool* isReferenced);
+    daqErrCode EXPORTED daqProperty_getIsReferenced(daqProperty* self, daqCBool* isReferenced);
     daqErrCode EXPORTED daqProperty_getValidator(daqProperty* self, daqValidator** validator);
     daqErrCode EXPORTED daqProperty_getCoercer(daqProperty* self, daqCoercer** coercer);
     daqErrCode EXPORTED daqProperty_getCallableInfo(daqProperty* self, daqCallableInfo** callable);
@@ -85,7 +85,7 @@ extern "C"
     daqErrCode EXPORTED daqProperty_getPropertyType(daqProperty* self, daqPropertyType* type);
     daqErrCode EXPORTED daqProperty_createBoolProperty(daqProperty** obj, daqString* name, daqBoolean* defaultValue, daqBoolean* visible);
     daqErrCode EXPORTED daqProperty_createIntProperty(daqProperty** obj, daqString* name, daqInteger* defaultValue, daqBoolean* visible);
-    daqErrCode EXPORTED daqProperty_createFloatProperty(daqProperty** obj, daqString* name, daqFloatObject* defaultValue, daqBoolean* visible);
+    daqErrCode EXPORTED daqProperty_createFloatProperty(daqProperty** obj, daqString* name, daqFloat* defaultValue, daqBoolean* visible);
     daqErrCode EXPORTED daqProperty_createStringProperty(daqProperty** obj, daqString* name, daqString* defaultValue, daqBoolean* visible);
     daqErrCode EXPORTED daqProperty_createListProperty(daqProperty** obj, daqString* name, daqList* defaultValue, daqBoolean* visible);
     daqErrCode EXPORTED daqProperty_createDictProperty(daqProperty** obj, daqString* name, daqDict* defaultValue, daqBoolean* visible);

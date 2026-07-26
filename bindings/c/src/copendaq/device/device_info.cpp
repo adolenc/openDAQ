@@ -92,7 +92,7 @@ daqErrCode daqDeviceInfo_getProductInstanceUri(daqDeviceInfo* self, daqString** 
     return reinterpret_cast<daq::IDeviceInfo*>(self)->getProductInstanceUri(reinterpret_cast<daq::IString**>(productInstanceUri));
 }
 
-daqErrCode daqDeviceInfo_getRevisionCounter(daqDeviceInfo* self, daqInt* revisionCounter)
+daqErrCode daqDeviceInfo_getRevisionCounter(daqDeviceInfo* self, daqCInt* revisionCounter)
 {
     return reinterpret_cast<daq::IDeviceInfo*>(self)->getRevisionCounter(revisionCounter);
 }
@@ -117,7 +117,7 @@ daqErrCode daqDeviceInfo_getPlatform(daqDeviceInfo* self, daqString** platform)
     return reinterpret_cast<daq::IDeviceInfo*>(self)->getPlatform(reinterpret_cast<daq::IString**>(platform));
 }
 
-daqErrCode daqDeviceInfo_getPosition(daqDeviceInfo* self, daqInt* position)
+daqErrCode daqDeviceInfo_getPosition(daqDeviceInfo* self, daqCInt* position)
 {
     return reinterpret_cast<daq::IDeviceInfo*>(self)->getPosition(position);
 }
@@ -157,7 +157,7 @@ daqErrCode daqDeviceInfo_getConfigurationConnectionInfo(daqDeviceInfo* self, daq
     return reinterpret_cast<daq::IDeviceInfo*>(self)->getConfigurationConnectionInfo(reinterpret_cast<daq::IServerCapability**>(connectionInfo));
 }
 
-daqErrCode daqDeviceInfo_hasServerCapability(daqDeviceInfo* self, daqString* protocolId, daqBool* hasCapability)
+daqErrCode daqDeviceInfo_hasServerCapability(daqDeviceInfo* self, daqString* protocolId, daqCBool* hasCapability)
 {
     return reinterpret_cast<daq::IDeviceInfo*>(self)->hasServerCapability(reinterpret_cast<daq::IString*>(protocolId), hasCapability);
 }

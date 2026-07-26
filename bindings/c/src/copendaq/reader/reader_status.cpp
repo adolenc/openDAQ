@@ -32,7 +32,7 @@ daqErrCode daqReaderStatus_getEventPacket(daqReaderStatus* self, daqEventPacket*
     return reinterpret_cast<daq::IReaderStatus*>(self)->getEventPacket(reinterpret_cast<daq::IEventPacket**>(packet));
 }
 
-daqErrCode daqReaderStatus_getValid(daqReaderStatus* self, daqBool* valid)
+daqErrCode daqReaderStatus_getValid(daqReaderStatus* self, daqCBool* valid)
 {
     return reinterpret_cast<daq::IReaderStatus*>(self)->getValid(valid);
 }
@@ -42,7 +42,7 @@ daqErrCode daqReaderStatus_getOffset(daqReaderStatus* self, daqNumber** offset)
     return reinterpret_cast<daq::IReaderStatus*>(self)->getOffset(reinterpret_cast<daq::INumber**>(offset));
 }
 
-daqErrCode daqReaderStatus_createReaderStatus(daqReaderStatus** obj, daqEventPacket* eventPacket, daqBool valid, daqNumber* offset)
+daqErrCode daqReaderStatus_createReaderStatus(daqReaderStatus** obj, daqEventPacket* eventPacket, daqCBool valid, daqNumber* offset)
 {
     daq::IReaderStatus* ptr = nullptr;
     daqErrCode err = daq::createReaderStatus(&ptr, reinterpret_cast<daq::IEventPacket*>(eventPacket), valid, reinterpret_cast<daq::INumber*>(offset));

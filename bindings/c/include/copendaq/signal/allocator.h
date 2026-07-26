@@ -41,7 +41,7 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_ALLOCATOR_INTF_ID;
     void EXPORTED daqAllocator_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqAllocator_allocate(daqAllocator* self, daqDataDescriptor* descriptor, daqSizeT bytes, daqSizeT align, void** address);
+    daqErrCode EXPORTED daqAllocator_allocate(daqAllocator* self, daqDataDescriptor* descriptor, daqCSizeT bytes, daqCSizeT align, void** address);
     daqErrCode EXPORTED daqAllocator_free(daqAllocator* self, void* address);
     daqErrCode EXPORTED daqAllocator_createMallocAllocator(daqAllocator** obj);
     // daqErrCode EXPORTED daqAllocator_createMiMallocAllocator(daqAllocator** obj);

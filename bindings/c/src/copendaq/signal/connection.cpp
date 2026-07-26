@@ -42,7 +42,7 @@ daqErrCode daqConnection_peek(daqConnection* self, daqPacket** packet)
     return reinterpret_cast<daq::IConnection*>(self)->peek(reinterpret_cast<daq::IPacket**>(packet));
 }
 
-daqErrCode daqConnection_getPacketCount(daqConnection* self, daqSizeT* packetCount)
+daqErrCode daqConnection_getPacketCount(daqConnection* self, daqCSizeT* packetCount)
 {
     return reinterpret_cast<daq::IConnection*>(self)->getPacketCount(packetCount);
 }
@@ -57,17 +57,17 @@ daqErrCode daqConnection_getInputPort(daqConnection* self, daqInputPort** inputP
     return reinterpret_cast<daq::IConnection*>(self)->getInputPort(reinterpret_cast<daq::IInputPort**>(inputPort));
 }
 
-daqErrCode daqConnection_getAvailableSamples(daqConnection* self, daqSizeT* samples)
+daqErrCode daqConnection_getAvailableSamples(daqConnection* self, daqCSizeT* samples)
 {
     return reinterpret_cast<daq::IConnection*>(self)->getAvailableSamples(samples);
 }
 
-daqErrCode daqConnection_getSamplesUntilNextDescriptor(daqConnection* self, daqSizeT* samples)
+daqErrCode daqConnection_getSamplesUntilNextDescriptor(daqConnection* self, daqCSizeT* samples)
 {
     return reinterpret_cast<daq::IConnection*>(self)->getSamplesUntilNextDescriptor(samples);
 }
 
-daqErrCode daqConnection_isRemote(daqConnection* self, daqBool* remote)
+daqErrCode daqConnection_isRemote(daqConnection* self, daqCBool* remote)
 {
     return reinterpret_cast<daq::IConnection*>(self)->isRemote(remote);
 }
@@ -92,22 +92,22 @@ daqErrCode daqConnection_dequeueAll(daqConnection* self, daqList** packets)
     return reinterpret_cast<daq::IConnection*>(self)->dequeueAll(reinterpret_cast<daq::IList**>(packets));
 }
 
-daqErrCode daqConnection_getSamplesUntilNextEventPacket(daqConnection* self, daqSizeT* samples)
+daqErrCode daqConnection_getSamplesUntilNextEventPacket(daqConnection* self, daqCSizeT* samples)
 {
     return reinterpret_cast<daq::IConnection*>(self)->getSamplesUntilNextEventPacket(samples);
 }
 
-daqErrCode daqConnection_getSamplesUntilNextGapPacket(daqConnection* self, daqSizeT* samples)
+daqErrCode daqConnection_getSamplesUntilNextGapPacket(daqConnection* self, daqCSizeT* samples)
 {
     return reinterpret_cast<daq::IConnection*>(self)->getSamplesUntilNextGapPacket(samples);
 }
 
-daqErrCode daqConnection_hasEventPacket(daqConnection* self, daqBool* hasEventPacket)
+daqErrCode daqConnection_hasEventPacket(daqConnection* self, daqCBool* hasEventPacket)
 {
     return reinterpret_cast<daq::IConnection*>(self)->hasEventPacket(hasEventPacket);
 }
 
-daqErrCode daqConnection_hasGapPacket(daqConnection* self, daqBool* hasGapPacket)
+daqErrCode daqConnection_hasGapPacket(daqConnection* self, daqCBool* hasGapPacket)
 {
     return reinterpret_cast<daq::IConnection*>(self)->hasGapPacket(hasGapPacket);
 }

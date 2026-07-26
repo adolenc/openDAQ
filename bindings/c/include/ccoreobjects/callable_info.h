@@ -40,10 +40,10 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_CALLABLE_INFO_INTF_ID;
     void EXPORTED daqCallableInfo_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqCallableInfo_getReturnType(daqCallableInfo* self, daqCoreType* type);
+    daqErrCode EXPORTED daqCallableInfo_getReturnType(daqCallableInfo* self, daqCCoreType* type);
     daqErrCode EXPORTED daqCallableInfo_getArguments(daqCallableInfo* self, daqList** argumentInfo);
-    daqErrCode EXPORTED daqCallableInfo_isConst(daqCallableInfo* self, daqBool* constFlag);
-    daqErrCode EXPORTED daqCallableInfo_createCallableInfo(daqCallableInfo** obj, daqList* argumentInfo, daqCoreType returnType, daqBool constFlag);
+    daqErrCode EXPORTED daqCallableInfo_isConst(daqCallableInfo* self, daqCBool* constFlag);
+    daqErrCode EXPORTED daqCallableInfo_createCallableInfo(daqCallableInfo** obj, daqList* argumentInfo, daqCCoreType returnType, daqCBool constFlag);
 
 #ifdef __cplusplus
 }

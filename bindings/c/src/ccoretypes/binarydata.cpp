@@ -27,12 +27,12 @@ daqErrCode daqBinaryData_getAddress(daqBinaryData* self, void** data)
     return reinterpret_cast<daq::IBinaryData*>(self)->getAddress(data);
 }
 
-daqErrCode daqBinaryData_getSize(daqBinaryData* self, daqSizeT* size)
+daqErrCode daqBinaryData_getSize(daqBinaryData* self, daqCSizeT* size)
 {
     return reinterpret_cast<daq::IBinaryData*>(self)->getSize(size);
 }
 
-daqErrCode daqBinaryData_createBinaryData(daqBinaryData** obj, daqSizeT size)
+daqErrCode daqBinaryData_createBinaryData(daqBinaryData** obj, daqCSizeT size)
 {
     daq::IBinaryData* ptr = nullptr;
     daqErrCode err = daq::createBinaryData(&ptr, size);

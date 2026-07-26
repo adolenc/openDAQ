@@ -67,12 +67,12 @@ TEST_F(COpendaqDeviceTest, DeviceInfo)
     daqString* connectionString = nullptr;
     daqDeviceInfo_getConnectionString(deviceInfo, &connectionString);
     ASSERT_NE(connectionString, nullptr);
-    daqConstCharPtr connectionStringStr = nullptr;
+    daqCConstCharPtr connectionStringStr = nullptr;
     daqString_getCharPtr(connectionString, &connectionStringStr);
 
     daqString* name = nullptr;
     daqDeviceInfo_getName(deviceInfo, &name);
-    daqConstCharPtr nameStr = nullptr;
+    daqCConstCharPtr nameStr = nullptr;
     daqString_getCharPtr(name, &nameStr);
 
     daqBaseObject_releaseRef(name);

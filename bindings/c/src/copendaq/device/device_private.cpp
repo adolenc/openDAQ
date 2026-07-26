@@ -47,7 +47,7 @@ daqErrCode daqDevicePrivate_unlock(daqDevicePrivate* self, daqUser* user)
     return reinterpret_cast<daq::IDevicePrivate*>(self)->unlock(reinterpret_cast<daq::IUser*>(user));
 }
 
-daqErrCode daqDevicePrivate_isLockedInternal(daqDevicePrivate* self, daqBool* locked)
+daqErrCode daqDevicePrivate_isLockedInternal(daqDevicePrivate* self, daqCBool* locked)
 {
     return reinterpret_cast<daq::IDevicePrivate*>(self)->isLockedInternal(locked);
 }

@@ -43,10 +43,10 @@ extern "C"
     daqErrCode EXPORTED daqErrorInfo_getMessage(daqErrorInfo* self, daqString** message);
     daqErrCode EXPORTED daqErrorInfo_setSource(daqErrorInfo* self, daqString* source);
     daqErrCode EXPORTED daqErrorInfo_getSource(daqErrorInfo* self, daqString** source);
-    daqErrCode EXPORTED daqErrorInfo_setFileName(daqErrorInfo* self, daqConstCharPtr fileName);
-    daqErrCode EXPORTED daqErrorInfo_getFileName(daqErrorInfo* self, daqConstCharPtr* fileName);
-    daqErrCode EXPORTED daqErrorInfo_setFileLine(daqErrorInfo* self, daqInt fileLine);
-    daqErrCode EXPORTED daqErrorInfo_getFileLine(daqErrorInfo* self, daqInt* fileLine);
+    daqErrCode EXPORTED daqErrorInfo_setFileName(daqErrorInfo* self, daqCConstCharPtr fileName);
+    daqErrCode EXPORTED daqErrorInfo_getFileName(daqErrorInfo* self, daqCConstCharPtr* fileName);
+    daqErrCode EXPORTED daqErrorInfo_setFileLine(daqErrorInfo* self, daqCInt fileLine);
+    daqErrCode EXPORTED daqErrorInfo_getFileLine(daqErrorInfo* self, daqCInt* fileLine);
     daqErrCode EXPORTED daqErrorInfo_createErrorInfo(daqErrorInfo** obj);
 
 #ifdef __cplusplus

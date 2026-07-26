@@ -32,22 +32,23 @@ extern "C"
 #include <stddef.h>
 #include <stdint.h>
 
+    /* Plain C values are prefixed with "daqC", openDAQ objects with "daq". */
     typedef uint32_t daqErrCode;
-    typedef uint8_t daqBool;
-    typedef int64_t daqInt;
-    typedef uint64_t daqUInt;
-    typedef double daqFloat;
-    typedef char* daqCharPtr;
-    typedef const char* daqConstCharPtr;
-    typedef void* daqVoidPtr;
-    typedef size_t daqSizeT;
-    typedef uint32_t daqEnumType;
+    typedef uint8_t daqCBool;
+    typedef int64_t daqCInt;
+    typedef uint64_t daqCUInt;
+    typedef double daqCFloat;
+    typedef char* daqCCharPtr;
+    typedef const char* daqCConstCharPtr;
+    typedef void* daqCVoidPtr;
+    typedef size_t daqCSizeT;
+    typedef uint32_t daqCEnumType;
     typedef void daqBaseObject;
 
-    const daqBool True = 1;
-    const daqBool False = 0;
+    const daqCBool True = 1;
+    const daqCBool False = 0;
 
-    typedef enum daqCoreType
+    typedef enum daqCCoreType
     {
         daqCtBool = 0,             ///< Boolean, True or False
         daqCtInt,                  ///< 64 bit signed integer
@@ -64,7 +65,7 @@ extern "C"
         daqCtStruct,               ///< Constant structure with dictionary of fields and types
         daqCtEnumeration,          ///< Enumeration representing a predefined set of named integral constants
         daqCtUndefined = 0xFFFF,   ///< Undefined
-    } daqCoreType;
+    } daqCCoreType;
 
     typedef daqErrCode (*daqFuncCall)(daqBaseObject*, daqBaseObject**);
     typedef daqErrCode (*daqProcCall)(daqBaseObject*);

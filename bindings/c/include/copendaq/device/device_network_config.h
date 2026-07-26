@@ -44,7 +44,7 @@ extern "C"
 
     daqErrCode EXPORTED daqDeviceNetworkConfig_submitNetworkConfiguration(daqDeviceNetworkConfig* self, daqString* ifaceName, daqPropertyObject* config);
     daqErrCode EXPORTED daqDeviceNetworkConfig_retrieveNetworkConfiguration(daqDeviceNetworkConfig* self, daqString* ifaceName, daqPropertyObject** config);
-    daqErrCode EXPORTED daqDeviceNetworkConfig_getNetworkConfigurationEnabled(daqDeviceNetworkConfig* self, daqBool* enabled);
+    daqErrCode EXPORTED daqDeviceNetworkConfig_getNetworkConfigurationEnabled(daqDeviceNetworkConfig* self, daqCBool* enabled);
     daqErrCode EXPORTED daqDeviceNetworkConfig_getNetworkInterfaceNames(daqDeviceNetworkConfig* self, daqList** ifaceNames);
 
 #ifdef __cplusplus

@@ -42,7 +42,7 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_REUSABLE_DATA_PACKET_INTF_ID;
     void EXPORTED daqReusableDataPacket_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqReusableDataPacket_reuse(daqReusableDataPacket* self, daqDataDescriptor* newDescriptor, daqSizeT newSampleCount, daqNumber* newOffset, daqDataPacket* newDomainPacket, daqBool canReallocMemory, daqBool* success);
+    daqErrCode EXPORTED daqReusableDataPacket_reuse(daqReusableDataPacket* self, daqDataDescriptor* newDescriptor, daqCSizeT newSampleCount, daqNumber* newOffset, daqDataPacket* newDomainPacket, daqCBool canReallocMemory, daqCBool* success);
 
 #ifdef __cplusplus
 }

@@ -22,7 +22,7 @@ void daqInputPort_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_INPUT_PORT_INTF_ID;
 }
 
-daqErrCode daqInputPort_acceptsSignal(daqInputPort* self, daqSignal* signal, daqBool* accepts)
+daqErrCode daqInputPort_acceptsSignal(daqInputPort* self, daqSignal* signal, daqCBool* accepts)
 {
     return reinterpret_cast<daq::IInputPort*>(self)->acceptsSignal(reinterpret_cast<daq::ISignal*>(signal), accepts);
 }
@@ -42,7 +42,7 @@ daqErrCode daqInputPort_getSignal(daqInputPort* self, daqSignal** signal)
     return reinterpret_cast<daq::IInputPort*>(self)->getSignal(reinterpret_cast<daq::ISignal**>(signal));
 }
 
-daqErrCode daqInputPort_getRequiresSignal(daqInputPort* self, daqBool* requiresSignal)
+daqErrCode daqInputPort_getRequiresSignal(daqInputPort* self, daqCBool* requiresSignal)
 {
     return reinterpret_cast<daq::IInputPort*>(self)->getRequiresSignal(requiresSignal);
 }
@@ -52,12 +52,12 @@ daqErrCode daqInputPort_getConnection(daqInputPort* self, daqConnection** connec
     return reinterpret_cast<daq::IInputPort*>(self)->getConnection(reinterpret_cast<daq::IConnection**>(connection));
 }
 
-daqErrCode daqInputPort_getPublic(daqInputPort* self, daqBool* isPublic)
+daqErrCode daqInputPort_getPublic(daqInputPort* self, daqCBool* isPublic)
 {
     return reinterpret_cast<daq::IInputPort*>(self)->getPublic(isPublic);
 }
 
-daqErrCode daqInputPort_setPublic(daqInputPort* self, daqBool isPublic)
+daqErrCode daqInputPort_setPublic(daqInputPort* self, daqCBool isPublic)
 {
     return reinterpret_cast<daq::IInputPort*>(self)->setPublic(isPublic);
 }

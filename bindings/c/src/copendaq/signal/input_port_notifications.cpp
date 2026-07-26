@@ -22,7 +22,7 @@ void daqInputPortNotifications_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_INPUT_PORT_NOTIFICATIONS_INTF_ID;
 }
 
-daqErrCode daqInputPortNotifications_acceptsSignal(daqInputPortNotifications* self, daqInputPort* port, daqSignal* signal, daqBool* accept)
+daqErrCode daqInputPortNotifications_acceptsSignal(daqInputPortNotifications* self, daqInputPort* port, daqSignal* signal, daqCBool* accept)
 {
     return reinterpret_cast<daq::IInputPortNotifications*>(self)->acceptsSignal(reinterpret_cast<daq::IInputPort*>(port), reinterpret_cast<daq::ISignal*>(signal), accept);
 }

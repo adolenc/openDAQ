@@ -47,7 +47,7 @@ daqErrCode daqPropertyObject_clearPropertyValue(daqPropertyObject* self, daqStri
     return reinterpret_cast<daq::IPropertyObject*>(self)->clearPropertyValue(reinterpret_cast<daq::IString*>(propertyName));
 }
 
-daqErrCode daqPropertyObject_hasProperty(daqPropertyObject* self, daqString* propertyName, daqBool* hasProperty)
+daqErrCode daqPropertyObject_hasProperty(daqPropertyObject* self, daqString* propertyName, daqCBool* hasProperty)
 {
     return reinterpret_cast<daq::IPropertyObject*>(self)->hasProperty(reinterpret_cast<daq::IString*>(propertyName), hasProperty);
 }
@@ -112,7 +112,7 @@ daqErrCode daqPropertyObject_endUpdate(daqPropertyObject* self)
     return reinterpret_cast<daq::IPropertyObject*>(self)->endUpdate();
 }
 
-daqErrCode daqPropertyObject_getUpdating(daqPropertyObject* self, daqBool* updating)
+daqErrCode daqPropertyObject_getUpdating(daqPropertyObject* self, daqCBool* updating)
 {
     return reinterpret_cast<daq::IPropertyObject*>(self)->getUpdating(updating);
 }

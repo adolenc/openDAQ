@@ -22,12 +22,12 @@ void daqStreaming_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_STREAMING_INTF_ID;
 }
 
-daqErrCode daqStreaming_getActive(daqStreaming* self, daqBool* active)
+daqErrCode daqStreaming_getActive(daqStreaming* self, daqCBool* active)
 {
     return reinterpret_cast<daq::IStreaming*>(self)->getActive(active);
 }
 
-daqErrCode daqStreaming_setActive(daqStreaming* self, daqBool active)
+daqErrCode daqStreaming_setActive(daqStreaming* self, daqCBool active)
 {
     return reinterpret_cast<daq::IStreaming*>(self)->setActive(active);
 }
@@ -82,7 +82,7 @@ daqErrCode daqStreaming_getProtocolId(daqStreaming* self, daqString** protocolId
     return reinterpret_cast<daq::IStreaming*>(self)->getProtocolId(reinterpret_cast<daq::IString**>(protocolId));
 }
 
-daqErrCode daqStreaming_getClientToDeviceStreamingEnabled(daqStreaming* self, daqBool* enabled)
+daqErrCode daqStreaming_getClientToDeviceStreamingEnabled(daqStreaming* self, daqCBool* enabled)
 {
     return reinterpret_cast<daq::IStreaming*>(self)->getClientToDeviceStreamingEnabled(enabled);
 }

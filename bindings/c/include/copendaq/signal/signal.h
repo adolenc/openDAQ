@@ -41,14 +41,14 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_SIGNAL_INTF_ID;
     void EXPORTED daqSignal_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqSignal_getPublic(daqSignal* self, daqBool* isPublic);
-    daqErrCode EXPORTED daqSignal_setPublic(daqSignal* self, daqBool isPublic);
+    daqErrCode EXPORTED daqSignal_getPublic(daqSignal* self, daqCBool* isPublic);
+    daqErrCode EXPORTED daqSignal_setPublic(daqSignal* self, daqCBool isPublic);
     daqErrCode EXPORTED daqSignal_getDescriptor(daqSignal* self, daqDataDescriptor** descriptor);
     daqErrCode EXPORTED daqSignal_getDomainSignal(daqSignal* self, daqSignal** signal);
     daqErrCode EXPORTED daqSignal_getRelatedSignals(daqSignal* self, daqList** signals);
     daqErrCode EXPORTED daqSignal_getConnections(daqSignal* self, daqList** connections);
-    daqErrCode EXPORTED daqSignal_getStreamed(daqSignal* self, daqBool* streamed);
-    daqErrCode EXPORTED daqSignal_setStreamed(daqSignal* self, daqBool streamed);
+    daqErrCode EXPORTED daqSignal_getStreamed(daqSignal* self, daqCBool* streamed);
+    daqErrCode EXPORTED daqSignal_setStreamed(daqSignal* self, daqCBool streamed);
     daqErrCode EXPORTED daqSignal_getLastValue(daqSignal* self, daqBaseObject** value);
 
 #ifdef __cplusplus

@@ -32,12 +32,12 @@ daqErrCode daqPropertyObjectClass_getProperty(daqPropertyObjectClass* self, daqS
     return reinterpret_cast<daq::IPropertyObjectClass*>(self)->getProperty(reinterpret_cast<daq::IString*>(propertyName), reinterpret_cast<daq::IProperty**>(property));
 }
 
-daqErrCode daqPropertyObjectClass_hasProperty(daqPropertyObjectClass* self, daqString* propertyName, daqBool* hasProperty)
+daqErrCode daqPropertyObjectClass_hasProperty(daqPropertyObjectClass* self, daqString* propertyName, daqCBool* hasProperty)
 {
     return reinterpret_cast<daq::IPropertyObjectClass*>(self)->hasProperty(reinterpret_cast<daq::IString*>(propertyName), hasProperty);
 }
 
-daqErrCode daqPropertyObjectClass_getProperties(daqPropertyObjectClass* self, daqBool includeInherited, daqList** properties)
+daqErrCode daqPropertyObjectClass_getProperties(daqPropertyObjectClass* self, daqCBool includeInherited, daqList** properties)
 {
     return reinterpret_cast<daq::IPropertyObjectClass*>(self)->getProperties(includeInherited, reinterpret_cast<daq::IList**>(properties));
 }

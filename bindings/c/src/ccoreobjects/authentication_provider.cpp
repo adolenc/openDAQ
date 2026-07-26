@@ -27,7 +27,7 @@ daqErrCode daqAuthenticationProvider_authenticate(daqAuthenticationProvider* sel
     return reinterpret_cast<daq::IAuthenticationProvider*>(self)->authenticate(reinterpret_cast<daq::IString*>(username), reinterpret_cast<daq::IString*>(password), reinterpret_cast<daq::IUser**>(userOut));
 }
 
-daqErrCode daqAuthenticationProvider_isAnonymousAllowed(daqAuthenticationProvider* self, daqBool* allowedOut)
+daqErrCode daqAuthenticationProvider_isAnonymousAllowed(daqAuthenticationProvider* self, daqCBool* allowedOut)
 {
     return reinterpret_cast<daq::IAuthenticationProvider*>(self)->isAnonymousAllowed(allowedOut);
 }
@@ -42,7 +42,7 @@ daqErrCode daqAuthenticationProvider_findUser(daqAuthenticationProvider* self, d
     return reinterpret_cast<daq::IAuthenticationProvider*>(self)->findUser(reinterpret_cast<daq::IString*>(username), reinterpret_cast<daq::IUser**>(userOut));
 }
 
-daqErrCode daqAuthenticationProvider_createAuthenticationProvider(daqAuthenticationProvider** obj, daqBool allowAnonymous)
+daqErrCode daqAuthenticationProvider_createAuthenticationProvider(daqAuthenticationProvider** obj, daqCBool allowAnonymous)
 {
     daq::IAuthenticationProvider* ptr = nullptr;
     daqErrCode err = daq::createAuthenticationProvider(&ptr, allowAnonymous);
@@ -50,7 +50,7 @@ daqErrCode daqAuthenticationProvider_createAuthenticationProvider(daqAuthenticat
     return err;
 }
 
-daqErrCode daqAuthenticationProvider_createStaticAuthenticationProvider(daqAuthenticationProvider** obj, daqBool allowAnonymous, daqList* userList)
+daqErrCode daqAuthenticationProvider_createStaticAuthenticationProvider(daqAuthenticationProvider** obj, daqCBool allowAnonymous, daqList* userList)
 {
     daq::IAuthenticationProvider* ptr = nullptr;
     daqErrCode err = daq::createStaticAuthenticationProvider(&ptr, allowAnonymous, reinterpret_cast<daq::IList*>(userList));

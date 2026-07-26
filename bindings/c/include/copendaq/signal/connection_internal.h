@@ -41,7 +41,7 @@ extern "C"
     void EXPORTED daqConnectionInternal_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqConnectionInternal_enqueueLastDescriptor(daqConnectionInternal* self);
-    daqErrCode EXPORTED daqConnectionInternal_dequeueUpTo(daqConnectionInternal* self, daqPacket** packetPtr, daqSizeT* count);
+    daqErrCode EXPORTED daqConnectionInternal_dequeueUpTo(daqConnectionInternal* self, daqPacket** packetPtr, daqCSizeT* count);
 
 #ifdef __cplusplus
 }

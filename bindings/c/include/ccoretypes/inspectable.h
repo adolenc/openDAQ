@@ -39,7 +39,7 @@ extern "C"
 
     EXPORTED extern const daqIntfID DAQ_INSPECTABLE_INTF_ID;
 
-    // daqErrCode EXPORTED daqInspectable_getInterfaceIds(daqInspectable* self, daqSizeT* idCount, daqIntfID** ids);
+    // daqErrCode EXPORTED daqInspectable_getInterfaceIds(daqInspectable* self, daqCSizeT* idCount, daqIntfID** ids);
     daqErrCode EXPORTED daqInspectable_getRuntimeClassName(daqInspectable* self, daqString** implementationName);
 
 #ifdef __cplusplus

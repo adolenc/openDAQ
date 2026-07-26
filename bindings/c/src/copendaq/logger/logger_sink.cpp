@@ -27,7 +27,7 @@ daqErrCode daqLoggerSink_getLevel(daqLoggerSink* self, daqLogLevel* level)
     return reinterpret_cast<daq::ILoggerSink*>(self)->getLevel(reinterpret_cast<daq::LogLevel*>(level));
 }
 
-daqErrCode daqLoggerSink_shouldLog(daqLoggerSink* self, daqLogLevel level, daqBool* willLog)
+daqErrCode daqLoggerSink_shouldLog(daqLoggerSink* self, daqLogLevel level, daqCBool* willLog)
 {
     return reinterpret_cast<daq::ILoggerSink*>(self)->shouldLog(static_cast<daq::LogLevel>(level), willLog);
 }
@@ -58,7 +58,7 @@ daqErrCode daqLoggerSink_createStdOutLoggerSink(daqLoggerSink** obj)
     return err;
 }
 
-daqErrCode daqLoggerSink_createRotatingFileLoggerSink(daqLoggerSink** obj, daqString* fileName, daqSizeT maxFileByteSize, daqSizeT maxFiles)
+daqErrCode daqLoggerSink_createRotatingFileLoggerSink(daqLoggerSink** obj, daqString* fileName, daqCSizeT maxFileByteSize, daqCSizeT maxFiles)
 {
     daq::ILoggerSink* ptr = nullptr;
     daqErrCode err = daq::createRotatingFileLoggerSink(&ptr, reinterpret_cast<daq::IString*>(fileName), maxFileByteSize, maxFiles);

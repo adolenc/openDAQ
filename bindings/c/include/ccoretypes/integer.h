@@ -39,9 +39,9 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_INTEGER_INTF_ID;
     void EXPORTED daqInteger_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqInteger_getValue(daqInteger* self, daqInt* value);
-    daqErrCode EXPORTED daqInteger_equalsValue(daqInteger* self, daqInt value, daqBool* equals);
-    daqErrCode EXPORTED daqInteger_createInteger(daqInteger** obj, daqInt value);
+    daqErrCode EXPORTED daqInteger_getValue(daqInteger* self, daqCInt* value);
+    daqErrCode EXPORTED daqInteger_equalsValue(daqInteger* self, daqCInt value, daqCBool* equals);
+    daqErrCode EXPORTED daqInteger_createInteger(daqInteger** obj, daqCInt value);
 
 #ifdef __cplusplus
 }

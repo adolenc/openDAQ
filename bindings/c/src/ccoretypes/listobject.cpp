@@ -22,17 +22,17 @@ void daqList_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_LIST_INTF_ID;
 }
 
-daqErrCode daqList_getItemAt(daqList* self, daqSizeT index, daqBaseObject** obj)
+daqErrCode daqList_getItemAt(daqList* self, daqCSizeT index, daqBaseObject** obj)
 {
     return reinterpret_cast<daq::IList*>(self)->getItemAt(index, reinterpret_cast<daq::IBaseObject**>(obj));
 }
 
-daqErrCode daqList_getCount(daqList* self, daqSizeT* size)
+daqErrCode daqList_getCount(daqList* self, daqCSizeT* size)
 {
     return reinterpret_cast<daq::IList*>(self)->getCount(size);
 }
 
-daqErrCode daqList_setItemAt(daqList* self, daqSizeT index, daqBaseObject* obj)
+daqErrCode daqList_setItemAt(daqList* self, daqCSizeT index, daqBaseObject* obj)
 {
     return reinterpret_cast<daq::IList*>(self)->setItemAt(index, reinterpret_cast<daq::IBaseObject*>(obj));
 }
@@ -67,17 +67,17 @@ daqErrCode daqList_popFront(daqList* self, daqBaseObject** obj)
     return reinterpret_cast<daq::IList*>(self)->popFront(reinterpret_cast<daq::IBaseObject**>(obj));
 }
 
-daqErrCode daqList_insertAt(daqList* self, daqSizeT index, daqBaseObject* obj)
+daqErrCode daqList_insertAt(daqList* self, daqCSizeT index, daqBaseObject* obj)
 {
     return reinterpret_cast<daq::IList*>(self)->insertAt(index, reinterpret_cast<daq::IBaseObject*>(obj));
 }
 
-daqErrCode daqList_removeAt(daqList* self, daqSizeT index, daqBaseObject** obj)
+daqErrCode daqList_removeAt(daqList* self, daqCSizeT index, daqBaseObject** obj)
 {
     return reinterpret_cast<daq::IList*>(self)->removeAt(index, reinterpret_cast<daq::IBaseObject**>(obj));
 }
 
-daqErrCode daqList_deleteAt(daqList* self, daqSizeT index)
+daqErrCode daqList_deleteAt(daqList* self, daqCSizeT index)
 {
     return reinterpret_cast<daq::IList*>(self)->deleteAt(index);
 }

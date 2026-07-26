@@ -49,7 +49,7 @@ extern "C"
     daqErrCode EXPORTED daqModuleManager_addModule(daqModuleManager* self, daqModule* module);
     daqErrCode EXPORTED daqModuleManager_loadModules(daqModuleManager* self, daqContext* context);
     daqErrCode EXPORTED daqModuleManager_loadModule(daqModuleManager* self, daqString* path, daqModule** module);
-    daqErrCode EXPORTED daqModuleManager_setAuthenticatedOnly(daqModuleManager* self, daqBool authenticatedOnly);
+    daqErrCode EXPORTED daqModuleManager_setAuthenticatedOnly(daqModuleManager* self, daqCBool authenticatedOnly);
     daqErrCode EXPORTED daqModuleManager_setModuleAuthenticator(daqModuleManager* self, daqModuleAuthenticator* authenticator);
     daqErrCode EXPORTED daqModuleManager_getVendorKeys(daqModuleManager* self, daqDict** vendorKeys);
     daqErrCode EXPORTED daqModuleManager_createModuleManager(daqModuleManager** obj, daqString* path);

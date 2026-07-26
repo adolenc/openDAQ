@@ -47,27 +47,27 @@ daqErrCode daqSerializedList_readString(daqSerializedList* self, daqString** str
     return reinterpret_cast<daq::ISerializedList*>(self)->readString(reinterpret_cast<daq::IString**>(string));
 }
 
-daqErrCode daqSerializedList_readBool(daqSerializedList* self, daqBool* boolean)
+daqErrCode daqSerializedList_readBool(daqSerializedList* self, daqCBool* boolean)
 {
     return reinterpret_cast<daq::ISerializedList*>(self)->readBool(boolean);
 }
 
-daqErrCode daqSerializedList_readFloat(daqSerializedList* self, daqFloat* real)
+daqErrCode daqSerializedList_readFloat(daqSerializedList* self, daqCFloat* real)
 {
     return reinterpret_cast<daq::ISerializedList*>(self)->readFloat(real);
 }
 
-daqErrCode daqSerializedList_readInt(daqSerializedList* self, daqInt* integer)
+daqErrCode daqSerializedList_readInt(daqSerializedList* self, daqCInt* integer)
 {
     return reinterpret_cast<daq::ISerializedList*>(self)->readInt(integer);
 }
 
-daqErrCode daqSerializedList_getCount(daqSerializedList* self, daqSizeT* size)
+daqErrCode daqSerializedList_getCount(daqSerializedList* self, daqCSizeT* size)
 {
     return reinterpret_cast<daq::ISerializedList*>(self)->getCount(size);
 }
 
-daqErrCode daqSerializedList_getCurrentItemType(daqSerializedList* self, daqCoreType* size)
+daqErrCode daqSerializedList_getCurrentItemType(daqSerializedList* self, daqCCoreType* size)
 {
     return reinterpret_cast<daq::ISerializedList*>(self)->getCurrentItemType(reinterpret_cast<daq::CoreType*>(size));
 }

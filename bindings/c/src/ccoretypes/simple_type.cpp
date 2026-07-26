@@ -22,7 +22,7 @@ void daqSimpleType_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_SIMPLE_TYPE_INTF_ID;
 }
 
-daqErrCode daqSimpleType_createSimpleType(daqSimpleType** obj, daqCoreType coreType)
+daqErrCode daqSimpleType_createSimpleType(daqSimpleType** obj, daqCCoreType coreType)
 {
     daq::ISimpleType* ptr = nullptr;
     daqErrCode err = daq::createSimpleType(&ptr, static_cast<daq::CoreType>(coreType));

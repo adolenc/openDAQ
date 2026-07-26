@@ -22,17 +22,17 @@ void daqScalingCalcPrivate_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_SCALING_CALC_PRIVATE_INTF_ID;
 }
 
-void daqScalingCalcPrivate_scaleData(daqScalingCalcPrivate* self, void* data, daqSizeT sampleCount)
+void daqScalingCalcPrivate_scaleData(daqScalingCalcPrivate* self, void* data, daqCSizeT sampleCount)
 {
     return reinterpret_cast<daq::IScalingCalcPrivate*>(self)->scaleData(data, sampleCount);
 }
 
-void daqScalingCalcPrivate_scaleDataOutput(daqScalingCalcPrivate* self, void* data, daqSizeT sampleCount, void** output)
+void daqScalingCalcPrivate_scaleDataOutput(daqScalingCalcPrivate* self, void* data, daqCSizeT sampleCount, void** output)
 {
     return reinterpret_cast<daq::IScalingCalcPrivate*>(self)->scaleData(data, sampleCount, output);
 }
 
-daqBool daqScalingCalcPrivate_hasScalingCalc(daqScalingCalcPrivate* self)
+daqCBool daqScalingCalcPrivate_hasScalingCalc(daqScalingCalcPrivate* self)
 {
     return reinterpret_cast<daq::IScalingCalcPrivate*>(self)->hasScalingCalc();
 }

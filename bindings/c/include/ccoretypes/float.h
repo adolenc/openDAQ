@@ -5,7 +5,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 //
-//     RTGen (CGenerator v0.7.0) on 03.06.2025 17:17:51.
+//     RTGen (CGenerator v0.7.0).
 // </auto-generated>
 //------------------------------------------------------------------------------
 
@@ -34,15 +34,15 @@ extern "C"
 
 #include <ccommon.h>
 
-    typedef struct daqFloatObject daqFloatObject;
+    typedef struct daqFloat daqFloat;
 
-    EXPORTED extern const daqIntfID DAQ_FLOAT_OBJECT_INTF_ID;
-    void EXPORTED daqFloatObject_getInterfaceId(daqIntfID* intfId);
+    EXPORTED extern const daqIntfID DAQ_FLOAT_INTF_ID;
+    void EXPORTED daqFloat_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqFloatObject_getValue(daqFloatObject* self, daqFloat* value);
-    daqErrCode EXPORTED daqFloatObject_equalsValue(daqFloatObject* self, daqFloat value, daqBool* equals);
-    daqErrCode EXPORTED daqFloatObject_createFloat(daqFloatObject** obj, daqFloat value);
-    daqErrCode EXPORTED daqFloatObject_createFloatObject(daqFloatObject** obj, daqFloat value);
+    daqErrCode EXPORTED daqFloat_getValue(daqFloat* self, daqCFloat* value);
+    daqErrCode EXPORTED daqFloat_equalsValue(daqFloat* self, daqCFloat value, daqCBool* equals);
+    daqErrCode EXPORTED daqFloat_createFloat(daqFloat** obj, daqCFloat value);
+    daqErrCode EXPORTED daqFloat_createFloatObject(daqFloat** obj, daqCFloat value);
 
 #ifdef __cplusplus
 }
