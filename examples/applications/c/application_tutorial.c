@@ -72,13 +72,13 @@ int main()
         daqBaseObject* targetNameObj = DAQ_BORROW_INTERFACE(targetName, DAQ_BASE_OBJECT_INTF_ID);
         daqBaseObject* nameObj = DAQ_BORROW_INTERFACE(name, DAQ_BASE_OBJECT_INTF_ID);
 
-        daqCBool equal = False;
+        daqCBool equal = daqFalse;
         daqBaseObject_equals(nameObj, targetNameObj, &equal);
 
         daqReleaseRef(name);
         daqReleaseRef(targetName);
 
-        if (equal == True)
+        if (equal == daqTrue)
         {
             deviceInfo = currentDevInfo;
             break;
