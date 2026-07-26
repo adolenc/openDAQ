@@ -43,10 +43,10 @@ extern "C"
     typedef void* daqCVoidPtr;
     typedef size_t daqCSizeT;
     typedef uint32_t daqCEnumType;
+
+    typedef void daqUnknown;
     typedef void daqBaseObject;
 
-    /* Layout-compatible with daq::ComplexFloat64, which is packed and asserted to be
-       standard layout and trivially copyable. */
 #pragma pack(push, 1)
     typedef struct daqComplexFloat64
     {
@@ -55,8 +55,6 @@ extern "C"
     } daqComplexFloat64;
 #pragma pack(pop)
 
-    /* Enumerators rather than constants: a file scope "const" in a header is a definition with
-       external linkage in C, so it would be emitted by every translation unit that includes this. */
     enum
     {
         daqFalse = 0,

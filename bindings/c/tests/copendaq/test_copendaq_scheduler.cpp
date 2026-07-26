@@ -86,20 +86,20 @@ TEST_F(COpendaqSchedulerTest, Scheduler)
     ASSERT_EQ(functionCalled, daqTrue);
     ASSERT_EQ(taskGraphCalled, daqTrue);
 
-    daqBaseObject_releaseRef(awaitable2);
-    daqBaseObject_releaseRef(function);
+    daqUnknown_releaseRef(awaitable2);
+    daqUnknown_releaseRef(function);
 
-    daqBaseObject_releaseRef(awaitable);
-    daqBaseObject_releaseRef(task2);
-    daqBaseObject_releaseRef(name);
-    daqBaseObject_releaseRef(taskProc);
+    daqUnknown_releaseRef(awaitable);
+    daqUnknown_releaseRef(task2);
+    daqUnknown_releaseRef(name);
+    daqUnknown_releaseRef(taskProc);
 
-    daqBaseObject_releaseRef(taskGraph);
-    daqBaseObject_releaseRef(procGraph);
-    daqBaseObject_releaseRef(nameGraph);
+    daqUnknown_releaseRef(taskGraph);
+    daqUnknown_releaseRef(procGraph);
+    daqUnknown_releaseRef(nameGraph);
 
-    daqBaseObject_releaseRef(scheduler);
-    daqBaseObject_releaseRef(logger);
-    daqBaseObject_releaseRef(sink);
-    daqBaseObject_releaseRef(sinks);
+    daqUnknown_releaseRef(scheduler);
+    daqUnknown_releaseRef(logger);
+    daqUnknown_releaseRef(sink);
+    daqUnknown_releaseRef(sinks);
 }

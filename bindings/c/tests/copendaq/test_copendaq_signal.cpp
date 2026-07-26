@@ -13,11 +13,11 @@ daqContext* createContext()
     daqLoggerSink* sink = nullptr;
     daqLoggerSink_createStdErrLoggerSink(&sink);
     daqList_pushBack(sinks, sink);
-    daqBaseObject_releaseRef(sink);
+    daqUnknown_releaseRef(sink);
 
     daqLogger* logger = nullptr;
     daqLogger_createLogger(&logger, sinks, daqLogLevel::daqLogLevelDebug);
-    daqBaseObject_releaseRef(sinks);
+    daqUnknown_releaseRef(sinks);
 
     daqTypeManager* typeManager = nullptr;
     daqTypeManager_createTypeManager(&typeManager);
@@ -28,10 +28,10 @@ daqContext* createContext()
 
     daqContext_createContext(&ctx, nullptr, logger, typeManager, nullptr, nullptr, options, discoveryServers);
 
-    daqBaseObject_releaseRef(discoveryServers);
-    daqBaseObject_releaseRef(options);
-    daqBaseObject_releaseRef(typeManager);
-    daqBaseObject_releaseRef(logger);
+    daqUnknown_releaseRef(discoveryServers);
+    daqUnknown_releaseRef(options);
+    daqUnknown_releaseRef(typeManager);
+    daqUnknown_releaseRef(logger);
 
     return ctx;
 }
@@ -49,33 +49,33 @@ daqDataDescriptor* createValueDescriptor()
     daqString* unitName = nullptr;
     daqString_createString(&unitName, "volts");
     daqUnitBuilder_setName(unitBuilder, unitName);
-    daqBaseObject_releaseRef(unitName);
+    daqUnknown_releaseRef(unitName);
 
     daqString* unitSymbol = nullptr;
     daqString_createString(&unitSymbol, "V");
     daqUnitBuilder_setSymbol(unitBuilder, unitSymbol);
-    daqBaseObject_releaseRef(unitSymbol);
+    daqUnknown_releaseRef(unitSymbol);
 
     daqString* unitQuantity = nullptr;
     daqString_createString(&unitQuantity, "voltage");
     daqUnitBuilder_setQuantity(unitBuilder, unitQuantity);
-    daqBaseObject_releaseRef(unitQuantity);
+    daqUnknown_releaseRef(unitQuantity);
 
     daqUnitBuilder_setId(unitBuilder, -1);
 
     daqUnit* unit = nullptr;
     daqUnitBuilder_build(unitBuilder, &unit);
     daqDataDescriptorBuilder_setUnit(builder, unit);
-    daqBaseObject_releaseRef(unitBuilder);
-    daqBaseObject_releaseRef(unit);
+    daqUnknown_releaseRef(unitBuilder);
+    daqUnknown_releaseRef(unit);
 
     daqString* name = nullptr;
     daqString_createString(&name, "vals");
     daqDataDescriptorBuilder_setName(builder, name);
-    daqBaseObject_releaseRef(name);
+    daqUnknown_releaseRef(name);
 
     daqDataDescriptorBuilder_build(builder, &descriptor);
-    daqBaseObject_releaseRef(builder);
+    daqUnknown_releaseRef(builder);
 
     return descriptor;
 }
@@ -95,36 +95,36 @@ daqDataDescriptor* createDomainDescriptor()
     daqString* unitName = nullptr;
     daqString_createString(&unitName, "seconds");
     daqUnitBuilder_setName(unitBuilder, unitName);
-    daqBaseObject_releaseRef(unitName);
+    daqUnknown_releaseRef(unitName);
 
     daqString* unitSymbol = nullptr;
     daqString_createString(&unitSymbol, "s");
     daqUnitBuilder_setSymbol(unitBuilder, unitSymbol);
-    daqBaseObject_releaseRef(unitSymbol);
+    daqUnknown_releaseRef(unitSymbol);
 
     daqString* unitQuantity = nullptr;
     daqString_createString(&unitQuantity, "time");
     daqUnitBuilder_setQuantity(unitBuilder, unitQuantity);
-    daqBaseObject_releaseRef(unitQuantity);
+    daqUnknown_releaseRef(unitQuantity);
 
     daqUnitBuilder_setId(unitBuilder, -1);
 
     daqUnit* unit = nullptr;
     daqUnitBuilder_build(unitBuilder, &unit);
-    daqBaseObject_releaseRef(unitBuilder);
+    daqUnknown_releaseRef(unitBuilder);
 
     daqDataDescriptorBuilder_setUnit(builder, unit);
-    daqBaseObject_releaseRef(unit);
+    daqUnknown_releaseRef(unit);
 
     daqString* name = nullptr;
     daqString_createString(&name, "time");
     daqDataDescriptorBuilder_setName(builder, name);
-    daqBaseObject_releaseRef(name);
+    daqUnknown_releaseRef(name);
 
     daqRatio* ratio = nullptr;
     daqRatio_createRatio(&ratio, 1, 1000);
     daqDataDescriptorBuilder_setTickResolution(builder, ratio);
-    daqBaseObject_releaseRef(ratio);
+    daqUnknown_releaseRef(ratio);
 
     daqInteger* delta = nullptr;
     daqInteger_createInteger(&delta, 1);
@@ -132,28 +132,28 @@ daqDataDescriptor* createDomainDescriptor()
     daqInteger_createInteger(&start, 0);
 
     daqNumber* deltaNum = nullptr;
-    daqBaseObject_queryInterface(delta, DAQ_NUMBER_INTF_ID, (void**) &deltaNum);
+    daqUnknown_queryInterface(delta, DAQ_NUMBER_INTF_ID, (void**) &deltaNum);
     daqNumber* startNum = nullptr;
-    daqBaseObject_queryInterface(start, DAQ_NUMBER_INTF_ID, (void**) &startNum);
+    daqUnknown_queryInterface(start, DAQ_NUMBER_INTF_ID, (void**) &startNum);
 
-    daqBaseObject_releaseRef(delta);
-    daqBaseObject_releaseRef(start);
+    daqUnknown_releaseRef(delta);
+    daqUnknown_releaseRef(start);
 
     daqDataRule* rule = nullptr;
     daqDataRule_createLinearDataRule(&rule, deltaNum, startNum);
-    daqBaseObject_releaseRef(deltaNum);
-    daqBaseObject_releaseRef(startNum);
+    daqUnknown_releaseRef(deltaNum);
+    daqUnknown_releaseRef(startNum);
 
     daqDataDescriptorBuilder_setRule(builder, rule);
-    daqBaseObject_releaseRef(rule);
+    daqUnknown_releaseRef(rule);
 
     daqString* origin = nullptr;
     daqString_createString(&origin, "2025-01-01T00:00:00Z");
     daqDataDescriptorBuilder_setOrigin(builder, origin);
-    daqBaseObject_releaseRef(origin);
+    daqUnknown_releaseRef(origin);
 
     daqDataDescriptorBuilder_build(builder, &descriptor);
-    daqBaseObject_releaseRef(builder);
+    daqUnknown_releaseRef(builder);
 
     return descriptor;
 }
@@ -175,8 +175,8 @@ TEST_F(COpendaqSignalTest, Allocator)
     err = daqAllocator_free(allocator, address);
     ASSERT_EQ(err, 0u);
 
-    daqBaseObject_releaseRef(allocator);
-    daqBaseObject_releaseRef(valueDescriptor);
+    daqUnknown_releaseRef(allocator);
+    daqUnknown_releaseRef(valueDescriptor);
 }
 
 TEST_F(COpendaqSignalTest, DataDescriptor)
@@ -188,7 +188,7 @@ TEST_F(COpendaqSignalTest, DataDescriptor)
     daqCConstCharPtr nameStr = nullptr;
     daqString_getCharPtr(name, &nameStr);
     ASSERT_STREQ(nameStr, "vals");
-    daqBaseObject_releaseRef(name);
+    daqUnknown_releaseRef(name);
 
     daqUnit* unit = nullptr;
     daqDataDescriptor_getUnit(valueDescriptor, &unit);
@@ -197,14 +197,14 @@ TEST_F(COpendaqSignalTest, DataDescriptor)
     daqCConstCharPtr symbolStr = nullptr;
     daqString_getCharPtr(symbol, &symbolStr);
     ASSERT_STREQ(symbolStr, "V");
-    daqBaseObject_releaseRef(symbol);
-    daqBaseObject_releaseRef(unit);
+    daqUnknown_releaseRef(symbol);
+    daqUnknown_releaseRef(unit);
 
     daqSampleType sampleType = daqSampleType::daqSampleTypeNull;
     daqDataDescriptor_getSampleType(valueDescriptor, &sampleType);
     ASSERT_EQ(sampleType, daqSampleType::daqSampleTypeInt64);
 
-    daqBaseObject_releaseRef(valueDescriptor);
+    daqUnknown_releaseRef(valueDescriptor);
 }
 
 TEST_F(COpendaqSignalTest, DataPacket)
@@ -215,19 +215,19 @@ TEST_F(COpendaqSignalTest, DataPacket)
     daqInteger* offset = nullptr;
     daqInteger_createInteger(&offset, 0);
     daqNumber* offsetNum = nullptr;
-    daqBaseObject_queryInterface(offset, DAQ_NUMBER_INTF_ID, (void**) &offsetNum);
-    daqBaseObject_releaseRef(offset);
+    daqUnknown_queryInterface(offset, DAQ_NUMBER_INTF_ID, (void**) &offsetNum);
+    daqUnknown_releaseRef(offset);
 
     daqCSizeT sampleCount = 10u;
     daqDataPacket_createDataPacket(&packet, valueDescriptor, sampleCount, offsetNum);
-    daqBaseObject_releaseRef(offsetNum);
+    daqUnknown_releaseRef(offsetNum);
 
     void* data = nullptr;
     daqDataPacket_getRawData(packet, &data);
     ASSERT_NE(data, nullptr);
 
-    daqBaseObject_releaseRef(packet);
-    daqBaseObject_releaseRef(valueDescriptor);
+    daqUnknown_releaseRef(packet);
+    daqUnknown_releaseRef(valueDescriptor);
 }
 
 TEST_F(COpendaqSignalTest, DimensionRule)
@@ -242,14 +242,14 @@ TEST_F(COpendaqSignalTest, DimensionRule)
     daqInteger* size = nullptr;
     daqInteger_createInteger(&size, 10);
     daqNumber* deltaNum = nullptr;
-    daqBaseObject_queryInterface(delta, DAQ_NUMBER_INTF_ID, (void**) &deltaNum);
+    daqUnknown_queryInterface(delta, DAQ_NUMBER_INTF_ID, (void**) &deltaNum);
     daqNumber* startNum = nullptr;
-    daqBaseObject_queryInterface(start, DAQ_NUMBER_INTF_ID, (void**) &startNum);
+    daqUnknown_queryInterface(start, DAQ_NUMBER_INTF_ID, (void**) &startNum);
     daqNumber* sizeNum = nullptr;
-    daqBaseObject_queryInterface(size, DAQ_NUMBER_INTF_ID, (void**) &sizeNum);
-    daqBaseObject_releaseRef(delta);
-    daqBaseObject_releaseRef(start);
-    daqBaseObject_releaseRef(size);
+    daqUnknown_queryInterface(size, DAQ_NUMBER_INTF_ID, (void**) &sizeNum);
+    daqUnknown_releaseRef(delta);
+    daqUnknown_releaseRef(start);
+    daqUnknown_releaseRef(size);
 
     daqString* deltaStr = nullptr;
     daqString_createString(&deltaStr, "delta");
@@ -260,13 +260,13 @@ TEST_F(COpendaqSignalTest, DimensionRule)
     daqDimensionRuleBuilder_addParameter(builder, sizeStr, sizeNum);
     daqDimensionRuleBuilder_addParameter(builder, deltaStr, deltaNum);
     daqDimensionRuleBuilder_addParameter(builder, startStr, startNum);
-    daqBaseObject_releaseRef(deltaNum);
-    daqBaseObject_releaseRef(startNum);
-    daqBaseObject_releaseRef(sizeNum);
+    daqUnknown_releaseRef(deltaNum);
+    daqUnknown_releaseRef(startNum);
+    daqUnknown_releaseRef(sizeNum);
 
     daqDimensionRule* rule = nullptr;
     daqDimensionRuleBuilder_build(builder, &rule);
-    daqBaseObject_releaseRef(builder);
+    daqUnknown_releaseRef(builder);
 
     ASSERT_NE(rule, nullptr);
 
@@ -296,14 +296,14 @@ TEST_F(COpendaqSignalTest, DimensionRule)
     ASSERT_EQ(startInt, 0);
     ASSERT_EQ(sizeInt, 10);
 
-    daqBaseObject_releaseRef(outSize);
-    daqBaseObject_releaseRef(outDelta);
-    daqBaseObject_releaseRef(outStart);
-    daqBaseObject_releaseRef(params);
-    daqBaseObject_releaseRef(rule);
-    daqBaseObject_releaseRef(deltaStr);
-    daqBaseObject_releaseRef(startStr);
-    daqBaseObject_releaseRef(sizeStr);
+    daqUnknown_releaseRef(outSize);
+    daqUnknown_releaseRef(outDelta);
+    daqUnknown_releaseRef(outStart);
+    daqUnknown_releaseRef(params);
+    daqUnknown_releaseRef(rule);
+    daqUnknown_releaseRef(deltaStr);
+    daqUnknown_releaseRef(startStr);
+    daqUnknown_releaseRef(sizeStr);
 }
 
 TEST_F(COpendaqSignalTest, EventPacket)
@@ -320,10 +320,10 @@ TEST_F(COpendaqSignalTest, EventPacket)
     daqString_getCharPtr(id, &idStr);
     ASSERT_STREQ(idStr, "DATA_DESCRIPTOR_CHANGED");
 
-    daqBaseObject_releaseRef(id);
-    daqBaseObject_releaseRef(packet);
-    daqBaseObject_releaseRef(valueDescriptor);
-    daqBaseObject_releaseRef(domainDescriptor);
+    daqUnknown_releaseRef(id);
+    daqUnknown_releaseRef(packet);
+    daqUnknown_releaseRef(valueDescriptor);
+    daqUnknown_releaseRef(domainDescriptor);
 }
 
 TEST_F(COpendaqSignalTest, InputPort)
@@ -335,9 +335,9 @@ TEST_F(COpendaqSignalTest, InputPort)
     daqInputPortConfig_createInputPort(&inputPortConfig, ctx, nullptr, id, daqFalse);
     ASSERT_NE(inputPortConfig, nullptr);
 
-    daqBaseObject_releaseRef(id);
-    daqBaseObject_releaseRef(ctx);
-    daqBaseObject_releaseRef(inputPortConfig);
+    daqUnknown_releaseRef(id);
+    daqUnknown_releaseRef(ctx);
+    daqUnknown_releaseRef(inputPortConfig);
 }
 
 TEST_F(COpendaqSignalTest, Range)
@@ -348,14 +348,14 @@ TEST_F(COpendaqSignalTest, Range)
     daqInteger* highValue = nullptr;
     daqInteger_createInteger(&highValue, 10);
     daqNumber* lowValueNum = nullptr;
-    daqBaseObject_queryInterface(lowValue, DAQ_NUMBER_INTF_ID, (void**) &lowValueNum);
-    daqBaseObject_releaseRef(lowValue);
+    daqUnknown_queryInterface(lowValue, DAQ_NUMBER_INTF_ID, (void**) &lowValueNum);
+    daqUnknown_releaseRef(lowValue);
     daqNumber* highValueNum = nullptr;
-    daqBaseObject_queryInterface(highValue, DAQ_NUMBER_INTF_ID, (void**) &highValueNum);
-    daqBaseObject_releaseRef(highValue);
+    daqUnknown_queryInterface(highValue, DAQ_NUMBER_INTF_ID, (void**) &highValueNum);
+    daqUnknown_releaseRef(highValue);
     daqRange_createRange(&range, lowValueNum, highValueNum);
-    daqBaseObject_releaseRef(lowValueNum);
-    daqBaseObject_releaseRef(highValueNum);
+    daqUnknown_releaseRef(lowValueNum);
+    daqUnknown_releaseRef(highValueNum);
 
     ASSERT_NE(range, nullptr);
 
@@ -370,9 +370,9 @@ TEST_F(COpendaqSignalTest, Range)
     ASSERT_EQ(lowValueInt, 0);
     ASSERT_EQ(highValueInt, 10);
 
-    daqBaseObject_releaseRef(outHighValue);
-    daqBaseObject_releaseRef(outLowValue);
-    daqBaseObject_releaseRef(range);
+    daqUnknown_releaseRef(outHighValue);
+    daqUnknown_releaseRef(outLowValue);
+    daqUnknown_releaseRef(range);
 }
 
 TEST_F(COpendaqSignalTest, Scaling)
@@ -399,14 +399,14 @@ TEST_F(COpendaqSignalTest, Scaling)
     daqDict_set(params, scaleStr, scale);
     daqDict_set(params, offsetStr, offset);
     daqScalingBuilder_setParameters(builder, params);
-    daqBaseObject_releaseRef(scale);
-    daqBaseObject_releaseRef(offset);
-    daqBaseObject_releaseRef(scaleStr);
-    daqBaseObject_releaseRef(offsetStr);
+    daqUnknown_releaseRef(scale);
+    daqUnknown_releaseRef(offset);
+    daqUnknown_releaseRef(scaleStr);
+    daqUnknown_releaseRef(offsetStr);
 
     daqScaling* scaling = nullptr;
     daqScalingBuilder_build(builder, &scaling);
-    daqBaseObject_releaseRef(builder);
+    daqUnknown_releaseRef(builder);
 
     ASSERT_NE(scaling, nullptr);
 
@@ -427,9 +427,9 @@ TEST_F(COpendaqSignalTest, Scaling)
     daqBaseObject_equals(scalingParams, params, &equal);
     ASSERT_EQ(equal, daqTrue);
 
-    daqBaseObject_releaseRef(scalingParams);
-    daqBaseObject_releaseRef(scaling);
-    daqBaseObject_releaseRef(params);
+    daqUnknown_releaseRef(scalingParams);
+    daqUnknown_releaseRef(scaling);
+    daqUnknown_releaseRef(params);
 }
 
 TEST_F(COpendaqSignalTest, Signal)
@@ -440,7 +440,7 @@ TEST_F(COpendaqSignalTest, Signal)
     daqContext* ctx = createContext();
     daqSignalConfig_createSignal(&signalConfig, ctx, nullptr, id, nullptr);
     ASSERT_NE(signalConfig, nullptr);
-    daqBaseObject_releaseRef(id);
-    daqBaseObject_releaseRef(ctx);
-    daqBaseObject_releaseRef(signalConfig);
+    daqUnknown_releaseRef(id);
+    daqUnknown_releaseRef(ctx);
+    daqUnknown_releaseRef(signalConfig);
 }
