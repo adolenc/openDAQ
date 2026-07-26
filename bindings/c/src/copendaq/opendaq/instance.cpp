@@ -12,6 +12,7 @@
 #include <copendaq/opendaq/instance.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/instance.h>
 
 #include <copendaq_private.h>
 
@@ -65,7 +66,7 @@ daqErrCode daqInstance_createInstanceFromBuilder(daqInstance** obj, daqInstanceB
 
 daqErrCode daqDevice_createClient(daqDevice** obj, daqContext* ctx, daqString* localId, daqDeviceInfo* defaultDeviceInfo, daqComponent* parent)
 {
-    daq::IInstance* ptr = nullptr;
+    daq::IDevice* ptr = nullptr;
     daqErrCode err = daq::createClient(&ptr, reinterpret_cast<daq::IContext*>(ctx), reinterpret_cast<daq::IString*>(localId), reinterpret_cast<daq::IDeviceInfo*>(defaultDeviceInfo), reinterpret_cast<daq::IComponent*>(parent));
     *obj = reinterpret_cast<daqDevice*>(ptr);
     return err;

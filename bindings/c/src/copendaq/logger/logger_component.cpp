@@ -12,6 +12,7 @@
 #include <copendaq/logger/logger_component.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/logger_component.h>
 
 #include <copendaq_private.h>
 
@@ -39,7 +40,7 @@ daqErrCode daqLoggerComponent_getLevel(daqLoggerComponent* self, daqLogLevel* le
 
 daqErrCode daqLoggerComponent_logMessage(daqLoggerComponent* self, daqSourceLocation location, daqCConstCharPtr msg, daqLogLevel level)
 {
-    return reinterpret_cast<daq::ILoggerComponent*>(self)->logMessage(static_cast<daq::SourceLocation>(location), static_cast<daq::ConstCharPtr>(msg), static_cast<daq::LogLevel>(level));
+    return reinterpret_cast<daq::ILoggerComponent*>(self)->logMessage(copendaq::utils::toDaqSourceLocation(location), static_cast<daq::ConstCharPtr>(msg), static_cast<daq::LogLevel>(level));
 }
 
 daqErrCode daqLoggerComponent_setPattern(daqLoggerComponent* self, daqString* pattern)

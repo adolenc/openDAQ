@@ -12,6 +12,7 @@
 #include <copendaq/device/server_capability_config.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/server_capability_config.h>
 
 #include <copendaq_private.h>
 

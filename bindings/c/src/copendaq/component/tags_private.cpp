@@ -12,6 +12,7 @@
 #include <copendaq/component/tags_private.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/tags_private.h>
 
 #include <copendaq_private.h>
 

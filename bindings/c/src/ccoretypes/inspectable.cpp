@@ -5,22 +5,28 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 //
-//     RTGen (CGenerator v0.7.0) on 03.06.2025 17:17:53.
+//     RTGen (CGenerator v0.7.0).
 // </auto-generated>
 //------------------------------------------------------------------------------
 
 #include <ccoretypes/inspectable.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/inspectable.h>
 
 #include <copendaq_private.h>
 
 const daqIntfID DAQ_INSPECTABLE_INTF_ID = { daq::IInspectable::Id.Data1, daq::IInspectable::Id.Data2, daq::IInspectable::Id.Data3, daq::IInspectable::Id.Data4_UInt64 };
 
-// daqErrCode daqInspectable_getInterfaceIds(daqInspectable* self, daqCSizeT* idCount, daqIntfID** ids)
-// {
-//     return reinterpret_cast<daq::IInspectable*>(self)->getInterfaceIds(idCount, copendaq::utils::toDaqIntfId(ids));
-// }
+void daqInspectable_getInterfaceId(daqIntfID* intfId)
+{
+    *intfId = DAQ_INSPECTABLE_INTF_ID;
+}
+
+daqErrCode daqInspectable_getInterfaceIds(daqInspectable* self, daqCSizeT* idCount, daqIntfID** ids)
+{
+    return reinterpret_cast<daq::IInspectable*>(self)->getInterfaceIds(idCount, reinterpret_cast<daq::IntfID**>(ids));
+}
 
 daqErrCode daqInspectable_getRuntimeClassName(daqInspectable* self, daqString** implementationName)
 {

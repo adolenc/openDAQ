@@ -12,6 +12,7 @@
 #include <ccoretypes/serialized_list.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/serialized_list.h>
 
 #include <copendaq_private.h>
 

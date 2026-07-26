@@ -12,6 +12,7 @@
 #include <ccoreobjects/argument_info.h>
 
 #include <opendaq/opendaq.h>
+#include <coreobjects/argument_info.h>
 
 #include <copendaq_private.h>
 

@@ -12,6 +12,7 @@
 #include <copendaq/signal/reference_domain_info.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/reference_domain_info.h>
 
 #include <copendaq_private.h>
 

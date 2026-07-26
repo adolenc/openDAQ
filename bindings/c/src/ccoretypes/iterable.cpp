@@ -12,6 +12,7 @@
 #include <ccoretypes/iterable.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/iterable.h>
 
 #include <copendaq_private.h>
 

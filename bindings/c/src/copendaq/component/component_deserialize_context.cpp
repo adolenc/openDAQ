@@ -12,6 +12,7 @@
 #include <copendaq/component/component_deserialize_context.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/component_deserialize_context.h>
 
 #include <copendaq_private.h>
 

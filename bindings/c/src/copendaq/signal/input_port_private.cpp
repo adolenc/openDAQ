@@ -12,6 +12,7 @@
 #include <copendaq/signal/input_port_private.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/input_port_private.h>
 
 #include <copendaq_private.h>
 

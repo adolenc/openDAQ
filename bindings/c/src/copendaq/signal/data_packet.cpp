@@ -12,6 +12,7 @@
 #include <copendaq/signal/data_packet.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/data_packet.h>
 
 #include <copendaq_private.h>
 

@@ -12,6 +12,7 @@
 #include <ccoretypes/dict_element_type.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/dict_element_type.h>
 
 #include <copendaq_private.h>
 

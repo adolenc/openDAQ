@@ -12,6 +12,7 @@
 #include <copendaq/logger/logger_thread_pool.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/logger_thread_pool.h>
 
 #include <copendaq_private.h>
 

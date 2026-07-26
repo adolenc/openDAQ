@@ -12,6 +12,7 @@
 #include <copendaq/signal/data_descriptor.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/data_descriptor.h>
 
 #include <copendaq_private.h>
 

@@ -12,6 +12,7 @@
 #include <copendaq/scheduler/awaitable.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/awaitable.h>
 
 #include <copendaq_private.h>
 

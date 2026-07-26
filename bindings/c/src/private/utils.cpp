@@ -15,6 +15,11 @@ daq::ComplexFloat64 toDaqComplexFloat64(daqComplexFloat64 value)
     return daq::ComplexFloat64{value.real, value.imaginary};
 }
 
+daq::SourceLocation toDaqSourceLocation(daqSourceLocation location)
+{
+    return daq::SourceLocation{location.fileName, location.line, location.funcName};
+}
+
 daq::PropertyEventType toDaqPropertyEventType(daqPropertyEventType type)
 {
     switch (type)

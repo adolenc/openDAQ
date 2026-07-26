@@ -34,14 +34,20 @@ extern "C"
 
 #include <ccommon.h>
 
-    typedef struct daqScalingCalcPrivate daqScalingCalcPrivate;
+    typedef struct daqPacketBuffer daqPacketBuffer;
+    typedef struct daqDataDescriptor daqDataDescriptor;
+    typedef struct daqPacket daqPacket;
+    typedef struct daqDataPacket daqDataPacket;
+    typedef struct daqPacketBufferBuilder daqPacketBufferBuilder;
 
-    EXPORTED extern const daqIntfID DAQ_SCALING_CALC_PRIVATE_INTF_ID;
-    void EXPORTED daqScalingCalcPrivate_getInterfaceId(daqIntfID* intfId);
+    EXPORTED extern const daqIntfID DAQ_PACKET_BUFFER_INTF_ID;
+    void EXPORTED daqPacketBuffer_getInterfaceId(daqIntfID* intfId);
 
-    daqvoid EXPORTED daqScalingCalcPrivate_scaleData(daqScalingCalcPrivate* self, void* data, daqCSizeT sampleCount);
-    daqvoid EXPORTED daqScalingCalcPrivate_scaleData(daqScalingCalcPrivate* self, void* data, daqCSizeT sampleCount, void** output);
-    daqCBool EXPORTED daqScalingCalcPrivate_hasScalingCalc(daqScalingCalcPrivate* self);
+    daqErrCode EXPORTED daqPacketBuffer_createPacket(daqPacketBuffer* self, daqCSizeT sampleCount, daqDataDescriptor* desc, daqPacket* domainPacket, daqDataPacket** packet);
+    daqErrCode EXPORTED daqPacketBuffer_getMaxAvailableContinousSampleCount(daqPacketBuffer* self, daqDataDescriptor* desc, daqCSizeT* count);
+    daqErrCode EXPORTED daqPacketBuffer_getAvailableSampleCount(daqPacketBuffer* self, daqDataDescriptor* desc, daqCSizeT* count);
+    daqErrCode EXPORTED daqPacketBuffer_resize(daqPacketBuffer* self, daqCSizeT sizeInBytes);
+    daqErrCode EXPORTED daqPacketBuffer_createPacketBuffer(daqPacketBuffer** obj, daqPacketBufferBuilder* builder);
 
 #ifdef __cplusplus
 }

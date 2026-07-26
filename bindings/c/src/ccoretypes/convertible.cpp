@@ -12,6 +12,7 @@
 #include <ccoretypes/convertible.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/convertible.h>
 
 #include <copendaq_private.h>
 

@@ -12,6 +12,7 @@
 #include <ccoretypes/cloneable.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/cloneable.h>
 
 #include <copendaq_private.h>
 

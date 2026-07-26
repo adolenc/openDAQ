@@ -12,6 +12,7 @@
 #include <ccoretypes/comparable.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/comparable.h>
 
 #include <copendaq_private.h>
 

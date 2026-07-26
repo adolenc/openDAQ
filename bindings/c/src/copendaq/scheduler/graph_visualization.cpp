@@ -12,6 +12,7 @@
 #include <copendaq/scheduler/graph_visualization.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/graph_visualization.h>
 
 #include <copendaq_private.h>
 

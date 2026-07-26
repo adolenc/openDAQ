@@ -12,6 +12,7 @@
 #include <copendaq/streaming/mirrored_device_config.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/mirrored_device_config.h>
 
 #include <copendaq_private.h>
 

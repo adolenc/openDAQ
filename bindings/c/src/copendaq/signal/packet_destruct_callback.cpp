@@ -12,6 +12,7 @@
 #include <copendaq/signal/packet_destruct_callback.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/packet_destruct_callback.h>
 
 #include <copendaq_private.h>
 

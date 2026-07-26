@@ -12,6 +12,7 @@
 #include <copendaq/device/connection_status_container_private.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/connection_status_container_private.h>
 
 #include <copendaq_private.h>
 

@@ -12,6 +12,7 @@
 #include <copendaq/device/log_file_info_builder.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/log_file_info_builder.h>
 
 #include <copendaq_private.h>
 

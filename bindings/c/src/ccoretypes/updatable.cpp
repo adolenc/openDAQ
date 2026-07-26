@@ -12,6 +12,7 @@
 #include <ccoretypes/updatable.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/updatable.h>
 
 #include <copendaq_private.h>
 

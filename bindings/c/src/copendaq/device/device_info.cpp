@@ -12,6 +12,7 @@
 #include <copendaq/device/device_info.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/device_info.h>
 
 #include <copendaq_private.h>
 

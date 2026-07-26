@@ -12,6 +12,7 @@
 #include <ccoreobjects/end_update_event_args.h>
 
 #include <opendaq/opendaq.h>
+#include <coreobjects/end_update_event_args.h>
 
 #include <copendaq_private.h>
 

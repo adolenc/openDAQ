@@ -12,6 +12,7 @@
 #include <ccoreobjects/permission_mask_builder.h>
 
 #include <opendaq/opendaq.h>
+#include <coreobjects/permission_mask_builder.h>
 
 #include <copendaq_private.h>
 

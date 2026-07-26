@@ -5,17 +5,23 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 //
-//     RTGen (CGenerator v0.7.0) on 03.06.2025 22:05:19.
+//     RTGen (CGenerator v0.7.0).
 // </auto-generated>
 //------------------------------------------------------------------------------
 
 #include <ccoreobjects/property_value_event_args.h>
 
 #include <opendaq/opendaq.h>
+#include <coreobjects/property_value_event_args.h>
 
 #include <copendaq_private.h>
 
 const daqIntfID DAQ_PROPERTY_VALUE_EVENT_ARGS_INTF_ID = { daq::IPropertyValueEventArgs::Id.Data1, daq::IPropertyValueEventArgs::Id.Data2, daq::IPropertyValueEventArgs::Id.Data3, daq::IPropertyValueEventArgs::Id.Data4_UInt64 };
+
+void daqPropertyValueEventArgs_getInterfaceId(daqIntfID* intfId)
+{
+    *intfId = DAQ_PROPERTY_VALUE_EVENT_ARGS_INTF_ID;
+}
 
 daqErrCode daqPropertyValueEventArgs_getProperty(daqPropertyValueEventArgs* self, daqProperty** property)
 {

@@ -12,6 +12,7 @@
 #include <ccoretypes/serializable.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/serializable.h>
 
 #include <copendaq_private.h>
 

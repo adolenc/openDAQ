@@ -12,6 +12,7 @@
 #include <ccoretypes/version_info.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/version_info.h>
 
 #include <copendaq_private.h>
 

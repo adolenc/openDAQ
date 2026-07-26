@@ -12,6 +12,7 @@
 #include <copendaq/opendaq/module_authenticator.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/module_authenticator.h>
 
 #include <copendaq_private.h>
 

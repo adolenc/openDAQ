@@ -5,7 +5,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 //
-//     RTGen (CGenerator v0.7.0) on 03.06.2025 22:06:58.
+//     RTGen (CGenerator v0.7.0).
 // </auto-generated>
 //------------------------------------------------------------------------------
 
@@ -34,10 +34,16 @@ extern "C"
 
 #include <ccommon.h>
 
+    typedef struct daqPropertyMetadataReadArgs daqPropertyMetadataReadArgs;
+    typedef struct daqProperty daqProperty;
 
-    EXPORTED extern const daqIntfID DAQ_RECURSIVE_SEARCH_INTF_ID;
+    EXPORTED extern const daqIntfID DAQ_PROPERTY_METADATA_READ_ARGS_INTF_ID;
+    void EXPORTED daqPropertyMetadataReadArgs_getInterfaceId(daqIntfID* intfId);
 
-
+    daqErrCode EXPORTED daqPropertyMetadataReadArgs_getProperty(daqPropertyMetadataReadArgs* self, daqProperty** property);
+    daqErrCode EXPORTED daqPropertyMetadataReadArgs_getValue(daqPropertyMetadataReadArgs* self, daqBaseObject** value);
+    daqErrCode EXPORTED daqPropertyMetadataReadArgs_setValue(daqPropertyMetadataReadArgs* self, daqBaseObject* value);
+    daqErrCode EXPORTED daqPropertyMetadataReadArgs_createPropertyMetadataReadArgs(daqPropertyMetadataReadArgs** obj, daqProperty* prop);
 
 #ifdef __cplusplus
 }

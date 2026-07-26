@@ -12,6 +12,7 @@
 #include <copendaq/functionblock/function_block.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/function_block.h>
 
 #include <copendaq_private.h>
 

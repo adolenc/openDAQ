@@ -12,6 +12,7 @@ namespace RTGen.C
         public void Compose(IServiceRegistry serviceRegistry)
         {
             serviceRegistry.Register<IGenerator, CGenerator>("c");
+            serviceRegistry.Register<IParser, CBatchParser>("cbatch");
         }
     }
 }

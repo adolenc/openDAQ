@@ -42,9 +42,14 @@
     <Reference Include="RTGen.Library">
       <HintPath>..\bin\Debug\RTGen.Library.dll</HintPath>
     </Reference>
+    <Reference Include="RTGen.Cpp">
+      <HintPath>..\bin\Debug\RTGen.Cpp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CBatchGeneration.cs" />
+    <Compile Include="CBatchParser.cs" />
     <Compile Include="CCompositionRoot.cs" />
     <Compile Include="Generators\CGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

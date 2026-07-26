@@ -12,6 +12,7 @@
 #include <ccoretypes/complex_number.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/complex_number.h>
 
 #include <copendaq_private.h>
 

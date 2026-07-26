@@ -12,6 +12,7 @@
 #include <ccoretypes/recursive_search.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/recursive_search.h>
 
 #include <copendaq_private.h>
 
