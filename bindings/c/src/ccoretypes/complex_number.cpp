@@ -22,19 +22,15 @@ void daqComplexNumber_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_COMPLEX_NUMBER_INTF_ID;
 }
 
-/*
 daqErrCode daqComplexNumber_getValue(daqComplexNumber* self, daqComplexFloat64* value)
 {
     return reinterpret_cast<daq::IComplexNumber*>(self)->getValue(reinterpret_cast<daq::ComplexFloat64*>(value));
 }
-*/
 
-/*
 daqErrCode daqComplexNumber_equalsValue(daqComplexNumber* self, daqComplexFloat64 value, daqCBool* equal)
 {
-    return reinterpret_cast<daq::IComplexNumber*>(self)->equalsValue(static_cast<daq::ComplexFloat64>(value), equal);
+    return reinterpret_cast<daq::IComplexNumber*>(self)->equalsValue(copendaq::utils::toDaqComplexFloat64(value), equal);
 }
-*/
 
 daqErrCode daqComplexNumber_getReal(daqComplexNumber* self, daqCFloat* real)
 {

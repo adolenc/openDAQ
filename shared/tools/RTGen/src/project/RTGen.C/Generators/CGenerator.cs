@@ -25,9 +25,11 @@ namespace RTGen.C.Generators
             ArgsForwarding
         }
 
-        protected static ISet<string> ForbiddenTypes => new HashSet<string>
+        /// <summary>Value types whose C and C++ representations are distinct structs, and so need a hand
+        /// written conversion (declared in "private/utils.h") when passed by value.</summary>
+        protected static readonly IDictionary<string, string> ValueTypeConverters = new Dictionary<string, string>
         {
-            "ComplexFloat64"
+            { "ComplexFloat64", "copendaq::utils::toDaqComplexFloat64" }
         };
 
         /// <summary>Renames the C name of a CoreTypes value type (the interface names are left untouched).</summary>
@@ -59,7 +61,6 @@ namespace RTGen.C.Generators
 
         protected GeneratorType _generatorType = GeneratorType.Header;
         protected ISet<string> _typesToDeclare = new HashSet<string>();
-        protected ISet<string> _methodNamesToCommentOut = new HashSet<string>();
 
         //Overriden
 
@@ -262,14 +263,7 @@ namespace RTGen.C.Generators
             {
                 IArgument arg = args[i];
 
-                //TODO: should be removed later
-                //as some parts of the bindings are not yet implemented
-                //we need to comment out the methods that use non implemented types
-                if (ForbiddenTypes.Contains(arg.Type.NonInterfaceName))
-                {
-                    _methodNamesToCommentOut.Add(overload.Method.Name);
-                }
-                else if (!arg.Type.Flags.IsValueType)
+                if (!arg.Type.Flags.IsValueType)
                 {
                     //filling types for typedefs
                     if (arg.Type.Name != "void") _typesToDeclare.Add(arg.Type.NonInterfaceName);
@@ -294,7 +288,15 @@ namespace RTGen.C.Generators
                         {
                             if (String.IsNullOrEmpty(arg.Type.Modifiers))
                             {
-                                sb.Append($"static_cast<{arg.Type.Namespace}::{arg.Type.Name}>({arg.Name})");
+                                //a struct passed by value has no conversion to its C++ counterpart, so it goes through a helper
+                                if (ValueTypeConverters.TryGetValue(arg.Type.Name, out string converter))
+                                {
+                                    sb.Append($"{converter}({arg.Name})");
+                                }
+                                else
+                                {
+                                    sb.Append($"static_cast<{arg.Type.Namespace}::{arg.Type.Name}>({arg.Name})");
+                                }
                             }
                             else
                             {
@@ -491,10 +493,7 @@ namespace RTGen.C.Generators
                     return ReplaceVariable(variable, GeneratorType.Header, rtClass, method, templatePath);
                 });
 
-                bool isCommentedOut = _methodNamesToCommentOut.Contains(method.Name);
-                if (isCommentedOut) methods.AppendLine("/*");
                 methods.AppendLine(base.Indentation + generatedMethod);
-                if (isCommentedOut) methods.AppendLine("*/");
             }
 
             foreach (IRTFactory factory in RtFile.Factories)
@@ -506,10 +505,7 @@ namespace RTGen.C.Generators
                     return ReplaceVariable(variable, GeneratorType.Header, rtClass, factory, templatePath);
                 });
 
-                bool isCommentedOut = _methodNamesToCommentOut.Contains(factory.Name);
-                if (isCommentedOut) methods.AppendLine("/*");
                 methods.AppendLine(base.Indentation + generatedFactory);
-                if (isCommentedOut) methods.AppendLine("*/");
             }
 
             return methods;
@@ -567,14 +563,10 @@ namespace RTGen.C.Generators
                     return ReplaceVariable(variable, GeneratorType.Source, rtClass, method, templatePath);
                 });
 
-                bool isCommentedOut = _methodNamesToCommentOut.Contains(method.Name);
-
-                if (isCommentedOut) methods.AppendLine("/*");
                 methods.AppendLine(generatedMethod);
                 methods.AppendLine("{");
                 methods.AppendLine(base.Indentation + generatedMethodImpl);
                 methods.AppendLine("}");
-                if (isCommentedOut) methods.AppendLine("*/");
                 methods.AppendLine();
             }
 
@@ -598,9 +590,6 @@ namespace RTGen.C.Generators
                     ReplaceVariable(m.Groups[1].Value, GeneratorType.Source, rtClass, factory, templatePath)
                 );
 
-                bool isCommentedOut = _methodNamesToCommentOut.Contains(factory.Name);
-
-                if (isCommentedOut) methods.AppendLine("/*");
                 methods.AppendLine(generatedFactory);
                 methods.AppendLine("{");
                 methods.AppendLine(base.Indentation + objectPointer);
@@ -608,7 +597,6 @@ namespace RTGen.C.Generators
                 methods.AppendLine(base.Indentation + objectPointerCast);
                 methods.AppendLine(base.Indentation + returnErrorTemplate);
                 methods.AppendLine("}");
-                if (isCommentedOut) methods.AppendLine("*/");
                 methods.AppendLine();
             }
             return methods;
