@@ -11,7 +11,7 @@ TEST_F(CCoretypesTest, BaseObject)
     err = daqBaseObject_createBaseObject(&obj);
     ASSERT_EQ(err, 0u);
     ASSERT_NE(obj, nullptr);
-    err = daqBaseObject_releaseRef(obj);
+    err = daqUnknown_releaseRef(obj);
     ASSERT_EQ(err, 0u);
 }
 
@@ -29,7 +29,7 @@ TEST_F(CCoretypesTest, Binarydata)
     err = daqBinaryData_getSize(data, &size);
     ASSERT_EQ(err, 0u);
     ASSERT_EQ(size, 10u);
-    daqBaseObject_releaseRef(data);
+    daqUnknown_releaseRef(data);
 }
 
 TEST_F(CCoretypesTest, Boolean)
@@ -42,7 +42,7 @@ TEST_F(CCoretypesTest, Boolean)
     err = daqBoolean_getValue(b, &value);
     ASSERT_EQ(err, 0u);
     ASSERT_EQ(value, daqFalse);
-    daqBaseObject_releaseRef(b);
+    daqUnknown_releaseRef(b);
 }
 
 TEST_F(CCoretypesTest, Cloneable)
@@ -77,10 +77,10 @@ TEST_F(CCoretypesTest, Cloneable)
     daqBaseObject_equals(list, clonedList, &eq);
     ASSERT_EQ(eq, daqFalse);
 
-    daqBaseObject_releaseRef(clonedList);
-    daqBaseObject_releaseRef(list);
-    daqBaseObject_releaseRef(i1);
-    daqBaseObject_releaseRef(i2);
+    daqUnknown_releaseRef(clonedList);
+    daqUnknown_releaseRef(list);
+    daqUnknown_releaseRef(i1);
+    daqUnknown_releaseRef(i2);
 }
 
 TEST_F(CCoretypesTest, Comparable)
@@ -101,7 +101,7 @@ TEST_F(CCoretypesTest, ComplexNumber)
     err = daqComplexNumber_getImaginary(cn, &imag);
     ASSERT_EQ(err, 0u);
     ASSERT_EQ(imag, 2.0);
-    daqBaseObject_releaseRef(cn);
+    daqUnknown_releaseRef(cn);
 }
 
 TEST_F(CCoretypesTest, Convertible)
@@ -118,7 +118,7 @@ TEST_F(CCoretypesTest, Convertible)
     err = daqConvertible_toFloat(c, &f);
     ASSERT_EQ(err, 0u);
     ASSERT_DOUBLE_EQ(f, 1.5);
-    daqBaseObject_releaseRef(s);
+    daqUnknown_releaseRef(s);
 }
 
 TEST_F(CCoretypesTest, CoreType)
@@ -134,7 +134,7 @@ TEST_F(CCoretypesTest, CoreType)
 
     ASSERT_EQ(coreType, daqCCoreType::daqCtInt);
 
-    daqBaseObject_releaseRef(i);
+    daqUnknown_releaseRef(i);
 }
 
 TEST_F(CCoretypesTest, Dictobject)
@@ -167,10 +167,10 @@ TEST_F(CCoretypesTest, Dictobject)
     ASSERT_EQ(err, 0u);
     ASSERT_STREQ(str, "value");
 
-    daqBaseObject_releaseRef(key);
-    daqBaseObject_releaseRef(value);
-    daqBaseObject_releaseRef(value2);
-    daqBaseObject_releaseRef(dict);
+    daqUnknown_releaseRef(key);
+    daqUnknown_releaseRef(value);
+    daqUnknown_releaseRef(value2);
+    daqUnknown_releaseRef(dict);
 }
 
 TEST_F(CCoretypesTest, Enumerations)
@@ -208,14 +208,14 @@ TEST_F(CCoretypesTest, Enumerations)
 
     ASSERT_EQ(value, 2u);
 
-    daqBaseObject_releaseRef(e);
-    daqBaseObject_releaseRef(typeName);
-    daqBaseObject_releaseRef(s2);
-    daqBaseObject_releaseRef(s1);
-    daqBaseObject_releaseRef(i2);
-    daqBaseObject_releaseRef(i1);
-    daqBaseObject_releaseRef(enumerators);
-    daqBaseObject_releaseRef(et);
+    daqUnknown_releaseRef(e);
+    daqUnknown_releaseRef(typeName);
+    daqUnknown_releaseRef(s2);
+    daqUnknown_releaseRef(s1);
+    daqUnknown_releaseRef(i2);
+    daqUnknown_releaseRef(i1);
+    daqUnknown_releaseRef(enumerators);
+    daqUnknown_releaseRef(et);
 }
 
 TEST_F(CCoretypesTest, Event)
@@ -228,7 +228,7 @@ TEST_F(CCoretypesTest, Event)
     daqCSizeT count = 1u;
     daqEvent_getSubscriberCount(e, &count);
     ASSERT_EQ(count, 0u);
-    daqBaseObject_releaseRef(e);
+    daqUnknown_releaseRef(e);
 }
 
 TEST_F(CCoretypesTest, EventArgs)
@@ -247,17 +247,17 @@ TEST_F(CCoretypesTest, EventArgs)
     daqCConstCharPtr str = nullptr;
     daqString_getCharPtr(name2, &str);
     ASSERT_STREQ(str, "test_event");
-    daqBaseObject_releaseRef(name2);
-    daqBaseObject_releaseRef(name);
-    daqBaseObject_releaseRef(args);
+    daqUnknown_releaseRef(name2);
+    daqUnknown_releaseRef(name);
+    daqUnknown_releaseRef(args);
 }
 
 static daqCBool eventCalled = daqFalse;
 static void onEvent(daqBaseObject* sender, daqBaseObject* args)
 {
     eventCalled = daqTrue;
-    daqBaseObject_releaseRef(sender);
-    daqBaseObject_releaseRef(args);
+    daqUnknown_releaseRef(sender);
+    daqUnknown_releaseRef(args);
 }
 
 TEST_F(CCoretypesTest, EventHandler)
@@ -271,9 +271,9 @@ TEST_F(CCoretypesTest, EventHandler)
     daqEventHandler_handleEvent(eh, sender, (daqEventArgs*) args);
     ASSERT_EQ(eventCalled, daqTrue);
 
-    daqBaseObject_releaseRef(sender);
-    daqBaseObject_releaseRef(args);
-    daqBaseObject_releaseRef(eh);
+    daqUnknown_releaseRef(sender);
+    daqUnknown_releaseRef(args);
+    daqUnknown_releaseRef(eh);
 }
 
 TEST_F(CCoretypesTest, Float)
@@ -286,7 +286,7 @@ TEST_F(CCoretypesTest, Float)
     err = daqFloat_getValue(f, &value);
     ASSERT_EQ(err, 0u);
     ASSERT_EQ(value, 1.0);
-    daqBaseObject_releaseRef(f);
+    daqUnknown_releaseRef(f);
 }
 
 TEST_F(CCoretypesTest, Freezable)
@@ -311,7 +311,7 @@ TEST_F(CCoretypesTest, Freezable)
     ASSERT_EQ(err, 0u);
     ASSERT_EQ(isFrozen, daqTrue);
 
-    daqBaseObject_releaseRef(list);
+    daqUnknown_releaseRef(list);
 }
 
 static daqCBool b = daqFalse;
@@ -338,9 +338,9 @@ TEST_F(CCoretypesTest, Function)
     err = daqFunction_call(f, params, &result);
     ASSERT_EQ(err, 0u);
     ASSERT_EQ(b, daqTrue);
-    daqBaseObject_releaseRef(f);
-    daqBaseObject_releaseRef(params);
-    daqBaseObject_releaseRef(result);
+    daqUnknown_releaseRef(f);
+    daqUnknown_releaseRef(params);
+    daqUnknown_releaseRef(result);
 }
 
 TEST_F(CCoretypesTest, Integer)
@@ -353,7 +353,7 @@ TEST_F(CCoretypesTest, Integer)
     err = daqInteger_getValue(i, &value);
     ASSERT_EQ(err, 0u);
     ASSERT_EQ(value, 1);
-    daqBaseObject_releaseRef(i);
+    daqUnknown_releaseRef(i);
 }
 
 TEST_F(CCoretypesTest, Iterable)
@@ -409,11 +409,11 @@ TEST_F(CCoretypesTest, Iterable)
 
     // clean up
     int refc = 0;
-    refc = daqBaseObject_releaseRef(itb);
+    refc = daqUnknown_releaseRef(itb);
     ASSERT_EQ(refc, 0);
-    refc = daqBaseObject_releaseRef(ite);
+    refc = daqUnknown_releaseRef(ite);
     ASSERT_EQ(refc, 0);
-    refc = daqBaseObject_releaseRef(list);
+    refc = daqUnknown_releaseRef(list);
     ASSERT_EQ(refc, 0);
 }
 
@@ -451,7 +451,7 @@ TEST_F(CCoretypesTest, Listobject)
     ASSERT_EQ(err, 0u);
     ASSERT_EQ(value, 1);
 
-    daqBaseObject_releaseRef(i);
+    daqUnknown_releaseRef(i);
     i = nullptr;
 
     err = daqList_removeAt(list, 1, (daqBaseObject**) &i);
@@ -460,7 +460,7 @@ TEST_F(CCoretypesTest, Listobject)
     ASSERT_EQ(err, 0u);
     ASSERT_EQ(value, 3);
 
-    daqBaseObject_releaseRef(i);
+    daqUnknown_releaseRef(i);
 
     err = daqList_clear(list);
     ASSERT_EQ(err, 0u);
@@ -468,10 +468,10 @@ TEST_F(CCoretypesTest, Listobject)
     ASSERT_EQ(err, 0u);
     ASSERT_EQ(count, 0u);
 
-    daqBaseObject_releaseRef(list);
-    daqBaseObject_releaseRef(i3);
-    daqBaseObject_releaseRef(i2);
-    daqBaseObject_releaseRef(i1);
+    daqUnknown_releaseRef(list);
+    daqUnknown_releaseRef(i3);
+    daqUnknown_releaseRef(i2);
+    daqUnknown_releaseRef(i1);
 }
 
 TEST_F(CCoretypesTest, Number)
@@ -489,7 +489,7 @@ TEST_F(CCoretypesTest, Number)
     daqNumber_getIntValue(n1, &i);
     ASSERT_EQ(err, 0u);
     ASSERT_EQ(i, 2);
-    daqBaseObject_releaseRef(f1);
+    daqUnknown_releaseRef(f1);
 }
 
 typedef daqErrCode (*ProcCall)(daqBaseObject*);
@@ -511,7 +511,7 @@ TEST_F(CCoretypesTest, Procedure)
     err = daqProcedure_dispatch(p, nullptr);
     ASSERT_EQ(err, 0u);
     ASSERT_EQ(b2, daqTrue);
-    daqBaseObject_releaseRef(p);
+    daqUnknown_releaseRef(p);
 }
 
 TEST_F(CCoretypesTest, Ratio)
@@ -530,7 +530,7 @@ TEST_F(CCoretypesTest, Ratio)
     err = daqRatio_getDenominator(r, &denominator);
     ASSERT_EQ(err, 0u);
     ASSERT_EQ(denominator, 2);
-    daqBaseObject_releaseRef(r);
+    daqUnknown_releaseRef(r);
 }
 
 TEST_F(CCoretypesTest, Serializable)
@@ -559,9 +559,9 @@ TEST_F(CCoretypesTest, Serializable)
     // ASSERT_STREQ(str, "[]");
     // ASSERT_STREQ(str, "{\"__type\":\"List\",\"values\":[]}");
 
-    daqBaseObject_releaseRef(serialized);
-    daqBaseObject_releaseRef(serializer);
-    daqBaseObject_releaseRef(list);
+    daqUnknown_releaseRef(serialized);
+    daqUnknown_releaseRef(serializer);
+    daqUnknown_releaseRef(list);
 }
 
 TEST_F(CCoretypesTest, SerializedList)
@@ -578,7 +578,7 @@ TEST_F(CCoretypesTest, SimpleType)
     daqErrCode err = 0u;
     err = daqSimpleType_createSimpleType(&st, daqCCoreType::daqCtBool);
     ASSERT_EQ(err, 0u);
-    daqBaseObject_releaseRef(st);
+    daqUnknown_releaseRef(st);
 }
 
 TEST_F(CCoretypesTest, Stringobject)
@@ -591,7 +591,7 @@ TEST_F(CCoretypesTest, Stringobject)
     err = daqString_getCharPtr(s, &str);
     ASSERT_EQ(err, 0u);
     ASSERT_STREQ(str, "Hello");
-    daqBaseObject_releaseRef(s);
+    daqUnknown_releaseRef(s);
 }
 
 TEST_F(CCoretypesTest, Struct)
@@ -640,21 +640,21 @@ TEST_F(CCoretypesTest, Struct)
     ASSERT_EQ(err, 0u);
     ASSERT_EQ(value, 10);
 
-    daqBaseObject_releaseRef(i2);
-    daqBaseObject_releaseRef(i);
+    daqUnknown_releaseRef(i2);
+    daqUnknown_releaseRef(i);
 
-    daqBaseObject_releaseRef(s);
-    daqBaseObject_releaseRef(sb);
+    daqUnknown_releaseRef(s);
+    daqUnknown_releaseRef(sb);
 
-    daqBaseObject_releaseRef(manager);
-    daqBaseObject_releaseRef(type);
-    daqBaseObject_releaseRef(typeName);
+    daqUnknown_releaseRef(manager);
+    daqUnknown_releaseRef(type);
+    daqUnknown_releaseRef(typeName);
 
-    daqBaseObject_releaseRef(fieldNames);
-    daqBaseObject_releaseRef(fieldTypes);
+    daqUnknown_releaseRef(fieldNames);
+    daqUnknown_releaseRef(fieldTypes);
 
-    daqBaseObject_releaseRef(fieldName);
-    daqBaseObject_releaseRef(st);
+    daqUnknown_releaseRef(fieldName);
+    daqUnknown_releaseRef(st);
 }
 
 TEST_F(CCoretypesTest, TypeManager)
@@ -690,13 +690,13 @@ TEST_F(CCoretypesTest, TypeManager)
     err = daqTypeManager_removeType(manager, typeName);
     ASSERT_EQ(err, 0u);
 
-    daqBaseObject_releaseRef(fieldNames);
-    daqBaseObject_releaseRef(fieldTypes);
-    daqBaseObject_releaseRef(fieldName);
-    daqBaseObject_releaseRef(typeName);
-    daqBaseObject_releaseRef(st);
-    daqBaseObject_releaseRef(type);
-    daqBaseObject_releaseRef(manager);
+    daqUnknown_releaseRef(fieldNames);
+    daqUnknown_releaseRef(fieldTypes);
+    daqUnknown_releaseRef(fieldName);
+    daqUnknown_releaseRef(typeName);
+    daqUnknown_releaseRef(st);
+    daqUnknown_releaseRef(type);
+    daqUnknown_releaseRef(manager);
 }
 
 TEST_F(CCoretypesTest, Updatable)
@@ -721,5 +721,5 @@ TEST_F(CCoretypesTest, VersionInfo)
     err = daqVersionInfo_getPatch(vi, &patch);
     ASSERT_EQ(err, 0u);
     ASSERT_EQ(patch, 3u);
-    daqBaseObject_releaseRef(vi);
+    daqUnknown_releaseRef(vi);
 }

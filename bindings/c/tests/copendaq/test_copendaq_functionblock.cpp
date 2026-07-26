@@ -22,5 +22,5 @@ TEST_F(COpendaqFunctionBlockTest, FunctionBlock)
     daqFunctionBlockType* fbType = nullptr;
     daqFunctionBlock_getFunctionBlockType(funcBlock, &fbType);
     ASSERT_NE(fbType, nullptr);
-    daqBaseObject_releaseRef(fbType);
+    daqUnknown_releaseRef(fbType);
 }

@@ -52,16 +52,16 @@ TEST_F(COpendaqSynchronizationTest, SyncComponent)
     daqDict_getCount(interfaces, &size);
     ASSERT_EQ(size, 1u);
 
-    daqBaseObject_releaseRef(interfaces);
-    daqBaseObject_releaseRef(interface);
-    daqBaseObject_releaseRef(className);
-    daqBaseObject_releaseRef(syncComponent);
-    daqBaseObject_releaseRef(localId);
-    daqBaseObject_releaseRef(context);
-    daqBaseObject_releaseRef(discoveryServers);
-    daqBaseObject_releaseRef(options);
-    daqBaseObject_releaseRef(typeManager);
-    daqBaseObject_releaseRef(logger);
-    daqBaseObject_releaseRef(sink);
-    daqBaseObject_releaseRef(sinks);
+    daqUnknown_releaseRef(interfaces);
+    daqUnknown_releaseRef(interface);
+    daqUnknown_releaseRef(className);
+    daqUnknown_releaseRef(syncComponent);
+    daqUnknown_releaseRef(localId);
+    daqUnknown_releaseRef(context);
+    daqUnknown_releaseRef(discoveryServers);
+    daqUnknown_releaseRef(options);
+    daqUnknown_releaseRef(typeManager);
+    daqUnknown_releaseRef(logger);
+    daqUnknown_releaseRef(sink);
+    daqUnknown_releaseRef(sinks);
 }

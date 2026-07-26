@@ -24,9 +24,9 @@ TEST_F(CCoreobjectsTest, ArgumentInfo)
     ASSERT_STREQ(str, "test_argument");
     ASSERT_EQ(type, daqCCoreType::daqCtInt);
 
-    daqBaseObject_releaseRef(name2);
-    daqBaseObject_releaseRef(name);
-    daqBaseObject_releaseRef(argInfo);
+    daqUnknown_releaseRef(name2);
+    daqUnknown_releaseRef(name);
+    daqUnknown_releaseRef(argInfo);
 }
 
 TEST_F(CCoreobjectsTest, AuthenticationProvider)
@@ -52,26 +52,26 @@ TEST_F(CCoreobjectsTest, AuthenticationProvider)
     err = daqAuthenticationProvider_authenticateAnonymous(authProvider, &userOut);
     ASSERT_EQ(err, 0u);
     ASSERT_NE(userOut, nullptr);
-    daqBaseObject_releaseRef(userOut);
+    daqUnknown_releaseRef(userOut);
     userOut = nullptr;
 
     err = daqAuthenticationProvider_authenticate(authProvider, username, passwordHash, &userOut);
     ASSERT_EQ(err, 0u);
     ASSERT_NE(userOut, nullptr);
-    daqBaseObject_releaseRef(userOut);
+    daqUnknown_releaseRef(userOut);
     userOut = nullptr;
 
     err = daqAuthenticationProvider_findUser(authProvider, username, &userOut);
     ASSERT_EQ(err, 0u);
     ASSERT_NE(userOut, nullptr);
-    daqBaseObject_releaseRef(userOut);
+    daqUnknown_releaseRef(userOut);
 
-    daqBaseObject_releaseRef(userList);
-    daqBaseObject_releaseRef(groups);
-    daqBaseObject_releaseRef(user);
-    daqBaseObject_releaseRef(passwordHash);
-    daqBaseObject_releaseRef(username);
-    daqBaseObject_releaseRef(authProvider);
+    daqUnknown_releaseRef(userList);
+    daqUnknown_releaseRef(groups);
+    daqUnknown_releaseRef(user);
+    daqUnknown_releaseRef(passwordHash);
+    daqUnknown_releaseRef(username);
+    daqUnknown_releaseRef(authProvider);
 }
 
 TEST_F(CCoreobjectsTest, CallableInfo)
@@ -106,11 +106,11 @@ TEST_F(CCoreobjectsTest, CallableInfo)
     daqList_getCount(arguments, &size);
     ASSERT_EQ(size, 1u);
 
-    daqBaseObject_releaseRef(arguments);
-    daqBaseObject_releaseRef(argInfo);
-    daqBaseObject_releaseRef(name);
-    daqBaseObject_releaseRef(argumentInfo);
-    daqBaseObject_releaseRef(callableInfo);
+    daqUnknown_releaseRef(arguments);
+    daqUnknown_releaseRef(argInfo);
+    daqUnknown_releaseRef(name);
+    daqUnknown_releaseRef(argumentInfo);
+    daqUnknown_releaseRef(callableInfo);
 }
 
 TEST_F(CCoreobjectsTest, Coercer)
@@ -131,10 +131,10 @@ TEST_F(CCoreobjectsTest, Coercer)
     daqInteger_getValue(coercedValue, &coercedInt);
     ASSERT_EQ(coercedInt, 12);
 
-    daqBaseObject_releaseRef(coercedValue);
-    daqBaseObject_releaseRef(value);
-    daqBaseObject_releaseRef(evalStr);
-    daqBaseObject_releaseRef(coercer);
+    daqUnknown_releaseRef(coercedValue);
+    daqUnknown_releaseRef(value);
+    daqUnknown_releaseRef(evalStr);
+    daqUnknown_releaseRef(coercer);
 }
 
 TEST_F(CCoreobjectsTest, CoreEventArgs)
@@ -152,9 +152,9 @@ static void onPropertyObjectUpdateEnd(daqBaseObject* sender, daqBaseObject* args
     if (count == 0u)
         eventCalled = daqTrue;
 
-    daqBaseObject_releaseRef(properties);
-    daqBaseObject_releaseRef(sender);
-    daqBaseObject_releaseRef(args);
+    daqUnknown_releaseRef(properties);
+    daqUnknown_releaseRef(sender);
+    daqUnknown_releaseRef(args);
 }
 
 TEST_F(CCoreobjectsTest, EndUpdateEventArgs)
@@ -174,9 +174,9 @@ TEST_F(CCoreobjectsTest, EndUpdateEventArgs)
     daqPropertyObject_endUpdate(propObj);
     ASSERT_EQ(eventCalled, daqTrue);
 
-    daqBaseObject_releaseRef(handler);
-    daqBaseObject_releaseRef(event);
-    daqBaseObject_releaseRef(propObj);
+    daqUnknown_releaseRef(handler);
+    daqUnknown_releaseRef(event);
+    daqUnknown_releaseRef(propObj);
 }
 
 TEST_F(CCoreobjectsTest, EvalValue)
@@ -213,16 +213,16 @@ TEST_F(CCoreobjectsTest, EvalValue)
     daqInteger_getValue(value, &intValue);
     ASSERT_EQ(intValue, 10);
 
-    daqBaseObject_releaseRef(value);
-    daqBaseObject_releaseRef(refName);
-    daqBaseObject_releaseRef(evalStr);
-    daqBaseObject_releaseRef(evalValue);
-    daqBaseObject_releaseRef(refProp);
-    daqBaseObject_releaseRef(name);
-    daqBaseObject_releaseRef(defaultValue);
-    daqBaseObject_releaseRef(visible);
-    daqBaseObject_releaseRef(prop);
-    daqBaseObject_releaseRef(propObj);
+    daqUnknown_releaseRef(value);
+    daqUnknown_releaseRef(refName);
+    daqUnknown_releaseRef(evalStr);
+    daqUnknown_releaseRef(evalValue);
+    daqUnknown_releaseRef(refProp);
+    daqUnknown_releaseRef(name);
+    daqUnknown_releaseRef(defaultValue);
+    daqUnknown_releaseRef(visible);
+    daqUnknown_releaseRef(prop);
+    daqUnknown_releaseRef(propObj);
 }
 
 TEST_F(CCoreobjectsTest, Ownable)
@@ -241,8 +241,8 @@ TEST_F(CCoreobjectsTest, Ownable)
     err = daqOwnable_setOwner(ownable, nullptr);
     ASSERT_EQ(err, 0u);
 
-    daqBaseObject_releaseRef(ownable);
-    daqBaseObject_releaseRef(parentObj);
+    daqUnknown_releaseRef(ownable);
+    daqUnknown_releaseRef(parentObj);
 }
 
 TEST_F(CCoreobjectsTest, Permissions)
@@ -303,17 +303,17 @@ TEST_F(CCoreobjectsTest, Permissions)
     daqPermissionManager_isAuthorized(manager, guest, daqPermission::daqPermissionExecute, &isAuthorized);
     ASSERT_EQ(isAuthorized, daqFalse);
 
-    daqBaseObject_releaseRef(manager);
-    daqBaseObject_releaseRef(adminPermissions);
-    daqBaseObject_releaseRef(permissionsBuilder);
-    daqBaseObject_releaseRef(maskBuilder);
-    daqBaseObject_releaseRef(admin);
-    daqBaseObject_releaseRef(guest);
-    daqBaseObject_releaseRef(adminName);
-    daqBaseObject_releaseRef(guestName);
-    daqBaseObject_releaseRef(password);
-    daqBaseObject_releaseRef(adminGroups);
-    daqBaseObject_releaseRef(guestGroups);
+    daqUnknown_releaseRef(manager);
+    daqUnknown_releaseRef(adminPermissions);
+    daqUnknown_releaseRef(permissionsBuilder);
+    daqUnknown_releaseRef(maskBuilder);
+    daqUnknown_releaseRef(admin);
+    daqUnknown_releaseRef(guest);
+    daqUnknown_releaseRef(adminName);
+    daqUnknown_releaseRef(guestName);
+    daqUnknown_releaseRef(password);
+    daqUnknown_releaseRef(adminGroups);
+    daqUnknown_releaseRef(guestGroups);
 }
 
 TEST_F(CCoreobjectsTest, Property)
@@ -345,12 +345,12 @@ TEST_F(CCoreobjectsTest, Property)
     daqProperty_getVisible(prop, &isVisible);
     ASSERT_EQ(isVisible, daqTrue);
 
-    daqBaseObject_releaseRef(nameOut);
-    daqBaseObject_releaseRef(name);
-    daqBaseObject_releaseRef(defaultValueOut);
-    daqBaseObject_releaseRef(defaultValue);
-    daqBaseObject_releaseRef(visible);
-    daqBaseObject_releaseRef(prop);
+    daqUnknown_releaseRef(nameOut);
+    daqUnknown_releaseRef(name);
+    daqUnknown_releaseRef(defaultValueOut);
+    daqUnknown_releaseRef(defaultValue);
+    daqUnknown_releaseRef(visible);
+    daqUnknown_releaseRef(prop);
 }
 
 TEST_F(CCoreobjectsTest, PropertyBuilder)
@@ -389,13 +389,13 @@ TEST_F(CCoreobjectsTest, PropertyBuilder)
     daqProperty_getVisible(property, &isVisible);
     ASSERT_EQ(isVisible, daqTrue);
 
-    daqBaseObject_releaseRef(nameOut);
-    daqBaseObject_releaseRef(name);
-    daqBaseObject_releaseRef(defaultValueOut);
-    daqBaseObject_releaseRef(defaultValue);
-    daqBaseObject_releaseRef(visible);
-    daqBaseObject_releaseRef(property);
-    daqBaseObject_releaseRef(propBuilder);
+    daqUnknown_releaseRef(nameOut);
+    daqUnknown_releaseRef(name);
+    daqUnknown_releaseRef(defaultValueOut);
+    daqUnknown_releaseRef(defaultValue);
+    daqUnknown_releaseRef(visible);
+    daqUnknown_releaseRef(property);
+    daqUnknown_releaseRef(propBuilder);
 }
 
 TEST_F(CCoreobjectsTest, PropertyObject)
@@ -439,12 +439,12 @@ TEST_F(CCoreobjectsTest, PropertyObject)
     ASSERT_EQ(err, 0u);
     ASSERT_EQ(equal, daqFalse);
 
-    daqBaseObject_releaseRef(propOut);
-    daqBaseObject_releaseRef(name);
-    daqBaseObject_releaseRef(defaultValue);
-    daqBaseObject_releaseRef(visible);
-    daqBaseObject_releaseRef(prop);
-    daqBaseObject_releaseRef(propObj);
+    daqUnknown_releaseRef(propOut);
+    daqUnknown_releaseRef(name);
+    daqUnknown_releaseRef(defaultValue);
+    daqUnknown_releaseRef(visible);
+    daqUnknown_releaseRef(prop);
+    daqUnknown_releaseRef(propObj);
 }
 
 TEST_F(CCoreobjectsTest, PropertyObjectClass)
@@ -485,14 +485,14 @@ TEST_F(CCoreobjectsTest, PropertyObjectClass)
     ASSERT_EQ(err, 0u);
     ASSERT_EQ(equal, daqTrue);
 
-    daqBaseObject_releaseRef(propOut);
-    daqBaseObject_releaseRef(propName);
-    daqBaseObject_releaseRef(defaultValue);
-    daqBaseObject_releaseRef(visible);
-    daqBaseObject_releaseRef(prop);
-    daqBaseObject_releaseRef(propObjClass);
-    daqBaseObject_releaseRef(builder);
-    daqBaseObject_releaseRef(name);
+    daqUnknown_releaseRef(propOut);
+    daqUnknown_releaseRef(propName);
+    daqUnknown_releaseRef(defaultValue);
+    daqUnknown_releaseRef(visible);
+    daqUnknown_releaseRef(prop);
+    daqUnknown_releaseRef(propObjClass);
+    daqUnknown_releaseRef(builder);
+    daqUnknown_releaseRef(name);
 }
 
 TEST_F(CCoreobjectsTest, PropertyObjectProtected)
@@ -531,14 +531,14 @@ TEST_F(CCoreobjectsTest, PropertyObjectProtected)
     daqInteger_getValue(valueOut, &intValue);
     ASSERT_EQ(intValue, 20);
 
-    daqBaseObject_releaseRef(valueOut);
-    daqBaseObject_releaseRef(value);
-    daqBaseObject_releaseRef(name);
-    daqBaseObject_releaseRef(defaultValue);
-    daqBaseObject_releaseRef(readOnly);
-    daqBaseObject_releaseRef(prop);
-    daqBaseObject_releaseRef(propBuilder);
-    daqBaseObject_releaseRef(propObjProtected);
+    daqUnknown_releaseRef(valueOut);
+    daqUnknown_releaseRef(value);
+    daqUnknown_releaseRef(name);
+    daqUnknown_releaseRef(defaultValue);
+    daqUnknown_releaseRef(readOnly);
+    daqUnknown_releaseRef(prop);
+    daqUnknown_releaseRef(propBuilder);
+    daqUnknown_releaseRef(propObjProtected);
 }
 
 TEST_F(CCoreobjectsTest, PropertyValueEventArgs)
@@ -574,21 +574,21 @@ TEST_F(CCoreobjectsTest, PropertyValueEventArgs)
     daqCBool equal = daqFalse;
     err = daqBaseObject_equals(valueOut, value2, &equal);
     ASSERT_EQ(equal, daqTrue);
-    daqBaseObject_releaseRef(valueOut);
+    daqUnknown_releaseRef(valueOut);
 
     daqPropertyValueEventArgs_getOldValue(eventArgs, (daqBaseObject**) &valueOut);
     ASSERT_NE(valueOut, nullptr);
     err = daqBaseObject_equals(valueOut, value1, &equal);
     ASSERT_EQ(equal, daqTrue);
 
-    daqBaseObject_releaseRef(valueOut);
-    daqBaseObject_releaseRef(value1);
-    daqBaseObject_releaseRef(value2);
-    daqBaseObject_releaseRef(name);
-    daqBaseObject_releaseRef(defaultValue);
-    daqBaseObject_releaseRef(visible);
-    daqBaseObject_releaseRef(prop);
-    daqBaseObject_releaseRef(eventArgs);
+    daqUnknown_releaseRef(valueOut);
+    daqUnknown_releaseRef(value1);
+    daqUnknown_releaseRef(value2);
+    daqUnknown_releaseRef(name);
+    daqUnknown_releaseRef(defaultValue);
+    daqUnknown_releaseRef(visible);
+    daqUnknown_releaseRef(prop);
+    daqUnknown_releaseRef(eventArgs);
 }
 
 TEST_F(CCoreobjectsTest, Unit)
@@ -623,12 +623,12 @@ TEST_F(CCoreobjectsTest, Unit)
     ASSERT_STREQ(nameStr, "test_unit");
     ASSERT_STREQ(symbolStr, "tu");
 
-    daqBaseObject_releaseRef(nameOut);
-    daqBaseObject_releaseRef(symbolOut);
-    daqBaseObject_releaseRef(name);
-    daqBaseObject_releaseRef(symbol);
-    daqBaseObject_releaseRef(unit);
-    daqBaseObject_releaseRef(unitBuilder);
+    daqUnknown_releaseRef(nameOut);
+    daqUnknown_releaseRef(symbolOut);
+    daqUnknown_releaseRef(name);
+    daqUnknown_releaseRef(symbol);
+    daqUnknown_releaseRef(unit);
+    daqUnknown_releaseRef(unitBuilder);
 }
 
 TEST_F(CCoreobjectsTest, User)
@@ -649,11 +649,11 @@ TEST_F(CCoreobjectsTest, User)
     daqString_getCharPtr(usernameOut, &str);
     ASSERT_STREQ(str, "test_user");
 
-    daqBaseObject_releaseRef(usernameOut);
-    daqBaseObject_releaseRef(user);
-    daqBaseObject_releaseRef(username);
-    daqBaseObject_releaseRef(passwordHash);
-    daqBaseObject_releaseRef(groups);
+    daqUnknown_releaseRef(usernameOut);
+    daqUnknown_releaseRef(user);
+    daqUnknown_releaseRef(username);
+    daqUnknown_releaseRef(passwordHash);
+    daqUnknown_releaseRef(groups);
 }
 
 TEST_F(CCoreobjectsTest, Validator)
@@ -675,8 +675,8 @@ TEST_F(CCoreobjectsTest, Validator)
     ASSERT_NE(err, 0u);
     daqClearErrorInfo();
 
-    daqBaseObject_releaseRef(value);
-    daqBaseObject_releaseRef(invalidValue);
-    daqBaseObject_releaseRef(evalStr);
-    daqBaseObject_releaseRef(validator);
+    daqUnknown_releaseRef(value);
+    daqUnknown_releaseRef(invalidValue);
+    daqUnknown_releaseRef(evalStr);
+    daqUnknown_releaseRef(validator);
 }

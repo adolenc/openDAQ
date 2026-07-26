@@ -39,16 +39,16 @@ TEST_F(COpendaqContextTest, Context)
     ASSERT_NE(outOptions, nullptr);
     ASSERT_NE(outDiscoveryServers, nullptr);
 
-    daqBaseObject_releaseRef(outDiscoveryServers);
-    daqBaseObject_releaseRef(outOptions);
-    daqBaseObject_releaseRef(outTm);
-    daqBaseObject_releaseRef(outLogger);
+    daqUnknown_releaseRef(outDiscoveryServers);
+    daqUnknown_releaseRef(outOptions);
+    daqUnknown_releaseRef(outTm);
+    daqUnknown_releaseRef(outLogger);
 
-    daqBaseObject_releaseRef(discoveryServers);
-    daqBaseObject_releaseRef(options);
-    daqBaseObject_releaseRef(typeManager);
-    daqBaseObject_releaseRef(logger);
-    daqBaseObject_releaseRef(sink);
-    daqBaseObject_releaseRef(sinks);
-    daqBaseObject_releaseRef(ctx);
+    daqUnknown_releaseRef(discoveryServers);
+    daqUnknown_releaseRef(options);
+    daqUnknown_releaseRef(typeManager);
+    daqUnknown_releaseRef(logger);
+    daqUnknown_releaseRef(sink);
+    daqUnknown_releaseRef(sinks);
+    daqUnknown_releaseRef(ctx);
 }

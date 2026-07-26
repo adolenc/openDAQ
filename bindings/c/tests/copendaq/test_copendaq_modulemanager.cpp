@@ -25,17 +25,17 @@ class COpendaqModuleManagerTest : public testing::Test
 
         daqContext_createContext(&ctx, nullptr, logger, typeManager, nullptr, nullptr, options, discoveryServers);
 
-        daqBaseObject_releaseRef(discoveryServers);
-        daqBaseObject_releaseRef(options);
-        daqBaseObject_releaseRef(typeManager);
-        daqBaseObject_releaseRef(logger);
-        daqBaseObject_releaseRef(sink);
-        daqBaseObject_releaseRef(sinks);
+        daqUnknown_releaseRef(discoveryServers);
+        daqUnknown_releaseRef(options);
+        daqUnknown_releaseRef(typeManager);
+        daqUnknown_releaseRef(logger);
+        daqUnknown_releaseRef(sink);
+        daqUnknown_releaseRef(sinks);
     }
 
     void TearDown() override
     {
-        daqBaseObject_releaseRef(ctx);
+        daqUnknown_releaseRef(ctx);
     }
 
 protected:
@@ -74,10 +74,10 @@ TEST_F(COpendaqModuleManagerTest, DISABLED_ModuleManager)
     daqModuleInfo_getId(info, &name);
     ASSERT_NE(name, nullptr);
 
-    daqBaseObject_releaseRef(name);
-    daqBaseObject_releaseRef(info);
-    daqBaseObject_releaseRef(module);
-    daqBaseObject_releaseRef(modules);
-    daqBaseObject_releaseRef(moduleManager);
-    daqBaseObject_releaseRef(path);
+    daqUnknown_releaseRef(name);
+    daqUnknown_releaseRef(info);
+    daqUnknown_releaseRef(module);
+    daqUnknown_releaseRef(modules);
+    daqUnknown_releaseRef(moduleManager);
+    daqUnknown_releaseRef(path);
 }

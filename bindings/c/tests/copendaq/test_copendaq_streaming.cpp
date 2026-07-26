@@ -17,11 +17,11 @@ TEST_F(COpendaqStreamingTest, StreamingType)
     daqString_createString(&prefix, "streamingTypePrefix");
     daqStreamingType_createStreamingType(&streamingType, id, name, description, prefix, nullptr);
     ASSERT_NE(streamingType, nullptr);
-    daqBaseObject_releaseRef(streamingType);
-    daqBaseObject_releaseRef(id);
-    daqBaseObject_releaseRef(name);
-    daqBaseObject_releaseRef(description);
-    daqBaseObject_releaseRef(prefix);
+    daqUnknown_releaseRef(streamingType);
+    daqUnknown_releaseRef(id);
+    daqUnknown_releaseRef(name);
+    daqUnknown_releaseRef(description);
+    daqUnknown_releaseRef(prefix);
 }
 
 TEST_F(COpendaqStreamingTest, SubscriptionEventArgs)
@@ -33,6 +33,6 @@ TEST_F(COpendaqStreamingTest, SubscriptionEventArgs)
 
     daqSubscriptionEventArgs_createSubscriptionEventArgs(&subscriptionEventArgs, streamingConnectionString, type);
     ASSERT_NE(subscriptionEventArgs, nullptr);
-    daqBaseObject_releaseRef(subscriptionEventArgs);
-    daqBaseObject_releaseRef(streamingConnectionString);
+    daqUnknown_releaseRef(subscriptionEventArgs);
+    daqUnknown_releaseRef(streamingConnectionString);
 }

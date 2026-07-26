@@ -19,9 +19,9 @@ TEST_F(COpendaqServerTest, ServerType)
     daqServerType_createServerType(&obj, id, name, description, defaultConfig);
     ASSERT_NE(obj, nullptr);
 
-    daqBaseObject_releaseRef(obj);
-    daqBaseObject_releaseRef(defaultConfig);
-    daqBaseObject_releaseRef(description);
-    daqBaseObject_releaseRef(name);
-    daqBaseObject_releaseRef(id);
+    daqUnknown_releaseRef(obj);
+    daqUnknown_releaseRef(defaultConfig);
+    daqUnknown_releaseRef(description);
+    daqUnknown_releaseRef(name);
+    daqUnknown_releaseRef(id);
 }

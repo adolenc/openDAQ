@@ -25,17 +25,17 @@ class COpendaqComponentTest : public testing::Test
 
         daqContext_createContext(&ctx, nullptr, logger, typeManager, nullptr, nullptr, options, discoveryServers);
 
-        daqBaseObject_releaseRef(discoveryServers);
-        daqBaseObject_releaseRef(options);
-        daqBaseObject_releaseRef(typeManager);
-        daqBaseObject_releaseRef(logger);
-        daqBaseObject_releaseRef(sink);
-        daqBaseObject_releaseRef(sinks);
+        daqUnknown_releaseRef(discoveryServers);
+        daqUnknown_releaseRef(options);
+        daqUnknown_releaseRef(typeManager);
+        daqUnknown_releaseRef(logger);
+        daqUnknown_releaseRef(sink);
+        daqUnknown_releaseRef(sinks);
     }
 
     void TearDown() override
     {
-        daqBaseObject_releaseRef(ctx);
+        daqUnknown_releaseRef(ctx);
     }
 
 protected:
@@ -96,14 +96,14 @@ TEST_F(COpendaqComponentTest, ComponentPrivate)
     ASSERT_TRUE(active);
     ASSERT_TRUE(visible);
 
-    daqBaseObject_releaseRef(outName);
-    daqBaseObject_releaseRef(outDesc);
-    daqBaseObject_releaseRef(newDesc);
-    daqBaseObject_releaseRef(newName);
-    daqBaseObject_releaseRef(desc);
-    daqBaseObject_releaseRef(name);
-    daqBaseObject_releaseRef(component);
-    daqBaseObject_releaseRef(id);
+    daqUnknown_releaseRef(outName);
+    daqUnknown_releaseRef(outDesc);
+    daqUnknown_releaseRef(newDesc);
+    daqUnknown_releaseRef(newName);
+    daqUnknown_releaseRef(desc);
+    daqUnknown_releaseRef(name);
+    daqUnknown_releaseRef(component);
+    daqUnknown_releaseRef(id);
 }
 
 TEST_F(COpendaqComponentTest, ComponentStatusContainer)
@@ -124,9 +124,9 @@ TEST_F(COpendaqComponentTest, ComponentStatusContainer)
 
     ASSERT_NE(priv, nullptr);
 
-    daqBaseObject_releaseRef(status);
-    daqBaseObject_releaseRef(component);
-    daqBaseObject_releaseRef(id);
+    daqUnknown_releaseRef(status);
+    daqUnknown_releaseRef(component);
+    daqUnknown_releaseRef(id);
 }
 
 TEST_F(COpendaqComponentTest, Component)
@@ -155,12 +155,12 @@ TEST_F(COpendaqComponentTest, Component)
     ASSERT_STREQ(childLocalIdStr, "child");
     ASSERT_STREQ(childGlobalIdStr, "/parent/child");
 
-    daqBaseObject_releaseRef(childGlobalId);
-    daqBaseObject_releaseRef(childLocalId);
-    daqBaseObject_releaseRef(child);
-    daqBaseObject_releaseRef(component);
-    daqBaseObject_releaseRef(idc);
-    daqBaseObject_releaseRef(id);
+    daqUnknown_releaseRef(childGlobalId);
+    daqUnknown_releaseRef(childLocalId);
+    daqUnknown_releaseRef(child);
+    daqUnknown_releaseRef(component);
+    daqUnknown_releaseRef(idc);
+    daqUnknown_releaseRef(id);
 }
 
 TEST_F(COpendaqComponentTest, Folder)
@@ -189,10 +189,10 @@ TEST_F(COpendaqComponentTest, Folder)
     daqFolder_isEmpty(f, &empty);
     ASSERT_EQ(empty, true);
 
-    daqBaseObject_releaseRef(component);
-    daqBaseObject_releaseRef(folder);
-    daqBaseObject_releaseRef(itemId);
-    daqBaseObject_releaseRef(folderId);
+    daqUnknown_releaseRef(component);
+    daqUnknown_releaseRef(folder);
+    daqUnknown_releaseRef(itemId);
+    daqUnknown_releaseRef(folderId);
 }
 
 TEST_F(COpendaqComponentTest, Removable)
@@ -212,8 +212,8 @@ TEST_F(COpendaqComponentTest, Removable)
 
     ASSERT_EQ(isRemoved, daqTrue);
 
-    daqBaseObject_releaseRef(component);
-    daqBaseObject_releaseRef(id);
+    daqUnknown_releaseRef(component);
+    daqUnknown_releaseRef(id);
 }
 
 TEST_F(COpendaqComponentTest, Tags)
@@ -233,6 +233,6 @@ TEST_F(COpendaqComponentTest, Tags)
     daqTags_contains(tags, tag, &result);
 
     ASSERT_TRUE(result);
-    daqBaseObject_releaseRef(tag);
-    daqBaseObject_releaseRef(tags);
+    daqUnknown_releaseRef(tag);
+    daqUnknown_releaseRef(tags);
 }
