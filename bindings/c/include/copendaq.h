@@ -31,6 +31,7 @@ extern "C"
 #include <ccoretypes/complex_number.h>
 #include <ccoretypes/convertible.h>
 #include <ccoretypes/coretype.h>
+#include <ccoretypes/dict_element_type.h>
 #include <ccoretypes/dictobject.h>
 #include <ccoretypes/enumeration_type.h>
 #include <ccoretypes/enumeration.h>
@@ -43,6 +44,7 @@ extern "C"
 #include <ccoretypes/integer.h>
 #include <ccoretypes/iterable.h>
 #include <ccoretypes/iterator.h>
+#include <ccoretypes/list_element_type.h>
 #include <ccoretypes/listobject.h>
 #include <ccoretypes/number.h>
 #include <ccoretypes/procedure.h>
@@ -95,6 +97,7 @@ extern "C"
 #include <ccoreobjects/user.h>
 #include <ccoreobjects/validator.h>
 
+#include <copendaq/component/component_deserialize_context.h>
 #include <copendaq/component/component_private.h>
 #include <copendaq/component/component_status_container_private.h>
 #include <copendaq/component/component_status_container.h>

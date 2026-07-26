@@ -16,7 +16,7 @@ set(SRC_CoreTypes_Headers
     include/ccoretypes/convertible.h
     include/ccoretypes/coretype.h
     include/ccoretypes/deserializer.h
-    # include/ccoretypes/dict_element_type.h
+    include/ccoretypes/dict_element_type.h
     include/ccoretypes/dictobject.h
     include/ccoretypes/enumeration_type.h
     include/ccoretypes/enumeration.h
@@ -32,7 +32,7 @@ set(SRC_CoreTypes_Headers
     include/ccoretypes/integer.h
     include/ccoretypes/iterable.h
     include/ccoretypes/iterator.h
-    # include/ccoretypes/list_element_type.h
+    include/ccoretypes/list_element_type.h
     include/ccoretypes/listobject.h
     include/ccoretypes/number.h
     include/ccoretypes/procedure.h
@@ -73,7 +73,7 @@ set(SRC_CoreTypes_Cpp
     src/ccoretypes/convertible.cpp
     src/ccoretypes/coretype.cpp
     src/ccoretypes/deserializer.cpp
-    # src/ccoretypes/dict_element_type.cpp
+    src/ccoretypes/dict_element_type.cpp
     src/ccoretypes/dictobject.cpp
     src/ccoretypes/enumeration_type.cpp
     src/ccoretypes/enumeration.cpp
@@ -89,7 +89,7 @@ set(SRC_CoreTypes_Cpp
     src/ccoretypes/integer.cpp
     src/ccoretypes/iterable.cpp
     src/ccoretypes/iterator.cpp
-    # src/ccoretypes/list_element_type.cpp
+    src/ccoretypes/list_element_type.cpp
     src/ccoretypes/listobject.cpp
     src/ccoretypes/number.cpp
     src/ccoretypes/procedure.cpp
@@ -187,6 +187,7 @@ set(SRC_CoreObjects_Cpp
 
 set(SRC_OpenDAQ_Headers
     include/copendaq/component/common.h
+    include/copendaq/component/component_deserialize_context.h
     include/copendaq/component/component_errors.h
     include/copendaq/component/component_private.h
     include/copendaq/component/component_status_container_private.h
@@ -329,6 +330,7 @@ set(SRC_OpenDAQ_Headers
 )
 
 set(SRC_OpenDAQ_Cpp
+    src/copendaq/component/component_deserialize_context.cpp
     src/copendaq/component/component_private.cpp
     src/copendaq/component/component_status_container_private.cpp
     src/copendaq/component/component_status_container.cpp
