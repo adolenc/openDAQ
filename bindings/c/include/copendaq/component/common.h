@@ -21,6 +21,13 @@ extern "C"
 {
 #endif
 
+    typedef enum daqComponentStatus
+    {
+        daqComponentStatusOk = 0,
+        daqComponentStatusWarning,
+        daqComponentStatusError
+    } daqComponentStatus;
+
     typedef enum daqOperationModeType
     {
         daqOperationModeTypeUnknown = 0,

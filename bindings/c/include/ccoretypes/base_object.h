@@ -31,7 +31,7 @@ extern "C"
     daqErrCode EXPORTED daqBaseObject_getHashCode(daqBaseObject* self, daqCSizeT* hashCode);
     daqErrCode EXPORTED daqBaseObject_equals(daqBaseObject* self, daqBaseObject* other, daqCBool* equal);
     daqErrCode EXPORTED daqBaseObject_toString(daqBaseObject* self, daqCCharPtr* str);
-    daqErrCode EXPORTED daqBaseObject_create(daqBaseObject** baseObject);
+    daqErrCode EXPORTED daqBaseObject_createBaseObject(daqBaseObject** baseObject);
     daqErrCode EXPORTED daqBaseObject_queryInterface(daqBaseObject* self, daqIntfID intfId, daqBaseObject** interfacePtr);
     daqErrCode EXPORTED daqBaseObject_borrowInterface(daqBaseObject* self, daqIntfID intfId, daqBaseObject** interfacePtr);
     

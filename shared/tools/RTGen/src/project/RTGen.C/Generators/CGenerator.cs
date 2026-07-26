@@ -213,15 +213,15 @@ namespace RTGen.C.Generators
                     parsed = new CppParser().Parse(target.HeaderPath, parserOptions);
                     parsed.SourceFileName = Path.GetFileName(target.HeaderPath) ?? "";
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    withoutOutput.Add($"{target.Library}/{target.Name}");
+                    withoutOutput.Add($"{target.Library}/{target.Name} ({e.Message.TrimEnd('.')})");
                     continue;
                 }
 
-                if (parsed.Classes.Count == 0)
+                if (parsed.Classes.Count == 0 && parsed.Factories.Count == 0)
                 {
-                    withoutOutput.Add($"{target.Library}/{target.Name}");
+                    withoutOutput.Add($"{target.Library}/{target.Name} (nothing to generate)");
                     continue;
                 }
 
@@ -264,8 +264,7 @@ namespace RTGen.C.Generators
             Log.Info($"generated {generated}, excluded {excluded}, removed {orphans.Count}, no output {withoutOutput.Count}");
             if (withoutOutput.Count > 0)
             {
-                Log.Info("No output produced (no interface found, or the header could not be parsed). "
-                         + "Previously generated files were left untouched:");
+                Log.Info("No output produced, previously generated files were left untouched:");
                 foreach (string name in withoutOutput)
                 {
                     Log.Info($"    {name}");
@@ -315,25 +314,35 @@ namespace RTGen.C.Generators
         protected string GetIntfIDDeclaration()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine(base.Indentation + $"EXPORTED extern const {Prefix}IntfID {PrefixUpper}{RtFile.CurrentClass.Type.NonInterfaceName.ToLowerSnakeCase().ToUpper()}_INTF_ID;");
-            sb.AppendLine(base.Indentation + $"void EXPORTED {Prefix}{RtFile.CurrentClass.Type.NonInterfaceName}_getInterfaceId({Prefix}IntfID* intfId);");
+            foreach (IRTInterface rtClass in RtFile.Classes)
+            {
+                string name = rtClass.Type.NonInterfaceName;
+                sb.AppendLine(base.Indentation + $"EXPORTED extern const {Prefix}IntfID {PrefixUpper}{name.ToLowerSnakeCase().ToUpper()}_INTF_ID;");
+                sb.AppendLine(base.Indentation + $"void EXPORTED {Prefix}{name}_getInterfaceId({Prefix}IntfID* intfId);");
+            }
             return sb.ToString();
         }
 
         protected string GetIntfIDDefinition()
         {
             StringBuilder sb = new StringBuilder();
-            string ns = RtFile.CurrentClass.Type.Namespace.ToString();
-            string iface = RtFile.CurrentClass.Type.Name;
+            foreach (IRTInterface rtClass in RtFile.Classes)
+            {
+                string ns = rtClass.Type.Namespace.ToString();
+                string iface = rtClass.Type.Name;
+                string name = rtClass.Type.NonInterfaceName;
+                string id = $"{PrefixUpper}{name.ToLowerSnakeCase().ToUpper()}_INTF_ID";
 
-            sb.Append($"const {Prefix}IntfID {PrefixUpper}{RtFile.CurrentClass.Type.NonInterfaceName.ToLowerSnakeCase().ToUpper()}_INTF_ID = ");
-            sb.AppendLine($"{{ {ns}::{iface}::Id.Data1, {ns}::{iface}::Id.Data2, {ns}::{iface}::Id.Data3, {ns}::{iface}::Id.Data4_UInt64 }};");
-            sb.AppendLine("");
-            sb.AppendLine($"void {Prefix}{RtFile.CurrentClass.Type.NonInterfaceName}_getInterfaceId({Prefix}IntfID* intfId)");
-            sb.AppendLine("{");
-            sb.AppendLine(base.Indentation + $"*intfId = {PrefixUpper}{RtFile.CurrentClass.Type.NonInterfaceName.ToLowerSnakeCase().ToUpper()}_INTF_ID;");
-            sb.AppendLine("}");
-            return sb.ToString();
+                sb.Append($"const {Prefix}IntfID {id} = ");
+                sb.AppendLine($"{{ {ns}::{iface}::Id.Data1, {ns}::{iface}::Id.Data2, {ns}::{iface}::Id.Data3, {ns}::{iface}::Id.Data4_UInt64 }};");
+                sb.AppendLine("");
+                sb.AppendLine($"void {Prefix}{name}_getInterfaceId({Prefix}IntfID* intfId)");
+                sb.AppendLine("{");
+                sb.AppendLine(base.Indentation + $"*intfId = {id};");
+                sb.AppendLine("}");
+                sb.AppendLine("");
+            }
+            return sb.ToString().TrimEnd() + Environment.NewLine;
         }
 
         protected string GetTypedefs()
@@ -364,12 +373,20 @@ namespace RTGen.C.Generators
             return Path.Combine(Path.GetDirectoryName(templatePath), "c.header.template");
         }
 
+        /// <summary>Gets the namespace of the interface, falling back to the library one.</summary>
+        /// <param name="iface">Interface being generated, which is a placeholder for factory only headers.</param>
+        protected string GetNamespace(IRTInterface iface)
+        {
+            string ns = iface?.Type?.Namespace?.ToString();
+            return String.IsNullOrEmpty(ns) ? Options.LibraryInfo.Namespace?.ToString() ?? "daq" : ns;
+        }
+
         protected string ArgumentListToString(IEnumerable<IArgument> args, string separator)
         {
             return String.Join(separator, args.Select(arg => arg.Name));
         }
 
-        protected string ArgumentsToString<T>(T methodOrFactory, ArgsListType listType)
+        protected string ArgumentsToString<T>(IRTInterface iface, T methodOrFactory, ArgsListType listType)
         {
             IRTFactory factory = methodOrFactory as IRTFactory;
             IMethod method = methodOrFactory as IMethod;
@@ -380,7 +397,7 @@ namespace RTGen.C.Generators
             //adding self pointer to the method declaration
             if (listType == ArgsListType.MethodDeclaration && method != null)
             {
-                IArgument self = new Argument(RtFile.CurrentClass.Type, "self");
+                IArgument self = new Argument(iface.Type, "self");
                 self.Type.Modifiers = "*";
                 args.Insert(0, self);
             }
@@ -449,11 +466,28 @@ namespace RTGen.C.Generators
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Stands in for the current interface when a header declares only factories. Its name never reaches
+        /// the output: no interface id block and no methods are emitted for it, and the factories carry the
+        /// name of the interface they create.
+        /// </summary>
+        private IRTInterface GetCurrentOrPlaceholderClass()
+        {
+            if (RtFile.CurrentClass != null)
+            {
+                return RtFile.CurrentClass;
+            }
+
+            string ns = Options.LibraryInfo.Namespace?.ToString() ?? "daq";
+            ITypeName type = new TypeName(RtFile.AttributeInfo, ns, "IBaseObject");
+            return new RTInterface { Type = type, BaseType = type };
+        }
+
         protected void GenerateHeader(string templatePath, string outputPath)
         {
             string methodTemplatePath = Path.Combine(Path.GetDirectoryName(templatePath), Path.GetFileNameWithoutExtension(templatePath) + ".method.template");
 
-            SetVariables(RtFile.CurrentClass, templatePath);
+            SetVariables(GetCurrentOrPlaceholderClass(), templatePath);
             StringBuilder methods = GenerateMethodsHeader(methodTemplatePath);
             methods.TrimTrailingNewLines();
 
@@ -462,13 +496,13 @@ namespace RTGen.C.Generators
             Variables["typedefs"] = GetTypedefs();
             Variables["intfid_declaration"] = GetIntfIDDeclaration();
 
-            GenerateOutput(RtFile.CurrentClass, templatePath, outputPath);
+            GenerateOutput(GetCurrentOrPlaceholderClass(), templatePath, outputPath);
         }
         protected void GenerateSource(string templatePath, string outputPath)
         {
             string methodTemplatePath = Path.Combine(Path.GetDirectoryName(templatePath), Path.GetFileNameWithoutExtension(templatePath) + ".method.template");
 
-            SetVariables(RtFile.CurrentClass, templatePath);
+            SetVariables(GetCurrentOrPlaceholderClass(), templatePath);
             StringBuilder methods = GenerateMethodsSource(methodTemplatePath);
             methods.TrimTrailingNewLines();
 
@@ -476,7 +510,7 @@ namespace RTGen.C.Generators
             Variables["headers"] = GetIncludes(RtFile);
             Variables["intfid_definition"] = GetIntfIDDefinition();
 
-            GenerateOutput(RtFile.CurrentClass, templatePath, outputPath);
+            GenerateOutput(GetCurrentOrPlaceholderClass(), templatePath, outputPath);
         }
 
         protected void GenerateOutput(IRTInterface rtClass, string templatePath, string outputPath)
@@ -546,7 +580,7 @@ namespace RTGen.C.Generators
                         }
                         return typeName;
                     case "Arguments":
-                        return ArgumentsToString(methodOrFactory, ArgsListType.MethodDeclaration);
+                        return ArgumentsToString(iface, methodOrFactory, ArgsListType.MethodDeclaration);
                     default:
                         LogIgnoredVariable(variable, templatePath);
                         return string.Empty;
@@ -574,14 +608,14 @@ namespace RTGen.C.Generators
                     case "ArgTypeFull":
                         //a factory can create an interface other than the one the file declares
                         return factory != null && !String.IsNullOrEmpty(factory.InterfaceName)
-                                   ? $"{iface.Type.Namespace}::{factory.InterfaceName}"
+                                   ? $"{GetNamespace(iface)}::{factory.InterfaceName}"
                                    : iface.Type.FullName();
                     case "FactoryName":
-                        return iface.Type.Namespace.ToString() + "::" + overload.Method.Name;
+                        return GetNamespace(iface) + "::" + overload.Method.Name;
                     case "Arguments":
-                        return ArgumentsToString(methodOrFactory, ArgsListType.MethodDeclaration);
+                        return ArgumentsToString(iface, methodOrFactory, ArgsListType.MethodDeclaration);
                     case "ArgumentsForwarding":
-                        return ArgumentsToString(methodOrFactory, ArgsListType.ArgsForwarding);
+                        return ArgumentsToString(iface, methodOrFactory, ArgsListType.ArgsForwarding);
                     default:
                         LogIgnoredVariable(variable, templatePath);
                         return string.Empty;
@@ -592,7 +626,6 @@ namespace RTGen.C.Generators
 
         protected StringBuilder GenerateMethodsHeader(string templatePath)
         {
-            IRTInterface rtClass = RtFile.CurrentClass;
             StringBuilder methods = new StringBuilder();
             if (!File.Exists(templatePath))
             {
@@ -605,31 +638,35 @@ namespace RTGen.C.Generators
             string methodDeclarationTemplate = methodTemplate[0];
             string factoryDeclarationTemplate = methodTemplate[1];
 
-            foreach (IMethod method in rtClass.Methods)
+            foreach (IRTInterface rtClass in RtFile.Classes)
             {
-                string template = methodDeclarationTemplate;
-
-                if (!HandleMemberMethod(rtClass, method))
+                foreach (IMethod method in rtClass.Methods)
                 {
-                    continue;
+                    string template = methodDeclarationTemplate;
+
+                    if (!HandleMemberMethod(rtClass, method))
+                    {
+                        continue;
+                    }
+
+                    string generatedMethod = ReplacementRegex.Replace(template, m =>
+                    {
+                        string variable = m.Groups[1].Value;
+                        return ReplaceVariable(variable, GeneratorType.Header, rtClass, method, templatePath);
+                    });
+
+                    methods.AppendLine(base.Indentation + generatedMethod);
                 }
-
-                string generatedMethod = ReplacementRegex.Replace(template, m =>
-                {
-                    string variable = m.Groups[1].Value;
-                    return ReplaceVariable(variable, GeneratorType.Header, rtClass, method, templatePath);
-                });
-
-                methods.AppendLine(base.Indentation + generatedMethod);
             }
 
+            IRTInterface factoryClass = GetCurrentOrPlaceholderClass();
             foreach (IRTFactory factory in RtFile.Factories)
             {
                 IOverload factoryMethod = factory.ToOverload();
                 string generatedFactory = ReplacementRegex.Replace(factoryDeclarationTemplate, m =>
                 {
                     string variable = m.Groups[1].Value;
-                    return ReplaceVariable(variable, GeneratorType.Header, rtClass, factory, templatePath);
+                    return ReplaceVariable(variable, GeneratorType.Header, factoryClass, factory, templatePath);
                 });
 
                 methods.AppendLine(base.Indentation + generatedFactory);
@@ -640,7 +677,6 @@ namespace RTGen.C.Generators
 
         protected StringBuilder GenerateMethodsSource(string templatePath)
         {
-            IRTInterface rtClass = RtFile.CurrentClass;
             StringBuilder methods = new StringBuilder();
             if (!File.Exists(templatePath))
             {
@@ -659,62 +695,66 @@ namespace RTGen.C.Generators
             string returnZeroTemplate = methodTemplate[6];
             string returnErrorTemplate = methodTemplate[7];
 
-            foreach (IMethod method in rtClass.Methods)
+            foreach (IRTInterface rtClass in RtFile.Classes)
             {
-                if (!HandleMemberMethod(rtClass, method))
+                foreach (IMethod method in rtClass.Methods)
                 {
-                    continue;
+                    if (!HandleMemberMethod(rtClass, method))
+                    {
+                        continue;
+                    }
+
+                    string generatedMethod = ReplacementRegex.Replace(methodDefinitionTemplate, m =>
+                    {
+                        string variable = m.Groups[1].Value;
+
+                        string customVariable = GetMethodVariable(method, variable);
+                        if (customVariable != null)
+                        {
+                            return customVariable;
+                        }
+
+                        return ReplaceVariable(variable, GeneratorType.Source, rtClass, method, templatePath);
+                    });
+
+                    string generatedMethodImpl = ReplacementRegex.Replace(implMethodTemplate, m =>
+                    {
+                        string variable = m.Groups[1].Value;
+                        string customVariable = GetMethodVariable(method, variable);
+                        if (customVariable != null)
+                        {
+                            return customVariable;
+                        }
+                        return ReplaceVariable(variable, GeneratorType.Source, rtClass, method, templatePath);
+                    });
+
+                    methods.AppendLine(generatedMethod);
+                    methods.AppendLine("{");
+                    methods.AppendLine(base.Indentation + generatedMethodImpl);
+                    methods.AppendLine("}");
+                    methods.AppendLine();
                 }
-
-                string generatedMethod = ReplacementRegex.Replace(methodDefinitionTemplate, m =>
-                {
-                    string variable = m.Groups[1].Value;
-
-                    string customVariable = GetMethodVariable(method, variable);
-                    if (customVariable != null)
-                    {
-                        return customVariable;
-                    }
-
-                    return ReplaceVariable(variable, GeneratorType.Source, rtClass, method, templatePath);
-                });
-
-                string generatedMethodImpl = ReplacementRegex.Replace(implMethodTemplate, m =>
-                {
-                    string variable = m.Groups[1].Value;
-                    string customVariable = GetMethodVariable(method, variable);
-                    if (customVariable != null)
-                    {
-                        return customVariable;
-                    }
-                    return ReplaceVariable(variable, GeneratorType.Source, rtClass, method, templatePath);
-                });
-
-                methods.AppendLine(generatedMethod);
-                methods.AppendLine("{");
-                methods.AppendLine(base.Indentation + generatedMethodImpl);
-                methods.AppendLine("}");
-                methods.AppendLine();
             }
 
+            IRTInterface factoryClass = GetCurrentOrPlaceholderClass();
             foreach (IRTFactory factory in RtFile.Factories)
             {
                 IOverload factoryMethod = factory.ToOverload();
 
                 string generatedFactory = ReplacementRegex.Replace(factoryDefinitionTemplate, m =>
-                    ReplaceVariable(m.Groups[1].Value, GeneratorType.Source, rtClass, factory, templatePath)
+                    ReplaceVariable(m.Groups[1].Value, GeneratorType.Source, factoryClass, factory, templatePath)
                 );
 
                 string objectPointer = ReplacementRegex.Replace(pointerDeclarationTemplate, m =>
-                    ReplaceVariable(m.Groups[1].Value, GeneratorType.Source, rtClass, factory, templatePath)
+                    ReplaceVariable(m.Groups[1].Value, GeneratorType.Source, factoryClass, factory, templatePath)
                 );
 
                 string factoryCall = ReplacementRegex.Replace(factoryCallTemplate, m =>
-                    ReplaceVariable(m.Groups[1].Value, GeneratorType.Source, rtClass, factory, templatePath)
+                    ReplaceVariable(m.Groups[1].Value, GeneratorType.Source, factoryClass, factory, templatePath)
                 );
 
                 string objectPointerCast = ReplacementRegex.Replace(pointerCastTemplate, m =>
-                    ReplaceVariable(m.Groups[1].Value, GeneratorType.Source, rtClass, factory, templatePath)
+                    ReplaceVariable(m.Groups[1].Value, GeneratorType.Source, factoryClass, factory, templatePath)
                 );
 
                 methods.AppendLine(generatedFactory);

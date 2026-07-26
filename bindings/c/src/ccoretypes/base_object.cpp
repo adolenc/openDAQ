@@ -36,7 +36,7 @@ daqErrCode daqBaseObject_toString(daqBaseObject* self, daqCCharPtr* str)
     return static_cast<daq::IBaseObject*>(self)->toString(str);
 }
 
-daqErrCode daqBaseObject_create(daqBaseObject** baseObject)
+daqErrCode daqBaseObject_createBaseObject(daqBaseObject** baseObject)
 {
     *baseObject = reinterpret_cast<daqBaseObject*>(daq::BaseObject_Create());
     return *baseObject == nullptr ? OPENDAQ_ERR_NOMEMORY : OPENDAQ_SUCCESS;
