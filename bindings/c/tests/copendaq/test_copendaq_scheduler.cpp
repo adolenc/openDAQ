@@ -4,9 +4,9 @@
 
 using COpendaqSchedulerTest = testing::Test;
 
-static daqCBool taskCalled = False;
-static daqCBool taskGraphCalled = False;
-static daqCBool functionCalled = False;
+static daqCBool taskCalled = daqFalse;
+static daqCBool taskGraphCalled = daqFalse;
+static daqCBool functionCalled = daqFalse;
 
 daqErrCode procedureTask(daqBaseObject*)
 {
@@ -82,9 +82,9 @@ TEST_F(COpendaqSchedulerTest, Scheduler)
 
     daqScheduler_waitAll(scheduler);
 
-    ASSERT_EQ(taskCalled, True);
-    ASSERT_EQ(functionCalled, True);
-    ASSERT_EQ(taskGraphCalled, True);
+    ASSERT_EQ(taskCalled, daqTrue);
+    ASSERT_EQ(functionCalled, daqTrue);
+    ASSERT_EQ(taskGraphCalled, daqTrue);
 
     daqBaseObject_releaseRef(awaitable2);
     daqBaseObject_releaseRef(function);

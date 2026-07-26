@@ -45,8 +45,13 @@ extern "C"
     typedef uint32_t daqCEnumType;
     typedef void daqBaseObject;
 
-    const daqCBool True = 1;
-    const daqCBool False = 0;
+    /* Enumerators rather than constants: a file scope "const" in a header is a definition with
+       external linkage in C, so it would be emitted by every translation unit that includes this. */
+    enum
+    {
+        daqFalse = 0,
+        daqTrue = 1
+    };
 
     typedef enum daqCCoreType
     {

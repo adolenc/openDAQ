@@ -45,7 +45,7 @@ TEST_F(CCoreobjectsTest, AuthenticationProvider)
     daqList* userList = nullptr;
     daqList_createList(&userList);
     daqList_pushBack(userList, user);
-    err = daqAuthenticationProvider_createStaticAuthenticationProvider(&authProvider, True, userList);
+    err = daqAuthenticationProvider_createStaticAuthenticationProvider(&authProvider, daqTrue, userList);
     ASSERT_EQ(err, 0u);
 
     daqUser* userOut = nullptr;
@@ -88,10 +88,10 @@ TEST_F(CCoreobjectsTest, CallableInfo)
     daqArgumentInfo_createArgumentInfo(&argInfo, name, daqCCoreType::daqCtInt);
     daqList_pushBack(argumentInfo, argInfo);
 
-    err = daqCallableInfo_createCallableInfo(&callableInfo, argumentInfo, daqCCoreType::daqCtInt, True);
+    err = daqCallableInfo_createCallableInfo(&callableInfo, argumentInfo, daqCCoreType::daqCtInt, daqTrue);
     ASSERT_EQ(err, 0u);
 
-    daqCBool isConst = False;
+    daqCBool isConst = daqFalse;
     daqCCoreType returnType = daqCCoreType::daqCtUndefined;
     daqList* arguments = nullptr;
 
@@ -99,7 +99,7 @@ TEST_F(CCoreobjectsTest, CallableInfo)
     daqCallableInfo_getReturnType(callableInfo, &returnType);
     daqCallableInfo_getArguments(callableInfo, &arguments);
 
-    ASSERT_EQ(isConst, True);
+    ASSERT_EQ(isConst, daqTrue);
     ASSERT_EQ(returnType, daqCCoreType::daqCtInt);
     ASSERT_NE(arguments, nullptr);
     daqCSizeT size = 0;
@@ -141,7 +141,7 @@ TEST_F(CCoreobjectsTest, CoreEventArgs)
 {
 }
 
-static daqCBool eventCalled = False;
+static daqCBool eventCalled = daqFalse;
 static void onPropertyObjectUpdateEnd(daqBaseObject* sender, daqBaseObject* args)
 {
     daqEndUpdateEventArgs* eventArgs = (daqEndUpdateEventArgs*) args;
@@ -150,7 +150,7 @@ static void onPropertyObjectUpdateEnd(daqBaseObject* sender, daqBaseObject* args
     daqCSizeT count = 0;
     daqList_getCount(properties, &count);
     if (count == 0u)
-        eventCalled = True;
+        eventCalled = daqTrue;
 
     daqBaseObject_releaseRef(properties);
     daqBaseObject_releaseRef(sender);
@@ -172,7 +172,7 @@ TEST_F(CCoreobjectsTest, EndUpdateEventArgs)
 
     daqPropertyObject_beginUpdate(propObj);
     daqPropertyObject_endUpdate(propObj);
-    ASSERT_EQ(eventCalled, True);
+    ASSERT_EQ(eventCalled, daqTrue);
 
     daqBaseObject_releaseRef(handler);
     daqBaseObject_releaseRef(event);
@@ -189,7 +189,7 @@ TEST_F(CCoreobjectsTest, EvalValue)
     daqInteger* defaultValue = nullptr;
     daqInteger_createInteger(&defaultValue, 10);
     daqBoolean* visible = nullptr;
-    daqBoolean_createBoolean(&visible, True);
+    daqBoolean_createBoolean(&visible, daqTrue);
     daqProperty* prop = nullptr;
     daqProperty_createIntProperty(&prop, name, defaultValue, visible);
 
@@ -283,25 +283,25 @@ TEST_F(CCoreobjectsTest, Permissions)
     daqPermissionsBuilder_build(permissionsBuilder, &adminPermissions);
 
     daqPermissionManager_setPermissions(manager, adminPermissions);
-    daqCBool isAuthorized = False;
+    daqCBool isAuthorized = daqFalse;
     daqPermissionManager_isAuthorized(manager, admin, daqPermission::daqPermissionRead, &isAuthorized);
-    ASSERT_EQ(isAuthorized, True);
-    isAuthorized = False;
+    ASSERT_EQ(isAuthorized, daqTrue);
+    isAuthorized = daqFalse;
     daqPermissionManager_isAuthorized(manager, admin, daqPermission::daqPermissionWrite, &isAuthorized);
-    ASSERT_EQ(isAuthorized, True);
-    isAuthorized = False;
+    ASSERT_EQ(isAuthorized, daqTrue);
+    isAuthorized = daqFalse;
     daqPermissionManager_isAuthorized(manager, admin, daqPermission::daqPermissionExecute, &isAuthorized);
-    ASSERT_EQ(isAuthorized, False);
+    ASSERT_EQ(isAuthorized, daqFalse);
 
-    isAuthorized = False;
+    isAuthorized = daqFalse;
     daqPermissionManager_isAuthorized(manager, guest, daqPermission::daqPermissionRead, &isAuthorized);
-    ASSERT_EQ(isAuthorized, False);
-    isAuthorized = False;
+    ASSERT_EQ(isAuthorized, daqFalse);
+    isAuthorized = daqFalse;
     daqPermissionManager_isAuthorized(manager, guest, daqPermission::daqPermissionWrite, &isAuthorized);
-    ASSERT_EQ(isAuthorized, False);
-    isAuthorized = False;
+    ASSERT_EQ(isAuthorized, daqFalse);
+    isAuthorized = daqFalse;
     daqPermissionManager_isAuthorized(manager, guest, daqPermission::daqPermissionExecute, &isAuthorized);
-    ASSERT_EQ(isAuthorized, False);
+    ASSERT_EQ(isAuthorized, daqFalse);
 
     daqBaseObject_releaseRef(manager);
     daqBaseObject_releaseRef(adminPermissions);
@@ -325,7 +325,7 @@ TEST_F(CCoreobjectsTest, Property)
     daqInteger* defaultValue = nullptr;
     daqInteger_createInteger(&defaultValue, 10);
     daqBoolean* visible = nullptr;
-    daqBoolean_createBoolean(&visible, True);
+    daqBoolean_createBoolean(&visible, daqTrue);
     err = daqProperty_createIntProperty(&prop, name, defaultValue, visible);
     ASSERT_EQ(err, 0u);
     daqInteger* defaultValueOut = nullptr;
@@ -341,9 +341,9 @@ TEST_F(CCoreobjectsTest, Property)
     daqString_getCharPtr(nameOut, &str);
     ASSERT_STREQ(str, "test_property");
 
-    daqCBool isVisible = False;
+    daqCBool isVisible = daqFalse;
     daqProperty_getVisible(prop, &isVisible);
-    ASSERT_EQ(isVisible, True);
+    ASSERT_EQ(isVisible, daqTrue);
 
     daqBaseObject_releaseRef(nameOut);
     daqBaseObject_releaseRef(name);
@@ -363,7 +363,7 @@ TEST_F(CCoreobjectsTest, PropertyBuilder)
     daqInteger* defaultValue = nullptr;
     daqInteger_createInteger(&defaultValue, 10);
     daqBoolean* visible = nullptr;
-    daqBoolean_createBoolean(&visible, True);
+    daqBoolean_createBoolean(&visible, daqTrue);
     err = daqPropertyBuilder_createIntPropertyBuilder(&propBuilder, name, defaultValue);
     ASSERT_EQ(err, 0u);
     err = daqPropertyBuilder_setVisible(propBuilder, visible);
@@ -385,9 +385,9 @@ TEST_F(CCoreobjectsTest, PropertyBuilder)
     daqString_getCharPtr(nameOut, &str);
     ASSERT_STREQ(str, "test_property");
 
-    daqCBool isVisible = False;
+    daqCBool isVisible = daqFalse;
     daqProperty_getVisible(property, &isVisible);
-    ASSERT_EQ(isVisible, True);
+    ASSERT_EQ(isVisible, daqTrue);
 
     daqBaseObject_releaseRef(nameOut);
     daqBaseObject_releaseRef(name);
@@ -412,7 +412,7 @@ TEST_F(CCoreobjectsTest, PropertyObject)
     daqInteger* defaultValue = nullptr;
     daqInteger_createInteger(&defaultValue, 10);
     daqBoolean* visible = nullptr;
-    daqBoolean_createBoolean(&visible, True);
+    daqBoolean_createBoolean(&visible, daqTrue);
     err = daqProperty_createIntProperty(&prop, name, defaultValue, visible);
     ASSERT_EQ(err, 0u);
     err = daqPropertyObject_addProperty(propObj, prop);
@@ -423,21 +423,21 @@ TEST_F(CCoreobjectsTest, PropertyObject)
     ASSERT_EQ(err, 0u);
     ASSERT_NE(propOut, nullptr);
 
-    daqCBool equal = False;
+    daqCBool equal = daqFalse;
     err = daqBaseObject_equals(prop, propOut, &equal);
     ASSERT_EQ(err, 0u);
-    ASSERT_EQ(equal, True);
+    ASSERT_EQ(equal, daqTrue);
 
     err = daqPropertyObject_hasProperty(propObj, name, &equal);
     ASSERT_EQ(err, 0u);
-    ASSERT_EQ(equal, True);
+    ASSERT_EQ(equal, daqTrue);
 
     err = daqPropertyObject_removeProperty(propObj, name);
     ASSERT_EQ(err, 0u);
 
     err = daqPropertyObject_hasProperty(propObj, name, &equal);
     ASSERT_EQ(err, 0u);
-    ASSERT_EQ(equal, False);
+    ASSERT_EQ(equal, daqFalse);
 
     daqBaseObject_releaseRef(propOut);
     daqBaseObject_releaseRef(name);
@@ -465,7 +465,7 @@ TEST_F(CCoreobjectsTest, PropertyObjectClass)
     daqInteger* defaultValue = nullptr;
     daqInteger_createInteger(&defaultValue, 10);
     daqBoolean* visible = nullptr;
-    daqBoolean_createBoolean(&visible, True);
+    daqBoolean_createBoolean(&visible, daqTrue);
     err = daqProperty_createIntProperty(&prop, propName, defaultValue, visible);
     ASSERT_EQ(err, 0u);
 
@@ -480,10 +480,10 @@ TEST_F(CCoreobjectsTest, PropertyObjectClass)
     ASSERT_EQ(err, 0u);
     ASSERT_NE(propOut, nullptr);
 
-    daqCBool equal = False;
+    daqCBool equal = daqFalse;
     err = daqBaseObject_equals(prop, propOut, &equal);
     ASSERT_EQ(err, 0u);
-    ASSERT_EQ(equal, True);
+    ASSERT_EQ(equal, daqTrue);
 
     daqBaseObject_releaseRef(propOut);
     daqBaseObject_releaseRef(propName);
@@ -509,7 +509,7 @@ TEST_F(CCoreobjectsTest, PropertyObjectProtected)
     daqInteger* defaultValue = nullptr;
     daqInteger_createInteger(&defaultValue, 10);
     daqBoolean* readOnly = nullptr;
-    daqBoolean_createBoolean(&readOnly, True);
+    daqBoolean_createBoolean(&readOnly, daqTrue);
     daqPropertyBuilder_createIntPropertyBuilder(&propBuilder, name, defaultValue);
     daqPropertyBuilder_setReadOnly(propBuilder, readOnly);
     daqProperty* prop = nullptr;
@@ -552,7 +552,7 @@ TEST_F(CCoreobjectsTest, PropertyValueEventArgs)
     daqInteger* defaultValue = nullptr;
     daqInteger_createInteger(&defaultValue, 10);
     daqBoolean* visible = nullptr;
-    daqBoolean_createBoolean(&visible, True);
+    daqBoolean_createBoolean(&visible, daqTrue);
 
     err = daqProperty_createIntProperty(&prop, name, defaultValue, visible);
     ASSERT_EQ(err, 0u);
@@ -564,22 +564,22 @@ TEST_F(CCoreobjectsTest, PropertyValueEventArgs)
     daqInteger_createInteger(&value2, 30);
 
     err = daqPropertyValueEventArgs_createPropertyValueEventArgs(
-        &eventArgs, prop, value2, value1, daqPropertyEventType::daqPropertyEventTypeEventTypeUpdate, False);
+        &eventArgs, prop, value2, value1, daqPropertyEventType::daqPropertyEventTypeEventTypeUpdate, daqFalse);
     ASSERT_EQ(err, 0u);
     ASSERT_NE(eventArgs, nullptr);
 
     daqInteger* valueOut = nullptr;
     daqPropertyValueEventArgs_getValue(eventArgs, (daqBaseObject**) &valueOut);
     ASSERT_NE(valueOut, nullptr);
-    daqCBool equal = False;
+    daqCBool equal = daqFalse;
     err = daqBaseObject_equals(valueOut, value2, &equal);
-    ASSERT_EQ(equal, True);
+    ASSERT_EQ(equal, daqTrue);
     daqBaseObject_releaseRef(valueOut);
 
     daqPropertyValueEventArgs_getOldValue(eventArgs, (daqBaseObject**) &valueOut);
     ASSERT_NE(valueOut, nullptr);
     err = daqBaseObject_equals(valueOut, value1, &equal);
-    ASSERT_EQ(equal, True);
+    ASSERT_EQ(equal, daqTrue);
 
     daqBaseObject_releaseRef(valueOut);
     daqBaseObject_releaseRef(value1);

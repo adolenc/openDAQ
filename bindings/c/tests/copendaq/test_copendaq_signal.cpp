@@ -332,7 +332,7 @@ TEST_F(COpendaqSignalTest, InputPort)
     daqContext* ctx = createContext();
     daqString* id = nullptr;
     daqString_createString(&id, "daqInputPort");
-    daqInputPortConfig_createInputPort(&inputPortConfig, ctx, nullptr, id, False);
+    daqInputPortConfig_createInputPort(&inputPortConfig, ctx, nullptr, id, daqFalse);
     ASSERT_NE(inputPortConfig, nullptr);
 
     daqBaseObject_releaseRef(id);
@@ -423,9 +423,9 @@ TEST_F(COpendaqSignalTest, Scaling)
     daqScaling_getParameters(scaling, &scalingParams);
     ASSERT_NE(scalingParams, nullptr);
 
-    daqCBool equal = False;
+    daqCBool equal = daqFalse;
     daqBaseObject_equals(scalingParams, params, &equal);
-    ASSERT_EQ(equal, True);
+    ASSERT_EQ(equal, daqTrue);
 
     daqBaseObject_releaseRef(scalingParams);
     daqBaseObject_releaseRef(scaling);

@@ -36,12 +36,12 @@ TEST_F(CCoretypesTest, Boolean)
 {
     daqBoolean* b = nullptr;
     daqErrCode err = 0u;
-    daqCBool value = False;
+    daqCBool value = daqFalse;
     err = daqBoolean_createBoolean(&b, value);
     ASSERT_EQ(err, 0u);
     err = daqBoolean_getValue(b, &value);
     ASSERT_EQ(err, 0u);
-    ASSERT_EQ(value, False);
+    ASSERT_EQ(value, daqFalse);
     daqBaseObject_releaseRef(b);
 }
 
@@ -64,9 +64,9 @@ TEST_F(CCoretypesTest, Cloneable)
     daqCloneable_clone(c, (daqBaseObject**) &clonedList);
     ASSERT_NE(clonedList, nullptr);
 
-    daqCBool eq = False;
+    daqCBool eq = daqFalse;
     daqBaseObject_equals(list, clonedList, &eq);
-    ASSERT_EQ(eq, True);
+    ASSERT_EQ(eq, daqTrue);
 
     daqList_pushBack(clonedList, i2);
 
@@ -75,7 +75,7 @@ TEST_F(CCoretypesTest, Cloneable)
     ASSERT_EQ(count, 1u);
 
     daqBaseObject_equals(list, clonedList, &eq);
-    ASSERT_EQ(eq, False);
+    ASSERT_EQ(eq, daqFalse);
 
     daqBaseObject_releaseRef(clonedList);
     daqBaseObject_releaseRef(list);
@@ -252,10 +252,10 @@ TEST_F(CCoretypesTest, EventArgs)
     daqBaseObject_releaseRef(args);
 }
 
-static daqCBool eventCalled = False;
+static daqCBool eventCalled = daqFalse;
 static void onEvent(daqBaseObject* sender, daqBaseObject* args)
 {
-    eventCalled = True;
+    eventCalled = daqTrue;
     daqBaseObject_releaseRef(sender);
     daqBaseObject_releaseRef(args);
 }
@@ -269,7 +269,7 @@ TEST_F(CCoretypesTest, EventHandler)
     daqBaseObject_create(&args);
     daqEventHandler_createEventHandler(&eh, onEvent);
     daqEventHandler_handleEvent(eh, sender, (daqEventArgs*) args);
-    ASSERT_EQ(eventCalled, True);
+    ASSERT_EQ(eventCalled, daqTrue);
 
     daqBaseObject_releaseRef(sender);
     daqBaseObject_releaseRef(args);
@@ -296,28 +296,28 @@ TEST_F(CCoretypesTest, Freezable)
     daqErrCode err = 0u;
     err = daqList_createList(&list);
     ASSERT_EQ(err, 0u);
-    daqCBool isFrozen = False;
+    daqCBool isFrozen = daqFalse;
     err = daqBaseObject_borrowInterface(list, DAQ_FREEZABLE_INTF_ID, (daqBaseObject**) &f);
     ASSERT_EQ(err, 0u);
 
     err = daqFreezable_isFrozen(f, &isFrozen);
     ASSERT_EQ(err, 0u);
-    ASSERT_EQ(isFrozen, False);
+    ASSERT_EQ(isFrozen, daqFalse);
 
     err = daqFreezable_freeze(f);
     ASSERT_EQ(err, 0u);
 
     err = daqFreezable_isFrozen(f, &isFrozen);
     ASSERT_EQ(err, 0u);
-    ASSERT_EQ(isFrozen, True);
+    ASSERT_EQ(isFrozen, daqTrue);
 
     daqBaseObject_releaseRef(list);
 }
 
-static daqCBool b = False;
+static daqCBool b = daqFalse;
 static daqErrCode func_call(daqBaseObject*, daqBaseObject**)
 {
-    b = True;
+    b = daqTrue;
     return 0;
 }
 
@@ -327,7 +327,7 @@ TEST_F(CCoretypesTest, Function)
     daqErrCode err = 0;
     err = daqFunction_createFunction(&f, func_call);
     ASSERT_EQ(err, 0u);
-    ASSERT_EQ(b, False);
+    ASSERT_EQ(b, daqFalse);
 
     daqBaseObject* params = nullptr;
     daqBaseObject* result = nullptr;
@@ -337,7 +337,7 @@ TEST_F(CCoretypesTest, Function)
 
     err = daqFunction_call(f, params, &result);
     ASSERT_EQ(err, 0u);
-    ASSERT_EQ(b, True);
+    ASSERT_EQ(b, daqTrue);
     daqBaseObject_releaseRef(f);
     daqBaseObject_releaseRef(params);
     daqBaseObject_releaseRef(result);
@@ -386,12 +386,12 @@ TEST_F(CCoretypesTest, Iterable)
     ASSERT_EQ(err, 0u);
 
     // iterate
-    daqCBool eq = False;
+    daqCBool eq = daqFalse;
     int i = 0;
     int a[2] = {3, 4};
     daqIterator_moveNext(itb);  // iterator needs to be moved for the first use
     daqBaseObject_equals(itb, ite, &eq);
-    while (eq == False)
+    while (eq == daqFalse)
     {
         daqInteger* tmp = nullptr;
         err = daqIterator_getCurrent(itb, (daqBaseObject**) &tmp);
@@ -494,10 +494,10 @@ TEST_F(CCoretypesTest, Number)
 
 typedef daqErrCode (*ProcCall)(daqBaseObject*);
 
-static daqCBool b2 = False;
+static daqCBool b2 = daqFalse;
 static daqErrCode proc_call(daqBaseObject*)
 {
-    b2 = True;
+    b2 = daqTrue;
     return 0;
 }
 
@@ -507,10 +507,10 @@ TEST_F(CCoretypesTest, Procedure)
     daqErrCode err = 0;
     err = daqProcedure_createProcedure(&p, proc_call);
     ASSERT_EQ(err, 0u);
-    ASSERT_EQ(b2, False);
+    ASSERT_EQ(b2, daqFalse);
     err = daqProcedure_dispatch(p, nullptr);
     ASSERT_EQ(err, 0u);
-    ASSERT_EQ(b2, True);
+    ASSERT_EQ(b2, daqTrue);
     daqBaseObject_releaseRef(p);
 }
 
@@ -540,7 +540,7 @@ TEST_F(CCoretypesTest, Serializable)
     daqSerializer* serializer = nullptr;
     daqErrCode err = 0u;
 
-    err = daqSerializer_createJsonSerializer(&serializer, False);
+    err = daqSerializer_createJsonSerializer(&serializer, daqFalse);
     ASSERT_EQ(err, 0u);
     err = daqList_createList(&list);
     ASSERT_EQ(err, 0u);

@@ -58,8 +58,8 @@ TEST_F(COpendaqComponentTest, ComponentPrivate)
 
     daqComponent_setName(component, name);
     daqComponent_setDescription(component, desc);
-    daqComponent_setActive(component, True);
-    daqComponent_setVisible(component, True);
+    daqComponent_setActive(component, daqTrue);
+    daqComponent_setVisible(component, daqTrue);
 
     daqComponentPrivate* priv = nullptr;
     daqBaseObject_borrowInterface(component, DAQ_COMPONENT_PRIVATE_INTF_ID, (void**) &priv);
@@ -74,16 +74,16 @@ TEST_F(COpendaqComponentTest, ComponentPrivate)
 
     daqComponent_setName(component, newName);
     daqComponent_setDescription(component, newDesc);
-    daqComponent_setActive(component, False);
-    daqComponent_setVisible(component, False);
+    daqComponent_setActive(component, daqFalse);
+    daqComponent_setVisible(component, daqFalse);
 
     daqString* outName = nullptr;
     daqComponent_getName(component, &outName);
     daqString* outDesc = nullptr;
     daqComponent_getDescription(component, &outDesc);
-    daqCBool active = False;
+    daqCBool active = daqFalse;
     daqComponent_getActive(component, &active);
-    daqCBool visible = False;
+    daqCBool visible = daqFalse;
     daqComponent_getVisible(component, &visible);
 
     daqCConstCharPtr nameStr = nullptr;
@@ -207,10 +207,10 @@ TEST_F(COpendaqComponentTest, Removable)
     daqBaseObject_borrowInterface(component, DAQ_REMOVABLE_INTF_ID, (void**) &rm);
 
     daqRemovable_remove(rm);
-    daqCBool isRemoved = False;
+    daqCBool isRemoved = daqFalse;
     daqRemovable_isRemoved(rm, &isRemoved);
 
-    ASSERT_EQ(isRemoved, True);
+    ASSERT_EQ(isRemoved, daqTrue);
 
     daqBaseObject_releaseRef(component);
     daqBaseObject_releaseRef(id);
