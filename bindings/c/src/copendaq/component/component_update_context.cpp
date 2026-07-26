@@ -37,9 +37,9 @@ daqErrCode daqComponentUpdateContext_removeInputPortConnection(daqComponentUpdat
     return reinterpret_cast<daq::IComponentUpdateContext*>(self)->removeInputPortConnection(reinterpret_cast<daq::IString*>(parentId));
 }
 
-daqErrCode daqComponentUpdateContext_setRootComponent(daqComponentUpdateContext* self, daqComponent* rootComponent)
+daqErrCode daqComponentUpdateContext_setRootComponent(daqComponentUpdateContext* self, daqComponent* baseComponent)
 {
-    return reinterpret_cast<daq::IComponentUpdateContext*>(self)->setRootComponent(reinterpret_cast<daq::IComponent*>(rootComponent));
+    return reinterpret_cast<daq::IComponentUpdateContext*>(self)->setRootComponent(reinterpret_cast<daq::IComponent*>(baseComponent));
 }
 
 daqErrCode daqComponentUpdateContext_getRootComponent(daqComponentUpdateContext* self, daqComponent** rootComponent)

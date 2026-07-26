@@ -22,7 +22,7 @@ void daqModuleAuthenticator_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_MODULE_AUTHENTICATOR_INTF_ID;
 }
 
-daqErrCode daqModuleAuthenticator_authenticateModuleBinary(daqModuleAuthenticator* self, daqBool* binaryValid, daqString** vendorKey, daqString* binaryPath)
+daqErrCode daqModuleAuthenticator_authenticateModuleBinary(daqModuleAuthenticator* self, daqCBool* binaryValid, daqString** vendorKey, daqString* binaryPath)
 {
     return reinterpret_cast<daq::IModuleAuthenticator*>(self)->authenticateModuleBinary(binaryValid, reinterpret_cast<daq::IString**>(vendorKey), reinterpret_cast<daq::IString*>(binaryPath));
 }

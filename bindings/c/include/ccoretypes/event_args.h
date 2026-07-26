@@ -40,9 +40,9 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_EVENT_ARGS_INTF_ID;
     void EXPORTED daqEventArgs_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqEventArgs_getEventId(daqEventArgs* self, daqInt* id);
+    daqErrCode EXPORTED daqEventArgs_getEventId(daqEventArgs* self, daqCInt* id);
     daqErrCode EXPORTED daqEventArgs_getEventName(daqEventArgs* self, daqString** name);
-    daqErrCode EXPORTED daqEventArgs_createEventArgs(daqEventArgs** obj, daqInt eventId, daqString* eventName);
+    daqErrCode EXPORTED daqEventArgs_createEventArgs(daqEventArgs** obj, daqCInt eventId, daqString* eventName);
 
 #ifdef __cplusplus
 }

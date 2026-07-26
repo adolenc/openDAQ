@@ -42,12 +42,12 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_TAIL_READER_INTF_ID;
     void EXPORTED daqTailReader_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqTailReader_read(daqTailReader* self, void* values, daqSizeT* count, daqTailReaderStatus** status);
-    daqErrCode EXPORTED daqTailReader_readWithDomain(daqTailReader* self, void* values, void* domain, daqSizeT* count, daqTailReaderStatus** status);
-    daqErrCode EXPORTED daqTailReader_getHistorySize(daqTailReader* self, daqSizeT* size);
-    daqErrCode EXPORTED daqTailReader_createTailReader(daqTailReader** obj, daqSignal* signal, daqSizeT historySize, daqSampleType valueReadType, daqSampleType domainReadType, daqReadMode mode);
-    daqErrCode EXPORTED daqTailReader_createTailReaderFromPort(daqTailReader** obj, daqInputPortConfig* port, daqSizeT historySize, daqSampleType valueReadType, daqSampleType domainReadType, daqReadMode mode);
-    daqErrCode EXPORTED daqTailReader_createTailReaderFromExisting(daqTailReader** obj, daqTailReader* invalidatedReader, daqSizeT historySize, daqSampleType valueReadType, daqSampleType domainReadType);
+    daqErrCode EXPORTED daqTailReader_read(daqTailReader* self, void* values, daqCSizeT* count, daqTailReaderStatus** status);
+    daqErrCode EXPORTED daqTailReader_readWithDomain(daqTailReader* self, void* values, void* domain, daqCSizeT* count, daqTailReaderStatus** status);
+    daqErrCode EXPORTED daqTailReader_getHistorySize(daqTailReader* self, daqCSizeT* size);
+    daqErrCode EXPORTED daqTailReader_createTailReader(daqTailReader** obj, daqSignal* signal, daqCSizeT historySize, daqSampleType valueReadType, daqSampleType domainReadType, daqReadMode mode);
+    daqErrCode EXPORTED daqTailReader_createTailReaderFromPort(daqTailReader** obj, daqInputPortConfig* port, daqCSizeT historySize, daqSampleType valueReadType, daqSampleType domainReadType, daqReadMode mode);
+    daqErrCode EXPORTED daqTailReader_createTailReaderFromExisting(daqTailReader** obj, daqTailReader* invalidatedReader, daqCSizeT historySize, daqSampleType valueReadType, daqSampleType domainReadType);
 
 #ifdef __cplusplus
 }

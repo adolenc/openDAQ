@@ -46,7 +46,7 @@ extern "C"
     daqErrCode EXPORTED daqEvent_removeHandler(daqEvent* self, daqEventHandler* eventHandler);
     daqErrCode EXPORTED daqEvent_trigger(daqEvent* self, daqBaseObject* sender, daqEventArgs* args);
     daqErrCode EXPORTED daqEvent_clear(daqEvent* self);
-    daqErrCode EXPORTED daqEvent_getSubscriberCount(daqEvent* self, daqSizeT* count);
+    daqErrCode EXPORTED daqEvent_getSubscriberCount(daqEvent* self, daqCSizeT* count);
     daqErrCode EXPORTED daqEvent_getSubscribers(daqEvent* self, daqList** subscribers);
     daqErrCode EXPORTED daqEvent_mute(daqEvent* self);
     daqErrCode EXPORTED daqEvent_unmute(daqEvent* self);

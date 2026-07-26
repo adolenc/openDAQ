@@ -43,7 +43,7 @@ extern "C"
     daqErrCode EXPORTED daqUserLock_lock(daqUserLock* self, daqUser* user);
     daqErrCode EXPORTED daqUserLock_unlock(daqUserLock* self, daqUser* user);
     daqErrCode EXPORTED daqUserLock_forceUnlock(daqUserLock* self);
-    daqErrCode EXPORTED daqUserLock_isLocked(daqUserLock* self, daqBool* isLockedOut);
+    daqErrCode EXPORTED daqUserLock_isLocked(daqUserLock* self, daqCBool* isLockedOut);
     daqErrCode EXPORTED daqUserLock_createUserLock(daqUserLock** obj);
 
 #ifdef __cplusplus

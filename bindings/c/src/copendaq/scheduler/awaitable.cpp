@@ -22,7 +22,7 @@ void daqAwaitable_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_AWAITABLE_INTF_ID;
 }
 
-daqErrCode daqAwaitable_cancel(daqAwaitable* self, daqBool* canceled)
+daqErrCode daqAwaitable_cancel(daqAwaitable* self, daqCBool* canceled)
 {
     return reinterpret_cast<daq::IAwaitable*>(self)->cancel(canceled);
 }
@@ -37,7 +37,7 @@ daqErrCode daqAwaitable_getResult(daqAwaitable* self, daqBaseObject** result)
     return reinterpret_cast<daq::IAwaitable*>(self)->getResult(reinterpret_cast<daq::IBaseObject**>(result));
 }
 
-daqErrCode daqAwaitable_hasCompleted(daqAwaitable* self, daqBool* completed)
+daqErrCode daqAwaitable_hasCompleted(daqAwaitable* self, daqCBool* completed)
 {
     return reinterpret_cast<daq::IAwaitable*>(self)->hasCompleted(completed);
 }

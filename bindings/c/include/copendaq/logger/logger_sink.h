@@ -41,12 +41,12 @@ extern "C"
 
     daqErrCode EXPORTED daqLoggerSink_setLevel(daqLoggerSink* self, daqLogLevel level);
     daqErrCode EXPORTED daqLoggerSink_getLevel(daqLoggerSink* self, daqLogLevel* level);
-    daqErrCode EXPORTED daqLoggerSink_shouldLog(daqLoggerSink* self, daqLogLevel level, daqBool* willLog);
+    daqErrCode EXPORTED daqLoggerSink_shouldLog(daqLoggerSink* self, daqLogLevel level, daqCBool* willLog);
     daqErrCode EXPORTED daqLoggerSink_setPattern(daqLoggerSink* self, daqString* pattern);
     daqErrCode EXPORTED daqLoggerSink_flush(daqLoggerSink* self);
     daqErrCode EXPORTED daqLoggerSink_createStdErrLoggerSink(daqLoggerSink** obj);
     daqErrCode EXPORTED daqLoggerSink_createStdOutLoggerSink(daqLoggerSink** obj);
-    daqErrCode EXPORTED daqLoggerSink_createRotatingFileLoggerSink(daqLoggerSink** obj, daqString* fileName, daqSizeT maxFileByteSize, daqSizeT maxFiles);
+    daqErrCode EXPORTED daqLoggerSink_createRotatingFileLoggerSink(daqLoggerSink** obj, daqString* fileName, daqCSizeT maxFileByteSize, daqCSizeT maxFiles);
     daqErrCode EXPORTED daqLoggerSink_createBasicFileLoggerSink(daqLoggerSink** obj, daqString* fileName);
 #ifdef _WIN32
     daqErrCode EXPORTED daqLoggerSink_createWinDebugLoggerSink(daqLoggerSink** obj);

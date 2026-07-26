@@ -39,10 +39,10 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_AWAITABLE_INTF_ID;
     void EXPORTED daqAwaitable_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqAwaitable_cancel(daqAwaitable* self, daqBool* canceled);
+    daqErrCode EXPORTED daqAwaitable_cancel(daqAwaitable* self, daqCBool* canceled);
     daqErrCode EXPORTED daqAwaitable_wait(daqAwaitable* self);
     daqErrCode EXPORTED daqAwaitable_getResult(daqAwaitable* self, daqBaseObject** result);
-    daqErrCode EXPORTED daqAwaitable_hasCompleted(daqAwaitable* self, daqBool* completed);
+    daqErrCode EXPORTED daqAwaitable_hasCompleted(daqAwaitable* self, daqCBool* completed);
 
 #ifdef __cplusplus
 }

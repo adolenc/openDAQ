@@ -50,7 +50,7 @@ extern "C"
     daqErrCode EXPORTED daqStruct_getFieldValues(daqStruct* self, daqList** values);
     daqErrCode EXPORTED daqStruct_get(daqStruct* self, daqString* name, daqBaseObject** field);
     daqErrCode EXPORTED daqStruct_getAsDictionary(daqStruct* self, daqDict** dictionary);
-    daqErrCode EXPORTED daqStruct_hasField(daqStruct* self, daqString* name, daqBool* contains);
+    daqErrCode EXPORTED daqStruct_hasField(daqStruct* self, daqString* name, daqCBool* contains);
     daqErrCode EXPORTED daqStruct_createStruct(daqStruct** obj, daqString* name, daqDict* fields, daqTypeManager* typeManager);
     daqErrCode EXPORTED daqStruct_createStructFromBuilder(daqStruct** obj, daqStructBuilder* builder);
 

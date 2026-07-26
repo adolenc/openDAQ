@@ -53,10 +53,10 @@ extern "C"
     daqErrCode EXPORTED daqTailReaderBuilder_getDomainReadType(daqTailReaderBuilder* self, daqSampleType* type);
     daqErrCode EXPORTED daqTailReaderBuilder_setReadMode(daqTailReaderBuilder* self, daqReadMode mode);
     daqErrCode EXPORTED daqTailReaderBuilder_getReadMode(daqTailReaderBuilder* self, daqReadMode* mode);
-    daqErrCode EXPORTED daqTailReaderBuilder_setHistorySize(daqTailReaderBuilder* self, daqSizeT historySize);
-    daqErrCode EXPORTED daqTailReaderBuilder_getHistorySize(daqTailReaderBuilder* self, daqSizeT* historySize);
-    daqErrCode EXPORTED daqTailReaderBuilder_setSkipEvents(daqTailReaderBuilder* self, daqBool skipEvents);
-    daqErrCode EXPORTED daqTailReaderBuilder_getSkipEvents(daqTailReaderBuilder* self, daqBool* skipEvents);
+    daqErrCode EXPORTED daqTailReaderBuilder_setHistorySize(daqTailReaderBuilder* self, daqCSizeT historySize);
+    daqErrCode EXPORTED daqTailReaderBuilder_getHistorySize(daqTailReaderBuilder* self, daqCSizeT* historySize);
+    daqErrCode EXPORTED daqTailReaderBuilder_setSkipEvents(daqTailReaderBuilder* self, daqCBool skipEvents);
+    daqErrCode EXPORTED daqTailReaderBuilder_getSkipEvents(daqTailReaderBuilder* self, daqCBool* skipEvents);
     daqErrCode EXPORTED daqTailReaderBuilder_createTailReaderBuilder(daqTailReaderBuilder** obj);
 
 #ifdef __cplusplus

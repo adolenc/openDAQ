@@ -42,14 +42,14 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_INPUT_PORT_INTF_ID;
     void EXPORTED daqInputPort_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqInputPort_acceptsSignal(daqInputPort* self, daqSignal* signal, daqBool* accepts);
+    daqErrCode EXPORTED daqInputPort_acceptsSignal(daqInputPort* self, daqSignal* signal, daqCBool* accepts);
     daqErrCode EXPORTED daqInputPort_connect(daqInputPort* self, daqSignal* signal);
     daqErrCode EXPORTED daqInputPort_disconnect(daqInputPort* self);
     daqErrCode EXPORTED daqInputPort_getSignal(daqInputPort* self, daqSignal** signal);
-    daqErrCode EXPORTED daqInputPort_getRequiresSignal(daqInputPort* self, daqBool* requiresSignal);
+    daqErrCode EXPORTED daqInputPort_getRequiresSignal(daqInputPort* self, daqCBool* requiresSignal);
     daqErrCode EXPORTED daqInputPort_getConnection(daqInputPort* self, daqConnection** connection);
-    daqErrCode EXPORTED daqInputPort_getPublic(daqInputPort* self, daqBool* isPublic);
-    daqErrCode EXPORTED daqInputPort_setPublic(daqInputPort* self, daqBool isPublic);
+    daqErrCode EXPORTED daqInputPort_getPublic(daqInputPort* self, daqCBool* isPublic);
+    daqErrCode EXPORTED daqInputPort_setPublic(daqInputPort* self, daqCBool isPublic);
     daqErrCode EXPORTED daqInputPort_acceptsSignals(daqInputPort* self, daqList* signals, daqList** accepts);
 
 #ifdef __cplusplus

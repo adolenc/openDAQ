@@ -22,22 +22,22 @@ void daqVersionInfo_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_VERSION_INFO_INTF_ID;
 }
 
-daqErrCode daqVersionInfo_getMajor(daqVersionInfo* self, daqSizeT* major)
+daqErrCode daqVersionInfo_getMajor(daqVersionInfo* self, daqCSizeT* major)
 {
     return reinterpret_cast<daq::IVersionInfo*>(self)->getMajor(major);
 }
 
-daqErrCode daqVersionInfo_getMinor(daqVersionInfo* self, daqSizeT* minor)
+daqErrCode daqVersionInfo_getMinor(daqVersionInfo* self, daqCSizeT* minor)
 {
     return reinterpret_cast<daq::IVersionInfo*>(self)->getMinor(minor);
 }
 
-daqErrCode daqVersionInfo_getPatch(daqVersionInfo* self, daqSizeT* patch)
+daqErrCode daqVersionInfo_getPatch(daqVersionInfo* self, daqCSizeT* patch)
 {
     return reinterpret_cast<daq::IVersionInfo*>(self)->getPatch(patch);
 }
 
-daqErrCode daqVersionInfo_createVersionInfo(daqVersionInfo** obj, daqSizeT major, daqSizeT minor, daqSizeT patch)
+daqErrCode daqVersionInfo_createVersionInfo(daqVersionInfo** obj, daqCSizeT major, daqCSizeT minor, daqCSizeT patch)
 {
     daq::IVersionInfo* ptr = nullptr;
     daqErrCode err = daq::createVersionInfo(&ptr, major, minor, patch);

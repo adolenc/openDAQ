@@ -42,9 +42,9 @@ extern "C"
     void EXPORTED daqSignalPrivate_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqSignalPrivate_clearDomainSignalWithoutNotification(daqSignalPrivate* self);
-    daqErrCode EXPORTED daqSignalPrivate_enableKeepLastValue(daqSignalPrivate* self, daqBool enabled);
+    daqErrCode EXPORTED daqSignalPrivate_enableKeepLastValue(daqSignalPrivate* self, daqCBool enabled);
     daqErrCode EXPORTED daqSignalPrivate_getSignalSerializeId(daqSignalPrivate* self, daqString** serializeId);
-    daqErrCode EXPORTED daqSignalPrivate_getKeepLastValue(daqSignalPrivate* self, daqBool* keepLastValue);
+    daqErrCode EXPORTED daqSignalPrivate_getKeepLastValue(daqSignalPrivate* self, daqCBool* keepLastValue);
     daqErrCode EXPORTED daqSignalPrivate_sendPacketRecursiveLock(daqSignalPrivate* self, daqPacket* packet);
 
 #ifdef __cplusplus

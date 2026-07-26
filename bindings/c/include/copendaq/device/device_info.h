@@ -59,12 +59,12 @@ extern "C"
     daqErrCode EXPORTED daqDeviceInfo_getDeviceClass(daqDeviceInfo* self, daqString** deviceClass);
     daqErrCode EXPORTED daqDeviceInfo_getSerialNumber(daqDeviceInfo* self, daqString** serialNumber);
     daqErrCode EXPORTED daqDeviceInfo_getProductInstanceUri(daqDeviceInfo* self, daqString** productInstanceUri);
-    daqErrCode EXPORTED daqDeviceInfo_getRevisionCounter(daqDeviceInfo* self, daqInt* revisionCounter);
+    daqErrCode EXPORTED daqDeviceInfo_getRevisionCounter(daqDeviceInfo* self, daqCInt* revisionCounter);
     daqErrCode EXPORTED daqDeviceInfo_getAssetId(daqDeviceInfo* self, daqString** id);
     daqErrCode EXPORTED daqDeviceInfo_getMacAddress(daqDeviceInfo* self, daqString** macAddress);
     daqErrCode EXPORTED daqDeviceInfo_getParentMacAddress(daqDeviceInfo* self, daqString** macAddress);
     daqErrCode EXPORTED daqDeviceInfo_getPlatform(daqDeviceInfo* self, daqString** platform);
-    daqErrCode EXPORTED daqDeviceInfo_getPosition(daqDeviceInfo* self, daqInt* position);
+    daqErrCode EXPORTED daqDeviceInfo_getPosition(daqDeviceInfo* self, daqCInt* position);
     daqErrCode EXPORTED daqDeviceInfo_getSystemType(daqDeviceInfo* self, daqString** type);
     daqErrCode EXPORTED daqDeviceInfo_getSystemUuid(daqDeviceInfo* self, daqString** uuid);
     daqErrCode EXPORTED daqDeviceInfo_getCustomInfoPropertyNames(daqDeviceInfo* self, daqList** customInfoNames);
@@ -72,7 +72,7 @@ extern "C"
     daqErrCode EXPORTED daqDeviceInfo_getServerCapabilities(daqDeviceInfo* self, daqList** serverCapabilities);
     daqErrCode EXPORTED daqDeviceInfo_getLocation(daqDeviceInfo* self, daqString** location);
     daqErrCode EXPORTED daqDeviceInfo_getConfigurationConnectionInfo(daqDeviceInfo* self, daqServerCapability** connectionInfo);
-    daqErrCode EXPORTED daqDeviceInfo_hasServerCapability(daqDeviceInfo* self, daqString* protocolId, daqBool* hasCapability);
+    daqErrCode EXPORTED daqDeviceInfo_hasServerCapability(daqDeviceInfo* self, daqString* protocolId, daqCBool* hasCapability);
     daqErrCode EXPORTED daqDeviceInfo_getServerCapability(daqDeviceInfo* self, daqString* protocolId, daqServerCapability** serverCapability);
     daqErrCode EXPORTED daqDeviceInfo_getNetworkInterfaces(daqDeviceInfo* self, daqDict** interfaces);
     daqErrCode EXPORTED daqDeviceInfo_getNetworkInterface(daqDeviceInfo* self, daqString* interfaceName, daqNetworkInterface** intf);

@@ -43,9 +43,9 @@ extern "C"
     daqErrCode EXPORTED daqPropertyValueEventArgs_getValue(daqPropertyValueEventArgs* self, daqBaseObject** value);
     daqErrCode EXPORTED daqPropertyValueEventArgs_setValue(daqPropertyValueEventArgs* self, daqBaseObject* value);
     daqErrCode EXPORTED daqPropertyValueEventArgs_getPropertyEventType(daqPropertyValueEventArgs* self, daqPropertyEventType* changeType);
-    daqErrCode EXPORTED daqPropertyValueEventArgs_getIsUpdating(daqPropertyValueEventArgs* self, daqBool* isUpdating);
+    daqErrCode EXPORTED daqPropertyValueEventArgs_getIsUpdating(daqPropertyValueEventArgs* self, daqCBool* isUpdating);
     daqErrCode EXPORTED daqPropertyValueEventArgs_getOldValue(daqPropertyValueEventArgs* self, daqBaseObject** value);
-    daqErrCode EXPORTED daqPropertyValueEventArgs_createPropertyValueEventArgs(daqPropertyValueEventArgs** obj, daqProperty* prop, daqBaseObject* value, daqBaseObject* oldValue, daqPropertyEventType type, daqBool isUpdating);
+    daqErrCode EXPORTED daqPropertyValueEventArgs_createPropertyValueEventArgs(daqPropertyValueEventArgs** obj, daqProperty* prop, daqBaseObject* value, daqBaseObject* oldValue, daqPropertyEventType type, daqCBool isUpdating);
 
 #ifdef __cplusplus
 }

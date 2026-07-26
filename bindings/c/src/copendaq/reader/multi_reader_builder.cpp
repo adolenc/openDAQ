@@ -92,32 +92,32 @@ daqErrCode daqMultiReaderBuilder_getReadTimeoutType(daqMultiReaderBuilder* self,
     return reinterpret_cast<daq::IMultiReaderBuilder*>(self)->getReadTimeoutType(reinterpret_cast<daq::ReadTimeoutType*>(type));
 }
 
-daqErrCode daqMultiReaderBuilder_setRequiredCommonSampleRate(daqMultiReaderBuilder* self, daqInt sampleRate)
+daqErrCode daqMultiReaderBuilder_setRequiredCommonSampleRate(daqMultiReaderBuilder* self, daqCInt sampleRate)
 {
     return reinterpret_cast<daq::IMultiReaderBuilder*>(self)->setRequiredCommonSampleRate(sampleRate);
 }
 
-daqErrCode daqMultiReaderBuilder_getRequiredCommonSampleRate(daqMultiReaderBuilder* self, daqInt* sampleRate)
+daqErrCode daqMultiReaderBuilder_getRequiredCommonSampleRate(daqMultiReaderBuilder* self, daqCInt* sampleRate)
 {
     return reinterpret_cast<daq::IMultiReaderBuilder*>(self)->getRequiredCommonSampleRate(sampleRate);
 }
 
-daqErrCode daqMultiReaderBuilder_setStartOnFullUnitOfDomain(daqMultiReaderBuilder* self, daqBool enabled)
+daqErrCode daqMultiReaderBuilder_setStartOnFullUnitOfDomain(daqMultiReaderBuilder* self, daqCBool enabled)
 {
     return reinterpret_cast<daq::IMultiReaderBuilder*>(self)->setStartOnFullUnitOfDomain(enabled);
 }
 
-daqErrCode daqMultiReaderBuilder_getStartOnFullUnitOfDomain(daqMultiReaderBuilder* self, daqBool* enabled)
+daqErrCode daqMultiReaderBuilder_getStartOnFullUnitOfDomain(daqMultiReaderBuilder* self, daqCBool* enabled)
 {
     return reinterpret_cast<daq::IMultiReaderBuilder*>(self)->getStartOnFullUnitOfDomain(enabled);
 }
 
-daqErrCode daqMultiReaderBuilder_setMinReadCount(daqMultiReaderBuilder* self, daqSizeT minReadCount)
+daqErrCode daqMultiReaderBuilder_setMinReadCount(daqMultiReaderBuilder* self, daqCSizeT minReadCount)
 {
     return reinterpret_cast<daq::IMultiReaderBuilder*>(self)->setMinReadCount(minReadCount);
 }
 
-daqErrCode daqMultiReaderBuilder_getMinReadCount(daqMultiReaderBuilder* self, daqSizeT* minReadCount)
+daqErrCode daqMultiReaderBuilder_getMinReadCount(daqMultiReaderBuilder* self, daqCSizeT* minReadCount)
 {
     return reinterpret_cast<daq::IMultiReaderBuilder*>(self)->getMinReadCount(minReadCount);
 }
@@ -132,12 +132,12 @@ daqErrCode daqMultiReaderBuilder_getTickOffsetTolerance(daqMultiReaderBuilder* s
     return reinterpret_cast<daq::IMultiReaderBuilder*>(self)->getTickOffsetTolerance(reinterpret_cast<daq::IRatio**>(offsetTolerance));
 }
 
-daqErrCode daqMultiReaderBuilder_setAllowDifferentSamplingRates(daqMultiReaderBuilder* self, daqBool allowDifferentRates)
+daqErrCode daqMultiReaderBuilder_setAllowDifferentSamplingRates(daqMultiReaderBuilder* self, daqCBool allowDifferentRates)
 {
     return reinterpret_cast<daq::IMultiReaderBuilder*>(self)->setAllowDifferentSamplingRates(allowDifferentRates);
 }
 
-daqErrCode daqMultiReaderBuilder_getAllowDifferentSamplingRates(daqMultiReaderBuilder* self, daqBool* allowDifferentRates)
+daqErrCode daqMultiReaderBuilder_getAllowDifferentSamplingRates(daqMultiReaderBuilder* self, daqCBool* allowDifferentRates)
 {
     return reinterpret_cast<daq::IMultiReaderBuilder*>(self)->getAllowDifferentSamplingRates(allowDifferentRates);
 }

@@ -40,7 +40,7 @@ extern "C"
     void EXPORTED daqRemovable_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqRemovable_remove(daqRemovable* self);
-    daqErrCode EXPORTED daqRemovable_isRemoved(daqRemovable* self, daqBool* removed);
+    daqErrCode EXPORTED daqRemovable_isRemoved(daqRemovable* self, daqCBool* removed);
 
 #ifdef __cplusplus
 }

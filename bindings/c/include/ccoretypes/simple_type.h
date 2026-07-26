@@ -39,7 +39,7 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_SIMPLE_TYPE_INTF_ID;
     void EXPORTED daqSimpleType_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqSimpleType_createSimpleType(daqSimpleType** obj, daqCoreType coreType);
+    daqErrCode EXPORTED daqSimpleType_createSimpleType(daqSimpleType** obj, daqCCoreType coreType);
 
 #ifdef __cplusplus
 }

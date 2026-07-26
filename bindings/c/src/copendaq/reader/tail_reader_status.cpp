@@ -22,12 +22,12 @@ void daqTailReaderStatus_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_TAIL_READER_STATUS_INTF_ID;
 }
 
-daqErrCode daqTailReaderStatus_getSufficientHistory(daqTailReaderStatus* self, daqBool* status)
+daqErrCode daqTailReaderStatus_getSufficientHistory(daqTailReaderStatus* self, daqCBool* status)
 {
     return reinterpret_cast<daq::ITailReaderStatus*>(self)->getSufficientHistory(status);
 }
 
-daqErrCode daqTailReaderStatus_createTailReaderStatus(daqTailReaderStatus** obj, daqEventPacket* eventPacket, daqBool valid, daqNumber* offset, daqBool sufficientHistory)
+daqErrCode daqTailReaderStatus_createTailReaderStatus(daqTailReaderStatus** obj, daqEventPacket* eventPacket, daqCBool valid, daqNumber* offset, daqCBool sufficientHistory)
 {
     daq::ITailReaderStatus* ptr = nullptr;
     daqErrCode err = daq::createTailReaderStatus(&ptr, reinterpret_cast<daq::IEventPacket*>(eventPacket), valid, reinterpret_cast<daq::INumber*>(offset), sufficientHistory);

@@ -38,7 +38,7 @@ run_rtgen ccoretypes coretypes coretypes cloneable cloneable
 run_rtgen ccoretypes coretypes coretypes comparable comparable
 run_rtgen ccoretypes coretypes coretypes complex_number complex_number
 run_rtgen ccoretypes coretypes coretypes convertible convertible
-# run_rtgen ccoretypes coretypes coretypes coretype coretype # once, name collision
+run_rtgen ccoretypes coretypes coretypes coretype coretype
 # run_rtgen ccoretypes coretypes coretypes cycle_detector cycle_detector # funcs could be added manually
 # run_rtgen ccoretypes coretypes coretypes deserializer deserializer #need to be generated once
 run_rtgen ccoretypes coretypes coretypes dict_element_type dict_element_type
@@ -49,7 +49,7 @@ run_rtgen ccoretypes coretypes coretypes enumeration_type enumeration_type
 run_rtgen ccoretypes coretypes coretypes event event
 run_rtgen ccoretypes coretypes coretypes event_args event_args
 run_rtgen ccoretypes coretypes coretypes event_handler event_handler
-# run_rtgen ccoretypes coretypes coretypes float float
+run_rtgen ccoretypes coretypes coretypes float float
 run_rtgen ccoretypes coretypes coretypes freezable freezable
 # run_rtgen ccoretypes coretypes coretypes function function
 # run_rtgen ccoretypes coretypes coretypes inspectable inspectable
@@ -59,7 +59,7 @@ run_rtgen ccoretypes coretypes coretypes iterator iterator
 # run_rtgen ccoretypes coretypes coretypes json_deserializer json_deserializer
 run_rtgen ccoretypes coretypes coretypes list_element_type list_element_type
 # run_rtgen ccoretypes coretypes coretypes mem mem #could be added manually
-run_rtgen ccoretypes coretypes coretypes number number #disable because of float
+run_rtgen ccoretypes coretypes coretypes number number
 # run_rtgen ccoretypes coretypes coretypes procedure procedure
 run_rtgen ccoretypes coretypes coretypes ratio ratio
 run_rtgen ccoretypes coretypes coretypes serializable serializable

@@ -42,7 +42,7 @@ daqErrCode daqLogFileInfo_getDescription(daqLogFileInfo* self, daqString** descr
     return reinterpret_cast<daq::ILogFileInfo*>(self)->getDescription(reinterpret_cast<daq::IString**>(description));
 }
 
-daqErrCode daqLogFileInfo_getSize(daqLogFileInfo* self, daqSizeT* size)
+daqErrCode daqLogFileInfo_getSize(daqLogFileInfo* self, daqCSizeT* size)
 {
     return reinterpret_cast<daq::ILogFileInfo*>(self)->getSize(size);
 }

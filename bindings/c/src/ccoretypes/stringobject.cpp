@@ -22,17 +22,17 @@ void daqString_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_STRING_INTF_ID;
 }
 
-daqErrCode daqString_getCharPtr(daqString* self, daqConstCharPtr* value)
+daqErrCode daqString_getCharPtr(daqString* self, daqCConstCharPtr* value)
 {
     return reinterpret_cast<daq::IString*>(self)->getCharPtr(reinterpret_cast<daq::ConstCharPtr*>(value));
 }
 
-daqErrCode daqString_getLength(daqString* self, daqSizeT* size)
+daqErrCode daqString_getLength(daqString* self, daqCSizeT* size)
 {
     return reinterpret_cast<daq::IString*>(self)->getLength(size);
 }
 
-daqErrCode daqString_createString(daqString** obj, daqConstCharPtr str)
+daqErrCode daqString_createString(daqString** obj, daqCConstCharPtr str)
 {
     daq::IString* ptr = nullptr;
     daqErrCode err = daq::createString(&ptr, static_cast<daq::ConstCharPtr>(str));
@@ -40,7 +40,7 @@ daqErrCode daqString_createString(daqString** obj, daqConstCharPtr str)
     return err;
 }
 
-daqErrCode daqString_createStringN(daqString** obj, daqConstCharPtr str, daqSizeT length)
+daqErrCode daqString_createStringN(daqString** obj, daqCConstCharPtr str, daqCSizeT length)
 {
     daq::IString* ptr = nullptr;
     daqErrCode err = daq::createStringN(&ptr, static_cast<daq::ConstCharPtr>(str), length);

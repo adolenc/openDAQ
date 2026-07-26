@@ -42,7 +42,7 @@ daqErrCode daqEvent_clear(daqEvent* self)
     return reinterpret_cast<daq::IEvent*>(self)->clear();
 }
 
-daqErrCode daqEvent_getSubscriberCount(daqEvent* self, daqSizeT* count)
+daqErrCode daqEvent_getSubscriberCount(daqEvent* self, daqCSizeT* count)
 {
     return reinterpret_cast<daq::IEvent*>(self)->getSubscriberCount(count);
 }

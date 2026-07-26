@@ -41,8 +41,8 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_BLOCK_READER_STATUS_INTF_ID;
     void EXPORTED daqBlockReaderStatus_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqBlockReaderStatus_getReadSamples(daqBlockReaderStatus* self, daqSizeT* readSamples);
-    daqErrCode EXPORTED daqBlockReaderStatus_createBlockReaderStatus(daqBlockReaderStatus** obj, daqEventPacket* eventPacket, daqBool valid, daqNumber* offset, daqSizeT readSamples);
+    daqErrCode EXPORTED daqBlockReaderStatus_getReadSamples(daqBlockReaderStatus* self, daqCSizeT* readSamples);
+    daqErrCode EXPORTED daqBlockReaderStatus_createBlockReaderStatus(daqBlockReaderStatus** obj, daqEventPacket* eventPacket, daqCBool valid, daqNumber* offset, daqCSizeT readSamples);
 
 #ifdef __cplusplus
 }

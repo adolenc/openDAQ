@@ -40,11 +40,11 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_UNIT_INTF_ID;
     void EXPORTED daqUnit_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqUnit_getId(daqUnit* self, daqInt* id);
+    daqErrCode EXPORTED daqUnit_getId(daqUnit* self, daqCInt* id);
     daqErrCode EXPORTED daqUnit_getSymbol(daqUnit* self, daqString** symbol);
     daqErrCode EXPORTED daqUnit_getName(daqUnit* self, daqString** name);
     daqErrCode EXPORTED daqUnit_getQuantity(daqUnit* self, daqString** quantity);
-    daqErrCode EXPORTED daqUnit_createUnit(daqUnit** obj, daqInt id, daqString* symbol, daqString* name, daqString* quantity);
+    daqErrCode EXPORTED daqUnit_createUnit(daqUnit** obj, daqCInt id, daqString* symbol, daqString* name, daqString* quantity);
 
 #ifdef __cplusplus
 }

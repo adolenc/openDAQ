@@ -22,12 +22,12 @@ void daqSearchFilter_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_SEARCH_FILTER_INTF_ID;
 }
 
-daqErrCode daqSearchFilter_acceptsObject(daqSearchFilter* self, daqBaseObject* obj, daqBool* accepts)
+daqErrCode daqSearchFilter_acceptsObject(daqSearchFilter* self, daqBaseObject* obj, daqCBool* accepts)
 {
     return reinterpret_cast<daq::ISearchFilter*>(self)->acceptsObject(reinterpret_cast<daq::IBaseObject*>(obj), accepts);
 }
 
-daqErrCode daqSearchFilter_visitChildren(daqSearchFilter* self, daqBaseObject* obj, daqBool* visit)
+daqErrCode daqSearchFilter_visitChildren(daqSearchFilter* self, daqBaseObject* obj, daqCBool* visit)
 {
     return reinterpret_cast<daq::ISearchFilter*>(self)->visitChildren(reinterpret_cast<daq::IBaseObject*>(obj), visit);
 }

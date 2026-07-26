@@ -41,7 +41,7 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_SYNC_COMPONENT_PRIVATE_INTF_ID;
     void EXPORTED daqSyncComponentPrivate_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqSyncComponentPrivate_setSyncLocked(daqSyncComponentPrivate* self, daqBool synchronizationLocked);
+    daqErrCode EXPORTED daqSyncComponentPrivate_setSyncLocked(daqSyncComponentPrivate* self, daqCBool synchronizationLocked);
     daqErrCode EXPORTED daqSyncComponentPrivate_addInterface(daqSyncComponentPrivate* self, daqPropertyObject* syncInterface);
     daqErrCode EXPORTED daqSyncComponentPrivate_removeInterface(daqSyncComponentPrivate* self, daqString* syncInterfaceName);
 

@@ -27,7 +27,7 @@ daqErrCode daqUserInternal_getPasswordHash(daqUserInternal* self, daqString** pa
     return reinterpret_cast<daq::IUserInternal*>(self)->getPasswordHash(reinterpret_cast<daq::IString**>(passwordHash));
 }
 
-daqErrCode daqUserInternal_isAnonymous(daqUserInternal* self, daqBool* anonymous)
+daqErrCode daqUserInternal_isAnonymous(daqUserInternal* self, daqCBool* anonymous)
 {
     return reinterpret_cast<daq::IUserInternal*>(self)->isAnonymous(anonymous);
 }

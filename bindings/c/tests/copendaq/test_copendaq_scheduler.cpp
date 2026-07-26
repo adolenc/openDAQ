@@ -4,9 +4,9 @@
 
 using COpendaqSchedulerTest = testing::Test;
 
-static daqBool taskCalled = False;
-static daqBool taskGraphCalled = False;
-static daqBool functionCalled = False;
+static daqCBool taskCalled = False;
+static daqCBool taskGraphCalled = False;
+static daqCBool functionCalled = False;
 
 daqErrCode procedureTask(daqBaseObject*)
 {

@@ -22,17 +22,17 @@ void daqProperty_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_PROPERTY_INTF_ID;
 }
 
-daqErrCode daqProperty_getValueType(daqProperty* self, daqCoreType* type)
+daqErrCode daqProperty_getValueType(daqProperty* self, daqCCoreType* type)
 {
     return reinterpret_cast<daq::IProperty*>(self)->getValueType(reinterpret_cast<daq::CoreType*>(type));
 }
 
-daqErrCode daqProperty_getKeyType(daqProperty* self, daqCoreType* type)
+daqErrCode daqProperty_getKeyType(daqProperty* self, daqCCoreType* type)
 {
     return reinterpret_cast<daq::IProperty*>(self)->getKeyType(reinterpret_cast<daq::CoreType*>(type));
 }
 
-daqErrCode daqProperty_getItemType(daqProperty* self, daqCoreType* type)
+daqErrCode daqProperty_getItemType(daqProperty* self, daqCCoreType* type)
 {
     return reinterpret_cast<daq::IProperty*>(self)->getItemType(reinterpret_cast<daq::CoreType*>(type));
 }
@@ -72,12 +72,12 @@ daqErrCode daqProperty_getSuggestedValues(daqProperty* self, daqList** values)
     return reinterpret_cast<daq::IProperty*>(self)->getSuggestedValues(reinterpret_cast<daq::IList**>(values));
 }
 
-daqErrCode daqProperty_getVisible(daqProperty* self, daqBool* visible)
+daqErrCode daqProperty_getVisible(daqProperty* self, daqCBool* visible)
 {
     return reinterpret_cast<daq::IProperty*>(self)->getVisible(visible);
 }
 
-daqErrCode daqProperty_getReadOnly(daqProperty* self, daqBool* readOnly)
+daqErrCode daqProperty_getReadOnly(daqProperty* self, daqCBool* readOnly)
 {
     return reinterpret_cast<daq::IProperty*>(self)->getReadOnly(readOnly);
 }
@@ -92,7 +92,7 @@ daqErrCode daqProperty_getReferencedProperty(daqProperty* self, daqProperty** pr
     return reinterpret_cast<daq::IProperty*>(self)->getReferencedProperty(reinterpret_cast<daq::IProperty**>(property));
 }
 
-daqErrCode daqProperty_getIsReferenced(daqProperty* self, daqBool* isReferenced)
+daqErrCode daqProperty_getIsReferenced(daqProperty* self, daqCBool* isReferenced)
 {
     return reinterpret_cast<daq::IProperty*>(self)->getIsReferenced(isReferenced);
 }
@@ -168,7 +168,7 @@ daqErrCode daqProperty_createIntProperty(daqProperty** obj, daqString* name, daq
     return err;
 }
 
-daqErrCode daqProperty_createFloatProperty(daqProperty** obj, daqString* name, daqFloatObject* defaultValue, daqBoolean* visible)
+daqErrCode daqProperty_createFloatProperty(daqProperty** obj, daqString* name, daqFloat* defaultValue, daqBoolean* visible)
 {
     daq::IProperty* ptr = nullptr;
     daqErrCode err = daq::createFloatProperty(&ptr, reinterpret_cast<daq::IString*>(name), reinterpret_cast<daq::IFloat*>(defaultValue), reinterpret_cast<daq::IBoolean*>(visible));

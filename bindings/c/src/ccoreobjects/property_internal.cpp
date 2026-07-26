@@ -82,7 +82,7 @@ daqErrCode daqPropertyInternal_getReferencedPropertyUnresolved(daqPropertyIntern
     return reinterpret_cast<daq::IPropertyInternal*>(self)->getReferencedPropertyUnresolved(reinterpret_cast<daq::IEvalValue**>(propertyEval));
 }
 
-daqErrCode daqPropertyInternal_getValueTypeUnresolved(daqPropertyInternal* self, daqCoreType* coreType)
+daqErrCode daqPropertyInternal_getValueTypeUnresolved(daqPropertyInternal* self, daqCCoreType* coreType)
 {
     return reinterpret_cast<daq::IPropertyInternal*>(self)->getValueTypeUnresolved(reinterpret_cast<daq::CoreType*>(coreType));
 }
@@ -97,17 +97,17 @@ daqErrCode daqPropertyInternal_getClassOnPropertyValueWrite(daqPropertyInternal*
     return reinterpret_cast<daq::IPropertyInternal*>(self)->getClassOnPropertyValueWrite(reinterpret_cast<daq::IEvent**>(event));
 }
 
-daqErrCode daqPropertyInternal_getValueTypeNoLock(daqPropertyInternal* self, daqCoreType* type)
+daqErrCode daqPropertyInternal_getValueTypeNoLock(daqPropertyInternal* self, daqCCoreType* type)
 {
     return reinterpret_cast<daq::IPropertyInternal*>(self)->getValueTypeNoLock(reinterpret_cast<daq::CoreType*>(type));
 }
 
-daqErrCode daqPropertyInternal_getKeyTypeNoLock(daqPropertyInternal* self, daqCoreType* type)
+daqErrCode daqPropertyInternal_getKeyTypeNoLock(daqPropertyInternal* self, daqCCoreType* type)
 {
     return reinterpret_cast<daq::IPropertyInternal*>(self)->getKeyTypeNoLock(reinterpret_cast<daq::CoreType*>(type));
 }
 
-daqErrCode daqPropertyInternal_getItemTypeNoLock(daqPropertyInternal* self, daqCoreType* type)
+daqErrCode daqPropertyInternal_getItemTypeNoLock(daqPropertyInternal* self, daqCCoreType* type)
 {
     return reinterpret_cast<daq::IPropertyInternal*>(self)->getItemTypeNoLock(reinterpret_cast<daq::CoreType*>(type));
 }
@@ -142,12 +142,12 @@ daqErrCode daqPropertyInternal_getSuggestedValuesNoLock(daqPropertyInternal* sel
     return reinterpret_cast<daq::IPropertyInternal*>(self)->getSuggestedValuesNoLock(reinterpret_cast<daq::IList**>(values));
 }
 
-daqErrCode daqPropertyInternal_getVisibleNoLock(daqPropertyInternal* self, daqBool* visible)
+daqErrCode daqPropertyInternal_getVisibleNoLock(daqPropertyInternal* self, daqCBool* visible)
 {
     return reinterpret_cast<daq::IPropertyInternal*>(self)->getVisibleNoLock(visible);
 }
 
-daqErrCode daqPropertyInternal_getReadOnlyNoLock(daqPropertyInternal* self, daqBool* readOnly)
+daqErrCode daqPropertyInternal_getReadOnlyNoLock(daqPropertyInternal* self, daqCBool* readOnly)
 {
     return reinterpret_cast<daq::IPropertyInternal*>(self)->getReadOnlyNoLock(readOnly);
 }
@@ -162,7 +162,7 @@ daqErrCode daqPropertyInternal_getReferencedPropertyNoLock(daqPropertyInternal* 
     return reinterpret_cast<daq::IPropertyInternal*>(self)->getReferencedPropertyNoLock(reinterpret_cast<daq::IProperty**>(propertyEval));
 }
 
-daqErrCode daqPropertyInternal_getIsReferencedNoLock(daqPropertyInternal* self, daqBool* isReferenced)
+daqErrCode daqPropertyInternal_getIsReferencedNoLock(daqPropertyInternal* self, daqCBool* isReferenced)
 {
     return reinterpret_cast<daq::IPropertyInternal*>(self)->getIsReferencedNoLock(isReferenced);
 }
@@ -197,17 +197,17 @@ daqErrCode daqPropertyInternal_setValueProtected(daqPropertyInternal* self, daqB
     return reinterpret_cast<daq::IPropertyInternal*>(self)->setValueProtected(reinterpret_cast<daq::IBaseObject*>(newValue));
 }
 
-daqErrCode daqPropertyInternal_getHasOnReadListeners(daqPropertyInternal* self, daqBool* hasListeners)
+daqErrCode daqPropertyInternal_getHasOnReadListeners(daqPropertyInternal* self, daqCBool* hasListeners)
 {
     return reinterpret_cast<daq::IPropertyInternal*>(self)->getHasOnReadListeners(hasListeners);
 }
 
-daqErrCode daqPropertyInternal_getHasOnGetSuggestedValuesListeners(daqPropertyInternal* self, daqBool* hasListeners)
+daqErrCode daqPropertyInternal_getHasOnGetSuggestedValuesListeners(daqPropertyInternal* self, daqCBool* hasListeners)
 {
     return reinterpret_cast<daq::IPropertyInternal*>(self)->getHasOnGetSuggestedValuesListeners(hasListeners);
 }
 
-daqErrCode daqPropertyInternal_getHasOnGetSelectionValuesListeners(daqPropertyInternal* self, daqBool* hasListeners)
+daqErrCode daqPropertyInternal_getHasOnGetSelectionValuesListeners(daqPropertyInternal* self, daqCBool* hasListeners)
 {
     return reinterpret_cast<daq::IPropertyInternal*>(self)->getHasOnGetSelectionValuesListeners(hasListeners);
 }

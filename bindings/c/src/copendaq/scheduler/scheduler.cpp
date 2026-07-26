@@ -47,17 +47,17 @@ daqErrCode daqScheduler_waitAll(daqScheduler* self)
     return reinterpret_cast<daq::IScheduler*>(self)->waitAll();
 }
 
-daqErrCode daqScheduler_isMultiThreaded(daqScheduler* self, daqBool* multiThreaded)
+daqErrCode daqScheduler_isMultiThreaded(daqScheduler* self, daqCBool* multiThreaded)
 {
     return reinterpret_cast<daq::IScheduler*>(self)->isMultiThreaded(multiThreaded);
 }
 
-daqErrCode daqScheduler_runMainLoop(daqScheduler* self, daqSizeT loopTime)
+daqErrCode daqScheduler_runMainLoop(daqScheduler* self, daqCSizeT loopTime)
 {
     return reinterpret_cast<daq::IScheduler*>(self)->runMainLoop(loopTime);
 }
 
-daqErrCode daqScheduler_isMainLoopSet(daqScheduler* self, daqBool* isSet)
+daqErrCode daqScheduler_isMainLoopSet(daqScheduler* self, daqCBool* isSet)
 {
     return reinterpret_cast<daq::IScheduler*>(self)->isMainLoopSet(isSet);
 }
@@ -77,7 +77,7 @@ daqErrCode daqScheduler_scheduleWorkOnMainLoop(daqScheduler* self, daqWork* work
     return reinterpret_cast<daq::IScheduler*>(self)->scheduleWorkOnMainLoop(reinterpret_cast<daq::IWork*>(work));
 }
 
-daqErrCode daqScheduler_createScheduler(daqScheduler** obj, daqLogger* logger, daqSizeT numWorkers)
+daqErrCode daqScheduler_createScheduler(daqScheduler** obj, daqLogger* logger, daqCSizeT numWorkers)
 {
     daq::IScheduler* ptr = nullptr;
     daqErrCode err = daq::createScheduler(&ptr, reinterpret_cast<daq::ILogger*>(logger), numWorkers);
@@ -85,7 +85,7 @@ daqErrCode daqScheduler_createScheduler(daqScheduler** obj, daqLogger* logger, d
     return err;
 }
 
-daqErrCode daqScheduler_createSchedulerWithMainLoop(daqScheduler** obj, daqLogger* logger, daqSizeT numWorkers, daqBool useMainLoop)
+daqErrCode daqScheduler_createSchedulerWithMainLoop(daqScheduler** obj, daqLogger* logger, daqCSizeT numWorkers, daqCBool useMainLoop)
 {
     daq::IScheduler* ptr = nullptr;
     daqErrCode err = daq::createSchedulerWithMainLoop(&ptr, reinterpret_cast<daq::ILogger*>(logger), numWorkers, useMainLoop);

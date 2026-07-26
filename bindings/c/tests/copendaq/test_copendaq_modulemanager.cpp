@@ -58,7 +58,7 @@ TEST_F(COpendaqModuleManagerTest, DISABLED_ModuleManager)
     daqModuleManager_getModules(moduleManager, &modules);
 
     ASSERT_NE(modules, nullptr);
-    daqSizeT size = 0;
+    daqCSizeT size = 0;
     daqList_getCount(modules, &size);
     ASSERT_GT(size, 0u);
 

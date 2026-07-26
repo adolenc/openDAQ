@@ -22,12 +22,12 @@ void daqBlockReaderStatus_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_BLOCK_READER_STATUS_INTF_ID;
 }
 
-daqErrCode daqBlockReaderStatus_getReadSamples(daqBlockReaderStatus* self, daqSizeT* readSamples)
+daqErrCode daqBlockReaderStatus_getReadSamples(daqBlockReaderStatus* self, daqCSizeT* readSamples)
 {
     return reinterpret_cast<daq::IBlockReaderStatus*>(self)->getReadSamples(readSamples);
 }
 
-daqErrCode daqBlockReaderStatus_createBlockReaderStatus(daqBlockReaderStatus** obj, daqEventPacket* eventPacket, daqBool valid, daqNumber* offset, daqSizeT readSamples)
+daqErrCode daqBlockReaderStatus_createBlockReaderStatus(daqBlockReaderStatus** obj, daqEventPacket* eventPacket, daqCBool valid, daqNumber* offset, daqCSizeT readSamples)
 {
     daq::IBlockReaderStatus* ptr = nullptr;
     daqErrCode err = daq::createBlockReaderStatus(&ptr, reinterpret_cast<daq::IEventPacket*>(eventPacket), valid, reinterpret_cast<daq::INumber*>(offset), readSamples);

@@ -42,7 +42,7 @@ extern "C"
 
     daqErrCode EXPORTED daqPacket_getType(daqPacket* self, daqPacketType* type);
     daqErrCode EXPORTED daqPacket_subscribeForDestructNotification(daqPacket* self, daqPacketDestructCallback* packetDestructCallback);
-    daqErrCode EXPORTED daqPacket_getRefCount(daqPacket* self, daqSizeT* refCount);
+    daqErrCode EXPORTED daqPacket_getRefCount(daqPacket* self, daqCSizeT* refCount);
 
 #ifdef __cplusplus
 }

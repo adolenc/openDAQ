@@ -47,7 +47,7 @@ daqErrCode daqReaderConfig_markAsInvalid(daqReaderConfig* self)
     return reinterpret_cast<daq::IReaderConfig*>(self)->markAsInvalid();
 }
 
-daqErrCode daqReaderConfig_getIsValid(daqReaderConfig* self, daqBool* isValid)
+daqErrCode daqReaderConfig_getIsValid(daqReaderConfig* self, daqCBool* isValid)
 {
     return reinterpret_cast<daq::IReaderConfig*>(self)->getIsValid(isValid);
 }

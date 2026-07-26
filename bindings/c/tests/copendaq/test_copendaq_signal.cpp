@@ -185,7 +185,7 @@ TEST_F(COpendaqSignalTest, DataDescriptor)
 
     daqString* name = nullptr;
     daqDataDescriptor_getName(valueDescriptor, &name);
-    daqConstCharPtr nameStr = nullptr;
+    daqCConstCharPtr nameStr = nullptr;
     daqString_getCharPtr(name, &nameStr);
     ASSERT_STREQ(nameStr, "vals");
     daqBaseObject_releaseRef(name);
@@ -194,7 +194,7 @@ TEST_F(COpendaqSignalTest, DataDescriptor)
     daqDataDescriptor_getUnit(valueDescriptor, &unit);
     daqString* symbol = nullptr;
     daqUnit_getSymbol(unit, &symbol);
-    daqConstCharPtr symbolStr = nullptr;
+    daqCConstCharPtr symbolStr = nullptr;
     daqString_getCharPtr(symbol, &symbolStr);
     ASSERT_STREQ(symbolStr, "V");
     daqBaseObject_releaseRef(symbol);
@@ -218,7 +218,7 @@ TEST_F(COpendaqSignalTest, DataPacket)
     daqBaseObject_queryInterface(offset, DAQ_NUMBER_INTF_ID, (void**) &offsetNum);
     daqBaseObject_releaseRef(offset);
 
-    daqSizeT sampleCount = 10u;
+    daqCSizeT sampleCount = 10u;
     daqDataPacket_createDataPacket(&packet, valueDescriptor, sampleCount, offsetNum);
     daqBaseObject_releaseRef(offsetNum);
 
@@ -286,9 +286,9 @@ TEST_F(COpendaqSignalTest, DimensionRule)
     daqNumber* outSize = nullptr;
     daqDict_get(params, sizeStr, (daqBaseObject**) &outSize);
 
-    daqInt deltaInt = -1;
-    daqInt startInt = -1;
-    daqInt sizeInt = -1;
+    daqCInt deltaInt = -1;
+    daqCInt startInt = -1;
+    daqCInt sizeInt = -1;
     daqNumber_getIntValue(outDelta, &deltaInt);
     daqNumber_getIntValue(outStart, &startInt);
     daqNumber_getIntValue(outSize, &sizeInt);
@@ -316,7 +316,7 @@ TEST_F(COpendaqSignalTest, EventPacket)
     ASSERT_NE(packet, nullptr);
     daqString* id = nullptr;
     daqEventPacket_getEventId(packet, &id);
-    daqConstCharPtr idStr = nullptr;
+    daqCConstCharPtr idStr = nullptr;
     daqString_getCharPtr(id, &idStr);
     ASSERT_STREQ(idStr, "DATA_DESCRIPTOR_CHANGED");
 
@@ -363,8 +363,8 @@ TEST_F(COpendaqSignalTest, Range)
     daqNumber* outHighValue = nullptr;
     daqRange_getLowValue(range, &outLowValue);
     daqRange_getHighValue(range, &outHighValue);
-    daqInt lowValueInt = -1;
-    daqInt highValueInt = -1;
+    daqCInt lowValueInt = -1;
+    daqCInt highValueInt = -1;
     daqNumber_getIntValue(outLowValue, &lowValueInt);
     daqNumber_getIntValue(outHighValue, &highValueInt);
     ASSERT_EQ(lowValueInt, 0);
@@ -423,7 +423,7 @@ TEST_F(COpendaqSignalTest, Scaling)
     daqScaling_getParameters(scaling, &scalingParams);
     ASSERT_NE(scalingParams, nullptr);
 
-    daqBool equal = False;
+    daqCBool equal = False;
     daqBaseObject_equals(scalingParams, params, &equal);
     ASSERT_EQ(equal, True);
 

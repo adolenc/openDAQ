@@ -47,7 +47,7 @@ daqErrCode daqStruct_getAsDictionary(daqStruct* self, daqDict** dictionary)
     return reinterpret_cast<daq::IStruct*>(self)->getAsDictionary(reinterpret_cast<daq::IDict**>(dictionary));
 }
 
-daqErrCode daqStruct_hasField(daqStruct* self, daqString* name, daqBool* contains)
+daqErrCode daqStruct_hasField(daqStruct* self, daqString* name, daqCBool* contains)
 {
     return reinterpret_cast<daq::IStruct*>(self)->hasField(reinterpret_cast<daq::IString*>(name), contains);
 }

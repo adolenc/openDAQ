@@ -40,18 +40,18 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_LIST_INTF_ID;
     void EXPORTED daqList_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqList_getItemAt(daqList* self, daqSizeT index, daqBaseObject** obj);
-    daqErrCode EXPORTED daqList_getCount(daqList* self, daqSizeT* size);
-    daqErrCode EXPORTED daqList_setItemAt(daqList* self, daqSizeT index, daqBaseObject* obj);
+    daqErrCode EXPORTED daqList_getItemAt(daqList* self, daqCSizeT index, daqBaseObject** obj);
+    daqErrCode EXPORTED daqList_getCount(daqList* self, daqCSizeT* size);
+    daqErrCode EXPORTED daqList_setItemAt(daqList* self, daqCSizeT index, daqBaseObject* obj);
     daqErrCode EXPORTED daqList_pushBack(daqList* self, daqBaseObject* obj);
     daqErrCode EXPORTED daqList_pushFront(daqList* self, daqBaseObject* obj);
     daqErrCode EXPORTED daqList_moveBack(daqList* self, daqBaseObject* obj);
     daqErrCode EXPORTED daqList_moveFront(daqList* self, daqBaseObject* obj);
     daqErrCode EXPORTED daqList_popBack(daqList* self, daqBaseObject** obj);
     daqErrCode EXPORTED daqList_popFront(daqList* self, daqBaseObject** obj);
-    daqErrCode EXPORTED daqList_insertAt(daqList* self, daqSizeT index, daqBaseObject* obj);
-    daqErrCode EXPORTED daqList_removeAt(daqList* self, daqSizeT index, daqBaseObject** obj);
-    daqErrCode EXPORTED daqList_deleteAt(daqList* self, daqSizeT index);
+    daqErrCode EXPORTED daqList_insertAt(daqList* self, daqCSizeT index, daqBaseObject* obj);
+    daqErrCode EXPORTED daqList_removeAt(daqList* self, daqCSizeT index, daqBaseObject** obj);
+    daqErrCode EXPORTED daqList_deleteAt(daqList* self, daqCSizeT index);
     daqErrCode EXPORTED daqList_clear(daqList* self);
     daqErrCode EXPORTED daqList_createStartIterator(daqList* self, daqIterator** iterator);
     daqErrCode EXPORTED daqList_createEndIterator(daqList* self, daqIterator** iterator);

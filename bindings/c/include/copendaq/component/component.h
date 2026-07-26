@@ -47,8 +47,8 @@ extern "C"
 
     daqErrCode EXPORTED daqComponent_getLocalId(daqComponent* self, daqString** localId);
     daqErrCode EXPORTED daqComponent_getGlobalId(daqComponent* self, daqString** globalId);
-    daqErrCode EXPORTED daqComponent_getActive(daqComponent* self, daqBool* active);
-    daqErrCode EXPORTED daqComponent_setActive(daqComponent* self, daqBool active);
+    daqErrCode EXPORTED daqComponent_getActive(daqComponent* self, daqCBool* active);
+    daqErrCode EXPORTED daqComponent_setActive(daqComponent* self, daqCBool active);
     daqErrCode EXPORTED daqComponent_getContext(daqComponent* self, daqContext** context);
     daqErrCode EXPORTED daqComponent_getParent(daqComponent* self, daqComponent** parent);
     daqErrCode EXPORTED daqComponent_getName(daqComponent* self, daqString** name);
@@ -56,15 +56,15 @@ extern "C"
     daqErrCode EXPORTED daqComponent_getDescription(daqComponent* self, daqString** description);
     daqErrCode EXPORTED daqComponent_setDescription(daqComponent* self, daqString* description);
     daqErrCode EXPORTED daqComponent_getTags(daqComponent* self, daqTags** tags);
-    daqErrCode EXPORTED daqComponent_getVisible(daqComponent* self, daqBool* visible);
-    daqErrCode EXPORTED daqComponent_setVisible(daqComponent* self, daqBool visible);
+    daqErrCode EXPORTED daqComponent_getVisible(daqComponent* self, daqCBool* visible);
+    daqErrCode EXPORTED daqComponent_setVisible(daqComponent* self, daqCBool visible);
     daqErrCode EXPORTED daqComponent_getLockedAttributes(daqComponent* self, daqList** attributes);
     daqErrCode EXPORTED daqComponent_getOnComponentCoreEvent(daqComponent* self, daqEvent** event);
     daqErrCode EXPORTED daqComponent_getStatusContainer(daqComponent* self, daqComponentStatusContainer** statusContainer);
     daqErrCode EXPORTED daqComponent_findComponent(daqComponent* self, daqString* id, daqComponent** outComponent);
     daqErrCode EXPORTED daqComponent_getOperationMode(daqComponent* self, daqOperationModeType* modeType);
-    daqErrCode EXPORTED daqComponent_getLocalActive(daqComponent* self, daqBool* localActive);
-    daqErrCode EXPORTED daqComponent_getParentActive(daqComponent* self, daqBool* parentActive);
+    daqErrCode EXPORTED daqComponent_getLocalActive(daqComponent* self, daqCBool* localActive);
+    daqErrCode EXPORTED daqComponent_getParentActive(daqComponent* self, daqCBool* parentActive);
     daqErrCode EXPORTED daqComponent_createComponent(daqComponent** obj, daqContext* context, daqComponent* parent, daqString* localId, daqString* className);
 
 #ifdef __cplusplus

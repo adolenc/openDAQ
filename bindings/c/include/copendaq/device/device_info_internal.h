@@ -47,8 +47,8 @@ extern "C"
     daqErrCode EXPORTED daqDeviceInfoInternal_removeServerCapability(daqDeviceInfoInternal* self, daqString* protocolId);
     daqErrCode EXPORTED daqDeviceInfoInternal_clearServerStreamingCapabilities(daqDeviceInfoInternal* self);
     daqErrCode EXPORTED daqDeviceInfoInternal_addNetworkInteface(daqDeviceInfoInternal* self, daqString* name, daqNetworkInterface* networkInterface);
-    daqErrCode EXPORTED daqDeviceInfoInternal_addConnectedClient(daqDeviceInfoInternal* self, daqSizeT* clientNumber, daqConnectedClientInfo* clientInfo);
-    daqErrCode EXPORTED daqDeviceInfoInternal_removeConnectedClient(daqDeviceInfoInternal* self, daqSizeT clientNumber);
+    daqErrCode EXPORTED daqDeviceInfoInternal_addConnectedClient(daqDeviceInfoInternal* self, daqCSizeT* clientNumber, daqConnectedClientInfo* clientInfo);
+    daqErrCode EXPORTED daqDeviceInfoInternal_removeConnectedClient(daqDeviceInfoInternal* self, daqCSizeT clientNumber);
 
 #ifdef __cplusplus
 }

@@ -22,12 +22,12 @@ void daqPropertyObjectInternal_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_PROPERTY_OBJECT_INTERNAL_INTF_ID;
 }
 
-daqErrCode daqPropertyObjectInternal_checkForReferences(daqPropertyObjectInternal* self, daqProperty* property, daqBool* isReferenced)
+daqErrCode daqPropertyObjectInternal_checkForReferences(daqPropertyObjectInternal* self, daqProperty* property, daqCBool* isReferenced)
 {
     return reinterpret_cast<daq::IPropertyObjectInternal*>(self)->checkForReferences(reinterpret_cast<daq::IProperty*>(property), isReferenced);
 }
 
-daqErrCode daqPropertyObjectInternal_checkForReferencesNoLock(daqPropertyObjectInternal* self, daqProperty* property, daqBool* isReferenced)
+daqErrCode daqPropertyObjectInternal_checkForReferencesNoLock(daqPropertyObjectInternal* self, daqProperty* property, daqCBool* isReferenced)
 {
     return reinterpret_cast<daq::IPropertyObjectInternal*>(self)->checkForReferencesNoLock(reinterpret_cast<daq::IProperty*>(property), isReferenced);
 }
@@ -67,12 +67,12 @@ daqErrCode daqPropertyObjectInternal_getPath(daqPropertyObjectInternal* self, da
     return reinterpret_cast<daq::IPropertyObjectInternal*>(self)->getPath(reinterpret_cast<daq::IString**>(path));
 }
 
-daqErrCode daqPropertyObjectInternal_isUpdating(daqPropertyObjectInternal* self, daqBool* updating)
+daqErrCode daqPropertyObjectInternal_isUpdating(daqPropertyObjectInternal* self, daqCBool* updating)
 {
     return reinterpret_cast<daq::IPropertyObjectInternal*>(self)->isUpdating(updating);
 }
 
-daqErrCode daqPropertyObjectInternal_hasUserReadAccess(daqPropertyObjectInternal* self, daqBaseObject* userContext, daqBool* hasAccessOut)
+daqErrCode daqPropertyObjectInternal_hasUserReadAccess(daqPropertyObjectInternal* self, daqBaseObject* userContext, daqCBool* hasAccessOut)
 {
     return reinterpret_cast<daq::IPropertyObjectInternal*>(self)->hasUserReadAccess(reinterpret_cast<daq::IBaseObject*>(userContext), hasAccessOut);
 }
@@ -142,7 +142,7 @@ daqErrCode daqPropertyObjectInternal_getAllPropertiesNoLock(daqPropertyObjectInt
     return reinterpret_cast<daq::IPropertyObjectInternal*>(self)->getAllPropertiesNoLock(reinterpret_cast<daq::IList**>(properties));
 }
 
-daqErrCode daqPropertyObjectInternal_hasPropertyNoLock(daqPropertyObjectInternal* self, daqString* propertyName, daqBool* hasProperty)
+daqErrCode daqPropertyObjectInternal_hasPropertyNoLock(daqPropertyObjectInternal* self, daqString* propertyName, daqCBool* hasProperty)
 {
     return reinterpret_cast<daq::IPropertyObjectInternal*>(self)->hasPropertyNoLock(reinterpret_cast<daq::IString*>(propertyName), hasProperty);
 }

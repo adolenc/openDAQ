@@ -22,7 +22,7 @@ void daqReusableDataPacket_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_REUSABLE_DATA_PACKET_INTF_ID;
 }
 
-daqErrCode daqReusableDataPacket_reuse(daqReusableDataPacket* self, daqDataDescriptor* newDescriptor, daqSizeT newSampleCount, daqNumber* newOffset, daqDataPacket* newDomainPacket, daqBool canReallocMemory, daqBool* success)
+daqErrCode daqReusableDataPacket_reuse(daqReusableDataPacket* self, daqDataDescriptor* newDescriptor, daqCSizeT newSampleCount, daqNumber* newOffset, daqDataPacket* newDomainPacket, daqCBool canReallocMemory, daqCBool* success)
 {
     return reinterpret_cast<daq::IReusableDataPacket*>(self)->reuse(reinterpret_cast<daq::IDataDescriptor*>(newDescriptor), newSampleCount, reinterpret_cast<daq::INumber*>(newOffset), reinterpret_cast<daq::IDataPacket*>(newDomainPacket), canReallocMemory, success);
 }

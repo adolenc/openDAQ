@@ -43,11 +43,11 @@ extern "C"
     daqErrCode EXPORTED daqComplexNumber_getValue(daqComplexNumber* self, daqComplexFloat64* value);
 */
 /*
-    daqErrCode EXPORTED daqComplexNumber_equalsValue(daqComplexNumber* self, daqComplexFloat64 value, daqBool* equal);
+    daqErrCode EXPORTED daqComplexNumber_equalsValue(daqComplexNumber* self, daqComplexFloat64 value, daqCBool* equal);
 */
-    daqErrCode EXPORTED daqComplexNumber_getReal(daqComplexNumber* self, daqFloat* real);
-    daqErrCode EXPORTED daqComplexNumber_getImaginary(daqComplexNumber* self, daqFloat* imaginary);
-    daqErrCode EXPORTED daqComplexNumber_createComplexNumber(daqComplexNumber** obj, daqFloat real, daqFloat imaginary);
+    daqErrCode EXPORTED daqComplexNumber_getReal(daqComplexNumber* self, daqCFloat* real);
+    daqErrCode EXPORTED daqComplexNumber_getImaginary(daqComplexNumber* self, daqCFloat* imaginary);
+    daqErrCode EXPORTED daqComplexNumber_createComplexNumber(daqComplexNumber** obj, daqCFloat real, daqCFloat imaginary);
 
 #ifdef __cplusplus
 }

@@ -4,7 +4,7 @@
 
 #include "private/c_event_handler_impl.h"
 
-daqErrCode daqSerializer_createJsonSerializer(daqSerializer** obj, daqBool pretty)
+daqErrCode daqSerializer_createJsonSerializer(daqSerializer** obj, daqCBool pretty)
 {
     daq::ISerializer* ptr = nullptr;
     daqErrCode err = daq::createJsonSerializer(&ptr, pretty);

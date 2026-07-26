@@ -37,22 +37,22 @@ daqErrCode daqErrorInfo_getSource(daqErrorInfo* self, daqString** source)
     return reinterpret_cast<daq::IErrorInfo*>(self)->getSource(reinterpret_cast<daq::IString**>(source));
 }
 
-daqErrCode daqErrorInfo_setFileName(daqErrorInfo* self, daqConstCharPtr fileName)
+daqErrCode daqErrorInfo_setFileName(daqErrorInfo* self, daqCConstCharPtr fileName)
 {
     return reinterpret_cast<daq::IErrorInfo*>(self)->setFileName(static_cast<daq::ConstCharPtr>(fileName));
 }
 
-daqErrCode daqErrorInfo_getFileName(daqErrorInfo* self, daqConstCharPtr* fileName)
+daqErrCode daqErrorInfo_getFileName(daqErrorInfo* self, daqCConstCharPtr* fileName)
 {
     return reinterpret_cast<daq::IErrorInfo*>(self)->getFileName(reinterpret_cast<daq::ConstCharPtr*>(fileName));
 }
 
-daqErrCode daqErrorInfo_setFileLine(daqErrorInfo* self, daqInt fileLine)
+daqErrCode daqErrorInfo_setFileLine(daqErrorInfo* self, daqCInt fileLine)
 {
     return reinterpret_cast<daq::IErrorInfo*>(self)->setFileLine(fileLine);
 }
 
-daqErrCode daqErrorInfo_getFileLine(daqErrorInfo* self, daqInt* fileLine)
+daqErrCode daqErrorInfo_getFileLine(daqErrorInfo* self, daqCInt* fileLine)
 {
     return reinterpret_cast<daq::IErrorInfo*>(self)->getFileLine(fileLine);
 }

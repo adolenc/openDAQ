@@ -32,7 +32,7 @@ daqErrCode daqDimensionRule_getParameters(daqDimensionRule* self, daqDict** para
     return reinterpret_cast<daq::IDimensionRule*>(self)->getParameters(reinterpret_cast<daq::IDict**>(parameters));
 }
 
-daqErrCode daqDimensionRule_createLinearDimensionRule(daqDimensionRule** obj, daqNumber* delta, daqNumber* start, daqSizeT size)
+daqErrCode daqDimensionRule_createLinearDimensionRule(daqDimensionRule** obj, daqNumber* delta, daqNumber* start, daqCSizeT size)
 {
     daq::IDimensionRule* ptr = nullptr;
     daqErrCode err = daq::createLinearDimensionRule(&ptr, reinterpret_cast<daq::INumber*>(delta), reinterpret_cast<daq::INumber*>(start), size);
@@ -48,7 +48,7 @@ daqErrCode daqDimensionRule_createListDimensionRule(daqDimensionRule** obj, daqL
     return err;
 }
 
-daqErrCode daqDimensionRule_createLogarithmicDimensionRule(daqDimensionRule** obj, daqNumber* delta, daqNumber* start, daqNumber* base, daqSizeT size)
+daqErrCode daqDimensionRule_createLogarithmicDimensionRule(daqDimensionRule** obj, daqNumber* delta, daqNumber* start, daqNumber* base, daqCSizeT size)
 {
     daq::IDimensionRule* ptr = nullptr;
     daqErrCode err = daq::createLogarithmicDimensionRule(&ptr, reinterpret_cast<daq::INumber*>(delta), reinterpret_cast<daq::INumber*>(start), reinterpret_cast<daq::INumber*>(base), size);

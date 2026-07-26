@@ -32,17 +32,17 @@ daqErrCode daqEnumerationType_getAsDictionary(daqEnumerationType* self, daqDict*
     return reinterpret_cast<daq::IEnumerationType*>(self)->getAsDictionary(reinterpret_cast<daq::IDict**>(dictionary));
 }
 
-daqErrCode daqEnumerationType_getEnumeratorIntValue(daqEnumerationType* self, daqString* name, daqInt* value)
+daqErrCode daqEnumerationType_getEnumeratorIntValue(daqEnumerationType* self, daqString* name, daqCInt* value)
 {
     return reinterpret_cast<daq::IEnumerationType*>(self)->getEnumeratorIntValue(reinterpret_cast<daq::IString*>(name), value);
 }
 
-daqErrCode daqEnumerationType_getCount(daqEnumerationType* self, daqSizeT* count)
+daqErrCode daqEnumerationType_getCount(daqEnumerationType* self, daqCSizeT* count)
 {
     return reinterpret_cast<daq::IEnumerationType*>(self)->getCount(count);
 }
 
-daqErrCode daqEnumerationType_createEnumerationType(daqEnumerationType** obj, daqString* typeName, daqList* enumeratorNames, daqInt firstEnumeratorIntValue)
+daqErrCode daqEnumerationType_createEnumerationType(daqEnumerationType** obj, daqString* typeName, daqList* enumeratorNames, daqCInt firstEnumeratorIntValue)
 {
     daq::IEnumerationType* ptr = nullptr;
     daqErrCode err = daq::createEnumerationType(&ptr, reinterpret_cast<daq::IString*>(typeName), reinterpret_cast<daq::IList*>(enumeratorNames), firstEnumeratorIntValue);

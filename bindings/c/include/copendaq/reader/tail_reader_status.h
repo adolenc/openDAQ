@@ -41,8 +41,8 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_TAIL_READER_STATUS_INTF_ID;
     void EXPORTED daqTailReaderStatus_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqTailReaderStatus_getSufficientHistory(daqTailReaderStatus* self, daqBool* status);
-    daqErrCode EXPORTED daqTailReaderStatus_createTailReaderStatus(daqTailReaderStatus** obj, daqEventPacket* eventPacket, daqBool valid, daqNumber* offset, daqBool sufficientHistory);
+    daqErrCode EXPORTED daqTailReaderStatus_getSufficientHistory(daqTailReaderStatus* self, daqCBool* status);
+    daqErrCode EXPORTED daqTailReaderStatus_createTailReaderStatus(daqTailReaderStatus** obj, daqEventPacket* eventPacket, daqCBool valid, daqNumber* offset, daqCBool sufficientHistory);
 
 #ifdef __cplusplus
 }

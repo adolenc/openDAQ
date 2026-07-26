@@ -42,9 +42,9 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_STREAM_READER_INTF_ID;
     void EXPORTED daqStreamReader_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqStreamReader_read(daqStreamReader* self, void* samples, daqSizeT* count, daqSizeT timeoutMs, daqReaderStatus** status);
-    daqErrCode EXPORTED daqStreamReader_readWithDomain(daqStreamReader* self, void* samples, void* domain, daqSizeT* count, daqSizeT timeoutMs, daqReaderStatus** status);
-    daqErrCode EXPORTED daqStreamReader_skipSamples(daqStreamReader* self, daqSizeT* count, daqReaderStatus** status);
+    daqErrCode EXPORTED daqStreamReader_read(daqStreamReader* self, void* samples, daqCSizeT* count, daqCSizeT timeoutMs, daqReaderStatus** status);
+    daqErrCode EXPORTED daqStreamReader_readWithDomain(daqStreamReader* self, void* samples, void* domain, daqCSizeT* count, daqCSizeT timeoutMs, daqReaderStatus** status);
+    daqErrCode EXPORTED daqStreamReader_skipSamples(daqStreamReader* self, daqCSizeT* count, daqReaderStatus** status);
     daqErrCode EXPORTED daqStreamReader_createStreamReader(daqStreamReader** obj, daqSignal* signal, daqSampleType valueReadType, daqSampleType domainReadType, daqReadMode mode, daqReadTimeoutType timeoutType);
     daqErrCode EXPORTED daqStreamReader_createStreamReaderFromPort(daqStreamReader** obj, daqInputPortConfig* port, daqSampleType valueReadType, daqSampleType domainReadType, daqReadMode readMode, daqReadTimeoutType timeoutType);
     daqErrCode EXPORTED daqStreamReader_createStreamReaderFromExisting(daqStreamReader** obj, daqStreamReader* invalidatedReader, daqSampleType valueReadType, daqSampleType domainReadType);

@@ -41,7 +41,7 @@ extern "C"
 
     daqErrCode EXPORTED daqRecorder_startRecording(daqRecorder* self);
     daqErrCode EXPORTED daqRecorder_stopRecording(daqRecorder* self);
-    daqErrCode EXPORTED daqRecorder_getIsRecording(daqRecorder* self, daqBool* isRecording);
+    daqErrCode EXPORTED daqRecorder_getIsRecording(daqRecorder* self, daqCBool* isRecording);
 
 #ifdef __cplusplus
 }

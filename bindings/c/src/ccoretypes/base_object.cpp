@@ -21,17 +21,17 @@ daqErrCode daqBaseObject_dispose(daqBaseObject* self)
     return static_cast<daq::IBaseObject*>(self)->dispose();
 }
 
-daqErrCode daqBaseObject_getHashCode(daqBaseObject* self, daqSizeT* hashCode)
+daqErrCode daqBaseObject_getHashCode(daqBaseObject* self, daqCSizeT* hashCode)
 {
     return static_cast<daq::IBaseObject*>(self)->getHashCode(hashCode);
 }
 
-daqErrCode daqBaseObject_equals(daqBaseObject* self, void* other, daqBool* equal)
+daqErrCode daqBaseObject_equals(daqBaseObject* self, void* other, daqCBool* equal)
 {
     return static_cast<daq::IBaseObject*>(self)->equals(static_cast<daq::IBaseObject*>(other), equal);
 }
 
-daqErrCode daqBaseObject_toString(daqBaseObject* self, daqCharPtr* str)
+daqErrCode daqBaseObject_toString(daqBaseObject* self, daqCCharPtr* str)
 {
     return static_cast<daq::IBaseObject*>(self)->toString(str);
 }

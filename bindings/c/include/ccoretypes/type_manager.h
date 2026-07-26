@@ -46,7 +46,7 @@ extern "C"
     daqErrCode EXPORTED daqTypeManager_removeType(daqTypeManager* self, daqString* typeName);
     daqErrCode EXPORTED daqTypeManager_getType(daqTypeManager* self, daqString* typeName, daqType** type);
     daqErrCode EXPORTED daqTypeManager_getTypes(daqTypeManager* self, daqList** types);
-    daqErrCode EXPORTED daqTypeManager_hasType(daqTypeManager* self, daqString* typeName, daqBool* hasType);
+    daqErrCode EXPORTED daqTypeManager_hasType(daqTypeManager* self, daqString* typeName, daqCBool* hasType);
     daqErrCode EXPORTED daqTypeManager_createTypeManager(daqTypeManager** obj);
 
 #ifdef __cplusplus

@@ -55,12 +55,12 @@ extern "C"
     daqErrCode EXPORTED daqDeviceInfoConfig_setDeviceClass(daqDeviceInfoConfig* self, daqString* deviceClass);
     daqErrCode EXPORTED daqDeviceInfoConfig_setSerialNumber(daqDeviceInfoConfig* self, daqString* serialNumber);
     daqErrCode EXPORTED daqDeviceInfoConfig_setProductInstanceUri(daqDeviceInfoConfig* self, daqString* productInstanceUri);
-    daqErrCode EXPORTED daqDeviceInfoConfig_setRevisionCounter(daqDeviceInfoConfig* self, daqInt revisionCounter);
+    daqErrCode EXPORTED daqDeviceInfoConfig_setRevisionCounter(daqDeviceInfoConfig* self, daqCInt revisionCounter);
     daqErrCode EXPORTED daqDeviceInfoConfig_setAssetId(daqDeviceInfoConfig* self, daqString* id);
     daqErrCode EXPORTED daqDeviceInfoConfig_setMacAddress(daqDeviceInfoConfig* self, daqString* macAddress);
     daqErrCode EXPORTED daqDeviceInfoConfig_setParentMacAddress(daqDeviceInfoConfig* self, daqString* macAddress);
     daqErrCode EXPORTED daqDeviceInfoConfig_setPlatform(daqDeviceInfoConfig* self, daqString* platform);
-    daqErrCode EXPORTED daqDeviceInfoConfig_setPosition(daqDeviceInfoConfig* self, daqInt position);
+    daqErrCode EXPORTED daqDeviceInfoConfig_setPosition(daqDeviceInfoConfig* self, daqCInt position);
     daqErrCode EXPORTED daqDeviceInfoConfig_setSystemType(daqDeviceInfoConfig* self, daqString* type);
     daqErrCode EXPORTED daqDeviceInfoConfig_setSystemUuid(daqDeviceInfoConfig* self, daqString* uuid);
     daqErrCode EXPORTED daqDeviceInfoConfig_setLocation(daqDeviceInfoConfig* self, daqString* location);

@@ -72,7 +72,7 @@ int main()
         daqBaseObject* targetNameObj = DAQ_BORROW_INTERFACE(targetName, DAQ_BASE_OBJECT_INTF_ID);
         daqBaseObject* nameObj = DAQ_BORROW_INTERFACE(name, DAQ_BASE_OBJECT_INTF_ID);
 
-        daqBool equal = False;
+        daqCBool equal = False;
         daqBaseObject_equals(nameObj, targetNameObj, &equal);
 
         daqReleaseRef(name);
@@ -123,7 +123,7 @@ int main()
 
     daqString* name = NULL;
     daqDeviceInfo_getName(deviceInfo, &name);
-    daqConstCharPtr nameStr = NULL;
+    daqCConstCharPtr nameStr = NULL;
     daqString_getCharPtr(name, &nameStr);
 
     printf("Device name: %s\n", nameStr);
@@ -159,12 +159,12 @@ int main()
 
     if (lastValue)
     {
-        daqFloatObject* lastValueFloat = NULL;
-        lastValueFloat = DAQ_BORROW_INTERFACE(lastValue, DAQ_FLOAT_OBJECT_INTF_ID);
+        daqFloat* lastValueFloat = NULL;
+        lastValueFloat = DAQ_BORROW_INTERFACE(lastValue, DAQ_FLOAT_INTF_ID);
         if (lastValueFloat)
         {
-            daqFloat value = 0.0f;
-            daqFloatObject_getValue(lastValueFloat, &value);
+            daqCFloat value = 0.0f;
+            daqFloat_getValue(lastValueFloat, &value);
             printf("Last value: %f\n", value);
         }
         daqReleaseRef(lastValue);
@@ -175,11 +175,11 @@ int main()
     daqStreamReader_createStreamReader(
         &streamReader, signal, daqSampleTypeFloat64, daqSampleTypeInt64, daqReadModeRawValue, daqReadTimeoutTypeAny);
 
-    daqFloat samples[100];  // buffer for reading samples
+    daqCFloat samples[100];  // buffer for reading samples
     for (int i = 0; i < 40; ++i)
     {
         sleepMs(25);
-        daqSizeT count = 100;  // would be filled with the number of samples read
+        daqCSizeT count = 100;  // would be filled with the number of samples read
         daqStreamReader_read(streamReader, samples, &count, 1000, NULL);
         if (count > 0)
         {
@@ -206,30 +206,30 @@ int main()
     daqString* unitSymbol = NULL;
     daqUnit_getSymbol(unit, &unitSymbol);
 
-    daqConstCharPtr originStr = NULL;
+    daqCConstCharPtr originStr = NULL;
     daqString_getCharPtr(origin, &originStr);
 
-    daqConstCharPtr unitSymbolStr = NULL;
+    daqCConstCharPtr unitSymbolStr = NULL;
     daqString_getCharPtr(unitSymbol, &unitSymbolStr);
 
     printf("Origin: %s\n", originStr);
 
     // Reading domain samples
-    daqUInt domainSamples[100];
+    daqCUInt domainSamples[100];
     for (int i = 0; i < 40; ++i)
     {
-        daqSizeT count = 100;
+        daqCSizeT count = 100;
         sleepMs(25);
         daqStreamReader_readWithDomain(streamReader, samples, domainSamples, &count, 1000, NULL);
         if (count > 0)
         {
             // Scaling domain value to the signal unit (seconds)
-            daqInt resolutionNumerator = 0;
-            daqInt resolutionDenominator = 0;
+            daqCInt resolutionNumerator = 0;
+            daqCInt resolutionDenominator = 0;
             daqRatio_getNumerator(ratio, &resolutionNumerator);
             daqRatio_getDenominator(ratio, &resolutionDenominator);
 
-            daqFloat domainValue = (daqFloat) domainSamples[count - 1] * resolutionNumerator / resolutionDenominator;
+            daqCFloat domainValue = (daqCFloat) domainSamples[count - 1] * resolutionNumerator / resolutionDenominator;
             printf("Value: %6.3f, Domain: %0.3f%s\n", samples[count - 1], domainValue, unitSymbolStr);
         }
     }
@@ -323,11 +323,11 @@ int main()
     daqList* properties = NULL;
     daqPropertyObject_getVisibleProperties(channelPropertyObject, &properties);
 
-    daqSizeT propertyCount = 0;
+    daqCSizeT propertyCount = 0;
     daqList_getCount(properties, &propertyCount);
 
     // Printing the names of the properties
-    for (daqSizeT i = 0; i < propertyCount; ++i)
+    for (daqCSizeT i = 0; i < propertyCount; ++i)
     {
         daqProperty* property = NULL;
         daqList_getItemAt(properties, i, (daqBaseObject**) &property);
@@ -335,7 +335,7 @@ int main()
         daqString* propertyName = NULL;
         daqProperty_getName(property, &propertyName);
 
-        daqConstCharPtr propertyNameStr = NULL;
+        daqCConstCharPtr propertyNameStr = NULL;
         daqString_getCharPtr(propertyName, &propertyNameStr);
         printf("%s\n", propertyNameStr);
 
@@ -357,8 +357,8 @@ int main()
     daqInteger* frequencyValue = NULL;
     daqInteger_createInteger(&frequencyValue, 5);
 
-    daqFloatObject* noiseAmplitudeValue = NULL;
-    daqFloatObject_createFloatObject(&noiseAmplitudeValue, 0.75);
+    daqFloat* noiseAmplitudeValue = NULL;
+    daqFloat_createFloat(&noiseAmplitudeValue, 0.75);
 
     // Setting the properties of the channel
     daqPropertyObject_setPropertyValue(channelPropertyObject, frequencyPropertyName, (daqBaseObject*) frequencyValue);
@@ -368,16 +368,16 @@ int main()
     daqReleaseRef(noiseAmplitudeValue);
 
     // Modulate the signal amplitude by a step of 0.1 every 25 ms.
-    daqFloat ampStep = 0.1;
+    daqCFloat ampStep = 0.1;
     for (int i = 0; i < 200; ++i)
     {
         sleepMs(25);
 
-        daqFloatObject* amplitudeValue = NULL;
+        daqFloat* amplitudeValue = NULL;
         daqPropertyObject_getPropertyValue(channelPropertyObject, amplitudePropertyName, (daqBaseObject**) &amplitudeValue);
 
-        daqFloat currentAmplitude = 0.0;
-        daqFloatObject_getValue(amplitudeValue, &currentAmplitude);
+        daqCFloat currentAmplitude = 0.0;
+        daqFloat_getValue(amplitudeValue, &currentAmplitude);
 
         if(9.95 < currentAmplitude || currentAmplitude < 1.05)
             ampStep = -ampStep;
@@ -386,7 +386,7 @@ int main()
 
         daqReleaseRef(amplitudeValue);
 
-        daqFloatObject_createFloatObject(&amplitudeValue, currentAmplitude);
+        daqFloat_createFloat(&amplitudeValue, currentAmplitude);
 
         daqPropertyObject_setPropertyValue(channelPropertyObject, amplitudePropertyName, (daqBaseObject*) amplitudeValue);
 

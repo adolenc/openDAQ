@@ -46,8 +46,8 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_PROPERTY_OBJECT_INTERNAL_INTF_ID;
     void EXPORTED daqPropertyObjectInternal_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqPropertyObjectInternal_checkForReferences(daqPropertyObjectInternal* self, daqProperty* property, daqBool* isReferenced);
-    daqErrCode EXPORTED daqPropertyObjectInternal_checkForReferencesNoLock(daqPropertyObjectInternal* self, daqProperty* property, daqBool* isReferenced);
+    daqErrCode EXPORTED daqPropertyObjectInternal_checkForReferences(daqPropertyObjectInternal* self, daqProperty* property, daqCBool* isReferenced);
+    daqErrCode EXPORTED daqPropertyObjectInternal_checkForReferencesNoLock(daqPropertyObjectInternal* self, daqProperty* property, daqCBool* isReferenced);
     daqErrCode EXPORTED daqPropertyObjectInternal_enableCoreEventTrigger(daqPropertyObjectInternal* self);
     daqErrCode EXPORTED daqPropertyObjectInternal_disableCoreEventTrigger(daqPropertyObjectInternal* self);
     daqErrCode EXPORTED daqPropertyObjectInternal_getCoreEventTrigger(daqPropertyObjectInternal* self, daqProcedure** trigger);
@@ -55,8 +55,8 @@ extern "C"
     daqErrCode EXPORTED daqPropertyObjectInternal_clone(daqPropertyObjectInternal* self, daqPropertyObject** cloned);
     daqErrCode EXPORTED daqPropertyObjectInternal_setPath(daqPropertyObjectInternal* self, daqString* path);
     daqErrCode EXPORTED daqPropertyObjectInternal_getPath(daqPropertyObjectInternal* self, daqString** path);
-    daqErrCode EXPORTED daqPropertyObjectInternal_isUpdating(daqPropertyObjectInternal* self, daqBool* updating);
-    daqErrCode EXPORTED daqPropertyObjectInternal_hasUserReadAccess(daqPropertyObjectInternal* self, daqBaseObject* userContext, daqBool* hasAccessOut);
+    daqErrCode EXPORTED daqPropertyObjectInternal_isUpdating(daqPropertyObjectInternal* self, daqCBool* updating);
+    daqErrCode EXPORTED daqPropertyObjectInternal_hasUserReadAccess(daqPropertyObjectInternal* self, daqBaseObject* userContext, daqCBool* hasAccessOut);
     daqErrCode EXPORTED daqPropertyObjectInternal_getPropertyValueNoLock(daqPropertyObjectInternal* self, daqString* name, daqBaseObject** value);
     daqErrCode EXPORTED daqPropertyObjectInternal_getPropertySelectionValueNoLock(daqPropertyObjectInternal* self, daqString* name, daqBaseObject** value);
     daqErrCode EXPORTED daqPropertyObjectInternal_setPropertyValueNoLock(daqPropertyObjectInternal* self, daqString* name, daqBaseObject* value);
@@ -70,7 +70,7 @@ extern "C"
     daqErrCode EXPORTED daqPropertyObjectInternal_getMutexOwner(daqPropertyObjectInternal* self, daqPropertyObjectInternal** owner);
     daqErrCode EXPORTED daqPropertyObjectInternal_getPropertyNoLock(daqPropertyObjectInternal* self, daqString* propertyName, daqProperty** property);
     daqErrCode EXPORTED daqPropertyObjectInternal_getAllPropertiesNoLock(daqPropertyObjectInternal* self, daqList** properties);
-    daqErrCode EXPORTED daqPropertyObjectInternal_hasPropertyNoLock(daqPropertyObjectInternal* self, daqString* propertyName, daqBool* hasProperty);
+    daqErrCode EXPORTED daqPropertyObjectInternal_hasPropertyNoLock(daqPropertyObjectInternal* self, daqString* propertyName, daqCBool* hasProperty);
     daqErrCode EXPORTED daqPropertyObjectInternal_getVisiblePropertiesNoLock(daqPropertyObjectInternal* self, daqList** properties);
 
 #ifdef __cplusplus

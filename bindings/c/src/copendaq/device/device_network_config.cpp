@@ -32,7 +32,7 @@ daqErrCode daqDeviceNetworkConfig_retrieveNetworkConfiguration(daqDeviceNetworkC
     return reinterpret_cast<daq::IDeviceNetworkConfig*>(self)->retrieveNetworkConfiguration(reinterpret_cast<daq::IString*>(ifaceName), reinterpret_cast<daq::IPropertyObject**>(config));
 }
 
-daqErrCode daqDeviceNetworkConfig_getNetworkConfigurationEnabled(daqDeviceNetworkConfig* self, daqBool* enabled)
+daqErrCode daqDeviceNetworkConfig_getNetworkConfigurationEnabled(daqDeviceNetworkConfig* self, daqCBool* enabled)
 {
     return reinterpret_cast<daq::IDeviceNetworkConfig*>(self)->getNetworkConfigurationEnabled(enabled);
 }

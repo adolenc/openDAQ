@@ -41,7 +41,7 @@ extern "C"
     void EXPORTED daqLastMessageLoggerSinkPrivate_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqLastMessageLoggerSinkPrivate_getLastMessage(daqLastMessageLoggerSinkPrivate* self, daqString** lastMessage);
-    daqErrCode EXPORTED daqLastMessageLoggerSinkPrivate_waitForMessage(daqLastMessageLoggerSinkPrivate* self, daqSizeT timeoutMs, daqBool* success);
+    daqErrCode EXPORTED daqLastMessageLoggerSinkPrivate_waitForMessage(daqLastMessageLoggerSinkPrivate* self, daqCSizeT timeoutMs, daqCBool* success);
 
 #ifdef __cplusplus
 }

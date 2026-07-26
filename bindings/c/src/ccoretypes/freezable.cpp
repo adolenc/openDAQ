@@ -27,7 +27,7 @@ daqErrCode daqFreezable_freeze(daqFreezable* self)
     return reinterpret_cast<daq::IFreezable*>(self)->freeze();
 }
 
-daqErrCode daqFreezable_isFrozen(daqFreezable* self, daqBool* isFrozen)
+daqErrCode daqFreezable_isFrozen(daqFreezable* self, daqCBool* isFrozen)
 {
     return reinterpret_cast<daq::IFreezable*>(self)->isFrozen(isFrozen);
 }

@@ -39,10 +39,10 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_STRING_INTF_ID;
     void EXPORTED daqString_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqString_getCharPtr(daqString* self, daqConstCharPtr* value);
-    daqErrCode EXPORTED daqString_getLength(daqString* self, daqSizeT* size);
-    daqErrCode EXPORTED daqString_createString(daqString** obj, daqConstCharPtr str);
-    daqErrCode EXPORTED daqString_createStringN(daqString** obj, daqConstCharPtr str, daqSizeT length);
+    daqErrCode EXPORTED daqString_getCharPtr(daqString* self, daqCConstCharPtr* value);
+    daqErrCode EXPORTED daqString_getLength(daqString* self, daqCSizeT* size);
+    daqErrCode EXPORTED daqString_createString(daqString** obj, daqCConstCharPtr str);
+    daqErrCode EXPORTED daqString_createStringN(daqString** obj, daqCConstCharPtr str, daqCSizeT length);
 
 #ifdef __cplusplus
 }

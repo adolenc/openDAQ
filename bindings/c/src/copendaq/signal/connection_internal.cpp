@@ -27,7 +27,12 @@ daqErrCode daqConnectionInternal_enqueueLastDescriptor(daqConnectionInternal* se
     return reinterpret_cast<daq::IConnectionInternal*>(self)->enqueueLastDescriptor();
 }
 
-daqErrCode daqConnectionInternal_dequeueUpTo(daqConnectionInternal* self, daqPacket** packetPtr, daqSizeT* count)
+daqErrCode daqConnectionInternal_dequeueUpTo(daqConnectionInternal* self, daqPacket** packetPtr, daqCSizeT* count)
 {
     return reinterpret_cast<daq::IConnectionInternal*>(self)->dequeueUpTo(reinterpret_cast<daq::IPacket**>(packetPtr), count);
+}
+
+daqErrCode daqConnectionInternal_closeQueue(daqConnectionInternal* self)
+{
+    return reinterpret_cast<daq::IConnectionInternal*>(self)->closeQueue();
 }

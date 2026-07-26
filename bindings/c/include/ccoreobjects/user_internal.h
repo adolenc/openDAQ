@@ -41,7 +41,7 @@ extern "C"
     void EXPORTED daqUserInternal_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqUserInternal_getPasswordHash(daqUserInternal* self, daqString** passwordHash);
-    daqErrCode EXPORTED daqUserInternal_isAnonymous(daqUserInternal* self, daqBool* anonymous);
+    daqErrCode EXPORTED daqUserInternal_isAnonymous(daqUserInternal* self, daqCBool* anonymous);
 
 #ifdef __cplusplus
 }

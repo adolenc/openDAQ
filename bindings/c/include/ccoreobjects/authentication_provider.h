@@ -43,11 +43,11 @@ extern "C"
     void EXPORTED daqAuthenticationProvider_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqAuthenticationProvider_authenticate(daqAuthenticationProvider* self, daqString* username, daqString* password, daqUser** userOut);
-    daqErrCode EXPORTED daqAuthenticationProvider_isAnonymousAllowed(daqAuthenticationProvider* self, daqBool* allowedOut);
+    daqErrCode EXPORTED daqAuthenticationProvider_isAnonymousAllowed(daqAuthenticationProvider* self, daqCBool* allowedOut);
     daqErrCode EXPORTED daqAuthenticationProvider_authenticateAnonymous(daqAuthenticationProvider* self, daqUser** userOut);
     daqErrCode EXPORTED daqAuthenticationProvider_findUser(daqAuthenticationProvider* self, daqString* username, daqUser** userOut);
-    daqErrCode EXPORTED daqAuthenticationProvider_createAuthenticationProvider(daqAuthenticationProvider** obj, daqBool allowAnonymous);
-    daqErrCode EXPORTED daqAuthenticationProvider_createStaticAuthenticationProvider(daqAuthenticationProvider** obj, daqBool allowAnonymous, daqList* userList);
+    daqErrCode EXPORTED daqAuthenticationProvider_createAuthenticationProvider(daqAuthenticationProvider** obj, daqCBool allowAnonymous);
+    daqErrCode EXPORTED daqAuthenticationProvider_createStaticAuthenticationProvider(daqAuthenticationProvider** obj, daqCBool allowAnonymous, daqList* userList);
     daqErrCode EXPORTED daqAuthenticationProvider_createJsonStringAuthenticationProvider(daqAuthenticationProvider** obj, daqString* jsonString);
     daqErrCode EXPORTED daqAuthenticationProvider_createJsonFileAuthenticationProvider(daqAuthenticationProvider** obj, daqString* filename);
 

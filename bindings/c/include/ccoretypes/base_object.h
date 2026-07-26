@@ -28,9 +28,9 @@ extern "C"
     int EXPORTED daqBaseObject_addRef(daqBaseObject* self);
     int EXPORTED daqBaseObject_releaseRef(daqBaseObject* self);
     daqErrCode EXPORTED daqBaseObject_dispose(daqBaseObject* self);
-    daqErrCode EXPORTED daqBaseObject_getHashCode(daqBaseObject* self, daqSizeT* hashCode);
-    daqErrCode EXPORTED daqBaseObject_equals(daqBaseObject* self, daqBaseObject* other, daqBool* equal);
-    daqErrCode EXPORTED daqBaseObject_toString(daqBaseObject* self, daqCharPtr* str);
+    daqErrCode EXPORTED daqBaseObject_getHashCode(daqBaseObject* self, daqCSizeT* hashCode);
+    daqErrCode EXPORTED daqBaseObject_equals(daqBaseObject* self, daqBaseObject* other, daqCBool* equal);
+    daqErrCode EXPORTED daqBaseObject_toString(daqBaseObject* self, daqCCharPtr* str);
     daqErrCode EXPORTED daqBaseObject_create(daqBaseObject** baseObject);
     daqErrCode EXPORTED daqBaseObject_queryInterface(daqBaseObject* self, daqIntfID intfId, daqBaseObject** interfacePtr);
     daqErrCode EXPORTED daqBaseObject_borrowInterface(daqBaseObject* self, daqIntfID intfId, daqBaseObject** interfacePtr);
@@ -50,17 +50,17 @@ extern "C"
         return daqBaseObject_dispose(self);
     }
 
-    static inline daqErrCode daqGetHashCode(daqBaseObject* self, daqSizeT* hashCode)
+    static inline daqErrCode daqGetHashCode(daqBaseObject* self, daqCSizeT* hashCode)
     {
         return daqBaseObject_getHashCode(self, hashCode);
     }
 
-    static inline daqErrCode daqEquals(daqBaseObject* self, daqBaseObject* other, daqBool* equal)
+    static inline daqErrCode daqEquals(daqBaseObject* self, daqBaseObject* other, daqCBool* equal)
     {
         return daqBaseObject_equals(self, other, equal);
     }
 
-    static inline daqErrCode daqToString(daqBaseObject* self, daqCharPtr* str)
+    static inline daqErrCode daqToString(daqBaseObject* self, daqCCharPtr* str)
     {
         return daqBaseObject_toString(self, str);
     }

@@ -42,7 +42,7 @@ extern "C"
     void EXPORTED daqPermissionManager_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqPermissionManager_setPermissions(daqPermissionManager* self, daqPermissions* permissions);
-    daqErrCode EXPORTED daqPermissionManager_isAuthorized(daqPermissionManager* self, daqUser* user, daqPermission permission, daqBool* authorizedOut);
+    daqErrCode EXPORTED daqPermissionManager_isAuthorized(daqPermissionManager* self, daqUser* user, daqPermission permission, daqCBool* authorizedOut);
     daqErrCode EXPORTED daqPermissionManager_createPermissionManager(daqPermissionManager** obj, daqPermissionManager* parent);
 
 #ifdef __cplusplus

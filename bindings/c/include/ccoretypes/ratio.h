@@ -39,10 +39,10 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_RATIO_INTF_ID;
     void EXPORTED daqRatio_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqRatio_getNumerator(daqRatio* self, daqInt* numerator);
-    daqErrCode EXPORTED daqRatio_getDenominator(daqRatio* self, daqInt* denominator);
+    daqErrCode EXPORTED daqRatio_getNumerator(daqRatio* self, daqCInt* numerator);
+    daqErrCode EXPORTED daqRatio_getDenominator(daqRatio* self, daqCInt* denominator);
     daqErrCode EXPORTED daqRatio_simplify(daqRatio* self, daqRatio** simplifiedRatio);
-    daqErrCode EXPORTED daqRatio_createRatio(daqRatio** obj, daqInt numerator, daqInt denominator);
+    daqErrCode EXPORTED daqRatio_createRatio(daqRatio** obj, daqCInt numerator, daqCInt denominator);
 
 #ifdef __cplusplus
 }

@@ -32,12 +32,12 @@ daqErrCode daqComponent_getGlobalId(daqComponent* self, daqString** globalId)
     return reinterpret_cast<daq::IComponent*>(self)->getGlobalId(reinterpret_cast<daq::IString**>(globalId));
 }
 
-daqErrCode daqComponent_getActive(daqComponent* self, daqBool* active)
+daqErrCode daqComponent_getActive(daqComponent* self, daqCBool* active)
 {
     return reinterpret_cast<daq::IComponent*>(self)->getActive(active);
 }
 
-daqErrCode daqComponent_setActive(daqComponent* self, daqBool active)
+daqErrCode daqComponent_setActive(daqComponent* self, daqCBool active)
 {
     return reinterpret_cast<daq::IComponent*>(self)->setActive(active);
 }
@@ -77,12 +77,12 @@ daqErrCode daqComponent_getTags(daqComponent* self, daqTags** tags)
     return reinterpret_cast<daq::IComponent*>(self)->getTags(reinterpret_cast<daq::ITags**>(tags));
 }
 
-daqErrCode daqComponent_getVisible(daqComponent* self, daqBool* visible)
+daqErrCode daqComponent_getVisible(daqComponent* self, daqCBool* visible)
 {
     return reinterpret_cast<daq::IComponent*>(self)->getVisible(visible);
 }
 
-daqErrCode daqComponent_setVisible(daqComponent* self, daqBool visible)
+daqErrCode daqComponent_setVisible(daqComponent* self, daqCBool visible)
 {
     return reinterpret_cast<daq::IComponent*>(self)->setVisible(visible);
 }
@@ -112,12 +112,12 @@ daqErrCode daqComponent_getOperationMode(daqComponent* self, daqOperationModeTyp
     return reinterpret_cast<daq::IComponent*>(self)->getOperationMode(reinterpret_cast<daq::OperationModeType*>(modeType));
 }
 
-daqErrCode daqComponent_getLocalActive(daqComponent* self, daqBool* localActive)
+daqErrCode daqComponent_getLocalActive(daqComponent* self, daqCBool* localActive)
 {
     return reinterpret_cast<daq::IComponent*>(self)->getLocalActive(localActive);
 }
 
-daqErrCode daqComponent_getParentActive(daqComponent* self, daqBool* parentActive)
+daqErrCode daqComponent_getParentActive(daqComponent* self, daqCBool* parentActive)
 {
     return reinterpret_cast<daq::IComponent*>(self)->getParentActive(parentActive);
 }

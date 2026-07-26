@@ -27,7 +27,7 @@ daqErrCode daqPermissionManager_setPermissions(daqPermissionManager* self, daqPe
     return reinterpret_cast<daq::IPermissionManager*>(self)->setPermissions(reinterpret_cast<daq::IPermissions*>(permissions));
 }
 
-daqErrCode daqPermissionManager_isAuthorized(daqPermissionManager* self, daqUser* user, daqPermission permission, daqBool* authorizedOut)
+daqErrCode daqPermissionManager_isAuthorized(daqPermissionManager* self, daqUser* user, daqPermission permission, daqCBool* authorizedOut)
 {
     return reinterpret_cast<daq::IPermissionManager*>(self)->isAuthorized(reinterpret_cast<daq::IUser*>(user), static_cast<daq::Permission>(permission), authorizedOut);
 }
