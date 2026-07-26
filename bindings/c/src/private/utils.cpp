@@ -10,6 +10,11 @@ daq::IntfID toDaqIntfId(daqIntfID id)
     return intf;
 }
 
+daq::ComplexFloat64 toDaqComplexFloat64(daqComplexFloat64 value)
+{
+    return daq::ComplexFloat64{value.real, value.imaginary};
+}
+
 daq::PropertyEventType toDaqPropertyEventType(daqPropertyEventType type)
 {
     switch (type)
