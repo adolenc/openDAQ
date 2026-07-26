@@ -16,11 +16,28 @@
 
 #include <copendaq_private.h>
 
+const daqIntfID DAQ_WEAK_REF_INTF_ID = { daq::IWeakRef::Id.Data1, daq::IWeakRef::Id.Data2, daq::IWeakRef::Id.Data3, daq::IWeakRef::Id.Data4_UInt64 };
+
+void daqWeakRef_getInterfaceId(daqIntfID* intfId)
+{
+    *intfId = DAQ_WEAK_REF_INTF_ID;
+}
+
 const daqIntfID DAQ_SUPPORTS_WEAK_REF_INTF_ID = { daq::ISupportsWeakRef::Id.Data1, daq::ISupportsWeakRef::Id.Data2, daq::ISupportsWeakRef::Id.Data3, daq::ISupportsWeakRef::Id.Data4_UInt64 };
 
 void daqSupportsWeakRef_getInterfaceId(daqIntfID* intfId)
 {
     *intfId = DAQ_SUPPORTS_WEAK_REF_INTF_ID;
+}
+
+daqErrCode daqWeakRef_getRef(daqWeakRef* self, daqBaseObject** object)
+{
+    return reinterpret_cast<daq::IWeakRef*>(self)->getRef(reinterpret_cast<daq::IBaseObject**>(object));
+}
+
+daqErrCode daqWeakRef_getRefAs(daqWeakRef* self, daqIntfID intfID, void** object)
+{
+    return reinterpret_cast<daq::IWeakRef*>(self)->getRefAs(copendaq::utils::toDaqIntfId(intfID), object);
 }
 
 daqErrCode daqSupportsWeakRef_getWeakRef(daqSupportsWeakRef* self, daqWeakRef** weakRef)

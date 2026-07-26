@@ -8,7 +8,7 @@ TEST_F(CCoretypesTest, BaseObject)
 {
     daqBaseObject* obj = nullptr;
     daqErrCode err = 0u;
-    err = daqBaseObject_create(&obj);
+    err = daqBaseObject_createBaseObject(&obj);
     ASSERT_EQ(err, 0u);
     ASSERT_NE(obj, nullptr);
     err = daqBaseObject_releaseRef(obj);
@@ -264,9 +264,9 @@ TEST_F(CCoretypesTest, EventHandler)
 {
     daqEventHandler* eh = nullptr;
     daqBaseObject* sender = nullptr;
-    daqBaseObject_create(&sender);
+    daqBaseObject_createBaseObject(&sender);
     daqBaseObject* args = nullptr;
-    daqBaseObject_create(&args);
+    daqBaseObject_createBaseObject(&args);
     daqEventHandler_createEventHandler(&eh, onEvent);
     daqEventHandler_handleEvent(eh, sender, (daqEventArgs*) args);
     ASSERT_EQ(eventCalled, daqTrue);
@@ -332,8 +332,8 @@ TEST_F(CCoretypesTest, Function)
     daqBaseObject* params = nullptr;
     daqBaseObject* result = nullptr;
 
-    daqBaseObject_create(&params);
-    daqBaseObject_create(&result);
+    daqBaseObject_createBaseObject(&params);
+    daqBaseObject_createBaseObject(&result);
 
     err = daqFunction_call(f, params, &result);
     ASSERT_EQ(err, 0u);

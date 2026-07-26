@@ -34,12 +34,16 @@ extern "C"
 
 #include <ccommon.h>
 
-    typedef struct daqSupportsWeakRef daqSupportsWeakRef;
     typedef struct daqWeakRef daqWeakRef;
+    typedef struct daqSupportsWeakRef daqSupportsWeakRef;
 
+    EXPORTED extern const daqIntfID DAQ_WEAK_REF_INTF_ID;
+    void EXPORTED daqWeakRef_getInterfaceId(daqIntfID* intfId);
     EXPORTED extern const daqIntfID DAQ_SUPPORTS_WEAK_REF_INTF_ID;
     void EXPORTED daqSupportsWeakRef_getInterfaceId(daqIntfID* intfId);
 
+    daqErrCode EXPORTED daqWeakRef_getRef(daqWeakRef* self, daqBaseObject** object);
+    daqErrCode EXPORTED daqWeakRef_getRefAs(daqWeakRef* self, daqIntfID intfID, void** object);
     daqErrCode EXPORTED daqSupportsWeakRef_getWeakRef(daqSupportsWeakRef* self, daqWeakRef** weakRef);
 
 #ifdef __cplusplus
