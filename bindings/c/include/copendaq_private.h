@@ -17,3 +17,6 @@
 #pragma once
 
 #include <private/utils.h>
+
+/* Core headers that the generated sources need but that <opendaq/opendaq.h> does not pull in. */
+#include <opendaq/component_deserialize_context.h>

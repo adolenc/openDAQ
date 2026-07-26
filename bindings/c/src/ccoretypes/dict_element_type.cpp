@@ -24,10 +24,10 @@ void daqDictElementType_getInterfaceId(daqIntfID* intfId)
 
 daqErrCode daqDictElementType_getKeyInterfaceId(daqDictElementType* self, daqIntfID* id)
 {
-    return reinterpret_cast<daq::IDictElementType*>(self)->getKeyInterfaceId(copendaq::utils::toDaqIntfId(id));
+    return reinterpret_cast<daq::IDictElementType*>(self)->getKeyInterfaceId(reinterpret_cast<daq::IntfID*>(id));
 }
 
 daqErrCode daqDictElementType_getValueInterfaceId(daqDictElementType* self, daqIntfID* id)
 {
-    return reinterpret_cast<daq::IDictElementType*>(self)->getValueInterfaceId(copendaq::utils::toDaqIntfId(id));
+    return reinterpret_cast<daq::IDictElementType*>(self)->getValueInterfaceId(reinterpret_cast<daq::IntfID*>(id));
 }

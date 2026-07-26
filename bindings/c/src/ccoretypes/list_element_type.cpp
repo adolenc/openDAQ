@@ -24,5 +24,5 @@ void daqListElementType_getInterfaceId(daqIntfID* intfId)
 
 daqErrCode daqListElementType_getElementInterfaceId(daqListElementType* self, daqIntfID* id)
 {
-    return reinterpret_cast<daq::IListElementType*>(self)->getElementInterfaceId(copendaq::utils::toDaqIntfId(id));
+    return reinterpret_cast<daq::IListElementType*>(self)->getElementInterfaceId(reinterpret_cast<daq::IntfID*>(id));
 }

@@ -27,8 +27,13 @@ namespace RTGen.C.Generators
 
         /// <summary>Value types whose C and C++ representations are distinct structs, and so need a hand
         /// written conversion (declared in "private/utils.h") when passed by value.</summary>
+        /// <remarks>
+        /// Only applies to by value arguments. The structs are layout compatible, so a pointer to one is
+        /// simply reinterpreted, which also keeps out parameters writing into the caller's memory.
+        /// </remarks>
         protected static readonly IDictionary<string, string> ValueTypeConverters = new Dictionary<string, string>
         {
+            { "IntfID", "copendaq::utils::toDaqIntfId" },
             { "ComplexFloat64", "copendaq::utils::toDaqComplexFloat64" }
         };
 
@@ -284,7 +289,7 @@ namespace RTGen.C.Generators
 
                     if (arg.Type.Flags.IsValueType || arg.Type.Name == "void")
                     {
-                        if ((!arg.Type.Flags.IsCoreType && arg.Type.Name != "void" && arg.Type.Name != "IntfID") || arg.Type.Name == "CoreType")
+                        if ((!arg.Type.Flags.IsCoreType && arg.Type.Name != "void") || arg.Type.Name == "CoreType")
                         {
                             if (String.IsNullOrEmpty(arg.Type.Modifiers))
                             {
@@ -302,10 +307,6 @@ namespace RTGen.C.Generators
                             {
                                 sb.Append($"reinterpret_cast<{arg.Type.Namespace}::{arg.Type.Name}{arg.Type.Modifiers}>({arg.Name})");
                             }
-                        }
-                        else if (arg.Type.Name == "IntfID")
-                        {
-                            sb.Append($"copendaq::utils::toDaqIntfId({arg.Name})");
                         }
                         else
                         {
