@@ -28,7 +28,7 @@ daqErrCode daqMirroredDeviceConfig_addStreamingSource(daqMirroredDeviceConfig* s
     return reinterpret_cast<daq::IMirroredDeviceConfig*>(self)->addStreamingSource(reinterpret_cast<daq::IStreaming*>(streamingSource));
 }
 
-daqErrCode daqMirroredDeviceConfig_removeStreamingSource(daqMirroredDeviceConfig* self, daqString* streamingConnectionString)
+daqErrCode daqMirroredDeviceConfig_removeStreamingSource(daqMirroredDeviceConfig* self, daqStringObject* streamingConnectionString)
 {
     return reinterpret_cast<daq::IMirroredDeviceConfig*>(self)->removeStreamingSource(reinterpret_cast<daq::IString*>(streamingConnectionString));
 }

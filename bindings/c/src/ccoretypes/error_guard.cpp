@@ -23,7 +23,7 @@ void daqErrorGuard_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_ERROR_GUARD_INTF_ID;
 }
 
-daqErrCode daqErrorGuard_getFormattedMessage(daqErrorGuard* self, daqString** message)
+daqErrCode daqErrorGuard_getFormattedMessage(daqErrorGuard* self, daqStringObject** message)
 {
     return reinterpret_cast<daq::IErrorGuard*>(self)->getFormattedMessage(reinterpret_cast<daq::IString**>(message));
 }
@@ -33,7 +33,7 @@ daqErrCode daqErrorGuard_getLastErrorInfo(daqErrorGuard* self, daqErrorInfo** er
     return reinterpret_cast<daq::IErrorGuard*>(self)->getLastErrorInfo(reinterpret_cast<daq::IErrorInfo**>(errorInfo));
 }
 
-daqErrCode daqErrorGuard_getErrorInfoList(daqErrorGuard* self, daqList** errorInfos)
+daqErrCode daqErrorGuard_getErrorInfoList(daqErrorGuard* self, daqListObject** errorInfos)
 {
     return reinterpret_cast<daq::IErrorGuard*>(self)->getErrorInfoList(reinterpret_cast<daq::IList**>(errorInfos));
 }

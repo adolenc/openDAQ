@@ -35,27 +35,27 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqSerializedObject daqSerializedObject;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
     typedef struct daqSerializedList daqSerializedList;
-    typedef struct daqFunction daqFunction;
-    typedef struct daqList daqList;
+    typedef struct daqFunctionObject daqFunctionObject;
+    typedef struct daqListObject daqListObject;
 
     EXPORTED extern const daqIntfID DAQ_SERIALIZED_OBJECT_INTF_ID;
     void EXPORTED daqSerializedObject_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqSerializedObject_readSerializedObject(daqSerializedObject* self, daqString* key, daqSerializedObject** plainObj);
-    daqErrCode EXPORTED daqSerializedObject_readSerializedList(daqSerializedObject* self, daqString* key, daqSerializedList** list);
-    daqErrCode EXPORTED daqSerializedObject_readList(daqSerializedObject* self, daqString* key, daqBaseObject* context, daqFunction* factoryCallback, daqList** list);
-    daqErrCode EXPORTED daqSerializedObject_readObject(daqSerializedObject* self, daqString* key, daqBaseObject* context, daqFunction* factoryCallback, daqBaseObject** obj);
-    daqErrCode EXPORTED daqSerializedObject_readString(daqSerializedObject* self, daqString* key, daqString** string);
-    daqErrCode EXPORTED daqSerializedObject_readBool(daqSerializedObject* self, daqString* key, daqBool* boolean);
-    daqErrCode EXPORTED daqSerializedObject_readFloat(daqSerializedObject* self, daqString* key, daqFloat* real);
-    daqErrCode EXPORTED daqSerializedObject_readInt(daqSerializedObject* self, daqString* key, daqInt* integer);
-    daqErrCode EXPORTED daqSerializedObject_hasKey(daqSerializedObject* self, daqString* key, daqBool* hasKey);
-    daqErrCode EXPORTED daqSerializedObject_getKeys(daqSerializedObject* self, daqList** list);
-    daqErrCode EXPORTED daqSerializedObject_getType(daqSerializedObject* self, daqString* key, daqCoreType* type);
+    daqErrCode EXPORTED daqSerializedObject_readSerializedObject(daqSerializedObject* self, daqStringObject* key, daqSerializedObject** plainObj);
+    daqErrCode EXPORTED daqSerializedObject_readSerializedList(daqSerializedObject* self, daqStringObject* key, daqSerializedList** list);
+    daqErrCode EXPORTED daqSerializedObject_readList(daqSerializedObject* self, daqStringObject* key, daqBaseObject* context, daqFunctionObject* factoryCallback, daqListObject** list);
+    daqErrCode EXPORTED daqSerializedObject_readObject(daqSerializedObject* self, daqStringObject* key, daqBaseObject* context, daqFunctionObject* factoryCallback, daqBaseObject** obj);
+    daqErrCode EXPORTED daqSerializedObject_readString(daqSerializedObject* self, daqStringObject* key, daqStringObject** string);
+    daqErrCode EXPORTED daqSerializedObject_readBool(daqSerializedObject* self, daqStringObject* key, daqBool* boolean);
+    daqErrCode EXPORTED daqSerializedObject_readFloat(daqSerializedObject* self, daqStringObject* key, daqFloat* real);
+    daqErrCode EXPORTED daqSerializedObject_readInt(daqSerializedObject* self, daqStringObject* key, daqInt* integer);
+    daqErrCode EXPORTED daqSerializedObject_hasKey(daqSerializedObject* self, daqStringObject* key, daqBool* hasKey);
+    daqErrCode EXPORTED daqSerializedObject_getKeys(daqSerializedObject* self, daqListObject** list);
+    daqErrCode EXPORTED daqSerializedObject_getType(daqSerializedObject* self, daqStringObject* key, daqCoreType* type);
     daqErrCode EXPORTED daqSerializedObject_isRoot(daqSerializedObject* self, daqBool* isRoot);
-    daqErrCode EXPORTED daqSerializedObject_toJson(daqSerializedObject* self, daqString** jsonString);
+    daqErrCode EXPORTED daqSerializedObject_toJson(daqSerializedObject* self, daqStringObject** jsonString);
 
 #ifdef __cplusplus
 }

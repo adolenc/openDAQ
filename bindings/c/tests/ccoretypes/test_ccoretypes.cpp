@@ -17,7 +17,7 @@ TEST_F(CCoretypesTest, BaseObject)
 
 TEST_F(CCoretypesTest, Binarydata)
 {
-    daqBinaryData* data = nullptr;
+    daqBinaryDataObject* data = nullptr;
     void* dataPtr = nullptr;
     daqSizeT size = 0u;
     daqErrCode err = 0;
@@ -34,7 +34,7 @@ TEST_F(CCoretypesTest, Binarydata)
 
 TEST_F(CCoretypesTest, Boolean)
 {
-    daqBoolean* b = nullptr;
+    daqBooleanObject* b = nullptr;
     daqErrCode err = 0u;
     daqBool value = False;
     err = daqBoolean_createBoolean(&b, value);
@@ -47,12 +47,12 @@ TEST_F(CCoretypesTest, Boolean)
 
 TEST_F(CCoretypesTest, Cloneable)
 {
-    daqList* list = nullptr;
+    daqListObject* list = nullptr;
     daqList_createList(&list);
 
-    daqInteger* i1 = nullptr;
+    daqIntegerObject* i1 = nullptr;
     daqInteger_createInteger(&i1, 1);
-    daqInteger* i2 = nullptr;
+    daqIntegerObject* i2 = nullptr;
     daqInteger_createInteger(&i2, 2);
 
     daqList_pushBack(list, i1);
@@ -60,7 +60,7 @@ TEST_F(CCoretypesTest, Cloneable)
     daqCloneable* c = nullptr;
     daqBaseObject_borrowInterface(list, DAQ_CLONEABLE_INTF_ID, (daqBaseObject**) &c);
 
-    daqList* clonedList = nullptr;
+    daqListObject* clonedList = nullptr;
     daqCloneable_clone(c, (daqBaseObject**) &clonedList);
     ASSERT_NE(clonedList, nullptr);
 
@@ -89,7 +89,7 @@ TEST_F(CCoretypesTest, Comparable)
 
 TEST_F(CCoretypesTest, ComplexNumber)
 {
-    daqComplexNumber* cn = nullptr;
+    daqComplexNumberObject* cn = nullptr;
     daqErrCode err = 0u;
     daqFloat real = 1.0;
     daqFloat imag = 2.0;
@@ -106,7 +106,7 @@ TEST_F(CCoretypesTest, ComplexNumber)
 
 TEST_F(CCoretypesTest, Convertible)
 {
-    daqString* s = nullptr;
+    daqStringObject* s = nullptr;
     daqConvertible* c = nullptr;
     daqErrCode err = 0u;
     daqFloat f = 0.0;
@@ -123,14 +123,14 @@ TEST_F(CCoretypesTest, Convertible)
 
 TEST_F(CCoretypesTest, CoreType)
 {
-    daqInteger* i = nullptr;
+    daqIntegerObject* i = nullptr;
     daqInteger_createInteger(&i, 1);
 
     daqCoreTypeObject* coreTypeObj = nullptr;
-    daqBaseObject_borrowInterface(i, DAQ_CORE_TYPE_OBJECT_INTF_ID, (daqBaseObject**) &coreTypeObj);
+    daqBaseObject_borrowInterface(i, DAQ_CORE_TYPE_INTF_ID, (daqBaseObject**) &coreTypeObj);
 
     daqCoreType coreType = daqCoreType::daqCtUndefined;
-    daqCoreTypeObject_getCoreType(coreTypeObj, &coreType);
+    daqCoreType_getCoreType(coreTypeObj, &coreType);
 
     ASSERT_EQ(coreType, daqCoreType::daqCtInt);
 
@@ -139,11 +139,11 @@ TEST_F(CCoretypesTest, CoreType)
 
 TEST_F(CCoretypesTest, Dictobject)
 {
-    daqDict* dict = nullptr;
+    daqDictObject* dict = nullptr;
     daqErrCode err = 0u;
 
-    daqString* key = nullptr;
-    daqString* value = nullptr;
+    daqStringObject* key = nullptr;
+    daqStringObject* value = nullptr;
     err = daqString_createString(&key, "key");
     ASSERT_EQ(err, 0u);
     err = daqString_createString(&value, "value");
@@ -159,7 +159,7 @@ TEST_F(CCoretypesTest, Dictobject)
     ASSERT_EQ(err, 0u);
     ASSERT_EQ(count, 1u);
 
-    daqString* value2 = nullptr;
+    daqStringObject* value2 = nullptr;
     err = daqDict_get(dict, key, (daqBaseObject**) &value2);
     ASSERT_EQ(err, 0u);
     daqConstCharPtr str = nullptr;
@@ -177,22 +177,22 @@ TEST_F(CCoretypesTest, Enumerations)
 {
     daqEnumerationType* et = nullptr;
 
-    daqDict* enumerators = nullptr;
+    daqDictObject* enumerators = nullptr;
     daqDict_createDict(&enumerators);
-    daqInteger* i1 = nullptr;
-    daqInteger* i2 = nullptr;
+    daqIntegerObject* i1 = nullptr;
+    daqIntegerObject* i2 = nullptr;
     daqInteger_createInteger(&i1, 1);
     daqInteger_createInteger(&i2, 2);
 
-    daqString* s1 = nullptr;
-    daqString* s2 = nullptr;
+    daqStringObject* s1 = nullptr;
+    daqStringObject* s2 = nullptr;
     daqString_createString(&s1, "One");
     daqString_createString(&s2, "Two");
 
     daqDict_set(enumerators, s1, i1);
     daqDict_set(enumerators, s2, i2);
 
-    daqString* typeName = nullptr;
+    daqStringObject* typeName = nullptr;
     daqString_createString(&typeName, "MyEnum");
 
     daqEnumerationType_createEnumerationTypeWithValues(&et, typeName, enumerators);
@@ -201,7 +201,7 @@ TEST_F(CCoretypesTest, Enumerations)
     daqEnumerationType_getCount(et, &count);
     ASSERT_EQ(count, 2u);
 
-    daqEnumeration* e = nullptr;
+    daqEnumerationObject* e = nullptr;
     daqEnumeration_createEnumerationWithType(&e, et, s2);
     daqInt value = 0u;
     daqEnumeration_getIntValue(e, &value);
@@ -235,14 +235,14 @@ TEST_F(CCoretypesTest, EventArgs)
 {
     daqErrCode err = 0u;
     daqEventArgs* args = nullptr;
-    daqString* name = nullptr;
+    daqStringObject* name = nullptr;
     daqString_createString(&name, "test_event");
     err = daqEventArgs_createEventArgs(&args, 10, name);
     ASSERT_EQ(err, 0u);
     daqInt id = 0;
     daqEventArgs_getEventId(args, &id);
     ASSERT_EQ(id, 10);
-    daqString* name2 = nullptr;
+    daqStringObject* name2 = nullptr;
     daqEventArgs_getEventName(args, &name2);
     daqConstCharPtr str = nullptr;
     daqString_getCharPtr(name2, &str);
@@ -281,9 +281,9 @@ TEST_F(CCoretypesTest, Float)
     daqFloatObject* f = nullptr;
     daqErrCode err = 0u;
     daqFloat value = 1.0;
-    err = daqFloatObject_createFloat(&f, value);
+    err = daqFloat_createFloat(&f, value);
     ASSERT_EQ(err, 0u);
-    err = daqFloatObject_getValue(f, &value);
+    err = daqFloat_getValue(f, &value);
     ASSERT_EQ(err, 0u);
     ASSERT_EQ(value, 1.0);
     daqBaseObject_releaseRef(f);
@@ -291,7 +291,7 @@ TEST_F(CCoretypesTest, Float)
 
 TEST_F(CCoretypesTest, Freezable)
 {
-    daqList* list = nullptr;
+    daqListObject* list = nullptr;
     daqFreezable* f = nullptr;
     daqErrCode err = 0u;
     err = daqList_createList(&list);
@@ -323,7 +323,7 @@ static daqErrCode func_call(daqBaseObject*, daqBaseObject**)
 
 TEST_F(CCoretypesTest, Function)
 {
-    daqFunction* f = nullptr;
+    daqFunctionObject* f = nullptr;
     daqErrCode err = 0;
     err = daqFunction_createFunction(&f, func_call);
     ASSERT_EQ(err, 0u);
@@ -345,7 +345,7 @@ TEST_F(CCoretypesTest, Function)
 
 TEST_F(CCoretypesTest, Integer)
 {
-    daqInteger* i = nullptr;
+    daqIntegerObject* i = nullptr;
     daqErrCode err = 0u;
     daqInt value = 1;
     err = daqInteger_createInteger(&i, value);
@@ -360,12 +360,12 @@ TEST_F(CCoretypesTest, Iterable)
 {
     // filling list
     daqErrCode err = 0u;
-    daqList* list = nullptr;
+    daqListObject* list = nullptr;
     err = daqList_createList(&list);
     ASSERT_EQ(err, 0u);
 
-    daqInteger* i1 = nullptr;
-    daqInteger* i2 = nullptr;
+    daqIntegerObject* i1 = nullptr;
+    daqIntegerObject* i2 = nullptr;
     daqInteger_createInteger(&i1, 3);
     daqInteger_createInteger(&i2, 4);
 
@@ -393,7 +393,7 @@ TEST_F(CCoretypesTest, Iterable)
     daqBaseObject_equals(itb, ite, &eq);
     while (eq == False)
     {
-        daqInteger* tmp = nullptr;
+        daqIntegerObject* tmp = nullptr;
         err = daqIterator_getCurrent(itb, (daqBaseObject**) &tmp);
         ASSERT_EQ(err, 0u);
 
@@ -419,14 +419,14 @@ TEST_F(CCoretypesTest, Iterable)
 
 TEST_F(CCoretypesTest, Listobject)
 {
-    daqList* list = nullptr;
+    daqListObject* list = nullptr;
     daqErrCode err = 0u;
     err = daqList_createList(&list);
     ASSERT_EQ(err, 0u);
 
-    daqInteger* i1 = nullptr;
-    daqInteger* i2 = nullptr;
-    daqInteger* i3 = nullptr;
+    daqIntegerObject* i1 = nullptr;
+    daqIntegerObject* i2 = nullptr;
+    daqIntegerObject* i3 = nullptr;
     daqInteger_createInteger(&i1, 1);
     daqInteger_createInteger(&i2, 2);
     daqInteger_createInteger(&i3, 3);
@@ -443,7 +443,7 @@ TEST_F(CCoretypesTest, Listobject)
     ASSERT_EQ(err, 0u);
     ASSERT_EQ(count, 3u);
 
-    daqInteger* i = nullptr;
+    daqIntegerObject* i = nullptr;
     err = daqList_popFront(list, (daqBaseObject**) &i);
     ASSERT_EQ(err, 0u);
     daqInt value = 0;
@@ -482,7 +482,7 @@ TEST_F(CCoretypesTest, Number)
     daqNumber* n1 = nullptr;
     daqInt i = 0;
 
-    err = daqFloatObject_createFloat(&f1, f);
+    err = daqFloat_createFloat(&f1, f);
     ASSERT_EQ(err, 0u);
     err = daqBaseObject_borrowInterface(f1, DAQ_NUMBER_INTF_ID, (daqBaseObject**) &n1);
     ASSERT_EQ(err, 0u);
@@ -503,7 +503,7 @@ static daqErrCode proc_call(daqBaseObject*)
 
 TEST_F(CCoretypesTest, Procedure)
 {
-    daqProcedure* p = nullptr;
+    daqProcedureObject* p = nullptr;
     daqErrCode err = 0;
     err = daqProcedure_createProcedure(&p, proc_call);
     ASSERT_EQ(err, 0u);
@@ -516,7 +516,7 @@ TEST_F(CCoretypesTest, Procedure)
 
 TEST_F(CCoretypesTest, Ratio)
 {
-    daqRatio* r = nullptr;
+    daqRatioObject* r = nullptr;
     daqErrCode err = 0;
 
     err = daqRatio_createRatio(&r, 1, 2);
@@ -535,7 +535,7 @@ TEST_F(CCoretypesTest, Ratio)
 
 TEST_F(CCoretypesTest, Serializable)
 {
-    daqList* list = nullptr;
+    daqListObject* list = nullptr;
     daqSerializable* s = nullptr;
     daqSerializer* serializer = nullptr;
     daqErrCode err = 0u;
@@ -548,7 +548,7 @@ TEST_F(CCoretypesTest, Serializable)
     ASSERT_EQ(err, 0u);
     err = daqSerializable_serialize(s, serializer);
 
-    daqString* serialized = nullptr;
+    daqStringObject* serialized = nullptr;
     err = daqSerializer_getOutput(serializer, &serialized);
     ASSERT_EQ(err, 0u);
     daqConstCharPtr str = nullptr;
@@ -583,7 +583,7 @@ TEST_F(CCoretypesTest, SimpleType)
 
 TEST_F(CCoretypesTest, Stringobject)
 {
-    daqString* s = nullptr;
+    daqStringObject* s = nullptr;
     daqErrCode err = 0u;
     err = daqString_createString(&s, "Hello");
     ASSERT_EQ(err, 0u);
@@ -598,26 +598,26 @@ TEST_F(CCoretypesTest, Struct)
 {
     daqErrCode err = 0u;
 
-    daqList* fieldNames = nullptr;
+    daqListObject* fieldNames = nullptr;
     daqList_createList(&fieldNames);
 
-    daqList* fieldTypes = nullptr;
+    daqListObject* fieldTypes = nullptr;
     daqList_createList(&fieldTypes);
 
-    daqString* fieldName = nullptr;
+    daqStringObject* fieldName = nullptr;
     daqString_createString(&fieldName, "int");
 
     daqSimpleType* st = nullptr;
     daqSimpleType_createSimpleType(&st, daqCoreType::daqCtInt);
 
-    daqInteger* i = nullptr;
+    daqIntegerObject* i = nullptr;
     daqInteger_createInteger(&i, 10);
 
     daqList_pushBack(fieldTypes, st);
     daqList_pushBack(fieldNames, fieldName);
 
     daqStructType* type = nullptr;
-    daqString* typeName = nullptr;
+    daqStringObject* typeName = nullptr;
     daqString_createString(&typeName, "test");
     daqStructType_createStructTypeNoDefaults(&type, typeName, fieldNames, fieldTypes);
 
@@ -629,11 +629,11 @@ TEST_F(CCoretypesTest, Struct)
     err = daqStructBuilder_createStructBuilder(&sb, typeName, manager);
     daqStructBuilder_set(sb, fieldName, i);
 
-    daqStruct* s = nullptr;
+    daqStructObject* s = nullptr;
     err = daqStructBuilder_build(sb, &s);
     ASSERT_EQ(err, 0u);
 
-    daqInteger* i2 = nullptr;
+    daqIntegerObject* i2 = nullptr;
     daqStruct_get(s, fieldName, (daqBaseObject**) &i2);
     daqInt value = 0;
     err = daqInteger_getValue(i2, &value);
@@ -661,13 +661,13 @@ TEST_F(CCoretypesTest, TypeManager)
 {
     daqErrCode err = 0;
 
-    daqList* fieldNames = nullptr;
-    daqList* fieldTypes = nullptr;
+    daqListObject* fieldNames = nullptr;
+    daqListObject* fieldTypes = nullptr;
 
     err = daqList_createList(&fieldNames);
     err = daqList_createList(&fieldTypes);
 
-    daqString* fieldName = nullptr;
+    daqStringObject* fieldName = nullptr;
     err = daqString_createString(&fieldName, "int");
 
     daqSimpleType* st = nullptr;
@@ -676,7 +676,7 @@ TEST_F(CCoretypesTest, TypeManager)
     err = daqList_pushBack(fieldTypes, st);
     err = daqList_pushBack(fieldNames, fieldName);
 
-    daqString* typeName = nullptr;
+    daqStringObject* typeName = nullptr;
     err = daqString_createString(&typeName, "test");
 
     daqStructType* type = nullptr;

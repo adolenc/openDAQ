@@ -6,7 +6,7 @@ using COpendaqLoggerTest = testing::Test;
 
 TEST_F(COpendaqLoggerTest, Logger)
 {
-    daqList* sinks = nullptr;
+    daqListObject* sinks = nullptr;
     daqList_createList(&sinks);
 
     daqLoggerSink* sink = nullptr;

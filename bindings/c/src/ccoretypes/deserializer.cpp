@@ -23,17 +23,17 @@ void daqDeserializer_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_DESERIALIZER_INTF_ID;
 }
 
-daqErrCode daqDeserializer_deserialize(daqDeserializer* self, daqString* serialized, daqBaseObject* context, daqFunction* factoryCallback, daqBaseObject** object)
+daqErrCode daqDeserializer_deserialize(daqDeserializer* self, daqStringObject* serialized, daqBaseObject* context, daqFunctionObject* factoryCallback, daqBaseObject** object)
 {
     return reinterpret_cast<daq::IDeserializer*>(self)->deserialize(reinterpret_cast<daq::IString*>(serialized), reinterpret_cast<daq::IBaseObject*>(context), reinterpret_cast<daq::IFunction*>(factoryCallback), reinterpret_cast<daq::IBaseObject**>(object));
 }
 
-daqErrCode daqDeserializer_update(daqDeserializer* self, daqUpdatable* updatable, daqString* serialized, daqBaseObject* config)
+daqErrCode daqDeserializer_update(daqDeserializer* self, daqUpdatable* updatable, daqStringObject* serialized, daqBaseObject* config)
 {
     return reinterpret_cast<daq::IDeserializer*>(self)->update(reinterpret_cast<daq::IUpdatable*>(updatable), reinterpret_cast<daq::IString*>(serialized), reinterpret_cast<daq::IBaseObject*>(config));
 }
 
-daqErrCode daqDeserializer_callCustomProc(daqDeserializer* self, daqProcedure* customDeserialize, daqString* serialized)
+daqErrCode daqDeserializer_callCustomProc(daqDeserializer* self, daqProcedureObject* customDeserialize, daqStringObject* serialized)
 {
     return reinterpret_cast<daq::IDeserializer*>(self)->callCustomProc(reinterpret_cast<daq::IProcedure*>(customDeserialize), reinterpret_cast<daq::IString*>(serialized));
 }

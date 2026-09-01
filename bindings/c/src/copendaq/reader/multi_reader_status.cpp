@@ -23,7 +23,7 @@ void daqMultiReaderStatus_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_MULTI_READER_STATUS_INTF_ID;
 }
 
-daqErrCode daqMultiReaderStatus_getEventPackets(daqMultiReaderStatus* self, daqDict** eventPackets)
+daqErrCode daqMultiReaderStatus_getEventPackets(daqMultiReaderStatus* self, daqDictObject** eventPackets)
 {
     return reinterpret_cast<daq::IMultiReaderStatus*>(self)->getEventPackets(reinterpret_cast<daq::IDict**>(eventPackets));
 }
@@ -33,7 +33,7 @@ daqErrCode daqMultiReaderStatus_getMainDescriptor(daqMultiReaderStatus* self, da
     return reinterpret_cast<daq::IMultiReaderStatus*>(self)->getMainDescriptor(reinterpret_cast<daq::IEventPacket**>(descriptor));
 }
 
-daqErrCode daqMultiReaderStatus_createMultiReaderStatus(daqMultiReaderStatus** obj, daqEventPacket* mainDescriptor, daqDict* eventPackets, daqBool valid, daqNumber* offset)
+daqErrCode daqMultiReaderStatus_createMultiReaderStatus(daqMultiReaderStatus** obj, daqEventPacket* mainDescriptor, daqDictObject* eventPackets, daqBool valid, daqNumber* offset)
 {
     daq::IMultiReaderStatus* ptr = nullptr;
     daqErrCode err = daq::createMultiReaderStatus(&ptr, reinterpret_cast<daq::IEventPacket*>(mainDescriptor), reinterpret_cast<daq::IDict*>(eventPackets), valid, reinterpret_cast<daq::INumber*>(offset));

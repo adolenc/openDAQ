@@ -35,16 +35,16 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqErrorGuard daqErrorGuard;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
     typedef struct daqErrorInfo daqErrorInfo;
-    typedef struct daqList daqList;
+    typedef struct daqListObject daqListObject;
 
     EXPORTED extern const daqIntfID DAQ_ERROR_GUARD_INTF_ID;
     void EXPORTED daqErrorGuard_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqErrorGuard_getFormattedMessage(daqErrorGuard* self, daqString** message);
+    daqErrCode EXPORTED daqErrorGuard_getFormattedMessage(daqErrorGuard* self, daqStringObject** message);
     daqErrCode EXPORTED daqErrorGuard_getLastErrorInfo(daqErrorGuard* self, daqErrorInfo** errorInfo);
-    daqErrCode EXPORTED daqErrorGuard_getErrorInfoList(daqErrorGuard* self, daqList** errorInfos);
+    daqErrCode EXPORTED daqErrorGuard_getErrorInfoList(daqErrorGuard* self, daqListObject** errorInfos);
     daqErrCode EXPORTED daqErrorGuard_createErrorGuard(daqErrorGuard** obj, daqConstCharPtr fileName, daqInt fileLine);
 
 #ifdef __cplusplus

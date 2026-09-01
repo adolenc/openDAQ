@@ -35,18 +35,18 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqConnectionStatusContainerPrivate daqConnectionStatusContainerPrivate;
-    typedef struct daqString daqString;
-    typedef struct daqEnumeration daqEnumeration;
+    typedef struct daqStringObject daqStringObject;
+    typedef struct daqEnumerationObject daqEnumerationObject;
     typedef struct daqStreaming daqStreaming;
 
     EXPORTED extern const daqIntfID DAQ_CONNECTION_STATUS_CONTAINER_PRIVATE_INTF_ID;
     void EXPORTED daqConnectionStatusContainerPrivate_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqConnectionStatusContainerPrivate_addConfigurationConnectionStatus(daqConnectionStatusContainerPrivate* self, daqString* connectionString, daqEnumeration* initialValue);
-    daqErrCode EXPORTED daqConnectionStatusContainerPrivate_addStreamingConnectionStatus(daqConnectionStatusContainerPrivate* self, daqString* connectionString, daqEnumeration* initialValue, daqStreaming* streamingObject);
-    daqErrCode EXPORTED daqConnectionStatusContainerPrivate_removeStreamingConnectionStatus(daqConnectionStatusContainerPrivate* self, daqString* connectionString);
-    daqErrCode EXPORTED daqConnectionStatusContainerPrivate_updateConnectionStatus(daqConnectionStatusContainerPrivate* self, daqString* connectionString, daqEnumeration* value, daqStreaming* streamingObject);
-    daqErrCode EXPORTED daqConnectionStatusContainerPrivate_updateConnectionStatusWithMessage(daqConnectionStatusContainerPrivate* self, daqString* connectionString, daqEnumeration* value, daqStreaming* streamingObject, daqString* message);
+    daqErrCode EXPORTED daqConnectionStatusContainerPrivate_addConfigurationConnectionStatus(daqConnectionStatusContainerPrivate* self, daqStringObject* connectionString, daqEnumerationObject* initialValue);
+    daqErrCode EXPORTED daqConnectionStatusContainerPrivate_addStreamingConnectionStatus(daqConnectionStatusContainerPrivate* self, daqStringObject* connectionString, daqEnumerationObject* initialValue, daqStreaming* streamingObject);
+    daqErrCode EXPORTED daqConnectionStatusContainerPrivate_removeStreamingConnectionStatus(daqConnectionStatusContainerPrivate* self, daqStringObject* connectionString);
+    daqErrCode EXPORTED daqConnectionStatusContainerPrivate_updateConnectionStatus(daqConnectionStatusContainerPrivate* self, daqStringObject* connectionString, daqEnumerationObject* value, daqStreaming* streamingObject);
+    daqErrCode EXPORTED daqConnectionStatusContainerPrivate_updateConnectionStatusWithMessage(daqConnectionStatusContainerPrivate* self, daqStringObject* connectionString, daqEnumerationObject* value, daqStreaming* streamingObject, daqStringObject* message);
 
 #ifdef __cplusplus
 }

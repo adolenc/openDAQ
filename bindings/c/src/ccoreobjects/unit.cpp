@@ -28,22 +28,22 @@ daqErrCode daqUnit_getId(daqUnit* self, daqInt* id)
     return reinterpret_cast<daq::IUnit*>(self)->getId(id);
 }
 
-daqErrCode daqUnit_getSymbol(daqUnit* self, daqString** symbol)
+daqErrCode daqUnit_getSymbol(daqUnit* self, daqStringObject** symbol)
 {
     return reinterpret_cast<daq::IUnit*>(self)->getSymbol(reinterpret_cast<daq::IString**>(symbol));
 }
 
-daqErrCode daqUnit_getName(daqUnit* self, daqString** name)
+daqErrCode daqUnit_getName(daqUnit* self, daqStringObject** name)
 {
     return reinterpret_cast<daq::IUnit*>(self)->getName(reinterpret_cast<daq::IString**>(name));
 }
 
-daqErrCode daqUnit_getQuantity(daqUnit* self, daqString** quantity)
+daqErrCode daqUnit_getQuantity(daqUnit* self, daqStringObject** quantity)
 {
     return reinterpret_cast<daq::IUnit*>(self)->getQuantity(reinterpret_cast<daq::IString**>(quantity));
 }
 
-daqErrCode daqUnit_createUnit(daqUnit** obj, daqInt id, daqString* symbol, daqString* name, daqString* quantity)
+daqErrCode daqUnit_createUnit(daqUnit** obj, daqInt id, daqStringObject* symbol, daqStringObject* name, daqStringObject* quantity)
 {
     daq::IUnit* ptr = nullptr;
     daqErrCode err = daq::createUnit(&ptr, id, reinterpret_cast<daq::IString*>(symbol), reinterpret_cast<daq::IString*>(name), reinterpret_cast<daq::IString*>(quantity));

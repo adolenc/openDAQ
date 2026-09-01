@@ -23,22 +23,22 @@ void daqPropertyObjectClass_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_PROPERTY_OBJECT_CLASS_INTF_ID;
 }
 
-daqErrCode daqPropertyObjectClass_getParentName(daqPropertyObjectClass* self, daqString** parentName)
+daqErrCode daqPropertyObjectClass_getParentName(daqPropertyObjectClass* self, daqStringObject** parentName)
 {
     return reinterpret_cast<daq::IPropertyObjectClass*>(self)->getParentName(reinterpret_cast<daq::IString**>(parentName));
 }
 
-daqErrCode daqPropertyObjectClass_getProperty(daqPropertyObjectClass* self, daqString* propertyName, daqProperty** property)
+daqErrCode daqPropertyObjectClass_getProperty(daqPropertyObjectClass* self, daqStringObject* propertyName, daqProperty** property)
 {
     return reinterpret_cast<daq::IPropertyObjectClass*>(self)->getProperty(reinterpret_cast<daq::IString*>(propertyName), reinterpret_cast<daq::IProperty**>(property));
 }
 
-daqErrCode daqPropertyObjectClass_hasProperty(daqPropertyObjectClass* self, daqString* propertyName, daqBool* hasProperty)
+daqErrCode daqPropertyObjectClass_hasProperty(daqPropertyObjectClass* self, daqStringObject* propertyName, daqBool* hasProperty)
 {
     return reinterpret_cast<daq::IPropertyObjectClass*>(self)->hasProperty(reinterpret_cast<daq::IString*>(propertyName), hasProperty);
 }
 
-daqErrCode daqPropertyObjectClass_getProperties(daqPropertyObjectClass* self, daqBool includeInherited, daqList** properties)
+daqErrCode daqPropertyObjectClass_getProperties(daqPropertyObjectClass* self, daqBool includeInherited, daqListObject** properties)
 {
     return reinterpret_cast<daq::IPropertyObjectClass*>(self)->getProperties(includeInherited, reinterpret_cast<daq::IList**>(properties));
 }

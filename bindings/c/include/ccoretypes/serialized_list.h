@@ -36,18 +36,18 @@ extern "C"
 
     typedef struct daqSerializedList daqSerializedList;
     typedef struct daqSerializedObject daqSerializedObject;
-    typedef struct daqFunction daqFunction;
-    typedef struct daqList daqList;
-    typedef struct daqString daqString;
+    typedef struct daqFunctionObject daqFunctionObject;
+    typedef struct daqListObject daqListObject;
+    typedef struct daqStringObject daqStringObject;
 
     EXPORTED extern const daqIntfID DAQ_SERIALIZED_LIST_INTF_ID;
     void EXPORTED daqSerializedList_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqSerializedList_readSerializedObject(daqSerializedList* self, daqSerializedObject** plainObj);
     daqErrCode EXPORTED daqSerializedList_readSerializedList(daqSerializedList* self, daqSerializedList** list);
-    daqErrCode EXPORTED daqSerializedList_readList(daqSerializedList* self, daqBaseObject* context, daqFunction* factoryCallback, daqList** list);
-    daqErrCode EXPORTED daqSerializedList_readObject(daqSerializedList* self, daqBaseObject* context, daqFunction* factoryCallback, daqBaseObject** obj);
-    daqErrCode EXPORTED daqSerializedList_readString(daqSerializedList* self, daqString** string);
+    daqErrCode EXPORTED daqSerializedList_readList(daqSerializedList* self, daqBaseObject* context, daqFunctionObject* factoryCallback, daqListObject** list);
+    daqErrCode EXPORTED daqSerializedList_readObject(daqSerializedList* self, daqBaseObject* context, daqFunctionObject* factoryCallback, daqBaseObject** obj);
+    daqErrCode EXPORTED daqSerializedList_readString(daqSerializedList* self, daqStringObject** string);
     daqErrCode EXPORTED daqSerializedList_readBool(daqSerializedList* self, daqBool* boolean);
     daqErrCode EXPORTED daqSerializedList_readFloat(daqSerializedList* self, daqFloat* real);
     daqErrCode EXPORTED daqSerializedList_readInt(daqSerializedList* self, daqInt* integer);

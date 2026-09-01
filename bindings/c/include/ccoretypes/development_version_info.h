@@ -35,7 +35,7 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqDevelopmentVersionInfo daqDevelopmentVersionInfo;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
 
     EXPORTED extern const daqIntfID DAQ_DEVELOPMENT_VERSION_INFO_INTF_ID;
     void EXPORTED daqDevelopmentVersionInfo_getInterfaceId(daqIntfID* intfId);
@@ -44,9 +44,9 @@ extern "C"
     daqErrCode EXPORTED daqDevelopmentVersionInfo_getMinor(daqDevelopmentVersionInfo* self, daqSizeT* minor);
     daqErrCode EXPORTED daqDevelopmentVersionInfo_getPatch(daqDevelopmentVersionInfo* self, daqSizeT* patch);
     daqErrCode EXPORTED daqDevelopmentVersionInfo_getTweak(daqDevelopmentVersionInfo* self, daqSizeT* tweak);
-    daqErrCode EXPORTED daqDevelopmentVersionInfo_getBranchName(daqDevelopmentVersionInfo* self, daqString** branchName);
-    daqErrCode EXPORTED daqDevelopmentVersionInfo_getHashDigest(daqDevelopmentVersionInfo* self, daqString** hash);
-    daqErrCode EXPORTED daqDevelopmentVersionInfo_createDevelopmentVersionInfo(daqDevelopmentVersionInfo** obj, daqSizeT major, daqSizeT minor, daqSizeT patch, daqSizeT tweak, daqString* branch, daqString* hash);
+    daqErrCode EXPORTED daqDevelopmentVersionInfo_getBranchName(daqDevelopmentVersionInfo* self, daqStringObject** branchName);
+    daqErrCode EXPORTED daqDevelopmentVersionInfo_getHashDigest(daqDevelopmentVersionInfo* self, daqStringObject** hash);
+    daqErrCode EXPORTED daqDevelopmentVersionInfo_createDevelopmentVersionInfo(daqDevelopmentVersionInfo** obj, daqSizeT major, daqSizeT minor, daqSizeT patch, daqSizeT tweak, daqStringObject* branch, daqStringObject* hash);
 
 #ifdef __cplusplus
 }

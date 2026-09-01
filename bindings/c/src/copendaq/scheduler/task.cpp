@@ -23,12 +23,12 @@ void daqTask_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_TASK_INTF_ID;
 }
 
-daqErrCode daqTask_getName(daqTask* self, daqString** name)
+daqErrCode daqTask_getName(daqTask* self, daqStringObject** name)
 {
     return reinterpret_cast<daq::ITask*>(self)->getName(reinterpret_cast<daq::IString**>(name));
 }
 
-daqErrCode daqTask_setName(daqTask* self, daqString* name)
+daqErrCode daqTask_setName(daqTask* self, daqStringObject* name)
 {
     return reinterpret_cast<daq::ITask*>(self)->setName(reinterpret_cast<daq::IString*>(name));
 }
@@ -38,7 +38,7 @@ daqErrCode daqTask_then(daqTask* self, daqTask* continuation)
     return reinterpret_cast<daq::ITask*>(self)->then(reinterpret_cast<daq::ITask*>(continuation));
 }
 
-daqErrCode daqTask_createTask(daqTask** obj, daqProcedure* work, daqString* name)
+daqErrCode daqTask_createTask(daqTask** obj, daqProcedureObject* work, daqStringObject* name)
 {
     daq::ITask* ptr = nullptr;
     daqErrCode err = daq::createTask(&ptr, reinterpret_cast<daq::IProcedure*>(work), reinterpret_cast<daq::IString*>(name));

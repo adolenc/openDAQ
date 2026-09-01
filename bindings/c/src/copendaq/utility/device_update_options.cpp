@@ -23,52 +23,52 @@ void daqDeviceUpdateOptions_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_DEVICE_UPDATE_OPTIONS_INTF_ID;
 }
 
-daqErrCode daqDeviceUpdateOptions_getLocalId(daqDeviceUpdateOptions* self, daqString** localId)
+daqErrCode daqDeviceUpdateOptions_getLocalId(daqDeviceUpdateOptions* self, daqStringObject** localId)
 {
     return reinterpret_cast<daq::IDeviceUpdateOptions*>(self)->getLocalId(reinterpret_cast<daq::IString**>(localId));
 }
 
-daqErrCode daqDeviceUpdateOptions_getManufacturer(daqDeviceUpdateOptions* self, daqString** manufacturer)
+daqErrCode daqDeviceUpdateOptions_getManufacturer(daqDeviceUpdateOptions* self, daqStringObject** manufacturer)
 {
     return reinterpret_cast<daq::IDeviceUpdateOptions*>(self)->getManufacturer(reinterpret_cast<daq::IString**>(manufacturer));
 }
 
-daqErrCode daqDeviceUpdateOptions_getSerialNumber(daqDeviceUpdateOptions* self, daqString** serialNumber)
+daqErrCode daqDeviceUpdateOptions_getSerialNumber(daqDeviceUpdateOptions* self, daqStringObject** serialNumber)
 {
     return reinterpret_cast<daq::IDeviceUpdateOptions*>(self)->getSerialNumber(reinterpret_cast<daq::IString**>(serialNumber));
 }
 
-daqErrCode daqDeviceUpdateOptions_getConnectionString(daqDeviceUpdateOptions* self, daqString** connectionString)
+daqErrCode daqDeviceUpdateOptions_getConnectionString(daqDeviceUpdateOptions* self, daqStringObject** connectionString)
 {
     return reinterpret_cast<daq::IDeviceUpdateOptions*>(self)->getConnectionString(reinterpret_cast<daq::IString**>(connectionString));
 }
 
-daqErrCode daqDeviceUpdateOptions_setNewManufacturer(daqDeviceUpdateOptions* self, daqString* manufacturer)
+daqErrCode daqDeviceUpdateOptions_setNewManufacturer(daqDeviceUpdateOptions* self, daqStringObject* manufacturer)
 {
     return reinterpret_cast<daq::IDeviceUpdateOptions*>(self)->setNewManufacturer(reinterpret_cast<daq::IString*>(manufacturer));
 }
 
-daqErrCode daqDeviceUpdateOptions_getNewManufacturer(daqDeviceUpdateOptions* self, daqString** manufacturer)
+daqErrCode daqDeviceUpdateOptions_getNewManufacturer(daqDeviceUpdateOptions* self, daqStringObject** manufacturer)
 {
     return reinterpret_cast<daq::IDeviceUpdateOptions*>(self)->getNewManufacturer(reinterpret_cast<daq::IString**>(manufacturer));
 }
 
-daqErrCode daqDeviceUpdateOptions_setNewSerialNumber(daqDeviceUpdateOptions* self, daqString* serialNumber)
+daqErrCode daqDeviceUpdateOptions_setNewSerialNumber(daqDeviceUpdateOptions* self, daqStringObject* serialNumber)
 {
     return reinterpret_cast<daq::IDeviceUpdateOptions*>(self)->setNewSerialNumber(reinterpret_cast<daq::IString*>(serialNumber));
 }
 
-daqErrCode daqDeviceUpdateOptions_getNewSerialNumber(daqDeviceUpdateOptions* self, daqString** serialNumber)
+daqErrCode daqDeviceUpdateOptions_getNewSerialNumber(daqDeviceUpdateOptions* self, daqStringObject** serialNumber)
 {
     return reinterpret_cast<daq::IDeviceUpdateOptions*>(self)->getNewSerialNumber(reinterpret_cast<daq::IString**>(serialNumber));
 }
 
-daqErrCode daqDeviceUpdateOptions_setNewConnectionString(daqDeviceUpdateOptions* self, daqString* connectionString)
+daqErrCode daqDeviceUpdateOptions_setNewConnectionString(daqDeviceUpdateOptions* self, daqStringObject* connectionString)
 {
     return reinterpret_cast<daq::IDeviceUpdateOptions*>(self)->setNewConnectionString(reinterpret_cast<daq::IString*>(connectionString));
 }
 
-daqErrCode daqDeviceUpdateOptions_getNewConnectionString(daqDeviceUpdateOptions* self, daqString** connectionString)
+daqErrCode daqDeviceUpdateOptions_getNewConnectionString(daqDeviceUpdateOptions* self, daqStringObject** connectionString)
 {
     return reinterpret_cast<daq::IDeviceUpdateOptions*>(self)->getNewConnectionString(reinterpret_cast<daq::IString**>(connectionString));
 }
@@ -83,12 +83,12 @@ daqErrCode daqDeviceUpdateOptions_setUpdateMode(daqDeviceUpdateOptions* self, da
     return reinterpret_cast<daq::IDeviceUpdateOptions*>(self)->setUpdateMode(static_cast<daq::DeviceUpdateMode>(mode));
 }
 
-daqErrCode daqDeviceUpdateOptions_getChildDeviceOptions(daqDeviceUpdateOptions* self, daqList** childDeviceOptions)
+daqErrCode daqDeviceUpdateOptions_getChildDeviceOptions(daqDeviceUpdateOptions* self, daqListObject** childDeviceOptions)
 {
     return reinterpret_cast<daq::IDeviceUpdateOptions*>(self)->getChildDeviceOptions(reinterpret_cast<daq::IList**>(childDeviceOptions));
 }
 
-daqErrCode daqDeviceUpdateOptions_createDeviceUpdateOptions(daqDeviceUpdateOptions** obj, daqString* setupString)
+daqErrCode daqDeviceUpdateOptions_createDeviceUpdateOptions(daqDeviceUpdateOptions** obj, daqStringObject* setupString)
 {
     daq::IDeviceUpdateOptions* ptr = nullptr;
     daqErrCode err = daq::createDeviceUpdateOptions(&ptr, reinterpret_cast<daq::IString*>(setupString));

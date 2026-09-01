@@ -23,17 +23,17 @@ void daqTagsPrivate_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_TAGS_PRIVATE_INTF_ID;
 }
 
-daqErrCode daqTagsPrivate_add(daqTagsPrivate* self, daqString* name)
+daqErrCode daqTagsPrivate_add(daqTagsPrivate* self, daqStringObject* name)
 {
     return reinterpret_cast<daq::ITagsPrivate*>(self)->add(reinterpret_cast<daq::IString*>(name));
 }
 
-daqErrCode daqTagsPrivate_remove(daqTagsPrivate* self, daqString* name)
+daqErrCode daqTagsPrivate_remove(daqTagsPrivate* self, daqStringObject* name)
 {
     return reinterpret_cast<daq::ITagsPrivate*>(self)->remove(reinterpret_cast<daq::IString*>(name));
 }
 
-daqErrCode daqTagsPrivate_replace(daqTagsPrivate* self, daqList* tags)
+daqErrCode daqTagsPrivate_replace(daqTagsPrivate* self, daqListObject* tags)
 {
     return reinterpret_cast<daq::ITagsPrivate*>(self)->replace(reinterpret_cast<daq::IList*>(tags));
 }

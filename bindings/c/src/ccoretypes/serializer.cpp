@@ -48,7 +48,7 @@ daqErrCode daqSerializer_endList(daqSerializer* self)
     return reinterpret_cast<daq::ISerializer*>(self)->endList();
 }
 
-daqErrCode daqSerializer_getOutput(daqSerializer* self, daqString** serialized)
+daqErrCode daqSerializer_getOutput(daqSerializer* self, daqStringObject** serialized)
 {
     return reinterpret_cast<daq::ISerializer*>(self)->getOutput(reinterpret_cast<daq::IString**>(serialized));
 }
@@ -58,7 +58,7 @@ daqErrCode daqSerializer_key(daqSerializer* self, daqConstCharPtr string)
     return reinterpret_cast<daq::ISerializer*>(self)->key(static_cast<daq::ConstCharPtr>(string));
 }
 
-daqErrCode daqSerializer_keyStr(daqSerializer* self, daqString* name)
+daqErrCode daqSerializer_keyStr(daqSerializer* self, daqStringObject* name)
 {
     return reinterpret_cast<daq::ISerializer*>(self)->keyStr(reinterpret_cast<daq::IString*>(name));
 }

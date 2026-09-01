@@ -23,37 +23,37 @@ void daqPropertyObject_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_PROPERTY_OBJECT_INTF_ID;
 }
 
-daqErrCode daqPropertyObject_getClassName(daqPropertyObject* self, daqString** className)
+daqErrCode daqPropertyObject_getClassName(daqPropertyObject* self, daqStringObject** className)
 {
     return reinterpret_cast<daq::IPropertyObject*>(self)->getClassName(reinterpret_cast<daq::IString**>(className));
 }
 
-daqErrCode daqPropertyObject_setPropertyValue(daqPropertyObject* self, daqString* propertyName, daqBaseObject* value)
+daqErrCode daqPropertyObject_setPropertyValue(daqPropertyObject* self, daqStringObject* propertyName, daqBaseObject* value)
 {
     return reinterpret_cast<daq::IPropertyObject*>(self)->setPropertyValue(reinterpret_cast<daq::IString*>(propertyName), reinterpret_cast<daq::IBaseObject*>(value));
 }
 
-daqErrCode daqPropertyObject_getPropertyValue(daqPropertyObject* self, daqString* propertyName, daqBaseObject** value)
+daqErrCode daqPropertyObject_getPropertyValue(daqPropertyObject* self, daqStringObject* propertyName, daqBaseObject** value)
 {
     return reinterpret_cast<daq::IPropertyObject*>(self)->getPropertyValue(reinterpret_cast<daq::IString*>(propertyName), reinterpret_cast<daq::IBaseObject**>(value));
 }
 
-daqErrCode daqPropertyObject_getPropertySelectionValue(daqPropertyObject* self, daqString* propertyName, daqBaseObject** value)
+daqErrCode daqPropertyObject_getPropertySelectionValue(daqPropertyObject* self, daqStringObject* propertyName, daqBaseObject** value)
 {
     return reinterpret_cast<daq::IPropertyObject*>(self)->getPropertySelectionValue(reinterpret_cast<daq::IString*>(propertyName), reinterpret_cast<daq::IBaseObject**>(value));
 }
 
-daqErrCode daqPropertyObject_clearPropertyValue(daqPropertyObject* self, daqString* propertyName)
+daqErrCode daqPropertyObject_clearPropertyValue(daqPropertyObject* self, daqStringObject* propertyName)
 {
     return reinterpret_cast<daq::IPropertyObject*>(self)->clearPropertyValue(reinterpret_cast<daq::IString*>(propertyName));
 }
 
-daqErrCode daqPropertyObject_hasProperty(daqPropertyObject* self, daqString* propertyName, daqBool* hasProperty)
+daqErrCode daqPropertyObject_hasProperty(daqPropertyObject* self, daqStringObject* propertyName, daqBool* hasProperty)
 {
     return reinterpret_cast<daq::IPropertyObject*>(self)->hasProperty(reinterpret_cast<daq::IString*>(propertyName), hasProperty);
 }
 
-daqErrCode daqPropertyObject_getProperty(daqPropertyObject* self, daqString* propertyName, daqProperty** property)
+daqErrCode daqPropertyObject_getProperty(daqPropertyObject* self, daqStringObject* propertyName, daqProperty** property)
 {
     return reinterpret_cast<daq::IPropertyObject*>(self)->getProperty(reinterpret_cast<daq::IString*>(propertyName), reinterpret_cast<daq::IProperty**>(property));
 }
@@ -63,17 +63,17 @@ daqErrCode daqPropertyObject_addProperty(daqPropertyObject* self, daqProperty* p
     return reinterpret_cast<daq::IPropertyObject*>(self)->addProperty(reinterpret_cast<daq::IProperty*>(property));
 }
 
-daqErrCode daqPropertyObject_removeProperty(daqPropertyObject* self, daqString* propertyName)
+daqErrCode daqPropertyObject_removeProperty(daqPropertyObject* self, daqStringObject* propertyName)
 {
     return reinterpret_cast<daq::IPropertyObject*>(self)->removeProperty(reinterpret_cast<daq::IString*>(propertyName));
 }
 
-daqErrCode daqPropertyObject_getOnPropertyValueWrite(daqPropertyObject* self, daqString* propertyName, daqEvent** event)
+daqErrCode daqPropertyObject_getOnPropertyValueWrite(daqPropertyObject* self, daqStringObject* propertyName, daqEvent** event)
 {
     return reinterpret_cast<daq::IPropertyObject*>(self)->getOnPropertyValueWrite(reinterpret_cast<daq::IString*>(propertyName), reinterpret_cast<daq::IEvent**>(event));
 }
 
-daqErrCode daqPropertyObject_getOnPropertyValueRead(daqPropertyObject* self, daqString* propertyName, daqEvent** event)
+daqErrCode daqPropertyObject_getOnPropertyValueRead(daqPropertyObject* self, daqStringObject* propertyName, daqEvent** event)
 {
     return reinterpret_cast<daq::IPropertyObject*>(self)->getOnPropertyValueRead(reinterpret_cast<daq::IString*>(propertyName), reinterpret_cast<daq::IEvent**>(event));
 }
@@ -88,17 +88,17 @@ daqErrCode daqPropertyObject_getOnAnyPropertyValueRead(daqPropertyObject* self, 
     return reinterpret_cast<daq::IPropertyObject*>(self)->getOnAnyPropertyValueRead(reinterpret_cast<daq::IEvent**>(event));
 }
 
-daqErrCode daqPropertyObject_getVisibleProperties(daqPropertyObject* self, daqList** properties)
+daqErrCode daqPropertyObject_getVisibleProperties(daqPropertyObject* self, daqListObject** properties)
 {
     return reinterpret_cast<daq::IPropertyObject*>(self)->getVisibleProperties(reinterpret_cast<daq::IList**>(properties));
 }
 
-daqErrCode daqPropertyObject_getAllProperties(daqPropertyObject* self, daqList** properties)
+daqErrCode daqPropertyObject_getAllProperties(daqPropertyObject* self, daqListObject** properties)
 {
     return reinterpret_cast<daq::IPropertyObject*>(self)->getAllProperties(reinterpret_cast<daq::IList**>(properties));
 }
 
-daqErrCode daqPropertyObject_setPropertyOrder(daqPropertyObject* self, daqList* orderedPropertyNames)
+daqErrCode daqPropertyObject_setPropertyOrder(daqPropertyObject* self, daqListObject* orderedPropertyNames)
 {
     return reinterpret_cast<daq::IPropertyObject*>(self)->setPropertyOrder(reinterpret_cast<daq::IList*>(orderedPropertyNames));
 }
@@ -128,12 +128,12 @@ daqErrCode daqPropertyObject_getPermissionManager(daqPropertyObject* self, daqPe
     return reinterpret_cast<daq::IPropertyObject*>(self)->getPermissionManager(reinterpret_cast<daq::IPermissionManager**>(permissionManager));
 }
 
-daqErrCode daqPropertyObject_findProperties(daqPropertyObject* self, daqList** properties, daqSearchFilter* propertyFilter, daqSearchFilter* componentFilter)
+daqErrCode daqPropertyObject_findProperties(daqPropertyObject* self, daqListObject** properties, daqSearchFilter* propertyFilter, daqSearchFilter* componentFilter)
 {
     return reinterpret_cast<daq::IPropertyObject*>(self)->findProperties(reinterpret_cast<daq::IList**>(properties), reinterpret_cast<daq::ISearchFilter*>(propertyFilter), reinterpret_cast<daq::ISearchFilter*>(componentFilter));
 }
 
-daqErrCode daqPropertyObject_setPropertySelectionValue(daqPropertyObject* self, daqString* propertyName, daqBaseObject* value)
+daqErrCode daqPropertyObject_setPropertySelectionValue(daqPropertyObject* self, daqStringObject* propertyName, daqBaseObject* value)
 {
     return reinterpret_cast<daq::IPropertyObject*>(self)->setPropertySelectionValue(reinterpret_cast<daq::IString*>(propertyName), reinterpret_cast<daq::IBaseObject*>(value));
 }
@@ -151,7 +151,7 @@ daqErrCode daqPropertyObject_createPropertyObject(daqPropertyObject** obj)
     return err;
 }
 
-daqErrCode daqPropertyObject_createPropertyObjectWithClassAndManager(daqPropertyObject** obj, daqTypeManager* manager, daqString* className)
+daqErrCode daqPropertyObject_createPropertyObjectWithClassAndManager(daqPropertyObject** obj, daqTypeManager* manager, daqStringObject* className)
 {
     daq::IPropertyObject* ptr = nullptr;
     daqErrCode err = daq::createPropertyObjectWithClassAndManager(&ptr, reinterpret_cast<daq::ITypeManager*>(manager), reinterpret_cast<daq::IString*>(className));

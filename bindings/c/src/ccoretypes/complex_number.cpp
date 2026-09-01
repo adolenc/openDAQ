@@ -24,33 +24,33 @@ void daqComplexNumber_getInterfaceId(daqIntfID* intfId)
 }
 
 /*
-daqErrCode daqComplexNumber_getValue(daqComplexNumber* self, daqComplexFloat64* value)
+daqErrCode daqComplexNumber_getValue(daqComplexNumberObject* self, daqComplexFloat64* value)
 {
     return reinterpret_cast<daq::IComplexNumber*>(self)->getValue(reinterpret_cast<daq::ComplexFloat64*>(value));
 }
 */
 
 /*
-daqErrCode daqComplexNumber_equalsValue(daqComplexNumber* self, daqComplexFloat64 value, daqBool* equal)
+daqErrCode daqComplexNumber_equalsValue(daqComplexNumberObject* self, daqComplexFloat64 value, daqBool* equal)
 {
     return reinterpret_cast<daq::IComplexNumber*>(self)->equalsValue(static_cast<daq::ComplexFloat64>(value), equal);
 }
 */
 
-daqErrCode daqComplexNumber_getReal(daqComplexNumber* self, daqFloat* real)
+daqErrCode daqComplexNumber_getReal(daqComplexNumberObject* self, daqFloat* real)
 {
     return reinterpret_cast<daq::IComplexNumber*>(self)->getReal(real);
 }
 
-daqErrCode daqComplexNumber_getImaginary(daqComplexNumber* self, daqFloat* imaginary)
+daqErrCode daqComplexNumber_getImaginary(daqComplexNumberObject* self, daqFloat* imaginary)
 {
     return reinterpret_cast<daq::IComplexNumber*>(self)->getImaginary(imaginary);
 }
 
-daqErrCode daqComplexNumber_createComplexNumber(daqComplexNumber** obj, daqFloat real, daqFloat imaginary)
+daqErrCode daqComplexNumber_createComplexNumber(daqComplexNumberObject** obj, daqFloat real, daqFloat imaginary)
 {
     daq::IComplexNumber* ptr = nullptr;
     daqErrCode err = daq::createComplexNumber(&ptr, real, imaginary);
-    *obj = reinterpret_cast<daqComplexNumber*>(ptr);
+    *obj = reinterpret_cast<daqComplexNumberObject*>(ptr);
     return err;
 }

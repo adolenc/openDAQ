@@ -35,14 +35,14 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqEventArgs daqEventArgs;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
 
     EXPORTED extern const daqIntfID DAQ_EVENT_ARGS_INTF_ID;
     void EXPORTED daqEventArgs_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqEventArgs_getEventId(daqEventArgs* self, daqInt* id);
-    daqErrCode EXPORTED daqEventArgs_getEventName(daqEventArgs* self, daqString** name);
-    daqErrCode EXPORTED daqEventArgs_createEventArgs(daqEventArgs** obj, daqInt eventId, daqString* eventName);
+    daqErrCode EXPORTED daqEventArgs_getEventName(daqEventArgs* self, daqStringObject** name);
+    daqErrCode EXPORTED daqEventArgs_createEventArgs(daqEventArgs** obj, daqInt eventId, daqStringObject* eventName);
 
 #ifdef __cplusplus
 }

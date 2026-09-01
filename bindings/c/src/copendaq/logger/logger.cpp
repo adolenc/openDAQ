@@ -33,27 +33,27 @@ daqErrCode daqLogger_getLevel(daqLogger* self, daqLogLevel* level)
     return reinterpret_cast<daq::ILogger*>(self)->getLevel(reinterpret_cast<daq::LogLevel*>(level));
 }
 
-daqErrCode daqLogger_getOrAddComponent(daqLogger* self, daqString* name, daqLoggerComponent** component)
+daqErrCode daqLogger_getOrAddComponent(daqLogger* self, daqStringObject* name, daqLoggerComponent** component)
 {
     return reinterpret_cast<daq::ILogger*>(self)->getOrAddComponent(reinterpret_cast<daq::IString*>(name), reinterpret_cast<daq::ILoggerComponent**>(component));
 }
 
-daqErrCode daqLogger_addComponent(daqLogger* self, daqString* name, daqLoggerComponent** component)
+daqErrCode daqLogger_addComponent(daqLogger* self, daqStringObject* name, daqLoggerComponent** component)
 {
     return reinterpret_cast<daq::ILogger*>(self)->addComponent(reinterpret_cast<daq::IString*>(name), reinterpret_cast<daq::ILoggerComponent**>(component));
 }
 
-daqErrCode daqLogger_removeComponent(daqLogger* self, daqString* name)
+daqErrCode daqLogger_removeComponent(daqLogger* self, daqStringObject* name)
 {
     return reinterpret_cast<daq::ILogger*>(self)->removeComponent(reinterpret_cast<daq::IString*>(name));
 }
 
-daqErrCode daqLogger_getComponents(daqLogger* self, daqList** components)
+daqErrCode daqLogger_getComponents(daqLogger* self, daqListObject** components)
 {
     return reinterpret_cast<daq::ILogger*>(self)->getComponents(reinterpret_cast<daq::IList**>(components));
 }
 
-daqErrCode daqLogger_getComponent(daqLogger* self, daqString* name, daqLoggerComponent** component)
+daqErrCode daqLogger_getComponent(daqLogger* self, daqStringObject* name, daqLoggerComponent** component)
 {
     return reinterpret_cast<daq::ILogger*>(self)->getComponent(reinterpret_cast<daq::IString*>(name), reinterpret_cast<daq::ILoggerComponent**>(component));
 }
@@ -68,7 +68,7 @@ daqErrCode daqLogger_flushOnLevel(daqLogger* self, daqLogLevel level)
     return reinterpret_cast<daq::ILogger*>(self)->flushOnLevel(static_cast<daq::LogLevel>(level));
 }
 
-daqErrCode daqLogger_createLogger(daqLogger** obj, daqList* sinks, daqLogLevel level)
+daqErrCode daqLogger_createLogger(daqLogger** obj, daqListObject* sinks, daqLogLevel level)
 {
     daq::ILogger* ptr = nullptr;
     daqErrCode err = daq::createLogger(&ptr, reinterpret_cast<daq::IList*>(sinks), static_cast<daq::LogLevel>(level));

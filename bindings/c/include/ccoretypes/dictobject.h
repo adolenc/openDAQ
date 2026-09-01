@@ -34,26 +34,26 @@ extern "C"
 
 #include <ccommon.h>
 
-    typedef struct daqDict daqDict;
-    typedef struct daqList daqList;
+    typedef struct daqDictObject daqDictObject;
+    typedef struct daqListObject daqListObject;
     typedef struct daqIterable daqIterable;
 
     EXPORTED extern const daqIntfID DAQ_DICT_INTF_ID;
     void EXPORTED daqDict_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqDict_get(daqDict* self, daqBaseObject* key, daqBaseObject** value);
-    daqErrCode EXPORTED daqDict_set(daqDict* self, daqBaseObject* key, daqBaseObject* value);
-    daqErrCode EXPORTED daqDict_remove(daqDict* self, daqBaseObject* key, daqBaseObject** value);
-    daqErrCode EXPORTED daqDict_deleteItem(daqDict* self, daqBaseObject* key);
-    daqErrCode EXPORTED daqDict_clear(daqDict* self);
-    daqErrCode EXPORTED daqDict_getCount(daqDict* self, daqSizeT* size);
-    daqErrCode EXPORTED daqDict_hasKey(daqDict* self, daqBaseObject* key, daqBool* hasKey);
-    daqErrCode EXPORTED daqDict_getKeyList(daqDict* self, daqList** keys);
-    daqErrCode EXPORTED daqDict_getValueList(daqDict* self, daqList** values);
-    daqErrCode EXPORTED daqDict_getKeys(daqDict* self, daqIterable** iterable);
-    daqErrCode EXPORTED daqDict_getValues(daqDict* self, daqIterable** iterable);
-    daqErrCode EXPORTED daqDict_createDict(daqDict** obj);
-    daqErrCode EXPORTED daqDict_createDictWithExpectedTypes(daqDict** obj, daqIntfID keyType, daqIntfID valueType);
+    daqErrCode EXPORTED daqDict_get(daqDictObject* self, daqBaseObject* key, daqBaseObject** value);
+    daqErrCode EXPORTED daqDict_set(daqDictObject* self, daqBaseObject* key, daqBaseObject* value);
+    daqErrCode EXPORTED daqDict_remove(daqDictObject* self, daqBaseObject* key, daqBaseObject** value);
+    daqErrCode EXPORTED daqDict_deleteItem(daqDictObject* self, daqBaseObject* key);
+    daqErrCode EXPORTED daqDict_clear(daqDictObject* self);
+    daqErrCode EXPORTED daqDict_getCount(daqDictObject* self, daqSizeT* size);
+    daqErrCode EXPORTED daqDict_hasKey(daqDictObject* self, daqBaseObject* key, daqBool* hasKey);
+    daqErrCode EXPORTED daqDict_getKeyList(daqDictObject* self, daqListObject** keys);
+    daqErrCode EXPORTED daqDict_getValueList(daqDictObject* self, daqListObject** values);
+    daqErrCode EXPORTED daqDict_getKeys(daqDictObject* self, daqIterable** iterable);
+    daqErrCode EXPORTED daqDict_getValues(daqDictObject* self, daqIterable** iterable);
+    daqErrCode EXPORTED daqDict_createDict(daqDictObject** obj);
+    daqErrCode EXPORTED daqDict_createDictWithExpectedTypes(daqDictObject** obj, daqIntfID keyType, daqIntfID valueType);
 
 #ifdef __cplusplus
 }

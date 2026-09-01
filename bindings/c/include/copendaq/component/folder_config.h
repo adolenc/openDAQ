@@ -36,7 +36,7 @@ extern "C"
 
     typedef struct daqFolderConfig daqFolderConfig;
     typedef struct daqComponent daqComponent;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
     typedef struct daqContext daqContext;
 
     EXPORTED extern const daqIntfID DAQ_FOLDER_CONFIG_INTF_ID;
@@ -44,11 +44,11 @@ extern "C"
 
     daqErrCode EXPORTED daqFolderConfig_addItem(daqFolderConfig* self, daqComponent* item);
     daqErrCode EXPORTED daqFolderConfig_removeItem(daqFolderConfig* self, daqComponent* item);
-    daqErrCode EXPORTED daqFolderConfig_removeItemWithLocalId(daqFolderConfig* self, daqString* localId);
+    daqErrCode EXPORTED daqFolderConfig_removeItemWithLocalId(daqFolderConfig* self, daqStringObject* localId);
     daqErrCode EXPORTED daqFolderConfig_clear(daqFolderConfig* self);
-    daqErrCode EXPORTED daqFolderConfig_createFolder(daqFolderConfig** obj, daqContext* context, daqComponent* parent, daqString* localId);
-    daqErrCode EXPORTED daqFolderConfig_createFolderWithItemType(daqFolderConfig** obj, daqIntfID itemType, daqContext* context, daqComponent* parent, daqString* localId);
-    daqErrCode EXPORTED daqFolderConfig_createIoFolder(daqFolderConfig** obj, daqContext* context, daqComponent* parent, daqString* localId);
+    daqErrCode EXPORTED daqFolderConfig_createFolder(daqFolderConfig** obj, daqContext* context, daqComponent* parent, daqStringObject* localId);
+    daqErrCode EXPORTED daqFolderConfig_createFolderWithItemType(daqFolderConfig** obj, daqIntfID itemType, daqContext* context, daqComponent* parent, daqStringObject* localId);
+    daqErrCode EXPORTED daqFolderConfig_createIoFolder(daqFolderConfig** obj, daqContext* context, daqComponent* parent, daqStringObject* localId);
 
 #ifdef __cplusplus
 }

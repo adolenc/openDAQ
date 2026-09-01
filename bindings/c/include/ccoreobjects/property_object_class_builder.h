@@ -36,28 +36,28 @@ extern "C"
 
     typedef struct daqPropertyObjectClassBuilder daqPropertyObjectClassBuilder;
     typedef struct daqPropertyObjectClass daqPropertyObjectClass;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
     typedef struct daqProperty daqProperty;
-    typedef struct daqDict daqDict;
-    typedef struct daqList daqList;
+    typedef struct daqDictObject daqDictObject;
+    typedef struct daqListObject daqListObject;
     typedef struct daqTypeManager daqTypeManager;
 
     EXPORTED extern const daqIntfID DAQ_PROPERTY_OBJECT_CLASS_BUILDER_INTF_ID;
     void EXPORTED daqPropertyObjectClassBuilder_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqPropertyObjectClassBuilder_build(daqPropertyObjectClassBuilder* self, daqPropertyObjectClass** propertyObjectClass);
-    daqErrCode EXPORTED daqPropertyObjectClassBuilder_setName(daqPropertyObjectClassBuilder* self, daqString* className);
-    daqErrCode EXPORTED daqPropertyObjectClassBuilder_getName(daqPropertyObjectClassBuilder* self, daqString** className);
-    daqErrCode EXPORTED daqPropertyObjectClassBuilder_setParentName(daqPropertyObjectClassBuilder* self, daqString* parentName);
-    daqErrCode EXPORTED daqPropertyObjectClassBuilder_getParentName(daqPropertyObjectClassBuilder* self, daqString** parentName);
+    daqErrCode EXPORTED daqPropertyObjectClassBuilder_setName(daqPropertyObjectClassBuilder* self, daqStringObject* className);
+    daqErrCode EXPORTED daqPropertyObjectClassBuilder_getName(daqPropertyObjectClassBuilder* self, daqStringObject** className);
+    daqErrCode EXPORTED daqPropertyObjectClassBuilder_setParentName(daqPropertyObjectClassBuilder* self, daqStringObject* parentName);
+    daqErrCode EXPORTED daqPropertyObjectClassBuilder_getParentName(daqPropertyObjectClassBuilder* self, daqStringObject** parentName);
     daqErrCode EXPORTED daqPropertyObjectClassBuilder_addProperty(daqPropertyObjectClassBuilder* self, daqProperty* property);
-    daqErrCode EXPORTED daqPropertyObjectClassBuilder_getProperties(daqPropertyObjectClassBuilder* self, daqDict** properties);
-    daqErrCode EXPORTED daqPropertyObjectClassBuilder_removeProperty(daqPropertyObjectClassBuilder* self, daqString* propertyName);
-    daqErrCode EXPORTED daqPropertyObjectClassBuilder_setPropertyOrder(daqPropertyObjectClassBuilder* self, daqList* orderedPropertyNames);
-    daqErrCode EXPORTED daqPropertyObjectClassBuilder_getPropertyOrder(daqPropertyObjectClassBuilder* self, daqList** orderedPropertyNames);
+    daqErrCode EXPORTED daqPropertyObjectClassBuilder_getProperties(daqPropertyObjectClassBuilder* self, daqDictObject** properties);
+    daqErrCode EXPORTED daqPropertyObjectClassBuilder_removeProperty(daqPropertyObjectClassBuilder* self, daqStringObject* propertyName);
+    daqErrCode EXPORTED daqPropertyObjectClassBuilder_setPropertyOrder(daqPropertyObjectClassBuilder* self, daqListObject* orderedPropertyNames);
+    daqErrCode EXPORTED daqPropertyObjectClassBuilder_getPropertyOrder(daqPropertyObjectClassBuilder* self, daqListObject** orderedPropertyNames);
     daqErrCode EXPORTED daqPropertyObjectClassBuilder_getManager(daqPropertyObjectClassBuilder* self, daqTypeManager** manager);
-    daqErrCode EXPORTED daqPropertyObjectClassBuilder_createPropertyObjectClassBuilder(daqPropertyObjectClassBuilder** obj, daqString* name);
-    daqErrCode EXPORTED daqPropertyObjectClassBuilder_createPropertyObjectClassBuilderWithManager(daqPropertyObjectClassBuilder** obj, daqTypeManager* manager, daqString* name);
+    daqErrCode EXPORTED daqPropertyObjectClassBuilder_createPropertyObjectClassBuilder(daqPropertyObjectClassBuilder** obj, daqStringObject* name);
+    daqErrCode EXPORTED daqPropertyObjectClassBuilder_createPropertyObjectClassBuilderWithManager(daqPropertyObjectClassBuilder** obj, daqTypeManager* manager, daqStringObject* name);
 
 #ifdef __cplusplus
 }

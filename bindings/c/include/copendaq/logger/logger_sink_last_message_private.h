@@ -35,12 +35,12 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqLastMessageLoggerSinkPrivate daqLastMessageLoggerSinkPrivate;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
 
     EXPORTED extern const daqIntfID DAQ_LAST_MESSAGE_LOGGER_SINK_PRIVATE_INTF_ID;
     void EXPORTED daqLastMessageLoggerSinkPrivate_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqLastMessageLoggerSinkPrivate_getLastMessage(daqLastMessageLoggerSinkPrivate* self, daqString** lastMessage);
+    daqErrCode EXPORTED daqLastMessageLoggerSinkPrivate_getLastMessage(daqLastMessageLoggerSinkPrivate* self, daqStringObject** lastMessage);
     daqErrCode EXPORTED daqLastMessageLoggerSinkPrivate_waitForMessage(daqLastMessageLoggerSinkPrivate* self, daqSizeT timeoutMs, daqBool* success);
 
 #ifdef __cplusplus

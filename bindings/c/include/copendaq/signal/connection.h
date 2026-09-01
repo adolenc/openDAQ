@@ -38,7 +38,7 @@ extern "C"
     typedef struct daqPacket daqPacket;
     typedef struct daqSignal daqSignal;
     typedef struct daqInputPort daqInputPort;
-    typedef struct daqList daqList;
+    typedef struct daqListObject daqListObject;
     typedef struct daqContext daqContext;
 
     EXPORTED extern const daqIntfID DAQ_CONNECTION_INTF_ID;
@@ -55,9 +55,9 @@ extern "C"
     daqErrCode EXPORTED daqConnection_getSamplesUntilNextDescriptor(daqConnection* self, daqSizeT* samples);
     daqErrCode EXPORTED daqConnection_isRemote(daqConnection* self, daqBool* remote);
     daqErrCode EXPORTED daqConnection_enqueueAndStealRef(daqConnection* self, daqPacket* packet);
-    daqErrCode EXPORTED daqConnection_enqueueMultiple(daqConnection* self, daqList* packets);
-    daqErrCode EXPORTED daqConnection_enqueueMultipleAndStealRef(daqConnection* self, daqList* packets);
-    daqErrCode EXPORTED daqConnection_dequeueAll(daqConnection* self, daqList** packets);
+    daqErrCode EXPORTED daqConnection_enqueueMultiple(daqConnection* self, daqListObject* packets);
+    daqErrCode EXPORTED daqConnection_enqueueMultipleAndStealRef(daqConnection* self, daqListObject* packets);
+    daqErrCode EXPORTED daqConnection_dequeueAll(daqConnection* self, daqListObject** packets);
     daqErrCode EXPORTED daqConnection_getSamplesUntilNextEventPacket(daqConnection* self, daqSizeT* samples);
     daqErrCode EXPORTED daqConnection_getSamplesUntilNextGapPacket(daqConnection* self, daqSizeT* samples);
     daqErrCode EXPORTED daqConnection_hasEventPacket(daqConnection* self, daqBool* hasEventPacket);

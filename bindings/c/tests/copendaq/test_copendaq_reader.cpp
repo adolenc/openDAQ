@@ -13,7 +13,7 @@ protected:
         daqDataDescriptorBuilder_setSampleType(builder, daqSampleType::daqSampleTypeFloat64);
 
         daqUnit* unit = nullptr;
-        daqString *symbol = nullptr, *unitName = nullptr, *quantity = nullptr;
+        daqStringObject *symbol = nullptr, *unitName = nullptr, *quantity = nullptr;
         daqString_createString(&symbol, "V");
         daqString_createString(&unitName, "volts");
         daqString_createString(&quantity, "voltage");
@@ -25,7 +25,7 @@ protected:
         daqDataDescriptorBuilder_setUnit(builder, unit);
         daqBaseObject_releaseRef(unit);
 
-        daqString* signalName = nullptr;
+        daqStringObject* signalName = nullptr;
         daqString_createString(&signalName, "signal_values");
         daqDataDescriptorBuilder_setName(builder, signalName);
         daqBaseObject_releaseRef(signalName);
@@ -42,7 +42,7 @@ protected:
         daqDataDescriptorBuilder_createDataDescriptorBuilder(&builder);
         daqDataDescriptorBuilder_setSampleType(builder, daqSampleType::daqSampleTypeInt64);
         daqUnit* unit = nullptr;
-        daqString *symbol = nullptr, *unitName = nullptr, *quantity = nullptr;
+        daqStringObject *symbol = nullptr, *unitName = nullptr, *quantity = nullptr;
 
         daqString_createString(&symbol, "s");
         daqString_createString(&unitName, "seconds");
@@ -55,18 +55,18 @@ protected:
         daqDataDescriptorBuilder_setUnit(builder, unit);
         daqBaseObject_releaseRef(unit);
 
-        daqString* signalName = nullptr;
+        daqStringObject* signalName = nullptr;
         daqString_createString(&signalName, "signal_time");
         daqDataDescriptorBuilder_setName(builder, signalName);
         daqBaseObject_releaseRef(signalName);
 
-        daqRatio* tickResolution = nullptr;
+        daqRatioObject* tickResolution = nullptr;
         daqRatio_createRatio(&tickResolution, 1, 1000);
         daqDataDescriptorBuilder_setTickResolution(builder, tickResolution);
         daqBaseObject_releaseRef(tickResolution);
         daqDataRule* rule = nullptr;
 
-        daqInteger *start = nullptr, *delta = nullptr;
+        daqIntegerObject *start = nullptr, *delta = nullptr;
         daqInteger_createInteger(&start, 0);
         daqInteger_createInteger(&delta, 1);
         daqNumber *deltaNum = nullptr, *startNum = nullptr;
@@ -80,7 +80,7 @@ protected:
         daqDataDescriptorBuilder_setRule(builder, rule);
         daqBaseObject_releaseRef(rule);
 
-        daqString* epoch = nullptr;
+        daqStringObject* epoch = nullptr;
         daqString_createString(&epoch, "2025-01-01T00:00:00+0000");
         daqDataDescriptorBuilder_setOrigin(builder, epoch);
         daqBaseObject_releaseRef(epoch);
@@ -92,7 +92,7 @@ protected:
 
     daqContext* daqSetUpContext()
     {
-        daqList* sinks = nullptr;
+        daqListObject* sinks = nullptr;
         daqList_createList(&sinks);
 
         daqLoggerSink* sink = nullptr;
@@ -108,7 +108,7 @@ protected:
         daqScheduler* scheduler = nullptr;
         daqScheduler_createScheduler(&scheduler, logger, 1);
 
-        daqDict *options = nullptr, *discoveryServers = nullptr;
+        daqDictObject *options = nullptr, *discoveryServers = nullptr;
         daqDict_createDict(&options);
         daqDict_createDict(&discoveryServers);
 
@@ -128,7 +128,7 @@ protected:
     {
         daqDataPacket* domainPacket = nullptr;
 
-        daqInteger* offset = nullptr;
+        daqIntegerObject* offset = nullptr;
         daqInteger_createInteger(&offset, 0);
         daqNumber* offsetNum = nullptr;
         daqBaseObject_queryInterface(offset, DAQ_NUMBER_INTF_ID, (daqBaseObject**) &offsetNum);
@@ -156,9 +156,9 @@ protected:
 
     void SetUp() override
     {
-        daqString* id = nullptr;
+        daqStringObject* id = nullptr;
         daqString_createString(&id, "sig_values");
-        daqString* domainId = nullptr;
+        daqStringObject* domainId = nullptr;
         daqString_createString(&domainId, "sig_time");
 
         ctx = daqSetUpContext();

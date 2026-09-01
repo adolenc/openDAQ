@@ -34,13 +34,13 @@ extern "C"
 
 #include <ccommon.h>
 
-    typedef struct daqProcedure daqProcedure;
+    typedef struct daqProcedureObject daqProcedureObject;
 
     EXPORTED extern const daqIntfID DAQ_PROCEDURE_INTF_ID;
     void EXPORTED daqProcedure_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqProcedure_dispatch(daqProcedure* self, daqBaseObject* params);
-    daqErrCode EXPORTED daqProcedure_createProcedure(daqProcedure** obj, daqProcCall value);
+    daqErrCode EXPORTED daqProcedure_dispatch(daqProcedureObject* self, daqBaseObject* params);
+    daqErrCode EXPORTED daqProcedure_createProcedure(daqProcedureObject** obj, daqProcCall value);
 
 #ifdef __cplusplus
 }

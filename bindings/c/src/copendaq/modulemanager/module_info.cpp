@@ -28,17 +28,17 @@ daqErrCode daqModuleInfo_getVersionInfo(daqModuleInfo* self, daqVersionInfo** ve
     return reinterpret_cast<daq::IModuleInfo*>(self)->getVersionInfo(reinterpret_cast<daq::IVersionInfo**>(version));
 }
 
-daqErrCode daqModuleInfo_getName(daqModuleInfo* self, daqString** name)
+daqErrCode daqModuleInfo_getName(daqModuleInfo* self, daqStringObject** name)
 {
     return reinterpret_cast<daq::IModuleInfo*>(self)->getName(reinterpret_cast<daq::IString**>(name));
 }
 
-daqErrCode daqModuleInfo_getId(daqModuleInfo* self, daqString** id)
+daqErrCode daqModuleInfo_getId(daqModuleInfo* self, daqStringObject** id)
 {
     return reinterpret_cast<daq::IModuleInfo*>(self)->getId(reinterpret_cast<daq::IString**>(id));
 }
 
-daqErrCode daqModuleInfo_createModuleInfo(daqModuleInfo** obj, daqVersionInfo* versionInfo, daqString* name, daqString* id)
+daqErrCode daqModuleInfo_createModuleInfo(daqModuleInfo** obj, daqVersionInfo* versionInfo, daqStringObject* name, daqStringObject* id)
 {
     daq::IModuleInfo* ptr = nullptr;
     daqErrCode err = daq::createModuleInfo(&ptr, reinterpret_cast<daq::IVersionInfo*>(versionInfo), reinterpret_cast<daq::IString*>(name), reinterpret_cast<daq::IString*>(id));

@@ -35,15 +35,15 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqMirroredDevice daqMirroredDevice;
-    typedef struct daqList daqList;
-    typedef struct daqString daqString;
+    typedef struct daqListObject daqListObject;
+    typedef struct daqStringObject daqStringObject;
     typedef struct daqDeviceType daqDeviceType;
 
     EXPORTED extern const daqIntfID DAQ_MIRRORED_DEVICE_INTF_ID;
     void EXPORTED daqMirroredDevice_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqMirroredDevice_getStreamingSources(daqMirroredDevice* self, daqList** streamingSources);
-    daqErrCode EXPORTED daqMirroredDevice_getRemoteId(daqMirroredDevice* self, daqString** id);
+    daqErrCode EXPORTED daqMirroredDevice_getStreamingSources(daqMirroredDevice* self, daqListObject** streamingSources);
+    daqErrCode EXPORTED daqMirroredDevice_getRemoteId(daqMirroredDevice* self, daqStringObject** id);
     daqErrCode EXPORTED daqMirroredDevice_getMirroredDeviceType(daqMirroredDevice* self, daqDeviceType** type);
 
 #ifdef __cplusplus

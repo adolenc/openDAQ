@@ -34,15 +34,15 @@ extern "C"
 
 #include <ccommon.h>
 
-    typedef struct daqBoolean daqBoolean;
+    typedef struct daqBooleanObject daqBooleanObject;
 
     EXPORTED extern const daqIntfID DAQ_BOOLEAN_INTF_ID;
     void EXPORTED daqBoolean_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqBoolean_getValue(daqBoolean* self, daqBool* value);
-    daqErrCode EXPORTED daqBoolean_equalsValue(daqBoolean* self, daqBool value, daqBool* equal);
-    daqErrCode EXPORTED daqBoolean_createBoolean(daqBoolean** obj, daqBool value);
-    daqErrCode EXPORTED daqBoolean_createBoolObject(daqBoolean** obj, daqBool value);
+    daqErrCode EXPORTED daqBoolean_getValue(daqBooleanObject* self, daqBool* value);
+    daqErrCode EXPORTED daqBoolean_equalsValue(daqBooleanObject* self, daqBool value, daqBool* equal);
+    daqErrCode EXPORTED daqBoolean_createBoolean(daqBooleanObject** obj, daqBool value);
+    daqErrCode EXPORTED daqBoolean_createBoolObject(daqBooleanObject** obj, daqBool value);
 
 #ifdef __cplusplus
 }

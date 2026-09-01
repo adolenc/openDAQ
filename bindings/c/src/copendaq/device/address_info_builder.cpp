@@ -28,32 +28,32 @@ daqErrCode daqAddressInfoBuilder_build(daqAddressInfoBuilder* self, daqAddressIn
     return reinterpret_cast<daq::IAddressInfoBuilder*>(self)->build(reinterpret_cast<daq::IAddressInfo**>(address));
 }
 
-daqErrCode daqAddressInfoBuilder_getAddress(daqAddressInfoBuilder* self, daqString** address)
+daqErrCode daqAddressInfoBuilder_getAddress(daqAddressInfoBuilder* self, daqStringObject** address)
 {
     return reinterpret_cast<daq::IAddressInfoBuilder*>(self)->getAddress(reinterpret_cast<daq::IString**>(address));
 }
 
-daqErrCode daqAddressInfoBuilder_setAddress(daqAddressInfoBuilder* self, daqString* address)
+daqErrCode daqAddressInfoBuilder_setAddress(daqAddressInfoBuilder* self, daqStringObject* address)
 {
     return reinterpret_cast<daq::IAddressInfoBuilder*>(self)->setAddress(reinterpret_cast<daq::IString*>(address));
 }
 
-daqErrCode daqAddressInfoBuilder_getConnectionString(daqAddressInfoBuilder* self, daqString** connectionString)
+daqErrCode daqAddressInfoBuilder_getConnectionString(daqAddressInfoBuilder* self, daqStringObject** connectionString)
 {
     return reinterpret_cast<daq::IAddressInfoBuilder*>(self)->getConnectionString(reinterpret_cast<daq::IString**>(connectionString));
 }
 
-daqErrCode daqAddressInfoBuilder_setConnectionString(daqAddressInfoBuilder* self, daqString* connectionString)
+daqErrCode daqAddressInfoBuilder_setConnectionString(daqAddressInfoBuilder* self, daqStringObject* connectionString)
 {
     return reinterpret_cast<daq::IAddressInfoBuilder*>(self)->setConnectionString(reinterpret_cast<daq::IString*>(connectionString));
 }
 
-daqErrCode daqAddressInfoBuilder_getType(daqAddressInfoBuilder* self, daqString** type)
+daqErrCode daqAddressInfoBuilder_getType(daqAddressInfoBuilder* self, daqStringObject** type)
 {
     return reinterpret_cast<daq::IAddressInfoBuilder*>(self)->getType(reinterpret_cast<daq::IString**>(type));
 }
 
-daqErrCode daqAddressInfoBuilder_setType(daqAddressInfoBuilder* self, daqString* type)
+daqErrCode daqAddressInfoBuilder_setType(daqAddressInfoBuilder* self, daqStringObject* type)
 {
     return reinterpret_cast<daq::IAddressInfoBuilder*>(self)->setType(reinterpret_cast<daq::IString*>(type));
 }

@@ -23,7 +23,7 @@ void daqFunctionBlockType_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_FUNCTION_BLOCK_TYPE_INTF_ID;
 }
 
-daqErrCode daqFunctionBlockType_createFunctionBlockType(daqFunctionBlockType** obj, daqString* id, daqString* name, daqString* description, daqPropertyObject* defaultConfig)
+daqErrCode daqFunctionBlockType_createFunctionBlockType(daqFunctionBlockType** obj, daqStringObject* id, daqStringObject* name, daqStringObject* description, daqPropertyObject* defaultConfig)
 {
     daq::IFunctionBlockType* ptr = nullptr;
     daqErrCode err = daq::createFunctionBlockType(&ptr, reinterpret_cast<daq::IString*>(id), reinterpret_cast<daq::IString*>(name), reinterpret_cast<daq::IString*>(description), reinterpret_cast<daq::IPropertyObject*>(defaultConfig));

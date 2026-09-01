@@ -36,7 +36,7 @@ extern "C"
 
     typedef struct daqUnitBuilder daqUnitBuilder;
     typedef struct daqUnit daqUnit;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
 
     EXPORTED extern const daqIntfID DAQ_UNIT_BUILDER_INTF_ID;
     void EXPORTED daqUnitBuilder_getInterfaceId(daqIntfID* intfId);
@@ -44,12 +44,12 @@ extern "C"
     daqErrCode EXPORTED daqUnitBuilder_build(daqUnitBuilder* self, daqUnit** unit);
     daqErrCode EXPORTED daqUnitBuilder_setId(daqUnitBuilder* self, daqInt id);
     daqErrCode EXPORTED daqUnitBuilder_getId(daqUnitBuilder* self, daqInt* id);
-    daqErrCode EXPORTED daqUnitBuilder_setSymbol(daqUnitBuilder* self, daqString* symbol);
-    daqErrCode EXPORTED daqUnitBuilder_getSymbol(daqUnitBuilder* self, daqString** symbol);
-    daqErrCode EXPORTED daqUnitBuilder_setName(daqUnitBuilder* self, daqString* name);
-    daqErrCode EXPORTED daqUnitBuilder_getName(daqUnitBuilder* self, daqString** name);
-    daqErrCode EXPORTED daqUnitBuilder_setQuantity(daqUnitBuilder* self, daqString* quantity);
-    daqErrCode EXPORTED daqUnitBuilder_getQuantity(daqUnitBuilder* self, daqString** quantity);
+    daqErrCode EXPORTED daqUnitBuilder_setSymbol(daqUnitBuilder* self, daqStringObject* symbol);
+    daqErrCode EXPORTED daqUnitBuilder_getSymbol(daqUnitBuilder* self, daqStringObject** symbol);
+    daqErrCode EXPORTED daqUnitBuilder_setName(daqUnitBuilder* self, daqStringObject* name);
+    daqErrCode EXPORTED daqUnitBuilder_getName(daqUnitBuilder* self, daqStringObject** name);
+    daqErrCode EXPORTED daqUnitBuilder_setQuantity(daqUnitBuilder* self, daqStringObject* quantity);
+    daqErrCode EXPORTED daqUnitBuilder_getQuantity(daqUnitBuilder* self, daqStringObject** quantity);
     daqErrCode EXPORTED daqUnitBuilder_createUnitBuilder(daqUnitBuilder** obj);
     daqErrCode EXPORTED daqUnitBuilder_createUnitBuilderFromExisting(daqUnitBuilder** obj, daqUnit* unitToCopy);
 

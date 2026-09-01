@@ -23,7 +23,7 @@ void daqFolder_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_FOLDER_INTF_ID;
 }
 
-daqErrCode daqFolder_getItems(daqFolder* self, daqList** items, daqSearchFilter* searchFilter)
+daqErrCode daqFolder_getItems(daqFolder* self, daqListObject** items, daqSearchFilter* searchFilter)
 {
     return reinterpret_cast<daq::IFolder*>(self)->getItems(reinterpret_cast<daq::IList**>(items), reinterpret_cast<daq::ISearchFilter*>(searchFilter));
 }
@@ -33,12 +33,12 @@ daqErrCode daqFolder_isEmpty(daqFolder* self, daqBool* empty)
     return reinterpret_cast<daq::IFolder*>(self)->isEmpty(empty);
 }
 
-daqErrCode daqFolder_hasItem(daqFolder* self, daqString* localId, daqBool* value)
+daqErrCode daqFolder_hasItem(daqFolder* self, daqStringObject* localId, daqBool* value)
 {
     return reinterpret_cast<daq::IFolder*>(self)->hasItem(reinterpret_cast<daq::IString*>(localId), value);
 }
 
-daqErrCode daqFolder_getItem(daqFolder* self, daqString* localId, daqComponent** item)
+daqErrCode daqFolder_getItem(daqFolder* self, daqStringObject* localId, daqComponent** item)
 {
     return reinterpret_cast<daq::IFolder*>(self)->getItem(reinterpret_cast<daq::IString*>(localId), reinterpret_cast<daq::IComponent**>(item));
 }

@@ -28,7 +28,7 @@ daqErrCode daqMirroredInputPortPrivate_addStreamingSource(daqMirroredInputPortPr
     return reinterpret_cast<daq::IMirroredInputPortPrivate*>(self)->addStreamingSource(reinterpret_cast<daq::IStreaming*>(streaming));
 }
 
-daqErrCode daqMirroredInputPortPrivate_removeStreamingSource(daqMirroredInputPortPrivate* self, daqString* streamingConnectionString)
+daqErrCode daqMirroredInputPortPrivate_removeStreamingSource(daqMirroredInputPortPrivate* self, daqStringObject* streamingConnectionString)
 {
     return reinterpret_cast<daq::IMirroredInputPortPrivate*>(self)->removeStreamingSource(reinterpret_cast<daq::IString*>(streamingConnectionString));
 }
@@ -38,7 +38,7 @@ daqErrCode daqMirroredInputPortPrivate_getActiveStreamingSourceObject(daqMirrore
     return reinterpret_cast<daq::IMirroredInputPortPrivate*>(self)->getActiveStreamingSourceObject(reinterpret_cast<daq::IStreaming**>(streaming));
 }
 
-daqErrCode daqMirroredInputPortPrivate_getStreamingSourceObjects(daqMirroredInputPortPrivate* self, daqList** objects)
+daqErrCode daqMirroredInputPortPrivate_getStreamingSourceObjects(daqMirroredInputPortPrivate* self, daqListObject** objects)
 {
     return reinterpret_cast<daq::IMirroredInputPortPrivate*>(self)->getStreamingSourceObjects(reinterpret_cast<daq::IList**>(objects));
 }

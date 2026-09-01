@@ -36,7 +36,7 @@ extern "C"
 
     typedef struct daqDeviceInfoInternal daqDeviceInfoInternal;
     typedef struct daqServerCapability daqServerCapability;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
     typedef struct daqNetworkInterface daqNetworkInterface;
     typedef struct daqConnectedClientInfo daqConnectedClientInfo;
 
@@ -44,9 +44,9 @@ extern "C"
     void EXPORTED daqDeviceInfoInternal_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqDeviceInfoInternal_addServerCapability(daqDeviceInfoInternal* self, daqServerCapability* serverCapability);
-    daqErrCode EXPORTED daqDeviceInfoInternal_removeServerCapability(daqDeviceInfoInternal* self, daqString* protocolId);
+    daqErrCode EXPORTED daqDeviceInfoInternal_removeServerCapability(daqDeviceInfoInternal* self, daqStringObject* protocolId);
     daqErrCode EXPORTED daqDeviceInfoInternal_clearServerStreamingCapabilities(daqDeviceInfoInternal* self);
-    daqErrCode EXPORTED daqDeviceInfoInternal_addNetworkInteface(daqDeviceInfoInternal* self, daqString* name, daqNetworkInterface* networkInterface);
+    daqErrCode EXPORTED daqDeviceInfoInternal_addNetworkInteface(daqDeviceInfoInternal* self, daqStringObject* name, daqNetworkInterface* networkInterface);
     daqErrCode EXPORTED daqDeviceInfoInternal_addConnectedClient(daqDeviceInfoInternal* self, daqSizeT* clientNumber, daqConnectedClientInfo* clientInfo);
     daqErrCode EXPORTED daqDeviceInfoInternal_removeConnectedClient(daqDeviceInfoInternal* self, daqSizeT clientNumber);
 

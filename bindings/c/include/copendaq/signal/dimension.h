@@ -35,21 +35,21 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqDimension daqDimension;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
     typedef struct daqUnit daqUnit;
-    typedef struct daqList daqList;
+    typedef struct daqListObject daqListObject;
     typedef struct daqDimensionRule daqDimensionRule;
     typedef struct daqDimensionBuilder daqDimensionBuilder;
 
     EXPORTED extern const daqIntfID DAQ_DIMENSION_INTF_ID;
     void EXPORTED daqDimension_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqDimension_getName(daqDimension* self, daqString** name);
+    daqErrCode EXPORTED daqDimension_getName(daqDimension* self, daqStringObject** name);
     daqErrCode EXPORTED daqDimension_getSize(daqDimension* self, daqSizeT* size);
     daqErrCode EXPORTED daqDimension_getUnit(daqDimension* self, daqUnit** unit);
-    daqErrCode EXPORTED daqDimension_getLabels(daqDimension* self, daqList** labels);
+    daqErrCode EXPORTED daqDimension_getLabels(daqDimension* self, daqListObject** labels);
     daqErrCode EXPORTED daqDimension_getRule(daqDimension* self, daqDimensionRule** rule);
-    daqErrCode EXPORTED daqDimension_createDimension(daqDimension** obj, daqDimensionRule* rule, daqUnit* unit, daqString* name);
+    daqErrCode EXPORTED daqDimension_createDimension(daqDimension** obj, daqDimensionRule* rule, daqUnit* unit, daqStringObject* name);
     daqErrCode EXPORTED daqDimension_createDimensionFromBuilder(daqDimension** obj, daqDimensionBuilder* builder);
 
 #ifdef __cplusplus

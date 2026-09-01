@@ -33,12 +33,12 @@ daqErrCode daqValidator_validateNoLock(daqValidator* self, daqBaseObject* propOb
     return reinterpret_cast<daq::IValidator*>(self)->validateNoLock(reinterpret_cast<daq::IBaseObject*>(propObj), reinterpret_cast<daq::IBaseObject*>(value));
 }
 
-daqErrCode daqValidator_getEval(daqValidator* self, daqString** eval)
+daqErrCode daqValidator_getEval(daqValidator* self, daqStringObject** eval)
 {
     return reinterpret_cast<daq::IValidator*>(self)->getEval(reinterpret_cast<daq::IString**>(eval));
 }
 
-daqErrCode daqValidator_createValidator(daqValidator** obj, daqString* eval)
+daqErrCode daqValidator_createValidator(daqValidator** obj, daqStringObject* eval)
 {
     daq::IValidator* ptr = nullptr;
     daqErrCode err = daq::createValidator(&ptr, reinterpret_cast<daq::IString*>(eval));

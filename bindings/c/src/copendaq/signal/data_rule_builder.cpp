@@ -38,22 +38,22 @@ daqErrCode daqDataRuleBuilder_getType(daqDataRuleBuilder* self, daqDataRuleType*
     return reinterpret_cast<daq::IDataRuleBuilder*>(self)->getType(reinterpret_cast<daq::DataRuleType*>(type));
 }
 
-daqErrCode daqDataRuleBuilder_setParameters(daqDataRuleBuilder* self, daqDict* parameters)
+daqErrCode daqDataRuleBuilder_setParameters(daqDataRuleBuilder* self, daqDictObject* parameters)
 {
     return reinterpret_cast<daq::IDataRuleBuilder*>(self)->setParameters(reinterpret_cast<daq::IDict*>(parameters));
 }
 
-daqErrCode daqDataRuleBuilder_getParameters(daqDataRuleBuilder* self, daqDict** parameters)
+daqErrCode daqDataRuleBuilder_getParameters(daqDataRuleBuilder* self, daqDictObject** parameters)
 {
     return reinterpret_cast<daq::IDataRuleBuilder*>(self)->getParameters(reinterpret_cast<daq::IDict**>(parameters));
 }
 
-daqErrCode daqDataRuleBuilder_addParameter(daqDataRuleBuilder* self, daqString* name, daqBaseObject* parameter)
+daqErrCode daqDataRuleBuilder_addParameter(daqDataRuleBuilder* self, daqStringObject* name, daqBaseObject* parameter)
 {
     return reinterpret_cast<daq::IDataRuleBuilder*>(self)->addParameter(reinterpret_cast<daq::IString*>(name), reinterpret_cast<daq::IBaseObject*>(parameter));
 }
 
-daqErrCode daqDataRuleBuilder_removeParameter(daqDataRuleBuilder* self, daqString* name)
+daqErrCode daqDataRuleBuilder_removeParameter(daqDataRuleBuilder* self, daqStringObject* name)
 {
     return reinterpret_cast<daq::IDataRuleBuilder*>(self)->removeParameter(reinterpret_cast<daq::IString*>(name));
 }

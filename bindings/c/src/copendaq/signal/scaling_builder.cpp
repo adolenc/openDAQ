@@ -58,22 +58,22 @@ daqErrCode daqScalingBuilder_getScalingType(daqScalingBuilder* self, daqScalingT
     return reinterpret_cast<daq::IScalingBuilder*>(self)->getScalingType(reinterpret_cast<daq::ScalingType*>(type));
 }
 
-daqErrCode daqScalingBuilder_setParameters(daqScalingBuilder* self, daqDict* parameters)
+daqErrCode daqScalingBuilder_setParameters(daqScalingBuilder* self, daqDictObject* parameters)
 {
     return reinterpret_cast<daq::IScalingBuilder*>(self)->setParameters(reinterpret_cast<daq::IDict*>(parameters));
 }
 
-daqErrCode daqScalingBuilder_getParameters(daqScalingBuilder* self, daqDict** parameters)
+daqErrCode daqScalingBuilder_getParameters(daqScalingBuilder* self, daqDictObject** parameters)
 {
     return reinterpret_cast<daq::IScalingBuilder*>(self)->getParameters(reinterpret_cast<daq::IDict**>(parameters));
 }
 
-daqErrCode daqScalingBuilder_addParameter(daqScalingBuilder* self, daqString* name, daqBaseObject* parameter)
+daqErrCode daqScalingBuilder_addParameter(daqScalingBuilder* self, daqStringObject* name, daqBaseObject* parameter)
 {
     return reinterpret_cast<daq::IScalingBuilder*>(self)->addParameter(reinterpret_cast<daq::IString*>(name), reinterpret_cast<daq::IBaseObject*>(parameter));
 }
 
-daqErrCode daqScalingBuilder_removeParameter(daqScalingBuilder* self, daqString* name)
+daqErrCode daqScalingBuilder_removeParameter(daqScalingBuilder* self, daqStringObject* name)
 {
     return reinterpret_cast<daq::IScalingBuilder*>(self)->removeParameter(reinterpret_cast<daq::IString*>(name));
 }

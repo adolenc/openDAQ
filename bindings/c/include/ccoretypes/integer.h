@@ -34,14 +34,14 @@ extern "C"
 
 #include <ccommon.h>
 
-    typedef struct daqInteger daqInteger;
+    typedef struct daqIntegerObject daqIntegerObject;
 
     EXPORTED extern const daqIntfID DAQ_INTEGER_INTF_ID;
     void EXPORTED daqInteger_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqInteger_getValue(daqInteger* self, daqInt* value);
-    daqErrCode EXPORTED daqInteger_equalsValue(daqInteger* self, daqInt value, daqBool* equals);
-    daqErrCode EXPORTED daqInteger_createInteger(daqInteger** obj, daqInt value);
+    daqErrCode EXPORTED daqInteger_getValue(daqIntegerObject* self, daqInt* value);
+    daqErrCode EXPORTED daqInteger_equalsValue(daqIntegerObject* self, daqInt value, daqBool* equals);
+    daqErrCode EXPORTED daqInteger_createInteger(daqIntegerObject** obj, daqInt value);
 
 #ifdef __cplusplus
 }

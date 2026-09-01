@@ -28,7 +28,7 @@ daqErrCode daqDataRule_getType(daqDataRule* self, daqDataRuleType* type)
     return reinterpret_cast<daq::IDataRule*>(self)->getType(reinterpret_cast<daq::DataRuleType*>(type));
 }
 
-daqErrCode daqDataRule_getParameters(daqDataRule* self, daqDict** parameters)
+daqErrCode daqDataRule_getParameters(daqDataRule* self, daqDictObject** parameters)
 {
     return reinterpret_cast<daq::IDataRule*>(self)->getParameters(reinterpret_cast<daq::IDict**>(parameters));
 }
@@ -65,7 +65,7 @@ daqErrCode daqDataRule_createExplicitDomainDataRule(daqDataRule** obj, daqNumber
     return err;
 }
 
-daqErrCode daqDataRule_createDataRule(daqDataRule** obj, daqDataRuleType ruleType, daqDict* parameters)
+daqErrCode daqDataRule_createDataRule(daqDataRule** obj, daqDataRuleType ruleType, daqDictObject* parameters)
 {
     daq::IDataRule* ptr = nullptr;
     daqErrCode err = daq::createDataRule(&ptr, static_cast<daq::DataRuleType>(ruleType), reinterpret_cast<daq::IDict*>(parameters));

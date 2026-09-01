@@ -35,10 +35,10 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqPropertyObject daqPropertyObject;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
     typedef struct daqProperty daqProperty;
     typedef struct daqEvent daqEvent;
-    typedef struct daqList daqList;
+    typedef struct daqListObject daqListObject;
     typedef struct daqPermissionManager daqPermissionManager;
     typedef struct daqSearchFilter daqSearchFilter;
     typedef struct daqTypeManager daqTypeManager;
@@ -46,32 +46,32 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_PROPERTY_OBJECT_INTF_ID;
     void EXPORTED daqPropertyObject_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqPropertyObject_getClassName(daqPropertyObject* self, daqString** className);
-    daqErrCode EXPORTED daqPropertyObject_setPropertyValue(daqPropertyObject* self, daqString* propertyName, daqBaseObject* value);
-    daqErrCode EXPORTED daqPropertyObject_getPropertyValue(daqPropertyObject* self, daqString* propertyName, daqBaseObject** value);
-    daqErrCode EXPORTED daqPropertyObject_getPropertySelectionValue(daqPropertyObject* self, daqString* propertyName, daqBaseObject** value);
-    daqErrCode EXPORTED daqPropertyObject_clearPropertyValue(daqPropertyObject* self, daqString* propertyName);
-    daqErrCode EXPORTED daqPropertyObject_hasProperty(daqPropertyObject* self, daqString* propertyName, daqBool* hasProperty);
-    daqErrCode EXPORTED daqPropertyObject_getProperty(daqPropertyObject* self, daqString* propertyName, daqProperty** property);
+    daqErrCode EXPORTED daqPropertyObject_getClassName(daqPropertyObject* self, daqStringObject** className);
+    daqErrCode EXPORTED daqPropertyObject_setPropertyValue(daqPropertyObject* self, daqStringObject* propertyName, daqBaseObject* value);
+    daqErrCode EXPORTED daqPropertyObject_getPropertyValue(daqPropertyObject* self, daqStringObject* propertyName, daqBaseObject** value);
+    daqErrCode EXPORTED daqPropertyObject_getPropertySelectionValue(daqPropertyObject* self, daqStringObject* propertyName, daqBaseObject** value);
+    daqErrCode EXPORTED daqPropertyObject_clearPropertyValue(daqPropertyObject* self, daqStringObject* propertyName);
+    daqErrCode EXPORTED daqPropertyObject_hasProperty(daqPropertyObject* self, daqStringObject* propertyName, daqBool* hasProperty);
+    daqErrCode EXPORTED daqPropertyObject_getProperty(daqPropertyObject* self, daqStringObject* propertyName, daqProperty** property);
     daqErrCode EXPORTED daqPropertyObject_addProperty(daqPropertyObject* self, daqProperty* property);
-    daqErrCode EXPORTED daqPropertyObject_removeProperty(daqPropertyObject* self, daqString* propertyName);
-    daqErrCode EXPORTED daqPropertyObject_getOnPropertyValueWrite(daqPropertyObject* self, daqString* propertyName, daqEvent** event);
-    daqErrCode EXPORTED daqPropertyObject_getOnPropertyValueRead(daqPropertyObject* self, daqString* propertyName, daqEvent** event);
+    daqErrCode EXPORTED daqPropertyObject_removeProperty(daqPropertyObject* self, daqStringObject* propertyName);
+    daqErrCode EXPORTED daqPropertyObject_getOnPropertyValueWrite(daqPropertyObject* self, daqStringObject* propertyName, daqEvent** event);
+    daqErrCode EXPORTED daqPropertyObject_getOnPropertyValueRead(daqPropertyObject* self, daqStringObject* propertyName, daqEvent** event);
     daqErrCode EXPORTED daqPropertyObject_getOnAnyPropertyValueWrite(daqPropertyObject* self, daqEvent** event);
     daqErrCode EXPORTED daqPropertyObject_getOnAnyPropertyValueRead(daqPropertyObject* self, daqEvent** event);
-    daqErrCode EXPORTED daqPropertyObject_getVisibleProperties(daqPropertyObject* self, daqList** properties);
-    daqErrCode EXPORTED daqPropertyObject_getAllProperties(daqPropertyObject* self, daqList** properties);
-    daqErrCode EXPORTED daqPropertyObject_setPropertyOrder(daqPropertyObject* self, daqList* orderedPropertyNames);
+    daqErrCode EXPORTED daqPropertyObject_getVisibleProperties(daqPropertyObject* self, daqListObject** properties);
+    daqErrCode EXPORTED daqPropertyObject_getAllProperties(daqPropertyObject* self, daqListObject** properties);
+    daqErrCode EXPORTED daqPropertyObject_setPropertyOrder(daqPropertyObject* self, daqListObject* orderedPropertyNames);
     daqErrCode EXPORTED daqPropertyObject_beginUpdate(daqPropertyObject* self);
     daqErrCode EXPORTED daqPropertyObject_endUpdate(daqPropertyObject* self);
     daqErrCode EXPORTED daqPropertyObject_getUpdating(daqPropertyObject* self, daqBool* updating);
     daqErrCode EXPORTED daqPropertyObject_getOnEndUpdate(daqPropertyObject* self, daqEvent** event);
     daqErrCode EXPORTED daqPropertyObject_getPermissionManager(daqPropertyObject* self, daqPermissionManager** permissionManager);
-    daqErrCode EXPORTED daqPropertyObject_findProperties(daqPropertyObject* self, daqList** properties, daqSearchFilter* propertyFilter, daqSearchFilter* componentFilter);
-    daqErrCode EXPORTED daqPropertyObject_setPropertySelectionValue(daqPropertyObject* self, daqString* propertyName, daqBaseObject* value);
+    daqErrCode EXPORTED daqPropertyObject_findProperties(daqPropertyObject* self, daqListObject** properties, daqSearchFilter* propertyFilter, daqSearchFilter* componentFilter);
+    daqErrCode EXPORTED daqPropertyObject_setPropertySelectionValue(daqPropertyObject* self, daqStringObject* propertyName, daqBaseObject* value);
     daqErrCode EXPORTED daqPropertyObject_clearPropertyValues(daqPropertyObject* self);
     daqErrCode EXPORTED daqPropertyObject_createPropertyObject(daqPropertyObject** obj);
-    daqErrCode EXPORTED daqPropertyObject_createPropertyObjectWithClassAndManager(daqPropertyObject** obj, daqTypeManager* manager, daqString* className);
+    daqErrCode EXPORTED daqPropertyObject_createPropertyObjectWithClassAndManager(daqPropertyObject** obj, daqTypeManager* manager, daqStringObject* className);
 
 #ifdef __cplusplus
 }

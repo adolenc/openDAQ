@@ -36,7 +36,7 @@ extern "C"
 
     typedef struct daqSignal daqSignal;
     typedef struct daqDataDescriptor daqDataDescriptor;
-    typedef struct daqList daqList;
+    typedef struct daqListObject daqListObject;
 
     EXPORTED extern const daqIntfID DAQ_SIGNAL_INTF_ID;
     void EXPORTED daqSignal_getInterfaceId(daqIntfID* intfId);
@@ -45,8 +45,8 @@ extern "C"
     daqErrCode EXPORTED daqSignal_setPublic(daqSignal* self, daqBool isPublic);
     daqErrCode EXPORTED daqSignal_getDescriptor(daqSignal* self, daqDataDescriptor** descriptor);
     daqErrCode EXPORTED daqSignal_getDomainSignal(daqSignal* self, daqSignal** signal);
-    daqErrCode EXPORTED daqSignal_getRelatedSignals(daqSignal* self, daqList** signals);
-    daqErrCode EXPORTED daqSignal_getConnections(daqSignal* self, daqList** connections);
+    daqErrCode EXPORTED daqSignal_getRelatedSignals(daqSignal* self, daqListObject** signals);
+    daqErrCode EXPORTED daqSignal_getConnections(daqSignal* self, daqListObject** connections);
     daqErrCode EXPORTED daqSignal_getStreamed(daqSignal* self, daqBool* streamed);
     daqErrCode EXPORTED daqSignal_setStreamed(daqSignal* self, daqBool streamed);
     daqErrCode EXPORTED daqSignal_getLastValue(daqSignal* self, daqBaseObject** value);

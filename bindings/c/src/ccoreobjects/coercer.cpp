@@ -33,12 +33,12 @@ daqErrCode daqCoercer_coerceNoLock(daqCoercer* self, daqBaseObject* propObj, daq
     return reinterpret_cast<daq::ICoercer*>(self)->coerceNoLock(reinterpret_cast<daq::IBaseObject*>(propObj), reinterpret_cast<daq::IBaseObject*>(value), reinterpret_cast<daq::IBaseObject**>(result));
 }
 
-daqErrCode daqCoercer_getEval(daqCoercer* self, daqString** eval)
+daqErrCode daqCoercer_getEval(daqCoercer* self, daqStringObject** eval)
 {
     return reinterpret_cast<daq::ICoercer*>(self)->getEval(reinterpret_cast<daq::IString**>(eval));
 }
 
-daqErrCode daqCoercer_createCoercer(daqCoercer** obj, daqString* eval)
+daqErrCode daqCoercer_createCoercer(daqCoercer** obj, daqStringObject* eval)
 {
     daq::ICoercer* ptr = nullptr;
     daqErrCode err = daq::createCoercer(&ptr, reinterpret_cast<daq::IString*>(eval));

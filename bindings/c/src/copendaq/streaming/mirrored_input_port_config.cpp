@@ -23,22 +23,22 @@ void daqMirroredInputPortConfig_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_MIRRORED_INPUT_PORT_CONFIG_INTF_ID;
 }
 
-daqErrCode daqMirroredInputPortConfig_getRemoteId(daqMirroredInputPortConfig* self, daqString** id)
+daqErrCode daqMirroredInputPortConfig_getRemoteId(daqMirroredInputPortConfig* self, daqStringObject** id)
 {
     return reinterpret_cast<daq::IMirroredInputPortConfig*>(self)->getRemoteId(reinterpret_cast<daq::IString**>(id));
 }
 
-daqErrCode daqMirroredInputPortConfig_getStreamingSources(daqMirroredInputPortConfig* self, daqList** streamingConnectionStrings)
+daqErrCode daqMirroredInputPortConfig_getStreamingSources(daqMirroredInputPortConfig* self, daqListObject** streamingConnectionStrings)
 {
     return reinterpret_cast<daq::IMirroredInputPortConfig*>(self)->getStreamingSources(reinterpret_cast<daq::IList**>(streamingConnectionStrings));
 }
 
-daqErrCode daqMirroredInputPortConfig_setActiveStreamingSource(daqMirroredInputPortConfig* self, daqString* streamingConnectionString)
+daqErrCode daqMirroredInputPortConfig_setActiveStreamingSource(daqMirroredInputPortConfig* self, daqStringObject* streamingConnectionString)
 {
     return reinterpret_cast<daq::IMirroredInputPortConfig*>(self)->setActiveStreamingSource(reinterpret_cast<daq::IString*>(streamingConnectionString));
 }
 
-daqErrCode daqMirroredInputPortConfig_getActiveStreamingSource(daqMirroredInputPortConfig* self, daqString** streamingConnectionString)
+daqErrCode daqMirroredInputPortConfig_getActiveStreamingSource(daqMirroredInputPortConfig* self, daqStringObject** streamingConnectionString)
 {
     return reinterpret_cast<daq::IMirroredInputPortConfig*>(self)->getActiveStreamingSource(reinterpret_cast<daq::IString**>(streamingConnectionString));
 }

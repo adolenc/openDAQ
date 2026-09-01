@@ -33,22 +33,22 @@ daqErrCode daqInstance_getRootDevice(daqInstance* self, daqDevice** rootDevice)
     return reinterpret_cast<daq::IInstance*>(self)->getRootDevice(reinterpret_cast<daq::IDevice**>(rootDevice));
 }
 
-daqErrCode daqInstance_setRootDevice(daqInstance* self, daqString* connectionString, daqPropertyObject* config)
+daqErrCode daqInstance_setRootDevice(daqInstance* self, daqStringObject* connectionString, daqPropertyObject* config)
 {
     return reinterpret_cast<daq::IInstance*>(self)->setRootDevice(reinterpret_cast<daq::IString*>(connectionString), reinterpret_cast<daq::IPropertyObject*>(config));
 }
 
-daqErrCode daqInstance_getAvailableServerTypes(daqInstance* self, daqDict** serverTypes)
+daqErrCode daqInstance_getAvailableServerTypes(daqInstance* self, daqDictObject** serverTypes)
 {
     return reinterpret_cast<daq::IInstance*>(self)->getAvailableServerTypes(reinterpret_cast<daq::IDict**>(serverTypes));
 }
 
-daqErrCode daqInstance_addStandardServers(daqInstance* self, daqList** servers)
+daqErrCode daqInstance_addStandardServers(daqInstance* self, daqListObject** servers)
 {
     return reinterpret_cast<daq::IInstance*>(self)->addStandardServers(reinterpret_cast<daq::IList**>(servers));
 }
 
-daqErrCode daqInstance_createInstance(daqInstance** obj, daqContext* context, daqString* localId)
+daqErrCode daqInstance_createInstance(daqInstance** obj, daqContext* context, daqStringObject* localId)
 {
     daq::IInstance* ptr = nullptr;
     daqErrCode err = daq::createInstance(&ptr, reinterpret_cast<daq::IContext*>(context), reinterpret_cast<daq::IString*>(localId));
@@ -65,7 +65,7 @@ daqErrCode daqInstance_createInstanceFromBuilder(daqInstance** obj, daqInstanceB
 }
 
 /*
-daqErrCode daqDevice_createClient(daqDevice** obj, daqContext* ctx, daqString* localId, daqDeviceInfo* defaultDeviceInfo, daqComponent* parent)
+daqErrCode daqDevice_createClient(daqDevice** obj, daqContext* ctx, daqStringObject* localId, daqDeviceInfo* defaultDeviceInfo, daqComponent* parent)
 {
     daq::IInstance* ptr = nullptr;
     daqErrCode err = daq::createClient(&ptr, reinterpret_cast<daq::IContext*>(ctx), reinterpret_cast<daq::IString*>(localId), reinterpret_cast<daq::IDeviceInfo*>(defaultDeviceInfo), reinterpret_cast<daq::IComponent*>(parent));

@@ -28,17 +28,17 @@ daqErrCode daqPermissionsBuilder_inherit(daqPermissionsBuilder* self, daqBool in
     return reinterpret_cast<daq::IPermissionsBuilder*>(self)->inherit(inherit);
 }
 
-daqErrCode daqPermissionsBuilder_assign(daqPermissionsBuilder* self, daqString* groupId, daqPermissionMaskBuilder* permissions)
+daqErrCode daqPermissionsBuilder_assign(daqPermissionsBuilder* self, daqStringObject* groupId, daqPermissionMaskBuilder* permissions)
 {
     return reinterpret_cast<daq::IPermissionsBuilder*>(self)->assign(reinterpret_cast<daq::IString*>(groupId), reinterpret_cast<daq::IPermissionMaskBuilder*>(permissions));
 }
 
-daqErrCode daqPermissionsBuilder_allow(daqPermissionsBuilder* self, daqString* groupId, daqPermissionMaskBuilder* permissions)
+daqErrCode daqPermissionsBuilder_allow(daqPermissionsBuilder* self, daqStringObject* groupId, daqPermissionMaskBuilder* permissions)
 {
     return reinterpret_cast<daq::IPermissionsBuilder*>(self)->allow(reinterpret_cast<daq::IString*>(groupId), reinterpret_cast<daq::IPermissionMaskBuilder*>(permissions));
 }
 
-daqErrCode daqPermissionsBuilder_deny(daqPermissionsBuilder* self, daqString* groupId, daqPermissionMaskBuilder* permissions)
+daqErrCode daqPermissionsBuilder_deny(daqPermissionsBuilder* self, daqStringObject* groupId, daqPermissionMaskBuilder* permissions)
 {
     return reinterpret_cast<daq::IPermissionsBuilder*>(self)->deny(reinterpret_cast<daq::IString*>(groupId), reinterpret_cast<daq::IPermissionMaskBuilder*>(permissions));
 }

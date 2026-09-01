@@ -33,22 +33,22 @@ daqErrCode daqMirroredSignalPrivate_addStreamingSource(daqMirroredSignalPrivate*
     return reinterpret_cast<daq::IMirroredSignalPrivate*>(self)->addStreamingSource(reinterpret_cast<daq::IStreaming*>(streaming));
 }
 
-daqErrCode daqMirroredSignalPrivate_removeStreamingSource(daqMirroredSignalPrivate* self, daqString* streamingConnectionString)
+daqErrCode daqMirroredSignalPrivate_removeStreamingSource(daqMirroredSignalPrivate* self, daqStringObject* streamingConnectionString)
 {
     return reinterpret_cast<daq::IMirroredSignalPrivate*>(self)->removeStreamingSource(reinterpret_cast<daq::IString*>(streamingConnectionString));
 }
 
-daqErrCode daqMirroredSignalPrivate_subscribeCompleted(daqMirroredSignalPrivate* self, daqString* streamingConnectionString)
+daqErrCode daqMirroredSignalPrivate_subscribeCompleted(daqMirroredSignalPrivate* self, daqStringObject* streamingConnectionString)
 {
     return reinterpret_cast<daq::IMirroredSignalPrivate*>(self)->subscribeCompleted(reinterpret_cast<daq::IString*>(streamingConnectionString));
 }
 
-daqErrCode daqMirroredSignalPrivate_unsubscribeCompleted(daqMirroredSignalPrivate* self, daqString* streamingConnectionString)
+daqErrCode daqMirroredSignalPrivate_unsubscribeCompleted(daqMirroredSignalPrivate* self, daqStringObject* streamingConnectionString)
 {
     return reinterpret_cast<daq::IMirroredSignalPrivate*>(self)->unsubscribeCompleted(reinterpret_cast<daq::IString*>(streamingConnectionString));
 }
 
-daqErrCode daqMirroredSignalPrivate_unsubscribeCompletedNoLock(daqMirroredSignalPrivate* self, daqString* streamingConnectionString)
+daqErrCode daqMirroredSignalPrivate_unsubscribeCompletedNoLock(daqMirroredSignalPrivate* self, daqStringObject* streamingConnectionString)
 {
     return reinterpret_cast<daq::IMirroredSignalPrivate*>(self)->unsubscribeCompletedNoLock(reinterpret_cast<daq::IString*>(streamingConnectionString));
 }

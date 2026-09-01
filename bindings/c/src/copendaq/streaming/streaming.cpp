@@ -33,12 +33,12 @@ daqErrCode daqStreaming_setActive(daqStreaming* self, daqBool active)
     return reinterpret_cast<daq::IStreaming*>(self)->setActive(active);
 }
 
-daqErrCode daqStreaming_addSignals(daqStreaming* self, daqList* signals)
+daqErrCode daqStreaming_addSignals(daqStreaming* self, daqListObject* signals)
 {
     return reinterpret_cast<daq::IStreaming*>(self)->addSignals(reinterpret_cast<daq::IList*>(signals));
 }
 
-daqErrCode daqStreaming_removeSignals(daqStreaming* self, daqList* signals)
+daqErrCode daqStreaming_removeSignals(daqStreaming* self, daqListObject* signals)
 {
     return reinterpret_cast<daq::IStreaming*>(self)->removeSignals(reinterpret_cast<daq::IList*>(signals));
 }
@@ -48,22 +48,22 @@ daqErrCode daqStreaming_removeAllSignals(daqStreaming* self)
     return reinterpret_cast<daq::IStreaming*>(self)->removeAllSignals();
 }
 
-daqErrCode daqStreaming_getConnectionString(daqStreaming* self, daqString** connectionString)
+daqErrCode daqStreaming_getConnectionString(daqStreaming* self, daqStringObject** connectionString)
 {
     return reinterpret_cast<daq::IStreaming*>(self)->getConnectionString(reinterpret_cast<daq::IString**>(connectionString));
 }
 
-daqErrCode daqStreaming_getConnectionStatus(daqStreaming* self, daqEnumeration** connectionStatus)
+daqErrCode daqStreaming_getConnectionStatus(daqStreaming* self, daqEnumerationObject** connectionStatus)
 {
     return reinterpret_cast<daq::IStreaming*>(self)->getConnectionStatus(reinterpret_cast<daq::IEnumeration**>(connectionStatus));
 }
 
-daqErrCode daqStreaming_addInputPorts(daqStreaming* self, daqList* inputPorts)
+daqErrCode daqStreaming_addInputPorts(daqStreaming* self, daqListObject* inputPorts)
 {
     return reinterpret_cast<daq::IStreaming*>(self)->addInputPorts(reinterpret_cast<daq::IList*>(inputPorts));
 }
 
-daqErrCode daqStreaming_removeInputPorts(daqStreaming* self, daqList* inputPorts)
+daqErrCode daqStreaming_removeInputPorts(daqStreaming* self, daqListObject* inputPorts)
 {
     return reinterpret_cast<daq::IStreaming*>(self)->removeInputPorts(reinterpret_cast<daq::IList*>(inputPorts));
 }
@@ -73,12 +73,12 @@ daqErrCode daqStreaming_removeAllInputPorts(daqStreaming* self)
     return reinterpret_cast<daq::IStreaming*>(self)->removeAllInputPorts();
 }
 
-daqErrCode daqStreaming_getOwnerDeviceRemoteId(daqStreaming* self, daqString** deviceRemoteId)
+daqErrCode daqStreaming_getOwnerDeviceRemoteId(daqStreaming* self, daqStringObject** deviceRemoteId)
 {
     return reinterpret_cast<daq::IStreaming*>(self)->getOwnerDeviceRemoteId(reinterpret_cast<daq::IString**>(deviceRemoteId));
 }
 
-daqErrCode daqStreaming_getProtocolId(daqStreaming* self, daqString** protocolId)
+daqErrCode daqStreaming_getProtocolId(daqStreaming* self, daqStringObject** protocolId)
 {
     return reinterpret_cast<daq::IStreaming*>(self)->getProtocolId(reinterpret_cast<daq::IString**>(protocolId));
 }

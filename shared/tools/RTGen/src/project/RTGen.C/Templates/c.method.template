@@ -1,5 +1,5 @@
-$ReturnType$ $Prefix$$NonInterfaceType$_$Name$($Arguments$)
-$ReturnType$ $Prefix$$NonInterfaceType$_$Name$($Arguments$)
+$ReturnType$ $Prefix$$FunctionOwner$_$Name$($Arguments$)
+$ReturnType$ $Prefix$$FunctionOwner$_$Name$($Arguments$)
 return reinterpret_cast<$ArgTypeFull$*>(self)->$Name$($ArgumentsForwarding$);
 $ArgTypeFull$* ptr = nullptr;
 $Prefix$ErrCode err = $FactoryName$(&ptr$ArgumentsForwarding$);

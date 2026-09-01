@@ -34,25 +34,25 @@ extern "C"
 
 #include <ccommon.h>
 
-    typedef struct daqStruct daqStruct;
+    typedef struct daqStructObject daqStructObject;
     typedef struct daqStructType daqStructType;
-    typedef struct daqList daqList;
-    typedef struct daqString daqString;
-    typedef struct daqDict daqDict;
+    typedef struct daqListObject daqListObject;
+    typedef struct daqStringObject daqStringObject;
+    typedef struct daqDictObject daqDictObject;
     typedef struct daqTypeManager daqTypeManager;
     typedef struct daqStructBuilder daqStructBuilder;
 
     EXPORTED extern const daqIntfID DAQ_STRUCT_INTF_ID;
     void EXPORTED daqStruct_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqStruct_getStructType(daqStruct* self, daqStructType** type);
-    daqErrCode EXPORTED daqStruct_getFieldNames(daqStruct* self, daqList** names);
-    daqErrCode EXPORTED daqStruct_getFieldValues(daqStruct* self, daqList** values);
-    daqErrCode EXPORTED daqStruct_get(daqStruct* self, daqString* name, daqBaseObject** field);
-    daqErrCode EXPORTED daqStruct_getAsDictionary(daqStruct* self, daqDict** dictionary);
-    daqErrCode EXPORTED daqStruct_hasField(daqStruct* self, daqString* name, daqBool* contains);
-    daqErrCode EXPORTED daqStruct_createStruct(daqStruct** obj, daqString* name, daqDict* fields, daqTypeManager* typeManager);
-    daqErrCode EXPORTED daqStruct_createStructFromBuilder(daqStruct** obj, daqStructBuilder* builder);
+    daqErrCode EXPORTED daqStruct_getStructType(daqStructObject* self, daqStructType** type);
+    daqErrCode EXPORTED daqStruct_getFieldNames(daqStructObject* self, daqListObject** names);
+    daqErrCode EXPORTED daqStruct_getFieldValues(daqStructObject* self, daqListObject** values);
+    daqErrCode EXPORTED daqStruct_get(daqStructObject* self, daqStringObject* name, daqBaseObject** field);
+    daqErrCode EXPORTED daqStruct_getAsDictionary(daqStructObject* self, daqDictObject** dictionary);
+    daqErrCode EXPORTED daqStruct_hasField(daqStructObject* self, daqStringObject* name, daqBool* contains);
+    daqErrCode EXPORTED daqStruct_createStruct(daqStructObject** obj, daqStringObject* name, daqDictObject* fields, daqTypeManager* typeManager);
+    daqErrCode EXPORTED daqStruct_createStructFromBuilder(daqStructObject** obj, daqStructBuilder* builder);
 
 #ifdef __cplusplus
 }

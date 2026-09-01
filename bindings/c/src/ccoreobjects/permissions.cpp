@@ -28,12 +28,12 @@ daqErrCode daqPermissions_getInherited(daqPermissions* self, daqBool* isInherite
     return reinterpret_cast<daq::IPermissions*>(self)->getInherited(isInherited);
 }
 
-daqErrCode daqPermissions_getAllowed(daqPermissions* self, daqDict** permissions)
+daqErrCode daqPermissions_getAllowed(daqPermissions* self, daqDictObject** permissions)
 {
     return reinterpret_cast<daq::IPermissions*>(self)->getAllowed(reinterpret_cast<daq::IDict**>(permissions));
 }
 
-daqErrCode daqPermissions_getDenied(daqPermissions* self, daqDict** permissions)
+daqErrCode daqPermissions_getDenied(daqPermissions* self, daqDictObject** permissions)
 {
     return reinterpret_cast<daq::IPermissions*>(self)->getDenied(reinterpret_cast<daq::IDict**>(permissions));
 }

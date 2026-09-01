@@ -53,22 +53,22 @@ daqErrCode daqContext_getOnCoreEvent(daqContext* self, daqEvent** event)
     return reinterpret_cast<daq::IContext*>(self)->getOnCoreEvent(reinterpret_cast<daq::IEvent**>(event));
 }
 
-daqErrCode daqContext_getOptions(daqContext* self, daqDict** options)
+daqErrCode daqContext_getOptions(daqContext* self, daqDictObject** options)
 {
     return reinterpret_cast<daq::IContext*>(self)->getOptions(reinterpret_cast<daq::IDict**>(options));
 }
 
-daqErrCode daqContext_getModuleOptions(daqContext* self, daqString* moduleId, daqDict** options)
+daqErrCode daqContext_getModuleOptions(daqContext* self, daqStringObject* moduleId, daqDictObject** options)
 {
     return reinterpret_cast<daq::IContext*>(self)->getModuleOptions(reinterpret_cast<daq::IString*>(moduleId), reinterpret_cast<daq::IDict**>(options));
 }
 
-daqErrCode daqContext_getDiscoveryServers(daqContext* self, daqDict** servers)
+daqErrCode daqContext_getDiscoveryServers(daqContext* self, daqDictObject** servers)
 {
     return reinterpret_cast<daq::IContext*>(self)->getDiscoveryServers(reinterpret_cast<daq::IDict**>(servers));
 }
 
-daqErrCode daqContext_createContext(daqContext** obj, daqScheduler* Scheduler, daqLogger* Logger, daqTypeManager* typeManager, daqModuleManager* moduleManager, daqAuthenticationProvider* authenticationProvider, daqDict* options, daqDict* discoveryServers)
+daqErrCode daqContext_createContext(daqContext** obj, daqScheduler* Scheduler, daqLogger* Logger, daqTypeManager* typeManager, daqModuleManager* moduleManager, daqAuthenticationProvider* authenticationProvider, daqDictObject* options, daqDictObject* discoveryServers)
 {
     daq::IContext* ptr = nullptr;
     daqErrCode err = daq::createContext(&ptr, reinterpret_cast<daq::IScheduler*>(Scheduler), reinterpret_cast<daq::ILogger*>(Logger), reinterpret_cast<daq::ITypeManager*>(typeManager), reinterpret_cast<daq::IModuleManager*>(moduleManager), reinterpret_cast<daq::IAuthenticationProvider*>(authenticationProvider), reinterpret_cast<daq::IDict*>(options), reinterpret_cast<daq::IDict*>(discoveryServers));

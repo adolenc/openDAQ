@@ -36,15 +36,15 @@ extern "C"
 
     typedef struct daqDeserializeComponent daqDeserializeComponent;
     typedef struct daqSerializedObject daqSerializedObject;
-    typedef struct daqFunction daqFunction;
-    typedef struct daqString daqString;
+    typedef struct daqFunctionObject daqFunctionObject;
+    typedef struct daqStringObject daqStringObject;
 
     EXPORTED extern const daqIntfID DAQ_DESERIALIZE_COMPONENT_INTF_ID;
     void EXPORTED daqDeserializeComponent_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqDeserializeComponent_deserializeValues(daqDeserializeComponent* self, daqSerializedObject* serializedObject, daqBaseObject* context, daqFunction* callbackFactory);
+    daqErrCode EXPORTED daqDeserializeComponent_deserializeValues(daqDeserializeComponent* self, daqSerializedObject* serializedObject, daqBaseObject* context, daqFunctionObject* callbackFactory);
     daqErrCode EXPORTED daqDeserializeComponent_complete(daqDeserializeComponent* self);
-    daqErrCode EXPORTED daqDeserializeComponent_getDeserializedParameter(daqDeserializeComponent* self, daqString* parameter, daqBaseObject** value);
+    daqErrCode EXPORTED daqDeserializeComponent_getDeserializedParameter(daqDeserializeComponent* self, daqStringObject* parameter, daqBaseObject** value);
 
 #ifdef __cplusplus
 }

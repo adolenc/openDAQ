@@ -36,16 +36,16 @@ extern "C"
 
     typedef struct daqMirroredInputPortPrivate daqMirroredInputPortPrivate;
     typedef struct daqStreaming daqStreaming;
-    typedef struct daqString daqString;
-    typedef struct daqList daqList;
+    typedef struct daqStringObject daqStringObject;
+    typedef struct daqListObject daqListObject;
 
     EXPORTED extern const daqIntfID DAQ_MIRRORED_INPUT_PORT_PRIVATE_INTF_ID;
     void EXPORTED daqMirroredInputPortPrivate_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqMirroredInputPortPrivate_addStreamingSource(daqMirroredInputPortPrivate* self, daqStreaming* streaming);
-    daqErrCode EXPORTED daqMirroredInputPortPrivate_removeStreamingSource(daqMirroredInputPortPrivate* self, daqString* streamingConnectionString);
+    daqErrCode EXPORTED daqMirroredInputPortPrivate_removeStreamingSource(daqMirroredInputPortPrivate* self, daqStringObject* streamingConnectionString);
     daqErrCode EXPORTED daqMirroredInputPortPrivate_getActiveStreamingSourceObject(daqMirroredInputPortPrivate* self, daqStreaming** streaming);
-    daqErrCode EXPORTED daqMirroredInputPortPrivate_getStreamingSourceObjects(daqMirroredInputPortPrivate* self, daqList** objects);
+    daqErrCode EXPORTED daqMirroredInputPortPrivate_getStreamingSourceObjects(daqMirroredInputPortPrivate* self, daqListObject** objects);
 
 #ifdef __cplusplus
 }

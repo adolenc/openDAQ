@@ -35,38 +35,38 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqDeviceInfoConfig daqDeviceInfoConfig;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
     typedef struct daqDeviceType daqDeviceType;
 
     EXPORTED extern const daqIntfID DAQ_DEVICE_INFO_CONFIG_INTF_ID;
     void EXPORTED daqDeviceInfoConfig_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqDeviceInfoConfig_setName(daqDeviceInfoConfig* self, daqString* name);
-    daqErrCode EXPORTED daqDeviceInfoConfig_setConnectionString(daqDeviceInfoConfig* self, daqString* connectionString);
+    daqErrCode EXPORTED daqDeviceInfoConfig_setName(daqDeviceInfoConfig* self, daqStringObject* name);
+    daqErrCode EXPORTED daqDeviceInfoConfig_setConnectionString(daqDeviceInfoConfig* self, daqStringObject* connectionString);
     daqErrCode EXPORTED daqDeviceInfoConfig_setDeviceType(daqDeviceInfoConfig* self, daqDeviceType* deviceType);
-    daqErrCode EXPORTED daqDeviceInfoConfig_setManufacturer(daqDeviceInfoConfig* self, daqString* manufacturer);
-    daqErrCode EXPORTED daqDeviceInfoConfig_setManufacturerUri(daqDeviceInfoConfig* self, daqString* manufacturerUri);
-    daqErrCode EXPORTED daqDeviceInfoConfig_setModel(daqDeviceInfoConfig* self, daqString* model);
-    daqErrCode EXPORTED daqDeviceInfoConfig_setProductCode(daqDeviceInfoConfig* self, daqString* productCode);
-    daqErrCode EXPORTED daqDeviceInfoConfig_setDeviceRevision(daqDeviceInfoConfig* self, daqString* deviceRevision);
-    daqErrCode EXPORTED daqDeviceInfoConfig_setHardwareRevision(daqDeviceInfoConfig* self, daqString* hardwareRevision);
-    daqErrCode EXPORTED daqDeviceInfoConfig_setSoftwareRevision(daqDeviceInfoConfig* self, daqString* softwareRevision);
-    daqErrCode EXPORTED daqDeviceInfoConfig_setDeviceManual(daqDeviceInfoConfig* self, daqString* deviceManual);
-    daqErrCode EXPORTED daqDeviceInfoConfig_setDeviceClass(daqDeviceInfoConfig* self, daqString* deviceClass);
-    daqErrCode EXPORTED daqDeviceInfoConfig_setSerialNumber(daqDeviceInfoConfig* self, daqString* serialNumber);
-    daqErrCode EXPORTED daqDeviceInfoConfig_setProductInstanceUri(daqDeviceInfoConfig* self, daqString* productInstanceUri);
+    daqErrCode EXPORTED daqDeviceInfoConfig_setManufacturer(daqDeviceInfoConfig* self, daqStringObject* manufacturer);
+    daqErrCode EXPORTED daqDeviceInfoConfig_setManufacturerUri(daqDeviceInfoConfig* self, daqStringObject* manufacturerUri);
+    daqErrCode EXPORTED daqDeviceInfoConfig_setModel(daqDeviceInfoConfig* self, daqStringObject* model);
+    daqErrCode EXPORTED daqDeviceInfoConfig_setProductCode(daqDeviceInfoConfig* self, daqStringObject* productCode);
+    daqErrCode EXPORTED daqDeviceInfoConfig_setDeviceRevision(daqDeviceInfoConfig* self, daqStringObject* deviceRevision);
+    daqErrCode EXPORTED daqDeviceInfoConfig_setHardwareRevision(daqDeviceInfoConfig* self, daqStringObject* hardwareRevision);
+    daqErrCode EXPORTED daqDeviceInfoConfig_setSoftwareRevision(daqDeviceInfoConfig* self, daqStringObject* softwareRevision);
+    daqErrCode EXPORTED daqDeviceInfoConfig_setDeviceManual(daqDeviceInfoConfig* self, daqStringObject* deviceManual);
+    daqErrCode EXPORTED daqDeviceInfoConfig_setDeviceClass(daqDeviceInfoConfig* self, daqStringObject* deviceClass);
+    daqErrCode EXPORTED daqDeviceInfoConfig_setSerialNumber(daqDeviceInfoConfig* self, daqStringObject* serialNumber);
+    daqErrCode EXPORTED daqDeviceInfoConfig_setProductInstanceUri(daqDeviceInfoConfig* self, daqStringObject* productInstanceUri);
     daqErrCode EXPORTED daqDeviceInfoConfig_setRevisionCounter(daqDeviceInfoConfig* self, daqInt revisionCounter);
-    daqErrCode EXPORTED daqDeviceInfoConfig_setAssetId(daqDeviceInfoConfig* self, daqString* id);
-    daqErrCode EXPORTED daqDeviceInfoConfig_setMacAddress(daqDeviceInfoConfig* self, daqString* macAddress);
-    daqErrCode EXPORTED daqDeviceInfoConfig_setParentMacAddress(daqDeviceInfoConfig* self, daqString* macAddress);
-    daqErrCode EXPORTED daqDeviceInfoConfig_setPlatform(daqDeviceInfoConfig* self, daqString* platform);
+    daqErrCode EXPORTED daqDeviceInfoConfig_setAssetId(daqDeviceInfoConfig* self, daqStringObject* id);
+    daqErrCode EXPORTED daqDeviceInfoConfig_setMacAddress(daqDeviceInfoConfig* self, daqStringObject* macAddress);
+    daqErrCode EXPORTED daqDeviceInfoConfig_setParentMacAddress(daqDeviceInfoConfig* self, daqStringObject* macAddress);
+    daqErrCode EXPORTED daqDeviceInfoConfig_setPlatform(daqDeviceInfoConfig* self, daqStringObject* platform);
     daqErrCode EXPORTED daqDeviceInfoConfig_setPosition(daqDeviceInfoConfig* self, daqInt position);
-    daqErrCode EXPORTED daqDeviceInfoConfig_setSystemType(daqDeviceInfoConfig* self, daqString* type);
-    daqErrCode EXPORTED daqDeviceInfoConfig_setSystemUuid(daqDeviceInfoConfig* self, daqString* uuid);
-    daqErrCode EXPORTED daqDeviceInfoConfig_setLocation(daqDeviceInfoConfig* self, daqString* location);
-    daqErrCode EXPORTED daqDeviceInfoConfig_setUserName(daqDeviceInfoConfig* self, daqString* userName);
-    daqErrCode EXPORTED daqDeviceInfoConfig_createDeviceInfoConfig(daqDeviceInfoConfig** obj, daqString* name, daqString* connectionString);
-    daqErrCode EXPORTED daqDeviceInfoConfig_createDeviceInfoConfigWithCustomSdkVersion(daqDeviceInfoConfig** obj, daqString* name, daqString* connectionString, daqString* sdkVersion);
+    daqErrCode EXPORTED daqDeviceInfoConfig_setSystemType(daqDeviceInfoConfig* self, daqStringObject* type);
+    daqErrCode EXPORTED daqDeviceInfoConfig_setSystemUuid(daqDeviceInfoConfig* self, daqStringObject* uuid);
+    daqErrCode EXPORTED daqDeviceInfoConfig_setLocation(daqDeviceInfoConfig* self, daqStringObject* location);
+    daqErrCode EXPORTED daqDeviceInfoConfig_setUserName(daqDeviceInfoConfig* self, daqStringObject* userName);
+    daqErrCode EXPORTED daqDeviceInfoConfig_createDeviceInfoConfig(daqDeviceInfoConfig** obj, daqStringObject* name, daqStringObject* connectionString);
+    daqErrCode EXPORTED daqDeviceInfoConfig_createDeviceInfoConfigWithCustomSdkVersion(daqDeviceInfoConfig** obj, daqStringObject* name, daqStringObject* connectionString, daqStringObject* sdkVersion);
 
 #ifdef __cplusplus
 }

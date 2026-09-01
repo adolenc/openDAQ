@@ -35,15 +35,15 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqReaderConfig daqReaderConfig;
-    typedef struct daqFunction daqFunction;
-    typedef struct daqList daqList;
+    typedef struct daqFunctionObject daqFunctionObject;
+    typedef struct daqListObject daqListObject;
 
     EXPORTED extern const daqIntfID DAQ_READER_CONFIG_INTF_ID;
     void EXPORTED daqReaderConfig_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqReaderConfig_getValueTransformFunction(daqReaderConfig* self, daqFunction** transform);
-    daqErrCode EXPORTED daqReaderConfig_getDomainTransformFunction(daqReaderConfig* self, daqFunction** transform);
-    daqErrCode EXPORTED daqReaderConfig_getInputPorts(daqReaderConfig* self, daqList** ports);
+    daqErrCode EXPORTED daqReaderConfig_getValueTransformFunction(daqReaderConfig* self, daqFunctionObject** transform);
+    daqErrCode EXPORTED daqReaderConfig_getDomainTransformFunction(daqReaderConfig* self, daqFunctionObject** transform);
+    daqErrCode EXPORTED daqReaderConfig_getInputPorts(daqReaderConfig* self, daqListObject** ports);
     daqErrCode EXPORTED daqReaderConfig_getReadTimeoutType(daqReaderConfig* self, daqReadTimeoutType* timeoutType);
     daqErrCode EXPORTED daqReaderConfig_markAsInvalid(daqReaderConfig* self);
     daqErrCode EXPORTED daqReaderConfig_getIsValid(daqReaderConfig* self, daqBool* isValid);

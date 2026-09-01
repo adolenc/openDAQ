@@ -35,16 +35,16 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqComponentType daqComponentType;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
     typedef struct daqPropertyObject daqPropertyObject;
     typedef struct daqModuleInfo daqModuleInfo;
 
     EXPORTED extern const daqIntfID DAQ_COMPONENT_TYPE_INTF_ID;
     void EXPORTED daqComponentType_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqComponentType_getId(daqComponentType* self, daqString** id);
-    daqErrCode EXPORTED daqComponentType_getName(daqComponentType* self, daqString** name);
-    daqErrCode EXPORTED daqComponentType_getDescription(daqComponentType* self, daqString** description);
+    daqErrCode EXPORTED daqComponentType_getId(daqComponentType* self, daqStringObject** id);
+    daqErrCode EXPORTED daqComponentType_getName(daqComponentType* self, daqStringObject** name);
+    daqErrCode EXPORTED daqComponentType_getDescription(daqComponentType* self, daqStringObject** description);
     daqErrCode EXPORTED daqComponentType_createDefaultConfig(daqComponentType* self, daqPropertyObject** defaultConfig);
     daqErrCode EXPORTED daqComponentType_getModuleInfo(daqComponentType* self, daqModuleInfo** info);
 

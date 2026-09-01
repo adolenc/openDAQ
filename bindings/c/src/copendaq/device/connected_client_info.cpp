@@ -23,7 +23,7 @@ void daqConnectedClientInfo_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_CONNECTED_CLIENT_INFO_INTF_ID;
 }
 
-daqErrCode daqConnectedClientInfo_getAddress(daqConnectedClientInfo* self, daqString** address)
+daqErrCode daqConnectedClientInfo_getAddress(daqConnectedClientInfo* self, daqStringObject** address)
 {
     return reinterpret_cast<daq::IConnectedClientInfo*>(self)->getAddress(reinterpret_cast<daq::IString**>(address));
 }
@@ -33,17 +33,17 @@ daqErrCode daqConnectedClientInfo_getProtocolType(daqConnectedClientInfo* self, 
     return reinterpret_cast<daq::IConnectedClientInfo*>(self)->getProtocolType(reinterpret_cast<daq::ProtocolType*>(type));
 }
 
-daqErrCode daqConnectedClientInfo_getProtocolName(daqConnectedClientInfo* self, daqString** protocolName)
+daqErrCode daqConnectedClientInfo_getProtocolName(daqConnectedClientInfo* self, daqStringObject** protocolName)
 {
     return reinterpret_cast<daq::IConnectedClientInfo*>(self)->getProtocolName(reinterpret_cast<daq::IString**>(protocolName));
 }
 
-daqErrCode daqConnectedClientInfo_getClientTypeName(daqConnectedClientInfo* self, daqString** type)
+daqErrCode daqConnectedClientInfo_getClientTypeName(daqConnectedClientInfo* self, daqStringObject** type)
 {
     return reinterpret_cast<daq::IConnectedClientInfo*>(self)->getClientTypeName(reinterpret_cast<daq::IString**>(type));
 }
 
-daqErrCode daqConnectedClientInfo_getHostName(daqConnectedClientInfo* self, daqString** hostName)
+daqErrCode daqConnectedClientInfo_getHostName(daqConnectedClientInfo* self, daqStringObject** hostName)
 {
     return reinterpret_cast<daq::IConnectedClientInfo*>(self)->getHostName(reinterpret_cast<daq::IString**>(hostName));
 }
@@ -56,7 +56,7 @@ daqErrCode daqConnectedClientInfo_createConnectedClientInfo(daqConnectedClientIn
     return err;
 }
 
-daqErrCode daqConnectedClientInfo_createConnectedClientInfoWithParams(daqConnectedClientInfo** obj, daqString* address, daqProtocolType protocolType, daqString* protocolName, daqString* clientType, daqString* hostName)
+daqErrCode daqConnectedClientInfo_createConnectedClientInfoWithParams(daqConnectedClientInfo** obj, daqStringObject* address, daqProtocolType protocolType, daqStringObject* protocolName, daqStringObject* clientType, daqStringObject* hostName)
 {
     daq::IConnectedClientInfo* ptr = nullptr;
     daqErrCode err = daq::createConnectedClientInfoWithParams(&ptr, reinterpret_cast<daq::IString*>(address), static_cast<daq::ProtocolType>(protocolType), reinterpret_cast<daq::IString*>(protocolName), reinterpret_cast<daq::IString*>(clientType), reinterpret_cast<daq::IString*>(hostName));

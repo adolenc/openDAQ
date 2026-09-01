@@ -35,26 +35,26 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqServerCapabilityConfig daqServerCapabilityConfig;
-    typedef struct daqString daqString;
-    typedef struct daqInteger daqInteger;
+    typedef struct daqStringObject daqStringObject;
+    typedef struct daqIntegerObject daqIntegerObject;
     typedef struct daqAddressInfo daqAddressInfo;
 
     EXPORTED extern const daqIntfID DAQ_SERVER_CAPABILITY_CONFIG_INTF_ID;
     void EXPORTED daqServerCapabilityConfig_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqServerCapabilityConfig_setConnectionString(daqServerCapabilityConfig* self, daqString* connectionString);
-    daqErrCode EXPORTED daqServerCapabilityConfig_addConnectionString(daqServerCapabilityConfig* self, daqString* connectionString);
-    daqErrCode EXPORTED daqServerCapabilityConfig_setProtocolId(daqServerCapabilityConfig* self, daqString* protocolId);
-    daqErrCode EXPORTED daqServerCapabilityConfig_setProtocolName(daqServerCapabilityConfig* self, daqString* protocolName);
+    daqErrCode EXPORTED daqServerCapabilityConfig_setConnectionString(daqServerCapabilityConfig* self, daqStringObject* connectionString);
+    daqErrCode EXPORTED daqServerCapabilityConfig_addConnectionString(daqServerCapabilityConfig* self, daqStringObject* connectionString);
+    daqErrCode EXPORTED daqServerCapabilityConfig_setProtocolId(daqServerCapabilityConfig* self, daqStringObject* protocolId);
+    daqErrCode EXPORTED daqServerCapabilityConfig_setProtocolName(daqServerCapabilityConfig* self, daqStringObject* protocolName);
     daqErrCode EXPORTED daqServerCapabilityConfig_setProtocolType(daqServerCapabilityConfig* self, daqProtocolType type);
-    daqErrCode EXPORTED daqServerCapabilityConfig_setPrefix(daqServerCapabilityConfig* self, daqString* prefix);
-    daqErrCode EXPORTED daqServerCapabilityConfig_setConnectionType(daqServerCapabilityConfig* self, daqString* type);
+    daqErrCode EXPORTED daqServerCapabilityConfig_setPrefix(daqServerCapabilityConfig* self, daqStringObject* prefix);
+    daqErrCode EXPORTED daqServerCapabilityConfig_setConnectionType(daqServerCapabilityConfig* self, daqStringObject* type);
     daqErrCode EXPORTED daqServerCapabilityConfig_setCoreEventsEnabled(daqServerCapabilityConfig* self, daqBool enabled);
-    daqErrCode EXPORTED daqServerCapabilityConfig_addAddress(daqServerCapabilityConfig* self, daqString* address);
-    daqErrCode EXPORTED daqServerCapabilityConfig_setPort(daqServerCapabilityConfig* self, daqInteger* port);
+    daqErrCode EXPORTED daqServerCapabilityConfig_addAddress(daqServerCapabilityConfig* self, daqStringObject* address);
+    daqErrCode EXPORTED daqServerCapabilityConfig_setPort(daqServerCapabilityConfig* self, daqIntegerObject* port);
     daqErrCode EXPORTED daqServerCapabilityConfig_addAddressInfo(daqServerCapabilityConfig* self, daqAddressInfo* addressInfo);
-    daqErrCode EXPORTED daqServerCapabilityConfig_setProtocolVersion(daqServerCapabilityConfig* self, daqString* version);
-    daqErrCode EXPORTED daqServerCapabilityConfig_createServerCapability(daqServerCapabilityConfig** obj, daqString* protocolId, daqString* protocolName, daqProtocolType protocolType);
+    daqErrCode EXPORTED daqServerCapabilityConfig_setProtocolVersion(daqServerCapabilityConfig* self, daqStringObject* version);
+    daqErrCode EXPORTED daqServerCapabilityConfig_createServerCapability(daqServerCapabilityConfig** obj, daqStringObject* protocolId, daqStringObject* protocolName, daqProtocolType protocolType);
 
 #ifdef __cplusplus
 }

@@ -35,7 +35,7 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqInspectable daqInspectable;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
 
     EXPORTED extern const daqIntfID DAQ_INSPECTABLE_INTF_ID;
     void EXPORTED daqInspectable_getInterfaceId(daqIntfID* intfId);
@@ -43,7 +43,7 @@ extern "C"
 /*
     daqErrCode EXPORTED daqInspectable_getInterfaceIds(daqInspectable* self, daqSizeT* idCount, daqIntfID** ids);
 */
-    daqErrCode EXPORTED daqInspectable_getRuntimeClassName(daqInspectable* self, daqString** implementationName);
+    daqErrCode EXPORTED daqInspectable_getRuntimeClassName(daqInspectable* self, daqStringObject** implementationName);
 
 #ifdef __cplusplus
 }

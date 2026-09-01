@@ -35,16 +35,16 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqComponentStatusContainer daqComponentStatusContainer;
-    typedef struct daqString daqString;
-    typedef struct daqEnumeration daqEnumeration;
-    typedef struct daqDict daqDict;
+    typedef struct daqStringObject daqStringObject;
+    typedef struct daqEnumerationObject daqEnumerationObject;
+    typedef struct daqDictObject daqDictObject;
 
     EXPORTED extern const daqIntfID DAQ_COMPONENT_STATUS_CONTAINER_INTF_ID;
     void EXPORTED daqComponentStatusContainer_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqComponentStatusContainer_getStatus(daqComponentStatusContainer* self, daqString* name, daqEnumeration** value);
-    daqErrCode EXPORTED daqComponentStatusContainer_getStatuses(daqComponentStatusContainer* self, daqDict** statuses);
-    daqErrCode EXPORTED daqComponentStatusContainer_getStatusMessage(daqComponentStatusContainer* self, daqString* name, daqString** message);
+    daqErrCode EXPORTED daqComponentStatusContainer_getStatus(daqComponentStatusContainer* self, daqStringObject* name, daqEnumerationObject** value);
+    daqErrCode EXPORTED daqComponentStatusContainer_getStatuses(daqComponentStatusContainer* self, daqDictObject** statuses);
+    daqErrCode EXPORTED daqComponentStatusContainer_getStatusMessage(daqComponentStatusContainer* self, daqStringObject* name, daqStringObject** message);
     daqErrCode EXPORTED daqComponentStatusContainer_createComponentStatusContainer(daqComponentStatusContainer** obj);
 
 #ifdef __cplusplus

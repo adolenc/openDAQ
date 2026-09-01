@@ -35,7 +35,7 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqScheduler daqScheduler;
-    typedef struct daqFunction daqFunction;
+    typedef struct daqFunctionObject daqFunctionObject;
     typedef struct daqAwaitable daqAwaitable;
     typedef struct daqWork daqWork;
     typedef struct daqTaskGraph daqTaskGraph;
@@ -44,7 +44,7 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_SCHEDULER_INTF_ID;
     void EXPORTED daqScheduler_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqScheduler_scheduleFunction(daqScheduler* self, daqFunction* function, daqAwaitable** awaitable);
+    daqErrCode EXPORTED daqScheduler_scheduleFunction(daqScheduler* self, daqFunctionObject* function, daqAwaitable** awaitable);
     daqErrCode EXPORTED daqScheduler_scheduleWork(daqScheduler* self, daqWork* work);
     daqErrCode EXPORTED daqScheduler_scheduleGraph(daqScheduler* self, daqTaskGraph* graph, daqAwaitable** awaitable);
     daqErrCode EXPORTED daqScheduler_stop(daqScheduler* self);

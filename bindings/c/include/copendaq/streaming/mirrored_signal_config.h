@@ -35,17 +35,17 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqMirroredSignalConfig daqMirroredSignalConfig;
-    typedef struct daqString daqString;
-    typedef struct daqList daqList;
+    typedef struct daqStringObject daqStringObject;
+    typedef struct daqListObject daqListObject;
     typedef struct daqEvent daqEvent;
 
     EXPORTED extern const daqIntfID DAQ_MIRRORED_SIGNAL_CONFIG_INTF_ID;
     void EXPORTED daqMirroredSignalConfig_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqMirroredSignalConfig_getRemoteId(daqMirroredSignalConfig* self, daqString** id);
-    daqErrCode EXPORTED daqMirroredSignalConfig_getStreamingSources(daqMirroredSignalConfig* self, daqList** streamingConnectionStrings);
-    daqErrCode EXPORTED daqMirroredSignalConfig_setActiveStreamingSource(daqMirroredSignalConfig* self, daqString* streamingConnectionString);
-    daqErrCode EXPORTED daqMirroredSignalConfig_getActiveStreamingSource(daqMirroredSignalConfig* self, daqString** streamingConnectionString);
+    daqErrCode EXPORTED daqMirroredSignalConfig_getRemoteId(daqMirroredSignalConfig* self, daqStringObject** id);
+    daqErrCode EXPORTED daqMirroredSignalConfig_getStreamingSources(daqMirroredSignalConfig* self, daqListObject** streamingConnectionStrings);
+    daqErrCode EXPORTED daqMirroredSignalConfig_setActiveStreamingSource(daqMirroredSignalConfig* self, daqStringObject* streamingConnectionString);
+    daqErrCode EXPORTED daqMirroredSignalConfig_getActiveStreamingSource(daqMirroredSignalConfig* self, daqStringObject** streamingConnectionString);
     daqErrCode EXPORTED daqMirroredSignalConfig_deactivateStreaming(daqMirroredSignalConfig* self);
     daqErrCode EXPORTED daqMirroredSignalConfig_getOnSubscribeComplete(daqMirroredSignalConfig* self, daqEvent** event);
     daqErrCode EXPORTED daqMirroredSignalConfig_getOnUnsubscribeComplete(daqMirroredSignalConfig* self, daqEvent** event);

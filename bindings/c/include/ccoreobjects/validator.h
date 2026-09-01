@@ -35,15 +35,15 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqValidator daqValidator;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
 
     EXPORTED extern const daqIntfID DAQ_VALIDATOR_INTF_ID;
     void EXPORTED daqValidator_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqValidator_validate(daqValidator* self, daqBaseObject* propObj, daqBaseObject* value);
     daqErrCode EXPORTED daqValidator_validateNoLock(daqValidator* self, daqBaseObject* propObj, daqBaseObject* value);
-    daqErrCode EXPORTED daqValidator_getEval(daqValidator* self, daqString** eval);
-    daqErrCode EXPORTED daqValidator_createValidator(daqValidator** obj, daqString* eval);
+    daqErrCode EXPORTED daqValidator_getEval(daqValidator* self, daqStringObject** eval);
+    daqErrCode EXPORTED daqValidator_createValidator(daqValidator** obj, daqStringObject* eval);
 
 #ifdef __cplusplus
 }

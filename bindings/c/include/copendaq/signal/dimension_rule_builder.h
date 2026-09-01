@@ -36,8 +36,8 @@ extern "C"
 
     typedef struct daqDimensionRuleBuilder daqDimensionRuleBuilder;
     typedef struct daqDimensionRule daqDimensionRule;
-    typedef struct daqDict daqDict;
-    typedef struct daqString daqString;
+    typedef struct daqDictObject daqDictObject;
+    typedef struct daqStringObject daqStringObject;
 
     EXPORTED extern const daqIntfID DAQ_DIMENSION_RULE_BUILDER_INTF_ID;
     void EXPORTED daqDimensionRuleBuilder_getInterfaceId(daqIntfID* intfId);
@@ -45,10 +45,10 @@ extern "C"
     daqErrCode EXPORTED daqDimensionRuleBuilder_build(daqDimensionRuleBuilder* self, daqDimensionRule** dimensionRule);
     daqErrCode EXPORTED daqDimensionRuleBuilder_setType(daqDimensionRuleBuilder* self, daqDimensionRuleType type);
     daqErrCode EXPORTED daqDimensionRuleBuilder_getType(daqDimensionRuleBuilder* self, daqDimensionRuleType* type);
-    daqErrCode EXPORTED daqDimensionRuleBuilder_setParameters(daqDimensionRuleBuilder* self, daqDict* parameters);
-    daqErrCode EXPORTED daqDimensionRuleBuilder_getParameters(daqDimensionRuleBuilder* self, daqDict** parameters);
-    daqErrCode EXPORTED daqDimensionRuleBuilder_addParameter(daqDimensionRuleBuilder* self, daqString* name, daqBaseObject* parameter);
-    daqErrCode EXPORTED daqDimensionRuleBuilder_removeParameter(daqDimensionRuleBuilder* self, daqString* name);
+    daqErrCode EXPORTED daqDimensionRuleBuilder_setParameters(daqDimensionRuleBuilder* self, daqDictObject* parameters);
+    daqErrCode EXPORTED daqDimensionRuleBuilder_getParameters(daqDimensionRuleBuilder* self, daqDictObject** parameters);
+    daqErrCode EXPORTED daqDimensionRuleBuilder_addParameter(daqDimensionRuleBuilder* self, daqStringObject* name, daqBaseObject* parameter);
+    daqErrCode EXPORTED daqDimensionRuleBuilder_removeParameter(daqDimensionRuleBuilder* self, daqStringObject* name);
     daqErrCode EXPORTED daqDimensionRuleBuilder_createDimensionRuleBuilder(daqDimensionRuleBuilder** obj);
     daqErrCode EXPORTED daqDimensionRuleBuilder_createDimensionRuleBuilderFromExisting(daqDimensionRuleBuilder** obj, daqDimensionRule* ruleToCopy);
 

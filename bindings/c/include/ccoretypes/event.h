@@ -37,7 +37,7 @@ extern "C"
     typedef struct daqEvent daqEvent;
     typedef struct daqEventHandler daqEventHandler;
     typedef struct daqEventArgs daqEventArgs;
-    typedef struct daqList daqList;
+    typedef struct daqListObject daqListObject;
 
     EXPORTED extern const daqIntfID DAQ_EVENT_INTF_ID;
     void EXPORTED daqEvent_getInterfaceId(daqIntfID* intfId);
@@ -47,7 +47,7 @@ extern "C"
     daqErrCode EXPORTED daqEvent_trigger(daqEvent* self, daqBaseObject* sender, daqEventArgs* args);
     daqErrCode EXPORTED daqEvent_clear(daqEvent* self);
     daqErrCode EXPORTED daqEvent_getSubscriberCount(daqEvent* self, daqSizeT* count);
-    daqErrCode EXPORTED daqEvent_getSubscribers(daqEvent* self, daqList** subscribers);
+    daqErrCode EXPORTED daqEvent_getSubscribers(daqEvent* self, daqListObject** subscribers);
     daqErrCode EXPORTED daqEvent_mute(daqEvent* self);
     daqErrCode EXPORTED daqEvent_unmute(daqEvent* self);
     daqErrCode EXPORTED daqEvent_muteListener(daqEvent* self, daqEventHandler* eventHandler);

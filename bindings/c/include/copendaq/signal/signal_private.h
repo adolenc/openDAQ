@@ -35,7 +35,7 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqSignalPrivate daqSignalPrivate;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
     typedef struct daqPacket daqPacket;
 
     EXPORTED extern const daqIntfID DAQ_SIGNAL_PRIVATE_INTF_ID;
@@ -43,7 +43,7 @@ extern "C"
 
     daqErrCode EXPORTED daqSignalPrivate_clearDomainSignalWithoutNotification(daqSignalPrivate* self);
     daqErrCode EXPORTED daqSignalPrivate_enableKeepLastValue(daqSignalPrivate* self, daqBool enabled);
-    daqErrCode EXPORTED daqSignalPrivate_getSignalSerializeId(daqSignalPrivate* self, daqString** serializeId);
+    daqErrCode EXPORTED daqSignalPrivate_getSignalSerializeId(daqSignalPrivate* self, daqStringObject** serializeId);
     daqErrCode EXPORTED daqSignalPrivate_getKeepLastValue(daqSignalPrivate* self, daqBool* keepLastValue);
     daqErrCode EXPORTED daqSignalPrivate_sendPacketRecursiveLock(daqSignalPrivate* self, daqPacket* packet);
 

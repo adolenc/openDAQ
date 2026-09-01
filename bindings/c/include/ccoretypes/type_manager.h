@@ -36,17 +36,17 @@ extern "C"
 
     typedef struct daqTypeManager daqTypeManager;
     typedef struct daqType daqType;
-    typedef struct daqString daqString;
-    typedef struct daqList daqList;
+    typedef struct daqStringObject daqStringObject;
+    typedef struct daqListObject daqListObject;
 
     EXPORTED extern const daqIntfID DAQ_TYPE_MANAGER_INTF_ID;
     void EXPORTED daqTypeManager_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqTypeManager_addType(daqTypeManager* self, daqType* type);
-    daqErrCode EXPORTED daqTypeManager_removeType(daqTypeManager* self, daqString* typeName);
-    daqErrCode EXPORTED daqTypeManager_getType(daqTypeManager* self, daqString* typeName, daqType** type);
-    daqErrCode EXPORTED daqTypeManager_getTypes(daqTypeManager* self, daqList** types);
-    daqErrCode EXPORTED daqTypeManager_hasType(daqTypeManager* self, daqString* typeName, daqBool* hasType);
+    daqErrCode EXPORTED daqTypeManager_removeType(daqTypeManager* self, daqStringObject* typeName);
+    daqErrCode EXPORTED daqTypeManager_getType(daqTypeManager* self, daqStringObject* typeName, daqType** type);
+    daqErrCode EXPORTED daqTypeManager_getTypes(daqTypeManager* self, daqListObject** types);
+    daqErrCode EXPORTED daqTypeManager_hasType(daqTypeManager* self, daqStringObject* typeName, daqBool* hasType);
     daqErrCode EXPORTED daqTypeManager_createTypeManager(daqTypeManager** obj);
 
 #ifdef __cplusplus

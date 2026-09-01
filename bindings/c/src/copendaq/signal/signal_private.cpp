@@ -33,7 +33,7 @@ daqErrCode daqSignalPrivate_enableKeepLastValue(daqSignalPrivate* self, daqBool 
     return reinterpret_cast<daq::ISignalPrivate*>(self)->enableKeepLastValue(enabled);
 }
 
-daqErrCode daqSignalPrivate_getSignalSerializeId(daqSignalPrivate* self, daqString** serializeId)
+daqErrCode daqSignalPrivate_getSignalSerializeId(daqSignalPrivate* self, daqStringObject** serializeId)
 {
     return reinterpret_cast<daq::ISignalPrivate*>(self)->getSignalSerializeId(reinterpret_cast<daq::IString**>(serializeId));
 }

@@ -35,25 +35,25 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqCoreEventArgs daqCoreEventArgs;
-    typedef struct daqDict daqDict;
-    typedef struct daqString daqString;
+    typedef struct daqDictObject daqDictObject;
+    typedef struct daqStringObject daqStringObject;
     typedef struct daqPropertyObject daqPropertyObject;
     typedef struct daqProperty daqProperty;
     typedef struct daqType daqType;
-    typedef struct daqList daqList;
+    typedef struct daqListObject daqListObject;
 
     EXPORTED extern const daqIntfID DAQ_CORE_EVENT_ARGS_INTF_ID;
     void EXPORTED daqCoreEventArgs_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqCoreEventArgs_getParameters(daqCoreEventArgs* self, daqDict** parameters);
-    daqErrCode EXPORTED daqCoreEventArgs_createCoreEventArgs(daqCoreEventArgs** obj, daqCoreEventId eventId, daqString* eventName, daqDict* parameters);
-    daqErrCode EXPORTED daqCoreEventArgs_createCoreEventArgsPropertyValueChanged(daqCoreEventArgs** obj, daqPropertyObject* propOwner, daqString* propName, daqBaseObject* value, daqString* path);
-    daqErrCode EXPORTED daqCoreEventArgs_createCoreEventArgsPropertyObjectUpdateEnd(daqCoreEventArgs** obj, daqPropertyObject* propOwner, daqDict* updatedProperties, daqString* path);
-    daqErrCode EXPORTED daqCoreEventArgs_createCoreEventArgsPropertyAdded(daqCoreEventArgs** obj, daqPropertyObject* propOwner, daqProperty* prop, daqString* path);
-    daqErrCode EXPORTED daqCoreEventArgs_createCoreEventArgsPropertyRemoved(daqCoreEventArgs** obj, daqPropertyObject* propOwner, daqString* propName, daqString* path);
+    daqErrCode EXPORTED daqCoreEventArgs_getParameters(daqCoreEventArgs* self, daqDictObject** parameters);
+    daqErrCode EXPORTED daqCoreEventArgs_createCoreEventArgs(daqCoreEventArgs** obj, daqCoreEventId eventId, daqStringObject* eventName, daqDictObject* parameters);
+    daqErrCode EXPORTED daqCoreEventArgs_createCoreEventArgsPropertyValueChanged(daqCoreEventArgs** obj, daqPropertyObject* propOwner, daqStringObject* propName, daqBaseObject* value, daqStringObject* path);
+    daqErrCode EXPORTED daqCoreEventArgs_createCoreEventArgsPropertyObjectUpdateEnd(daqCoreEventArgs** obj, daqPropertyObject* propOwner, daqDictObject* updatedProperties, daqStringObject* path);
+    daqErrCode EXPORTED daqCoreEventArgs_createCoreEventArgsPropertyAdded(daqCoreEventArgs** obj, daqPropertyObject* propOwner, daqProperty* prop, daqStringObject* path);
+    daqErrCode EXPORTED daqCoreEventArgs_createCoreEventArgsPropertyRemoved(daqCoreEventArgs** obj, daqPropertyObject* propOwner, daqStringObject* propName, daqStringObject* path);
     daqErrCode EXPORTED daqCoreEventArgs_createCoreEventArgsTypeAdded(daqCoreEventArgs** obj, daqType* type);
-    daqErrCode EXPORTED daqCoreEventArgs_createCoreEventArgsTypeRemoved(daqCoreEventArgs** obj, daqString* typeName);
-    daqErrCode EXPORTED daqCoreEventArgs_createCoreEventArgsPropertyOrderChanged(daqCoreEventArgs** obj, daqPropertyObject* propOwner, daqList* propertyOrder, daqString* path);
+    daqErrCode EXPORTED daqCoreEventArgs_createCoreEventArgsTypeRemoved(daqCoreEventArgs** obj, daqStringObject* typeName);
+    daqErrCode EXPORTED daqCoreEventArgs_createCoreEventArgsPropertyOrderChanged(daqCoreEventArgs** obj, daqPropertyObject* propOwner, daqListObject* propertyOrder, daqStringObject* path);
 
 #ifdef __cplusplus
 }

@@ -36,24 +36,24 @@ extern "C"
 
     typedef struct daqFunctionBlock daqFunctionBlock;
     typedef struct daqFunctionBlockType daqFunctionBlockType;
-    typedef struct daqList daqList;
+    typedef struct daqListObject daqListObject;
     typedef struct daqSearchFilter daqSearchFilter;
     typedef struct daqSignal daqSignal;
-    typedef struct daqDict daqDict;
-    typedef struct daqString daqString;
+    typedef struct daqDictObject daqDictObject;
+    typedef struct daqStringObject daqStringObject;
     typedef struct daqPropertyObject daqPropertyObject;
 
     EXPORTED extern const daqIntfID DAQ_FUNCTION_BLOCK_INTF_ID;
     void EXPORTED daqFunctionBlock_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqFunctionBlock_getFunctionBlockType(daqFunctionBlock* self, daqFunctionBlockType** type);
-    daqErrCode EXPORTED daqFunctionBlock_getInputPorts(daqFunctionBlock* self, daqList** ports, daqSearchFilter* searchFilter);
-    daqErrCode EXPORTED daqFunctionBlock_getSignals(daqFunctionBlock* self, daqList** signals, daqSearchFilter* searchFilter);
-    daqErrCode EXPORTED daqFunctionBlock_getSignalsRecursive(daqFunctionBlock* self, daqList** signals, daqSearchFilter* searchFilter);
+    daqErrCode EXPORTED daqFunctionBlock_getInputPorts(daqFunctionBlock* self, daqListObject** ports, daqSearchFilter* searchFilter);
+    daqErrCode EXPORTED daqFunctionBlock_getSignals(daqFunctionBlock* self, daqListObject** signals, daqSearchFilter* searchFilter);
+    daqErrCode EXPORTED daqFunctionBlock_getSignalsRecursive(daqFunctionBlock* self, daqListObject** signals, daqSearchFilter* searchFilter);
     daqErrCode EXPORTED daqFunctionBlock_getStatusSignal(daqFunctionBlock* self, daqSignal** statusSignal);
-    daqErrCode EXPORTED daqFunctionBlock_getFunctionBlocks(daqFunctionBlock* self, daqList** functionBlocks, daqSearchFilter* searchFilter);
-    daqErrCode EXPORTED daqFunctionBlock_getAvailableFunctionBlockTypes(daqFunctionBlock* self, daqDict** functionBlockTypes);
-    daqErrCode EXPORTED daqFunctionBlock_addFunctionBlock(daqFunctionBlock* self, daqFunctionBlock** functionBlock, daqString* typeId, daqPropertyObject* config);
+    daqErrCode EXPORTED daqFunctionBlock_getFunctionBlocks(daqFunctionBlock* self, daqListObject** functionBlocks, daqSearchFilter* searchFilter);
+    daqErrCode EXPORTED daqFunctionBlock_getAvailableFunctionBlockTypes(daqFunctionBlock* self, daqDictObject** functionBlockTypes);
+    daqErrCode EXPORTED daqFunctionBlock_addFunctionBlock(daqFunctionBlock* self, daqFunctionBlock** functionBlock, daqStringObject* typeId, daqPropertyObject* config);
     daqErrCode EXPORTED daqFunctionBlock_removeFunctionBlock(daqFunctionBlock* self, daqFunctionBlock* functionBlock);
 
 #ifdef __cplusplus

@@ -35,18 +35,18 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqFolder daqFolder;
-    typedef struct daqList daqList;
+    typedef struct daqListObject daqListObject;
     typedef struct daqSearchFilter daqSearchFilter;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
     typedef struct daqComponent daqComponent;
 
     EXPORTED extern const daqIntfID DAQ_FOLDER_INTF_ID;
     void EXPORTED daqFolder_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqFolder_getItems(daqFolder* self, daqList** items, daqSearchFilter* searchFilter);
+    daqErrCode EXPORTED daqFolder_getItems(daqFolder* self, daqListObject** items, daqSearchFilter* searchFilter);
     daqErrCode EXPORTED daqFolder_isEmpty(daqFolder* self, daqBool* empty);
-    daqErrCode EXPORTED daqFolder_hasItem(daqFolder* self, daqString* localId, daqBool* value);
-    daqErrCode EXPORTED daqFolder_getItem(daqFolder* self, daqString* localId, daqComponent** item);
+    daqErrCode EXPORTED daqFolder_hasItem(daqFolder* self, daqStringObject* localId, daqBool* value);
+    daqErrCode EXPORTED daqFolder_getItem(daqFolder* self, daqStringObject* localId, daqComponent** item);
 
 #ifdef __cplusplus
 }

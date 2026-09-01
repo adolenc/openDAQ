@@ -6,7 +6,7 @@ class COpendaqModuleManagerTest : public testing::Test
 {
     void SetUp() override
     {
-        daqList* sinks = nullptr;
+        daqListObject* sinks = nullptr;
         daqList_createList(&sinks);
 
         daqLoggerSink* sink = nullptr;
@@ -19,7 +19,7 @@ class COpendaqModuleManagerTest : public testing::Test
         daqTypeManager* typeManager = nullptr;
         daqTypeManager_createTypeManager(&typeManager);
 
-        daqDict *options = nullptr, *discoveryServers = nullptr;
+        daqDictObject *options = nullptr, *discoveryServers = nullptr;
         daqDict_createDict(&options);
         daqDict_createDict(&discoveryServers);
 
@@ -47,14 +47,14 @@ TEST_F(COpendaqModuleManagerTest, DISABLED_ModuleManager)
 {
     daqModuleManager* moduleManager = nullptr;
 
-    daqString* path = nullptr;
+    daqStringObject* path = nullptr;
     daqString_createString(&path, ".");
     daqModuleManager_createModuleManager(&moduleManager, path);
     ASSERT_NE(moduleManager, nullptr);
 
     daqModuleManager_loadModules(moduleManager, ctx);
 
-    daqList* modules = nullptr;
+    daqListObject* modules = nullptr;
     daqModuleManager_getModules(moduleManager, &modules);
 
     ASSERT_NE(modules, nullptr);
@@ -70,7 +70,7 @@ TEST_F(COpendaqModuleManagerTest, DISABLED_ModuleManager)
     daqModule_getModuleInfo(module, &info);
     ASSERT_NE(info, nullptr);
 
-    daqString* name = nullptr;
+    daqStringObject* name = nullptr;
     daqModuleInfo_getId(info, &name);
     ASSERT_NE(name, nullptr);
 

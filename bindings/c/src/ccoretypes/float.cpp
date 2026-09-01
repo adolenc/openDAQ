@@ -16,24 +16,24 @@
 
 #include <copendaq_private.h>
 
-const daqIntfID DAQ_FLOAT_OBJECT_INTF_ID = { daq::IFloat::Id.Data1, daq::IFloat::Id.Data2, daq::IFloat::Id.Data3, daq::IFloat::Id.Data4_UInt64 };
+const daqIntfID DAQ_FLOAT_INTF_ID = { daq::IFloat::Id.Data1, daq::IFloat::Id.Data2, daq::IFloat::Id.Data3, daq::IFloat::Id.Data4_UInt64 };
 
-void daqFloatObject_getInterfaceId(daqIntfID* intfId)
+void daqFloat_getInterfaceId(daqIntfID* intfId)
 {
-    *intfId = DAQ_FLOAT_OBJECT_INTF_ID;
+    *intfId = DAQ_FLOAT_INTF_ID;
 }
 
-daqErrCode daqFloatObject_getValue(daqFloatObject* self, daqFloat* value)
+daqErrCode daqFloat_getValue(daqFloatObject* self, daqFloat* value)
 {
     return reinterpret_cast<daq::IFloat*>(self)->getValue(value);
 }
 
-daqErrCode daqFloatObject_equalsValue(daqFloatObject* self, daqFloat value, daqBool* equals)
+daqErrCode daqFloat_equalsValue(daqFloatObject* self, daqFloat value, daqBool* equals)
 {
     return reinterpret_cast<daq::IFloat*>(self)->equalsValue(value, equals);
 }
 
-daqErrCode daqFloatObject_createFloat(daqFloatObject** obj, daqFloat value)
+daqErrCode daqFloat_createFloat(daqFloatObject** obj, daqFloat value)
 {
     daq::IFloat* ptr = nullptr;
     daqErrCode err = daq::createFloat(&ptr, value);
@@ -41,7 +41,7 @@ daqErrCode daqFloatObject_createFloat(daqFloatObject** obj, daqFloat value)
     return err;
 }
 
-daqErrCode daqFloatObject_createFloatObject(daqFloatObject** obj, daqFloat value)
+daqErrCode daqFloat_createFloatObject(daqFloatObject** obj, daqFloat value)
 {
     daq::IFloat* ptr = nullptr;
     daqErrCode err = daq::createFloatObject(&ptr, value);

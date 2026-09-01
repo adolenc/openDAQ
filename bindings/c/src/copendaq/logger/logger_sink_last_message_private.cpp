@@ -23,7 +23,7 @@ void daqLastMessageLoggerSinkPrivate_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_LAST_MESSAGE_LOGGER_SINK_PRIVATE_INTF_ID;
 }
 
-daqErrCode daqLastMessageLoggerSinkPrivate_getLastMessage(daqLastMessageLoggerSinkPrivate* self, daqString** lastMessage)
+daqErrCode daqLastMessageLoggerSinkPrivate_getLastMessage(daqLastMessageLoggerSinkPrivate* self, daqStringObject** lastMessage)
 {
     return reinterpret_cast<daq::ILastMessageLoggerSinkPrivate*>(self)->getLastMessage(reinterpret_cast<daq::IString**>(lastMessage));
 }

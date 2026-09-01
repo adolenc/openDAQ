@@ -35,14 +35,14 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqReader daqReader;
-    typedef struct daqProcedure daqProcedure;
+    typedef struct daqProcedureObject daqProcedureObject;
     typedef struct daqInputPortNotifications daqInputPortNotifications;
 
     EXPORTED extern const daqIntfID DAQ_READER_INTF_ID;
     void EXPORTED daqReader_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqReader_getAvailableCount(daqReader* self, daqSizeT* count);
-    daqErrCode EXPORTED daqReader_setOnDataAvailable(daqReader* self, daqProcedure* callback);
+    daqErrCode EXPORTED daqReader_setOnDataAvailable(daqReader* self, daqProcedureObject* callback);
     daqErrCode EXPORTED daqReader_setExternalListener(daqReader* self, daqInputPortNotifications* listener);
     daqErrCode EXPORTED daqReader_getEmpty(daqReader* self, daqBool* empty);
 

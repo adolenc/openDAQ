@@ -35,14 +35,14 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqDeviceType daqDeviceType;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
     typedef struct daqPropertyObject daqPropertyObject;
 
     EXPORTED extern const daqIntfID DAQ_DEVICE_TYPE_INTF_ID;
     void EXPORTED daqDeviceType_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqDeviceType_getConnectionStringPrefix(daqDeviceType* self, daqString** prefix);
-    daqErrCode EXPORTED daqDeviceType_createDeviceType(daqDeviceType** obj, daqString* id, daqString* name, daqString* description, daqPropertyObject* defaultConfig, daqString* prefix);
+    daqErrCode EXPORTED daqDeviceType_getConnectionStringPrefix(daqDeviceType* self, daqStringObject** prefix);
+    daqErrCode EXPORTED daqDeviceType_createDeviceType(daqDeviceType** obj, daqStringObject* id, daqStringObject* name, daqStringObject* description, daqPropertyObject* defaultConfig, daqStringObject* prefix);
 
 #ifdef __cplusplus
 }

@@ -35,25 +35,25 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqServerCapability daqServerCapability;
-    typedef struct daqString daqString;
-    typedef struct daqList daqList;
-    typedef struct daqInteger daqInteger;
+    typedef struct daqStringObject daqStringObject;
+    typedef struct daqListObject daqListObject;
+    typedef struct daqIntegerObject daqIntegerObject;
 
     EXPORTED extern const daqIntfID DAQ_SERVER_CAPABILITY_INTF_ID;
     void EXPORTED daqServerCapability_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqServerCapability_getConnectionString(daqServerCapability* self, daqString** connectionString);
-    daqErrCode EXPORTED daqServerCapability_getConnectionStrings(daqServerCapability* self, daqList** connectionStrings);
-    daqErrCode EXPORTED daqServerCapability_getProtocolName(daqServerCapability* self, daqString** protocolName);
-    daqErrCode EXPORTED daqServerCapability_getProtocolId(daqServerCapability* self, daqString** protocolId);
+    daqErrCode EXPORTED daqServerCapability_getConnectionString(daqServerCapability* self, daqStringObject** connectionString);
+    daqErrCode EXPORTED daqServerCapability_getConnectionStrings(daqServerCapability* self, daqListObject** connectionStrings);
+    daqErrCode EXPORTED daqServerCapability_getProtocolName(daqServerCapability* self, daqStringObject** protocolName);
+    daqErrCode EXPORTED daqServerCapability_getProtocolId(daqServerCapability* self, daqStringObject** protocolId);
     daqErrCode EXPORTED daqServerCapability_getProtocolType(daqServerCapability* self, daqProtocolType* type);
-    daqErrCode EXPORTED daqServerCapability_getPrefix(daqServerCapability* self, daqString** prefix);
-    daqErrCode EXPORTED daqServerCapability_getConnectionType(daqServerCapability* self, daqString** type);
+    daqErrCode EXPORTED daqServerCapability_getPrefix(daqServerCapability* self, daqStringObject** prefix);
+    daqErrCode EXPORTED daqServerCapability_getConnectionType(daqServerCapability* self, daqStringObject** type);
     daqErrCode EXPORTED daqServerCapability_getCoreEventsEnabled(daqServerCapability* self, daqBool* enabled);
-    daqErrCode EXPORTED daqServerCapability_getAddresses(daqServerCapability* self, daqList** addresses);
-    daqErrCode EXPORTED daqServerCapability_getPort(daqServerCapability* self, daqInteger** port);
-    daqErrCode EXPORTED daqServerCapability_getAddressInfo(daqServerCapability* self, daqList** addressInfo);
-    daqErrCode EXPORTED daqServerCapability_getProtocolVersion(daqServerCapability* self, daqString** version);
+    daqErrCode EXPORTED daqServerCapability_getAddresses(daqServerCapability* self, daqListObject** addresses);
+    daqErrCode EXPORTED daqServerCapability_getPort(daqServerCapability* self, daqIntegerObject** port);
+    daqErrCode EXPORTED daqServerCapability_getAddressInfo(daqServerCapability* self, daqListObject** addressInfo);
+    daqErrCode EXPORTED daqServerCapability_getProtocolVersion(daqServerCapability* self, daqStringObject** version);
 
 #ifdef __cplusplus
 }

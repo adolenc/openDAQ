@@ -35,15 +35,15 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqUser daqUser;
-    typedef struct daqString daqString;
-    typedef struct daqList daqList;
+    typedef struct daqStringObject daqStringObject;
+    typedef struct daqListObject daqListObject;
 
     EXPORTED extern const daqIntfID DAQ_USER_INTF_ID;
     void EXPORTED daqUser_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqUser_getUsername(daqUser* self, daqString** username);
-    daqErrCode EXPORTED daqUser_getGroups(daqUser* self, daqList** groups);
-    daqErrCode EXPORTED daqUser_createUser(daqUser** obj, daqString* username, daqString* passwordHash, daqList* groups);
+    daqErrCode EXPORTED daqUser_getUsername(daqUser* self, daqStringObject** username);
+    daqErrCode EXPORTED daqUser_getGroups(daqUser* self, daqListObject** groups);
+    daqErrCode EXPORTED daqUser_createUser(daqUser** obj, daqStringObject* username, daqStringObject* passwordHash, daqListObject* groups);
 
 #ifdef __cplusplus
 }

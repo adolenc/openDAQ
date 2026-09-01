@@ -28,22 +28,22 @@ daqErrCode daqReferenceDomainInfoBuilder_build(daqReferenceDomainInfoBuilder* se
     return reinterpret_cast<daq::IReferenceDomainInfoBuilder*>(self)->build(reinterpret_cast<daq::IReferenceDomainInfo**>(referenceDomainInfo));
 }
 
-daqErrCode daqReferenceDomainInfoBuilder_setReferenceDomainId(daqReferenceDomainInfoBuilder* self, daqString* referenceDomainId)
+daqErrCode daqReferenceDomainInfoBuilder_setReferenceDomainId(daqReferenceDomainInfoBuilder* self, daqStringObject* referenceDomainId)
 {
     return reinterpret_cast<daq::IReferenceDomainInfoBuilder*>(self)->setReferenceDomainId(reinterpret_cast<daq::IString*>(referenceDomainId));
 }
 
-daqErrCode daqReferenceDomainInfoBuilder_getReferenceDomainId(daqReferenceDomainInfoBuilder* self, daqString** referenceDomainId)
+daqErrCode daqReferenceDomainInfoBuilder_getReferenceDomainId(daqReferenceDomainInfoBuilder* self, daqStringObject** referenceDomainId)
 {
     return reinterpret_cast<daq::IReferenceDomainInfoBuilder*>(self)->getReferenceDomainId(reinterpret_cast<daq::IString**>(referenceDomainId));
 }
 
-daqErrCode daqReferenceDomainInfoBuilder_setReferenceDomainOffset(daqReferenceDomainInfoBuilder* self, daqInteger* referenceDomainOffset)
+daqErrCode daqReferenceDomainInfoBuilder_setReferenceDomainOffset(daqReferenceDomainInfoBuilder* self, daqIntegerObject* referenceDomainOffset)
 {
     return reinterpret_cast<daq::IReferenceDomainInfoBuilder*>(self)->setReferenceDomainOffset(reinterpret_cast<daq::IInteger*>(referenceDomainOffset));
 }
 
-daqErrCode daqReferenceDomainInfoBuilder_getReferenceDomainOffset(daqReferenceDomainInfoBuilder* self, daqInteger** referenceDomainOffset)
+daqErrCode daqReferenceDomainInfoBuilder_getReferenceDomainOffset(daqReferenceDomainInfoBuilder* self, daqIntegerObject** referenceDomainOffset)
 {
     return reinterpret_cast<daq::IReferenceDomainInfoBuilder*>(self)->getReferenceDomainOffset(reinterpret_cast<daq::IInteger**>(referenceDomainOffset));
 }

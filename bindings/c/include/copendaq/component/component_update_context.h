@@ -35,8 +35,8 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqComponentUpdateContext daqComponentUpdateContext;
-    typedef struct daqString daqString;
-    typedef struct daqDict daqDict;
+    typedef struct daqStringObject daqStringObject;
+    typedef struct daqDictObject daqDictObject;
     typedef struct daqComponent daqComponent;
     typedef struct daqSignal daqSignal;
     typedef struct daqDeviceUpdateOptions daqDeviceUpdateOptions;
@@ -45,19 +45,19 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_COMPONENT_UPDATE_CONTEXT_INTF_ID;
     void EXPORTED daqComponentUpdateContext_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqComponentUpdateContext_setInputPortConnection(daqComponentUpdateContext* self, daqString* parentId, daqString* portId, daqString* signalId);
-    daqErrCode EXPORTED daqComponentUpdateContext_getInputPortConnections(daqComponentUpdateContext* self, daqString* parentId, daqDict** connections);
-    daqErrCode EXPORTED daqComponentUpdateContext_removeInputPortConnection(daqComponentUpdateContext* self, daqString* parentId);
+    daqErrCode EXPORTED daqComponentUpdateContext_setInputPortConnection(daqComponentUpdateContext* self, daqStringObject* parentId, daqStringObject* portId, daqStringObject* signalId);
+    daqErrCode EXPORTED daqComponentUpdateContext_getInputPortConnections(daqComponentUpdateContext* self, daqStringObject* parentId, daqDictObject** connections);
+    daqErrCode EXPORTED daqComponentUpdateContext_removeInputPortConnection(daqComponentUpdateContext* self, daqStringObject* parentId);
     daqErrCode EXPORTED daqComponentUpdateContext_setRootComponent(daqComponentUpdateContext* self, daqComponent* baseComponent);
     daqErrCode EXPORTED daqComponentUpdateContext_getRootComponent(daqComponentUpdateContext* self, daqComponent** rootComponent);
-    daqErrCode EXPORTED daqComponentUpdateContext_getSignal(daqComponentUpdateContext* self, daqString* parentId, daqString* portId, daqSignal** signal);
-    daqErrCode EXPORTED daqComponentUpdateContext_setSignalDependency(daqComponentUpdateContext* self, daqString* signalId, daqString* parentId);
-    daqErrCode EXPORTED daqComponentUpdateContext_addDeviceRemapping(daqComponentUpdateContext* self, daqString* originalDeviceId, daqString* newDeviceId);
-    daqErrCode EXPORTED daqComponentUpdateContext_getDeviceUpdateOptionsWithLocalIdOrNull(daqComponentUpdateContext* self, daqString* localId, daqDeviceUpdateOptions** options);
+    daqErrCode EXPORTED daqComponentUpdateContext_getSignal(daqComponentUpdateContext* self, daqStringObject* parentId, daqStringObject* portId, daqSignal** signal);
+    daqErrCode EXPORTED daqComponentUpdateContext_setSignalDependency(daqComponentUpdateContext* self, daqStringObject* signalId, daqStringObject* parentId);
+    daqErrCode EXPORTED daqComponentUpdateContext_addDeviceRemapping(daqComponentUpdateContext* self, daqStringObject* originalDeviceId, daqStringObject* newDeviceId);
+    daqErrCode EXPORTED daqComponentUpdateContext_getDeviceUpdateOptionsWithLocalIdOrNull(daqComponentUpdateContext* self, daqStringObject* localId, daqDeviceUpdateOptions** options);
     daqErrCode EXPORTED daqComponentUpdateContext_remapInputPortConnections(daqComponentUpdateContext* self);
     daqErrCode EXPORTED daqComponentUpdateContext_getUpdateParameters(daqComponentUpdateContext* self, daqUpdateParameters** updateParameters);
     daqErrCode EXPORTED daqComponentUpdateContext_overrideState(daqComponentUpdateContext* self, daqComponentUpdateContext* updateContext);
-    daqErrCode EXPORTED daqComponentUpdateContext_getInternalState(daqComponentUpdateContext* self, daqDict** state);
+    daqErrCode EXPORTED daqComponentUpdateContext_getInternalState(daqComponentUpdateContext* self, daqDictObject** state);
 
 #ifdef __cplusplus
 }

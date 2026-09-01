@@ -48,7 +48,7 @@ daqErrCode daqEvent_getSubscriberCount(daqEvent* self, daqSizeT* count)
     return reinterpret_cast<daq::IEvent*>(self)->getSubscriberCount(count);
 }
 
-daqErrCode daqEvent_getSubscribers(daqEvent* self, daqList** subscribers)
+daqErrCode daqEvent_getSubscribers(daqEvent* self, daqListObject** subscribers)
 {
     return reinterpret_cast<daq::IEvent*>(self)->getSubscribers(reinterpret_cast<daq::IList**>(subscribers));
 }

@@ -36,26 +36,26 @@ extern "C"
 
     typedef struct daqLogFileInfoBuilder daqLogFileInfoBuilder;
     typedef struct daqLogFileInfo daqLogFileInfo;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
 
     EXPORTED extern const daqIntfID DAQ_LOG_FILE_INFO_BUILDER_INTF_ID;
     void EXPORTED daqLogFileInfoBuilder_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqLogFileInfoBuilder_build(daqLogFileInfoBuilder* self, daqLogFileInfo** logFileInfo);
-    daqErrCode EXPORTED daqLogFileInfoBuilder_getLocalPath(daqLogFileInfoBuilder* self, daqString** localPath);
-    daqErrCode EXPORTED daqLogFileInfoBuilder_setLocalPath(daqLogFileInfoBuilder* self, daqString* localPath);
-    daqErrCode EXPORTED daqLogFileInfoBuilder_getName(daqLogFileInfoBuilder* self, daqString** name);
-    daqErrCode EXPORTED daqLogFileInfoBuilder_setName(daqLogFileInfoBuilder* self, daqString* name);
-    daqErrCode EXPORTED daqLogFileInfoBuilder_getId(daqLogFileInfoBuilder* self, daqString** id);
-    daqErrCode EXPORTED daqLogFileInfoBuilder_setId(daqLogFileInfoBuilder* self, daqString* id);
-    daqErrCode EXPORTED daqLogFileInfoBuilder_getDescription(daqLogFileInfoBuilder* self, daqString** description);
-    daqErrCode EXPORTED daqLogFileInfoBuilder_setDescription(daqLogFileInfoBuilder* self, daqString* description);
+    daqErrCode EXPORTED daqLogFileInfoBuilder_getLocalPath(daqLogFileInfoBuilder* self, daqStringObject** localPath);
+    daqErrCode EXPORTED daqLogFileInfoBuilder_setLocalPath(daqLogFileInfoBuilder* self, daqStringObject* localPath);
+    daqErrCode EXPORTED daqLogFileInfoBuilder_getName(daqLogFileInfoBuilder* self, daqStringObject** name);
+    daqErrCode EXPORTED daqLogFileInfoBuilder_setName(daqLogFileInfoBuilder* self, daqStringObject* name);
+    daqErrCode EXPORTED daqLogFileInfoBuilder_getId(daqLogFileInfoBuilder* self, daqStringObject** id);
+    daqErrCode EXPORTED daqLogFileInfoBuilder_setId(daqLogFileInfoBuilder* self, daqStringObject* id);
+    daqErrCode EXPORTED daqLogFileInfoBuilder_getDescription(daqLogFileInfoBuilder* self, daqStringObject** description);
+    daqErrCode EXPORTED daqLogFileInfoBuilder_setDescription(daqLogFileInfoBuilder* self, daqStringObject* description);
     daqErrCode EXPORTED daqLogFileInfoBuilder_getSize(daqLogFileInfoBuilder* self, daqSizeT* size);
     daqErrCode EXPORTED daqLogFileInfoBuilder_setSize(daqLogFileInfoBuilder* self, daqSizeT size);
-    daqErrCode EXPORTED daqLogFileInfoBuilder_getEncoding(daqLogFileInfoBuilder* self, daqString** encoding);
-    daqErrCode EXPORTED daqLogFileInfoBuilder_setEncoding(daqLogFileInfoBuilder* self, daqString* encoding);
-    daqErrCode EXPORTED daqLogFileInfoBuilder_getLastModified(daqLogFileInfoBuilder* self, daqString** lastModified);
-    daqErrCode EXPORTED daqLogFileInfoBuilder_setLastModified(daqLogFileInfoBuilder* self, daqString* lastModified);
+    daqErrCode EXPORTED daqLogFileInfoBuilder_getEncoding(daqLogFileInfoBuilder* self, daqStringObject** encoding);
+    daqErrCode EXPORTED daqLogFileInfoBuilder_setEncoding(daqLogFileInfoBuilder* self, daqStringObject* encoding);
+    daqErrCode EXPORTED daqLogFileInfoBuilder_getLastModified(daqLogFileInfoBuilder* self, daqStringObject** lastModified);
+    daqErrCode EXPORTED daqLogFileInfoBuilder_setLastModified(daqLogFileInfoBuilder* self, daqStringObject* lastModified);
     daqErrCode EXPORTED daqLogFileInfoBuilder_createLogFileInfoBuilder(daqLogFileInfoBuilder** obj);
 
 #ifdef __cplusplus

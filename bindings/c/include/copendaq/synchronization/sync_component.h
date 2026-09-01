@@ -35,10 +35,10 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqSyncComponent daqSyncComponent;
-    typedef struct daqDict daqDict;
+    typedef struct daqDictObject daqDictObject;
     typedef struct daqContext daqContext;
     typedef struct daqComponent daqComponent;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
 
     EXPORTED extern const daqIntfID DAQ_SYNC_COMPONENT_INTF_ID;
     void EXPORTED daqSyncComponent_getInterfaceId(daqIntfID* intfId);
@@ -46,8 +46,8 @@ extern "C"
     daqErrCode EXPORTED daqSyncComponent_getSyncLocked(daqSyncComponent* self, daqBool* synchronizationLocked);
     daqErrCode EXPORTED daqSyncComponent_getSelectedSource(daqSyncComponent* self, daqInt* selectedSource);
     daqErrCode EXPORTED daqSyncComponent_setSelectedSource(daqSyncComponent* self, daqInt selectedSource);
-    daqErrCode EXPORTED daqSyncComponent_getInterfaces(daqSyncComponent* self, daqDict** interfaces);
-    daqErrCode EXPORTED daqSyncComponent_createSyncComponent(daqSyncComponent** obj, daqContext* context, daqComponent* ParseFailedException, daqString* localId);
+    daqErrCode EXPORTED daqSyncComponent_getInterfaces(daqSyncComponent* self, daqDictObject** interfaces);
+    daqErrCode EXPORTED daqSyncComponent_createSyncComponent(daqSyncComponent** obj, daqContext* context, daqComponent* ParseFailedException, daqStringObject* localId);
 
 #ifdef __cplusplus
 }

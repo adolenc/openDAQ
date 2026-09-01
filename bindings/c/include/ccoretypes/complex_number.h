@@ -34,20 +34,20 @@ extern "C"
 
 #include <ccommon.h>
 
-    typedef struct daqComplexNumber daqComplexNumber;
+    typedef struct daqComplexNumberObject daqComplexNumberObject;
 
     EXPORTED extern const daqIntfID DAQ_COMPLEX_NUMBER_INTF_ID;
     void EXPORTED daqComplexNumber_getInterfaceId(daqIntfID* intfId);
 
 /*
-    daqErrCode EXPORTED daqComplexNumber_getValue(daqComplexNumber* self, daqComplexFloat64* value);
+    daqErrCode EXPORTED daqComplexNumber_getValue(daqComplexNumberObject* self, daqComplexFloat64* value);
 */
 /*
-    daqErrCode EXPORTED daqComplexNumber_equalsValue(daqComplexNumber* self, daqComplexFloat64 value, daqBool* equal);
+    daqErrCode EXPORTED daqComplexNumber_equalsValue(daqComplexNumberObject* self, daqComplexFloat64 value, daqBool* equal);
 */
-    daqErrCode EXPORTED daqComplexNumber_getReal(daqComplexNumber* self, daqFloat* real);
-    daqErrCode EXPORTED daqComplexNumber_getImaginary(daqComplexNumber* self, daqFloat* imaginary);
-    daqErrCode EXPORTED daqComplexNumber_createComplexNumber(daqComplexNumber** obj, daqFloat real, daqFloat imaginary);
+    daqErrCode EXPORTED daqComplexNumber_getReal(daqComplexNumberObject* self, daqFloat* real);
+    daqErrCode EXPORTED daqComplexNumber_getImaginary(daqComplexNumberObject* self, daqFloat* imaginary);
+    daqErrCode EXPORTED daqComplexNumber_createComplexNumber(daqComplexNumberObject** obj, daqFloat real, daqFloat imaginary);
 
 #ifdef __cplusplus
 }

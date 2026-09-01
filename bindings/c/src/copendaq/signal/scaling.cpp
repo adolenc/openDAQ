@@ -38,7 +38,7 @@ daqErrCode daqScaling_getType(daqScaling* self, daqScalingType* type)
     return reinterpret_cast<daq::IScaling*>(self)->getType(reinterpret_cast<daq::ScalingType*>(type));
 }
 
-daqErrCode daqScaling_getParameters(daqScaling* self, daqDict** parameters)
+daqErrCode daqScaling_getParameters(daqScaling* self, daqDictObject** parameters)
 {
     return reinterpret_cast<daq::IScaling*>(self)->getParameters(reinterpret_cast<daq::IDict**>(parameters));
 }
@@ -51,7 +51,7 @@ daqErrCode daqScaling_createLinearScaling(daqScaling** obj, daqNumber* scale, da
     return err;
 }
 
-daqErrCode daqScaling_createScaling(daqScaling** obj, daqSampleType inputDataType, daqScaledSampleType outputDataType, daqScalingType scalingType, daqDict* parameters)
+daqErrCode daqScaling_createScaling(daqScaling** obj, daqSampleType inputDataType, daqScaledSampleType outputDataType, daqScalingType scalingType, daqDictObject* parameters)
 {
     daq::IScaling* ptr = nullptr;
     daqErrCode err = daq::createScaling(&ptr, static_cast<daq::SampleType>(inputDataType), static_cast<daq::ScaledSampleType>(outputDataType), static_cast<daq::ScalingType>(scalingType), reinterpret_cast<daq::IDict*>(parameters));

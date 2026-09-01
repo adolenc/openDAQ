@@ -25,13 +25,13 @@ int main()
     daqInstanceBuilder_createInstanceBuilder(&builder);
 
     // Setting the module path to the location where the modules are stored
-    daqString* modulePath = NULL;
+    daqStringObject* modulePath = NULL;
     daqString_createString(&modulePath,
                            MODULE_PATH);  // Define MODULE_PATH in your CMakeLists.txt
     daqInstanceBuilder_setModulePath(builder, modulePath);
     daqReleaseRef(modulePath);
 
-    daqString* localId = NULL;
+    daqStringObject* localId = NULL;
     daqString_createString(&localId, "");
     daqInstanceBuilder_setDefaultRootDeviceLocalId(builder, localId);
     daqReleaseRef(localId);
@@ -46,7 +46,7 @@ int main()
 
     // Getting the list of available devices
     // and searching for the device with target name
-    daqList* availableDevices = NULL;
+    daqListObject* availableDevices = NULL;
     daqDevice_getAvailableDevices(rootDevice, &availableDevices);
 
     daqIterator* iterator = NULL;
@@ -63,10 +63,10 @@ int main()
             continue;
         }
 
-        daqString* name = NULL;
+        daqStringObject* name = NULL;
         daqDeviceInfo_getName(currentDevInfo, &name);
 
-        daqString* targetName = NULL;
+        daqStringObject* targetName = NULL;
         daqString_createString(&targetName, "Reference device simulator");
 
         daqBaseObject* targetNameObj = DAQ_BORROW_INTERFACE(targetName, DAQ_BASE_OBJECT_INTF_ID);
@@ -101,7 +101,7 @@ int main()
     }
 
     // Adding the device to the instance
-    daqString* connectionString = NULL;
+    daqStringObject* connectionString = NULL;
     daqDeviceInfo_getConnectionString(deviceInfo, &connectionString);
 
     daqDevice* device = NULL;
@@ -121,7 +121,7 @@ int main()
     // Getting device information
     daqDevice_getInfo(device, &deviceInfo);
 
-    daqString* name = NULL;
+    daqStringObject* name = NULL;
     daqDeviceInfo_getName(deviceInfo, &name);
     daqConstCharPtr nameStr = NULL;
     daqString_getCharPtr(name, &nameStr);
@@ -135,7 +135,7 @@ int main()
     daqFunctionBlock* channel = NULL;  // Channel is a special type of function block
 
     // Getting the first channel of the device
-    daqList* channels = NULL;
+    daqListObject* channels = NULL;
     daqDevice_getChannels(device, &channels, NULL);
 
     daqBaseObject* channelObj = NULL;
@@ -147,7 +147,7 @@ int main()
     daqReleaseRef(channelObj);
 
     // Getting the first signal of the channel
-    daqList* signals = NULL;
+    daqListObject* signals = NULL;
     daqFunctionBlock_getSignals(channel, &signals, NULL);
     daqList_getItemAt(signals, 0, (daqBaseObject**) &signal);
 
@@ -160,11 +160,11 @@ int main()
     if (lastValue)
     {
         daqFloatObject* lastValueFloat = NULL;
-        lastValueFloat = DAQ_BORROW_INTERFACE(lastValue, DAQ_FLOAT_OBJECT_INTF_ID);
+        lastValueFloat = DAQ_BORROW_INTERFACE(lastValue, DAQ_FLOAT_INTF_ID);
         if (lastValueFloat)
         {
             daqFloat value = 0.0f;
-            daqFloatObject_getValue(lastValueFloat, &value);
+            daqFloat_getValue(lastValueFloat, &value);
             printf("Last value: %f\n", value);
         }
         daqReleaseRef(lastValue);
@@ -194,16 +194,16 @@ int main()
     daqDataDescriptor* dataDescriptor = NULL;
     daqSignal_getDescriptor(domainSignal, &dataDescriptor);
 
-    daqRatio* ratio = NULL;
+    daqRatioObject* ratio = NULL;
     daqDataDescriptor_getTickResolution(dataDescriptor, &ratio);
 
-    daqString* origin = NULL;
+    daqStringObject* origin = NULL;
     daqDataDescriptor_getOrigin(dataDescriptor, &origin);
 
     daqUnit* unit = NULL;
     daqDataDescriptor_getUnit(dataDescriptor, &unit);
 
-    daqString* unitSymbol = NULL;
+    daqStringObject* unitSymbol = NULL;
     daqUnit_getSymbol(unit, &unitSymbol);
 
     daqConstCharPtr originStr = NULL;
@@ -244,7 +244,7 @@ int main()
 
     // Adding Renderer function block
 
-    daqString* typeId = NULL;
+    daqStringObject* typeId = NULL;
     daqString_createString(&typeId, "RefFBModuleRenderer");
 
     daqFunctionBlock* renderer = NULL;
@@ -261,7 +261,7 @@ int main()
     daqReleaseRef(typeId);
 
     // Connecting the signal to Statistics function block
-    daqList* statisticsInputPorts = NULL;
+    daqListObject* statisticsInputPorts = NULL;
     daqFunctionBlock_getInputPorts(statistics, &statisticsInputPorts, NULL);
 
     // Getting the first input port of the Statistics function block
@@ -276,7 +276,7 @@ int main()
     daqReleaseRef(statisticsInputPort);
 
     // Getting statistics output signal
-    daqList* statisticsOutputSignals = NULL;
+    daqListObject* statisticsOutputSignals = NULL;
     daqFunctionBlock_getSignals(statistics, &statisticsOutputSignals, NULL);
 
     daqSignal* statisticsSignal = NULL;
@@ -285,7 +285,7 @@ int main()
     daqReleaseRef(statisticsOutputSignals);
 
     // Connecting the signal to Renderer function block
-    daqList* rendererInputPorts = NULL;
+    daqListObject* rendererInputPorts = NULL;
     daqFunctionBlock_getInputPorts(renderer, &rendererInputPorts, NULL);
 
     // Getting the first input port of the Renderer function block
@@ -320,7 +320,7 @@ int main()
     daqPropertyObject* channelPropertyObject = DAQ_BORROW_INTERFACE(channel, DAQ_PROPERTY_OBJECT_INTF_ID);
 
     // Getting the visible properties of the channel
-    daqList* properties = NULL;
+    daqListObject* properties = NULL;
     daqPropertyObject_getVisibleProperties(channelPropertyObject, &properties);
 
     daqSizeT propertyCount = 0;
@@ -332,7 +332,7 @@ int main()
         daqProperty* property = NULL;
         daqList_getItemAt(properties, i, (daqBaseObject**) &property);
 
-        daqString* propertyName = NULL;
+        daqStringObject* propertyName = NULL;
         daqProperty_getName(property, &propertyName);
 
         daqConstCharPtr propertyNameStr = NULL;
@@ -345,20 +345,20 @@ int main()
 
     daqReleaseRef(properties);
 
-    daqString* frequencyPropertyName = NULL;
+    daqStringObject* frequencyPropertyName = NULL;
     daqString_createString(&frequencyPropertyName, "Frequency");
 
-    daqString* noiseAmplitudePropertyName = NULL;
+    daqStringObject* noiseAmplitudePropertyName = NULL;
     daqString_createString(&noiseAmplitudePropertyName, "NoiseAmplitude");
 
-    daqString* amplitudePropertyName = NULL;
+    daqStringObject* amplitudePropertyName = NULL;
     daqString_createString(&amplitudePropertyName, "Amplitude");
 
-    daqInteger* frequencyValue = NULL;
+    daqIntegerObject* frequencyValue = NULL;
     daqInteger_createInteger(&frequencyValue, 5);
 
     daqFloatObject* noiseAmplitudeValue = NULL;
-    daqFloatObject_createFloatObject(&noiseAmplitudeValue, 0.75);
+    daqFloat_createFloatObject(&noiseAmplitudeValue, 0.75);
 
     // Setting the properties of the channel
     daqPropertyObject_setPropertyValue(channelPropertyObject, frequencyPropertyName, (daqBaseObject*) frequencyValue);
@@ -377,7 +377,7 @@ int main()
         daqPropertyObject_getPropertyValue(channelPropertyObject, amplitudePropertyName, (daqBaseObject**) &amplitudeValue);
 
         daqFloat currentAmplitude = 0.0;
-        daqFloatObject_getValue(amplitudeValue, &currentAmplitude);
+        daqFloat_getValue(amplitudeValue, &currentAmplitude);
 
         if(9.95 < currentAmplitude || currentAmplitude < 1.05)
             ampStep = -ampStep;
@@ -386,7 +386,7 @@ int main()
 
         daqReleaseRef(amplitudeValue);
 
-        daqFloatObject_createFloatObject(&amplitudeValue, currentAmplitude);
+        daqFloat_createFloatObject(&amplitudeValue, currentAmplitude);
 
         daqPropertyObject_setPropertyValue(channelPropertyObject, amplitudePropertyName, (daqBaseObject*) amplitudeValue);
 

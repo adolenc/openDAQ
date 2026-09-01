@@ -36,13 +36,13 @@ extern "C"
 
     typedef struct daqFloatObject daqFloatObject;
 
-    EXPORTED extern const daqIntfID DAQ_FLOAT_OBJECT_INTF_ID;
-    void EXPORTED daqFloatObject_getInterfaceId(daqIntfID* intfId);
+    EXPORTED extern const daqIntfID DAQ_FLOAT_INTF_ID;
+    void EXPORTED daqFloat_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqFloatObject_getValue(daqFloatObject* self, daqFloat* value);
-    daqErrCode EXPORTED daqFloatObject_equalsValue(daqFloatObject* self, daqFloat value, daqBool* equals);
-    daqErrCode EXPORTED daqFloatObject_createFloat(daqFloatObject** obj, daqFloat value);
-    daqErrCode EXPORTED daqFloatObject_createFloatObject(daqFloatObject** obj, daqFloat value);
+    daqErrCode EXPORTED daqFloat_getValue(daqFloatObject* self, daqFloat* value);
+    daqErrCode EXPORTED daqFloat_equalsValue(daqFloatObject* self, daqFloat value, daqBool* equals);
+    daqErrCode EXPORTED daqFloat_createFloat(daqFloatObject** obj, daqFloat value);
+    daqErrCode EXPORTED daqFloat_createFloatObject(daqFloatObject** obj, daqFloat value);
 
 #ifdef __cplusplus
 }

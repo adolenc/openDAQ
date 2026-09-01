@@ -36,18 +36,18 @@ extern "C"
 
     typedef struct daqAddressInfoBuilder daqAddressInfoBuilder;
     typedef struct daqAddressInfo daqAddressInfo;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
 
     EXPORTED extern const daqIntfID DAQ_ADDRESS_INFO_BUILDER_INTF_ID;
     void EXPORTED daqAddressInfoBuilder_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqAddressInfoBuilder_build(daqAddressInfoBuilder* self, daqAddressInfo** address);
-    daqErrCode EXPORTED daqAddressInfoBuilder_getAddress(daqAddressInfoBuilder* self, daqString** address);
-    daqErrCode EXPORTED daqAddressInfoBuilder_setAddress(daqAddressInfoBuilder* self, daqString* address);
-    daqErrCode EXPORTED daqAddressInfoBuilder_getConnectionString(daqAddressInfoBuilder* self, daqString** connectionString);
-    daqErrCode EXPORTED daqAddressInfoBuilder_setConnectionString(daqAddressInfoBuilder* self, daqString* connectionString);
-    daqErrCode EXPORTED daqAddressInfoBuilder_getType(daqAddressInfoBuilder* self, daqString** type);
-    daqErrCode EXPORTED daqAddressInfoBuilder_setType(daqAddressInfoBuilder* self, daqString* type);
+    daqErrCode EXPORTED daqAddressInfoBuilder_getAddress(daqAddressInfoBuilder* self, daqStringObject** address);
+    daqErrCode EXPORTED daqAddressInfoBuilder_setAddress(daqAddressInfoBuilder* self, daqStringObject* address);
+    daqErrCode EXPORTED daqAddressInfoBuilder_getConnectionString(daqAddressInfoBuilder* self, daqStringObject** connectionString);
+    daqErrCode EXPORTED daqAddressInfoBuilder_setConnectionString(daqAddressInfoBuilder* self, daqStringObject* connectionString);
+    daqErrCode EXPORTED daqAddressInfoBuilder_getType(daqAddressInfoBuilder* self, daqStringObject** type);
+    daqErrCode EXPORTED daqAddressInfoBuilder_setType(daqAddressInfoBuilder* self, daqStringObject* type);
     daqErrCode EXPORTED daqAddressInfoBuilder_getReachabilityStatus(daqAddressInfoBuilder* self, daqAddressReachabilityStatus* addressReachability);
     daqErrCode EXPORTED daqAddressInfoBuilder_setReachabilityStatus(daqAddressInfoBuilder* self, daqAddressReachabilityStatus addressReachability);
     daqErrCode EXPORTED daqAddressInfoBuilder_createAddressInfoBuilder(daqAddressInfoBuilder** obj);

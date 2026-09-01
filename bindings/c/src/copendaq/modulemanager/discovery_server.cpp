@@ -23,12 +23,12 @@ void daqDiscoveryServer_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_DISCOVERY_SERVER_INTF_ID;
 }
 
-daqErrCode daqDiscoveryServer_registerService(daqDiscoveryServer* self, daqString* id, daqPropertyObject* config, daqDeviceInfo* deviceInfo)
+daqErrCode daqDiscoveryServer_registerService(daqDiscoveryServer* self, daqStringObject* id, daqPropertyObject* config, daqDeviceInfo* deviceInfo)
 {
     return reinterpret_cast<daq::IDiscoveryServer*>(self)->registerService(reinterpret_cast<daq::IString*>(id), reinterpret_cast<daq::IPropertyObject*>(config), reinterpret_cast<daq::IDeviceInfo*>(deviceInfo));
 }
 
-daqErrCode daqDiscoveryServer_unregisterService(daqDiscoveryServer* self, daqString* id)
+daqErrCode daqDiscoveryServer_unregisterService(daqDiscoveryServer* self, daqStringObject* id)
 {
     return reinterpret_cast<daq::IDiscoveryServer*>(self)->unregisterService(reinterpret_cast<daq::IString*>(id));
 }

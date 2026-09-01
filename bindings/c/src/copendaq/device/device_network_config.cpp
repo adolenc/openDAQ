@@ -23,12 +23,12 @@ void daqDeviceNetworkConfig_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_DEVICE_NETWORK_CONFIG_INTF_ID;
 }
 
-daqErrCode daqDeviceNetworkConfig_submitNetworkConfiguration(daqDeviceNetworkConfig* self, daqString* ifaceName, daqPropertyObject* config)
+daqErrCode daqDeviceNetworkConfig_submitNetworkConfiguration(daqDeviceNetworkConfig* self, daqStringObject* ifaceName, daqPropertyObject* config)
 {
     return reinterpret_cast<daq::IDeviceNetworkConfig*>(self)->submitNetworkConfiguration(reinterpret_cast<daq::IString*>(ifaceName), reinterpret_cast<daq::IPropertyObject*>(config));
 }
 
-daqErrCode daqDeviceNetworkConfig_retrieveNetworkConfiguration(daqDeviceNetworkConfig* self, daqString* ifaceName, daqPropertyObject** config)
+daqErrCode daqDeviceNetworkConfig_retrieveNetworkConfiguration(daqDeviceNetworkConfig* self, daqStringObject* ifaceName, daqPropertyObject** config)
 {
     return reinterpret_cast<daq::IDeviceNetworkConfig*>(self)->retrieveNetworkConfiguration(reinterpret_cast<daq::IString*>(ifaceName), reinterpret_cast<daq::IPropertyObject**>(config));
 }
@@ -38,7 +38,7 @@ daqErrCode daqDeviceNetworkConfig_getNetworkConfigurationEnabled(daqDeviceNetwor
     return reinterpret_cast<daq::IDeviceNetworkConfig*>(self)->getNetworkConfigurationEnabled(enabled);
 }
 
-daqErrCode daqDeviceNetworkConfig_getNetworkInterfaceNames(daqDeviceNetworkConfig* self, daqList** ifaceNames)
+daqErrCode daqDeviceNetworkConfig_getNetworkInterfaceNames(daqDeviceNetworkConfig* self, daqListObject** ifaceNames)
 {
     return reinterpret_cast<daq::IDeviceNetworkConfig*>(self)->getNetworkInterfaceNames(reinterpret_cast<daq::IList**>(ifaceNames));
 }

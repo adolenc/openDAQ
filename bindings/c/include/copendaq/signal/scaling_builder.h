@@ -36,8 +36,8 @@ extern "C"
 
     typedef struct daqScalingBuilder daqScalingBuilder;
     typedef struct daqScaling daqScaling;
-    typedef struct daqDict daqDict;
-    typedef struct daqString daqString;
+    typedef struct daqDictObject daqDictObject;
+    typedef struct daqStringObject daqStringObject;
 
     EXPORTED extern const daqIntfID DAQ_SCALING_BUILDER_INTF_ID;
     void EXPORTED daqScalingBuilder_getInterfaceId(daqIntfID* intfId);
@@ -49,10 +49,10 @@ extern "C"
     daqErrCode EXPORTED daqScalingBuilder_getOutputDataType(daqScalingBuilder* self, daqScaledSampleType* type);
     daqErrCode EXPORTED daqScalingBuilder_setScalingType(daqScalingBuilder* self, daqScalingType type);
     daqErrCode EXPORTED daqScalingBuilder_getScalingType(daqScalingBuilder* self, daqScalingType* type);
-    daqErrCode EXPORTED daqScalingBuilder_setParameters(daqScalingBuilder* self, daqDict* parameters);
-    daqErrCode EXPORTED daqScalingBuilder_getParameters(daqScalingBuilder* self, daqDict** parameters);
-    daqErrCode EXPORTED daqScalingBuilder_addParameter(daqScalingBuilder* self, daqString* name, daqBaseObject* parameter);
-    daqErrCode EXPORTED daqScalingBuilder_removeParameter(daqScalingBuilder* self, daqString* name);
+    daqErrCode EXPORTED daqScalingBuilder_setParameters(daqScalingBuilder* self, daqDictObject* parameters);
+    daqErrCode EXPORTED daqScalingBuilder_getParameters(daqScalingBuilder* self, daqDictObject** parameters);
+    daqErrCode EXPORTED daqScalingBuilder_addParameter(daqScalingBuilder* self, daqStringObject* name, daqBaseObject* parameter);
+    daqErrCode EXPORTED daqScalingBuilder_removeParameter(daqScalingBuilder* self, daqStringObject* name);
     daqErrCode EXPORTED daqScalingBuilder_createScalingBuilder(daqScalingBuilder** obj);
     daqErrCode EXPORTED daqScalingBuilder_createScalingBuilderFromExisting(daqScalingBuilder** obj, daqScaling* scalingToCopy);
 

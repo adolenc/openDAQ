@@ -38,12 +38,12 @@ daqErrCode daqSyncComponent_setSelectedSource(daqSyncComponent* self, daqInt sel
     return reinterpret_cast<daq::ISyncComponent*>(self)->setSelectedSource(selectedSource);
 }
 
-daqErrCode daqSyncComponent_getInterfaces(daqSyncComponent* self, daqDict** interfaces)
+daqErrCode daqSyncComponent_getInterfaces(daqSyncComponent* self, daqDictObject** interfaces)
 {
     return reinterpret_cast<daq::ISyncComponent*>(self)->getInterfaces(reinterpret_cast<daq::IDict**>(interfaces));
 }
 
-daqErrCode daqSyncComponent_createSyncComponent(daqSyncComponent** obj, daqContext* context, daqComponent* ParseFailedException, daqString* localId)
+daqErrCode daqSyncComponent_createSyncComponent(daqSyncComponent** obj, daqContext* context, daqComponent* ParseFailedException, daqStringObject* localId)
 {
     daq::ISyncComponent* ptr = nullptr;
     daqErrCode err = daq::createSyncComponent(&ptr, reinterpret_cast<daq::IContext*>(context), reinterpret_cast<daq::IComponent*>(ParseFailedException), reinterpret_cast<daq::IString*>(localId));

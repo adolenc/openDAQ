@@ -33,7 +33,7 @@ daqErrCode daqSyncComponentPrivate_addInterface(daqSyncComponentPrivate* self, d
     return reinterpret_cast<daq::ISyncComponentPrivate*>(self)->addInterface(reinterpret_cast<daq::IPropertyObject*>(syncInterface));
 }
 
-daqErrCode daqSyncComponentPrivate_removeInterface(daqSyncComponentPrivate* self, daqString* syncInterfaceName)
+daqErrCode daqSyncComponentPrivate_removeInterface(daqSyncComponentPrivate* self, daqStringObject* syncInterfaceName)
 {
     return reinterpret_cast<daq::ISyncComponentPrivate*>(self)->removeInterface(reinterpret_cast<daq::IString*>(syncInterfaceName));
 }

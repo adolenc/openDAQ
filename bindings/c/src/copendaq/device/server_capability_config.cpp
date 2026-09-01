@@ -23,22 +23,22 @@ void daqServerCapabilityConfig_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_SERVER_CAPABILITY_CONFIG_INTF_ID;
 }
 
-daqErrCode daqServerCapabilityConfig_setConnectionString(daqServerCapabilityConfig* self, daqString* connectionString)
+daqErrCode daqServerCapabilityConfig_setConnectionString(daqServerCapabilityConfig* self, daqStringObject* connectionString)
 {
     return reinterpret_cast<daq::IServerCapabilityConfig*>(self)->setConnectionString(reinterpret_cast<daq::IString*>(connectionString));
 }
 
-daqErrCode daqServerCapabilityConfig_addConnectionString(daqServerCapabilityConfig* self, daqString* connectionString)
+daqErrCode daqServerCapabilityConfig_addConnectionString(daqServerCapabilityConfig* self, daqStringObject* connectionString)
 {
     return reinterpret_cast<daq::IServerCapabilityConfig*>(self)->addConnectionString(reinterpret_cast<daq::IString*>(connectionString));
 }
 
-daqErrCode daqServerCapabilityConfig_setProtocolId(daqServerCapabilityConfig* self, daqString* protocolId)
+daqErrCode daqServerCapabilityConfig_setProtocolId(daqServerCapabilityConfig* self, daqStringObject* protocolId)
 {
     return reinterpret_cast<daq::IServerCapabilityConfig*>(self)->setProtocolId(reinterpret_cast<daq::IString*>(protocolId));
 }
 
-daqErrCode daqServerCapabilityConfig_setProtocolName(daqServerCapabilityConfig* self, daqString* protocolName)
+daqErrCode daqServerCapabilityConfig_setProtocolName(daqServerCapabilityConfig* self, daqStringObject* protocolName)
 {
     return reinterpret_cast<daq::IServerCapabilityConfig*>(self)->setProtocolName(reinterpret_cast<daq::IString*>(protocolName));
 }
@@ -48,12 +48,12 @@ daqErrCode daqServerCapabilityConfig_setProtocolType(daqServerCapabilityConfig* 
     return reinterpret_cast<daq::IServerCapabilityConfig*>(self)->setProtocolType(static_cast<daq::ProtocolType>(type));
 }
 
-daqErrCode daqServerCapabilityConfig_setPrefix(daqServerCapabilityConfig* self, daqString* prefix)
+daqErrCode daqServerCapabilityConfig_setPrefix(daqServerCapabilityConfig* self, daqStringObject* prefix)
 {
     return reinterpret_cast<daq::IServerCapabilityConfig*>(self)->setPrefix(reinterpret_cast<daq::IString*>(prefix));
 }
 
-daqErrCode daqServerCapabilityConfig_setConnectionType(daqServerCapabilityConfig* self, daqString* type)
+daqErrCode daqServerCapabilityConfig_setConnectionType(daqServerCapabilityConfig* self, daqStringObject* type)
 {
     return reinterpret_cast<daq::IServerCapabilityConfig*>(self)->setConnectionType(reinterpret_cast<daq::IString*>(type));
 }
@@ -63,12 +63,12 @@ daqErrCode daqServerCapabilityConfig_setCoreEventsEnabled(daqServerCapabilityCon
     return reinterpret_cast<daq::IServerCapabilityConfig*>(self)->setCoreEventsEnabled(enabled);
 }
 
-daqErrCode daqServerCapabilityConfig_addAddress(daqServerCapabilityConfig* self, daqString* address)
+daqErrCode daqServerCapabilityConfig_addAddress(daqServerCapabilityConfig* self, daqStringObject* address)
 {
     return reinterpret_cast<daq::IServerCapabilityConfig*>(self)->addAddress(reinterpret_cast<daq::IString*>(address));
 }
 
-daqErrCode daqServerCapabilityConfig_setPort(daqServerCapabilityConfig* self, daqInteger* port)
+daqErrCode daqServerCapabilityConfig_setPort(daqServerCapabilityConfig* self, daqIntegerObject* port)
 {
     return reinterpret_cast<daq::IServerCapabilityConfig*>(self)->setPort(reinterpret_cast<daq::IInteger*>(port));
 }
@@ -78,12 +78,12 @@ daqErrCode daqServerCapabilityConfig_addAddressInfo(daqServerCapabilityConfig* s
     return reinterpret_cast<daq::IServerCapabilityConfig*>(self)->addAddressInfo(reinterpret_cast<daq::IAddressInfo*>(addressInfo));
 }
 
-daqErrCode daqServerCapabilityConfig_setProtocolVersion(daqServerCapabilityConfig* self, daqString* version)
+daqErrCode daqServerCapabilityConfig_setProtocolVersion(daqServerCapabilityConfig* self, daqStringObject* version)
 {
     return reinterpret_cast<daq::IServerCapabilityConfig*>(self)->setProtocolVersion(reinterpret_cast<daq::IString*>(version));
 }
 
-daqErrCode daqServerCapabilityConfig_createServerCapability(daqServerCapabilityConfig** obj, daqString* protocolId, daqString* protocolName, daqProtocolType protocolType)
+daqErrCode daqServerCapabilityConfig_createServerCapability(daqServerCapabilityConfig** obj, daqStringObject* protocolId, daqStringObject* protocolName, daqProtocolType protocolType)
 {
     daq::IServerCapabilityConfig* ptr = nullptr;
     daqErrCode err = daq::createServerCapability(&ptr, reinterpret_cast<daq::IString*>(protocolId), reinterpret_cast<daq::IString*>(protocolName), static_cast<daq::ProtocolType>(protocolType));

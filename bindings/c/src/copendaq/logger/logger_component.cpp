@@ -23,7 +23,7 @@ void daqLoggerComponent_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_LOGGER_COMPONENT_INTF_ID;
 }
 
-daqErrCode daqLoggerComponent_getName(daqLoggerComponent* self, daqString** name)
+daqErrCode daqLoggerComponent_getName(daqLoggerComponent* self, daqStringObject** name)
 {
     return reinterpret_cast<daq::ILoggerComponent*>(self)->getName(reinterpret_cast<daq::IString**>(name));
 }
@@ -45,7 +45,7 @@ daqErrCode daqLoggerComponent_logMessage(daqLoggerComponent* self, daqSourceLoca
 }
 */
 
-daqErrCode daqLoggerComponent_setPattern(daqLoggerComponent* self, daqString* pattern)
+daqErrCode daqLoggerComponent_setPattern(daqLoggerComponent* self, daqStringObject* pattern)
 {
     return reinterpret_cast<daq::ILoggerComponent*>(self)->setPattern(reinterpret_cast<daq::IString*>(pattern));
 }
@@ -65,7 +65,7 @@ daqErrCode daqLoggerComponent_flushOnLevel(daqLoggerComponent* self, daqLogLevel
     return reinterpret_cast<daq::ILoggerComponent*>(self)->flushOnLevel(static_cast<daq::LogLevel>(level));
 }
 
-daqErrCode daqLoggerComponent_createLoggerComponent(daqLoggerComponent** obj, daqString* name, daqList* sinks, daqLoggerThreadPool* threadPool, daqLogLevel level)
+daqErrCode daqLoggerComponent_createLoggerComponent(daqLoggerComponent** obj, daqStringObject* name, daqListObject* sinks, daqLoggerThreadPool* threadPool, daqLogLevel level)
 {
     daq::ILoggerComponent* ptr = nullptr;
     daqErrCode err = daq::createLoggerComponent(&ptr, reinterpret_cast<daq::IString*>(name), reinterpret_cast<daq::IList*>(sinks), reinterpret_cast<daq::ILoggerThreadPool*>(threadPool), static_cast<daq::LogLevel>(level));

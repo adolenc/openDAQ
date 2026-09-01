@@ -35,20 +35,20 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqDimensionRule daqDimensionRule;
-    typedef struct daqDict daqDict;
+    typedef struct daqDictObject daqDictObject;
     typedef struct daqNumber daqNumber;
-    typedef struct daqList daqList;
+    typedef struct daqListObject daqListObject;
     typedef struct daqDimensionRuleBuilder daqDimensionRuleBuilder;
 
     EXPORTED extern const daqIntfID DAQ_DIMENSION_RULE_INTF_ID;
     void EXPORTED daqDimensionRule_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqDimensionRule_getType(daqDimensionRule* self, daqDimensionRuleType* type);
-    daqErrCode EXPORTED daqDimensionRule_getParameters(daqDimensionRule* self, daqDict** parameters);
+    daqErrCode EXPORTED daqDimensionRule_getParameters(daqDimensionRule* self, daqDictObject** parameters);
     daqErrCode EXPORTED daqDimensionRule_createLinearDimensionRule(daqDimensionRule** obj, daqNumber* delta, daqNumber* start, daqSizeT size);
-    daqErrCode EXPORTED daqDimensionRule_createListDimensionRule(daqDimensionRule** obj, daqList* list);
+    daqErrCode EXPORTED daqDimensionRule_createListDimensionRule(daqDimensionRule** obj, daqListObject* list);
     daqErrCode EXPORTED daqDimensionRule_createLogarithmicDimensionRule(daqDimensionRule** obj, daqNumber* delta, daqNumber* start, daqNumber* base, daqSizeT size);
-    daqErrCode EXPORTED daqDimensionRule_createDimensionRule(daqDimensionRule** obj, daqDimensionRuleType type, daqDict* parameters);
+    daqErrCode EXPORTED daqDimensionRule_createDimensionRule(daqDimensionRule** obj, daqDimensionRuleType type, daqDictObject* parameters);
     daqErrCode EXPORTED daqDimensionRule_createDimensionRuleFromBuilder(daqDimensionRule** obj, daqDimensionRuleBuilder* builder);
 
 #ifdef __cplusplus

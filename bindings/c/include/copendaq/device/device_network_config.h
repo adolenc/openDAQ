@@ -35,17 +35,17 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqDeviceNetworkConfig daqDeviceNetworkConfig;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
     typedef struct daqPropertyObject daqPropertyObject;
-    typedef struct daqList daqList;
+    typedef struct daqListObject daqListObject;
 
     EXPORTED extern const daqIntfID DAQ_DEVICE_NETWORK_CONFIG_INTF_ID;
     void EXPORTED daqDeviceNetworkConfig_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqDeviceNetworkConfig_submitNetworkConfiguration(daqDeviceNetworkConfig* self, daqString* ifaceName, daqPropertyObject* config);
-    daqErrCode EXPORTED daqDeviceNetworkConfig_retrieveNetworkConfiguration(daqDeviceNetworkConfig* self, daqString* ifaceName, daqPropertyObject** config);
+    daqErrCode EXPORTED daqDeviceNetworkConfig_submitNetworkConfiguration(daqDeviceNetworkConfig* self, daqStringObject* ifaceName, daqPropertyObject* config);
+    daqErrCode EXPORTED daqDeviceNetworkConfig_retrieveNetworkConfiguration(daqDeviceNetworkConfig* self, daqStringObject* ifaceName, daqPropertyObject** config);
     daqErrCode EXPORTED daqDeviceNetworkConfig_getNetworkConfigurationEnabled(daqDeviceNetworkConfig* self, daqBool* enabled);
-    daqErrCode EXPORTED daqDeviceNetworkConfig_getNetworkInterfaceNames(daqDeviceNetworkConfig* self, daqList** ifaceNames);
+    daqErrCode EXPORTED daqDeviceNetworkConfig_getNetworkInterfaceNames(daqDeviceNetworkConfig* self, daqListObject** ifaceNames);
 
 #ifdef __cplusplus
 }

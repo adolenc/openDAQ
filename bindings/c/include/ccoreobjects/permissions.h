@@ -35,14 +35,14 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqPermissions daqPermissions;
-    typedef struct daqDict daqDict;
+    typedef struct daqDictObject daqDictObject;
 
     EXPORTED extern const daqIntfID DAQ_PERMISSIONS_INTF_ID;
     void EXPORTED daqPermissions_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqPermissions_getInherited(daqPermissions* self, daqBool* isInherited);
-    daqErrCode EXPORTED daqPermissions_getAllowed(daqPermissions* self, daqDict** permissions);
-    daqErrCode EXPORTED daqPermissions_getDenied(daqPermissions* self, daqDict** permissions);
+    daqErrCode EXPORTED daqPermissions_getAllowed(daqPermissions* self, daqDictObject** permissions);
+    daqErrCode EXPORTED daqPermissions_getDenied(daqPermissions* self, daqDictObject** permissions);
 
 #ifdef __cplusplus
 }

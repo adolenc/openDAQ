@@ -36,7 +36,7 @@ extern "C"
 
     typedef struct daqDimensionBuilder daqDimensionBuilder;
     typedef struct daqDimension daqDimension;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
     typedef struct daqUnit daqUnit;
     typedef struct daqDimensionRule daqDimensionRule;
 
@@ -44,8 +44,8 @@ extern "C"
     void EXPORTED daqDimensionBuilder_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqDimensionBuilder_build(daqDimensionBuilder* self, daqDimension** dimension);
-    daqErrCode EXPORTED daqDimensionBuilder_setName(daqDimensionBuilder* self, daqString* name);
-    daqErrCode EXPORTED daqDimensionBuilder_getName(daqDimensionBuilder* self, daqString** name);
+    daqErrCode EXPORTED daqDimensionBuilder_setName(daqDimensionBuilder* self, daqStringObject* name);
+    daqErrCode EXPORTED daqDimensionBuilder_getName(daqDimensionBuilder* self, daqStringObject** name);
     daqErrCode EXPORTED daqDimensionBuilder_setUnit(daqDimensionBuilder* self, daqUnit* unit);
     daqErrCode EXPORTED daqDimensionBuilder_getUnit(daqDimensionBuilder* self, daqUnit** unit);
     daqErrCode EXPORTED daqDimensionBuilder_setRule(daqDimensionBuilder* self, daqDimensionRule* rule);

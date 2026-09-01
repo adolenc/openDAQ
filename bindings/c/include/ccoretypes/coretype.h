@@ -36,10 +36,10 @@ extern "C"
 
     typedef struct daqCoreTypeObject daqCoreTypeObject;
 
-    EXPORTED extern const daqIntfID DAQ_CORE_TYPE_OBJECT_INTF_ID;
-    void EXPORTED daqCoreTypeObject_getInterfaceId(daqIntfID* intfId);
+    EXPORTED extern const daqIntfID DAQ_CORE_TYPE_INTF_ID;
+    void EXPORTED daqCoreType_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqCoreTypeObject_getCoreType(daqCoreTypeObject* self, daqCoreType* coreType);
+    daqErrCode EXPORTED daqCoreType_getCoreType(daqCoreTypeObject* self, daqCoreType* coreType);
 
 #ifdef __cplusplus
 }

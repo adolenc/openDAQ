@@ -34,14 +34,14 @@ extern "C"
 
 #include <ccommon.h>
 
-    typedef struct daqBinaryData daqBinaryData;
+    typedef struct daqBinaryDataObject daqBinaryDataObject;
 
     EXPORTED extern const daqIntfID DAQ_BINARY_DATA_INTF_ID;
     void EXPORTED daqBinaryData_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqBinaryData_getAddress(daqBinaryData* self, void** data);
-    daqErrCode EXPORTED daqBinaryData_getSize(daqBinaryData* self, daqSizeT* size);
-    daqErrCode EXPORTED daqBinaryData_createBinaryData(daqBinaryData** obj, daqSizeT size);
+    daqErrCode EXPORTED daqBinaryData_getAddress(daqBinaryDataObject* self, void** data);
+    daqErrCode EXPORTED daqBinaryData_getSize(daqBinaryDataObject* self, daqSizeT* size);
+    daqErrCode EXPORTED daqBinaryData_createBinaryData(daqBinaryDataObject** obj, daqSizeT size);
 
 #ifdef __cplusplus
 }

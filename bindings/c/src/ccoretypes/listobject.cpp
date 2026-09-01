@@ -23,93 +23,93 @@ void daqList_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_LIST_INTF_ID;
 }
 
-daqErrCode daqList_getItemAt(daqList* self, daqSizeT index, daqBaseObject** obj)
+daqErrCode daqList_getItemAt(daqListObject* self, daqSizeT index, daqBaseObject** obj)
 {
     return reinterpret_cast<daq::IList*>(self)->getItemAt(index, reinterpret_cast<daq::IBaseObject**>(obj));
 }
 
-daqErrCode daqList_getCount(daqList* self, daqSizeT* size)
+daqErrCode daqList_getCount(daqListObject* self, daqSizeT* size)
 {
     return reinterpret_cast<daq::IList*>(self)->getCount(size);
 }
 
-daqErrCode daqList_setItemAt(daqList* self, daqSizeT index, daqBaseObject* obj)
+daqErrCode daqList_setItemAt(daqListObject* self, daqSizeT index, daqBaseObject* obj)
 {
     return reinterpret_cast<daq::IList*>(self)->setItemAt(index, reinterpret_cast<daq::IBaseObject*>(obj));
 }
 
-daqErrCode daqList_pushBack(daqList* self, daqBaseObject* obj)
+daqErrCode daqList_pushBack(daqListObject* self, daqBaseObject* obj)
 {
     return reinterpret_cast<daq::IList*>(self)->pushBack(reinterpret_cast<daq::IBaseObject*>(obj));
 }
 
-daqErrCode daqList_pushFront(daqList* self, daqBaseObject* obj)
+daqErrCode daqList_pushFront(daqListObject* self, daqBaseObject* obj)
 {
     return reinterpret_cast<daq::IList*>(self)->pushFront(reinterpret_cast<daq::IBaseObject*>(obj));
 }
 
-daqErrCode daqList_moveBack(daqList* self, daqBaseObject* obj)
+daqErrCode daqList_moveBack(daqListObject* self, daqBaseObject* obj)
 {
     return reinterpret_cast<daq::IList*>(self)->moveBack(reinterpret_cast<daq::IBaseObject*>(obj));
 }
 
-daqErrCode daqList_moveFront(daqList* self, daqBaseObject* obj)
+daqErrCode daqList_moveFront(daqListObject* self, daqBaseObject* obj)
 {
     return reinterpret_cast<daq::IList*>(self)->moveFront(reinterpret_cast<daq::IBaseObject*>(obj));
 }
 
-daqErrCode daqList_popBack(daqList* self, daqBaseObject** obj)
+daqErrCode daqList_popBack(daqListObject* self, daqBaseObject** obj)
 {
     return reinterpret_cast<daq::IList*>(self)->popBack(reinterpret_cast<daq::IBaseObject**>(obj));
 }
 
-daqErrCode daqList_popFront(daqList* self, daqBaseObject** obj)
+daqErrCode daqList_popFront(daqListObject* self, daqBaseObject** obj)
 {
     return reinterpret_cast<daq::IList*>(self)->popFront(reinterpret_cast<daq::IBaseObject**>(obj));
 }
 
-daqErrCode daqList_insertAt(daqList* self, daqSizeT index, daqBaseObject* obj)
+daqErrCode daqList_insertAt(daqListObject* self, daqSizeT index, daqBaseObject* obj)
 {
     return reinterpret_cast<daq::IList*>(self)->insertAt(index, reinterpret_cast<daq::IBaseObject*>(obj));
 }
 
-daqErrCode daqList_removeAt(daqList* self, daqSizeT index, daqBaseObject** obj)
+daqErrCode daqList_removeAt(daqListObject* self, daqSizeT index, daqBaseObject** obj)
 {
     return reinterpret_cast<daq::IList*>(self)->removeAt(index, reinterpret_cast<daq::IBaseObject**>(obj));
 }
 
-daqErrCode daqList_deleteAt(daqList* self, daqSizeT index)
+daqErrCode daqList_deleteAt(daqListObject* self, daqSizeT index)
 {
     return reinterpret_cast<daq::IList*>(self)->deleteAt(index);
 }
 
-daqErrCode daqList_clear(daqList* self)
+daqErrCode daqList_clear(daqListObject* self)
 {
     return reinterpret_cast<daq::IList*>(self)->clear();
 }
 
-daqErrCode daqList_createStartIterator(daqList* self, daqIterator** iterator)
+daqErrCode daqList_createStartIterator(daqListObject* self, daqIterator** iterator)
 {
     return reinterpret_cast<daq::IList*>(self)->createStartIterator(reinterpret_cast<daq::IIterator**>(iterator));
 }
 
-daqErrCode daqList_createEndIterator(daqList* self, daqIterator** iterator)
+daqErrCode daqList_createEndIterator(daqListObject* self, daqIterator** iterator)
 {
     return reinterpret_cast<daq::IList*>(self)->createEndIterator(reinterpret_cast<daq::IIterator**>(iterator));
 }
 
-daqErrCode daqList_createList(daqList** obj)
+daqErrCode daqList_createList(daqListObject** obj)
 {
     daq::IList* ptr = nullptr;
     daqErrCode err = daq::createList(&ptr);
-    *obj = reinterpret_cast<daqList*>(ptr);
+    *obj = reinterpret_cast<daqListObject*>(ptr);
     return err;
 }
 
-daqErrCode daqList_createListWithElementType(daqList** obj, daqIntfID id)
+daqErrCode daqList_createListWithElementType(daqListObject** obj, daqIntfID id)
 {
     daq::IList* ptr = nullptr;
     daqErrCode err = daq::createListWithElementType(&ptr, copendaq::utils::toDaqIntfId(id));
-    *obj = reinterpret_cast<daqList*>(ptr);
+    *obj = reinterpret_cast<daqListObject*>(ptr);
     return err;
 }

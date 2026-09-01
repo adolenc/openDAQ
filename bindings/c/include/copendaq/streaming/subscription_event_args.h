@@ -35,14 +35,14 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqSubscriptionEventArgs daqSubscriptionEventArgs;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
 
     EXPORTED extern const daqIntfID DAQ_SUBSCRIPTION_EVENT_ARGS_INTF_ID;
     void EXPORTED daqSubscriptionEventArgs_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqSubscriptionEventArgs_getStreamingConnectionString(daqSubscriptionEventArgs* self, daqString** streamingConnectionString);
+    daqErrCode EXPORTED daqSubscriptionEventArgs_getStreamingConnectionString(daqSubscriptionEventArgs* self, daqStringObject** streamingConnectionString);
     daqErrCode EXPORTED daqSubscriptionEventArgs_getSubscriptionEventType(daqSubscriptionEventArgs* self, daqSubscriptionEventType* type);
-    daqErrCode EXPORTED daqSubscriptionEventArgs_createSubscriptionEventArgs(daqSubscriptionEventArgs** obj, daqString* streamingConnectionString, daqSubscriptionEventType type);
+    daqErrCode EXPORTED daqSubscriptionEventArgs_createSubscriptionEventArgs(daqSubscriptionEventArgs** obj, daqStringObject* streamingConnectionString, daqSubscriptionEventType type);
 
 #ifdef __cplusplus
 }

@@ -23,12 +23,12 @@ void daqStreamingType_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_STREAMING_TYPE_INTF_ID;
 }
 
-daqErrCode daqStreamingType_getConnectionStringPrefix(daqStreamingType* self, daqString** prefix)
+daqErrCode daqStreamingType_getConnectionStringPrefix(daqStreamingType* self, daqStringObject** prefix)
 {
     return reinterpret_cast<daq::IStreamingType*>(self)->getConnectionStringPrefix(reinterpret_cast<daq::IString**>(prefix));
 }
 
-daqErrCode daqStreamingType_createStreamingType(daqStreamingType** obj, daqString* id, daqString* name, daqString* description, daqString* prefix, daqPropertyObject* defaultConfig)
+daqErrCode daqStreamingType_createStreamingType(daqStreamingType** obj, daqStringObject* id, daqStringObject* name, daqStringObject* description, daqStringObject* prefix, daqPropertyObject* defaultConfig)
 {
     daq::IStreamingType* ptr = nullptr;
     daqErrCode err = daq::createStreamingType(&ptr, reinterpret_cast<daq::IString*>(id), reinterpret_cast<daq::IString*>(name), reinterpret_cast<daq::IString*>(description), reinterpret_cast<daq::IString*>(prefix), reinterpret_cast<daq::IPropertyObject*>(defaultConfig));

@@ -35,13 +35,13 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqTaskGraph daqTaskGraph;
-    typedef struct daqProcedure daqProcedure;
-    typedef struct daqString daqString;
+    typedef struct daqProcedureObject daqProcedureObject;
+    typedef struct daqStringObject daqStringObject;
 
     EXPORTED extern const daqIntfID DAQ_TASK_GRAPH_INTF_ID;
     void EXPORTED daqTaskGraph_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqTaskGraph_createTaskGraph(daqTaskGraph** obj, daqProcedure* work, daqString* name);
+    daqErrCode EXPORTED daqTaskGraph_createTaskGraph(daqTaskGraph** obj, daqProcedureObject* work, daqStringObject* name);
 
 #ifdef __cplusplus
 }

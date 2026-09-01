@@ -7,13 +7,13 @@ using COpendaqStreamingTest = testing::Test;
 TEST_F(COpendaqStreamingTest, StreamingType)
 {
     daqStreamingType* streamingType = nullptr;
-    daqString* id = nullptr;
+    daqStringObject* id = nullptr;
     daqString_createString(&id, "streamingType");
-    daqString* name = nullptr;
+    daqStringObject* name = nullptr;
     daqString_createString(&name, "streamingTypeName");
-    daqString* description = nullptr;
+    daqStringObject* description = nullptr;
     daqString_createString(&description, "streamingTypeDescription");
-    daqString* prefix = nullptr;
+    daqStringObject* prefix = nullptr;
     daqString_createString(&prefix, "streamingTypePrefix");
     daqStreamingType_createStreamingType(&streamingType, id, name, description, prefix, nullptr);
     ASSERT_NE(streamingType, nullptr);
@@ -27,7 +27,7 @@ TEST_F(COpendaqStreamingTest, StreamingType)
 TEST_F(COpendaqStreamingTest, SubscriptionEventArgs)
 {
     daqSubscriptionEventArgs* subscriptionEventArgs = nullptr;
-    daqString* streamingConnectionString = nullptr;
+    daqStringObject* streamingConnectionString = nullptr;
     daqString_createString(&streamingConnectionString, "streamingConnectionString");
     daqSubscriptionEventType type = daqSubscriptionEventType::daqSubscriptionEventTypeUnsubscribed;
 

@@ -33,12 +33,12 @@ daqErrCode daqSampleReader_getDomainReadType(daqSampleReader* self, daqSampleTyp
     return reinterpret_cast<daq::ISampleReader*>(self)->getDomainReadType(reinterpret_cast<daq::SampleType*>(sampleType));
 }
 
-daqErrCode daqSampleReader_setValueTransformFunction(daqSampleReader* self, daqFunction* transform)
+daqErrCode daqSampleReader_setValueTransformFunction(daqSampleReader* self, daqFunctionObject* transform)
 {
     return reinterpret_cast<daq::ISampleReader*>(self)->setValueTransformFunction(reinterpret_cast<daq::IFunction*>(transform));
 }
 
-daqErrCode daqSampleReader_setDomainTransformFunction(daqSampleReader* self, daqFunction* transform)
+daqErrCode daqSampleReader_setDomainTransformFunction(daqSampleReader* self, daqFunctionObject* transform)
 {
     return reinterpret_cast<daq::ISampleReader*>(self)->setDomainTransformFunction(reinterpret_cast<daq::IFunction*>(transform));
 }

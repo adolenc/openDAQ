@@ -23,7 +23,7 @@ void daqTaskGraph_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_TASK_GRAPH_INTF_ID;
 }
 
-daqErrCode daqTaskGraph_createTaskGraph(daqTaskGraph** obj, daqProcedure* work, daqString* name)
+daqErrCode daqTaskGraph_createTaskGraph(daqTaskGraph** obj, daqProcedureObject* work, daqStringObject* name)
 {
     daq::ITaskGraph* ptr = nullptr;
     daqErrCode err = daq::createTaskGraph(&ptr, reinterpret_cast<daq::IProcedure*>(work), reinterpret_cast<daq::IString*>(name));

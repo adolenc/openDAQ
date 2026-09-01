@@ -36,15 +36,15 @@ extern "C"
 
     typedef struct daqModuleInfo daqModuleInfo;
     typedef struct daqVersionInfo daqVersionInfo;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
 
     EXPORTED extern const daqIntfID DAQ_MODULE_INFO_INTF_ID;
     void EXPORTED daqModuleInfo_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqModuleInfo_getVersionInfo(daqModuleInfo* self, daqVersionInfo** version);
-    daqErrCode EXPORTED daqModuleInfo_getName(daqModuleInfo* self, daqString** name);
-    daqErrCode EXPORTED daqModuleInfo_getId(daqModuleInfo* self, daqString** id);
-    daqErrCode EXPORTED daqModuleInfo_createModuleInfo(daqModuleInfo** obj, daqVersionInfo* versionInfo, daqString* name, daqString* id);
+    daqErrCode EXPORTED daqModuleInfo_getName(daqModuleInfo* self, daqStringObject** name);
+    daqErrCode EXPORTED daqModuleInfo_getId(daqModuleInfo* self, daqStringObject** id);
+    daqErrCode EXPORTED daqModuleInfo_createModuleInfo(daqModuleInfo** obj, daqVersionInfo* versionInfo, daqStringObject* name, daqStringObject* id);
 
 #ifdef __cplusplus
 }

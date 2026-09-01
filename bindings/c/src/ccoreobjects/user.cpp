@@ -23,17 +23,17 @@ void daqUser_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_USER_INTF_ID;
 }
 
-daqErrCode daqUser_getUsername(daqUser* self, daqString** username)
+daqErrCode daqUser_getUsername(daqUser* self, daqStringObject** username)
 {
     return reinterpret_cast<daq::IUser*>(self)->getUsername(reinterpret_cast<daq::IString**>(username));
 }
 
-daqErrCode daqUser_getGroups(daqUser* self, daqList** groups)
+daqErrCode daqUser_getGroups(daqUser* self, daqListObject** groups)
 {
     return reinterpret_cast<daq::IUser*>(self)->getGroups(reinterpret_cast<daq::IList**>(groups));
 }
 
-daqErrCode daqUser_createUser(daqUser** obj, daqString* username, daqString* passwordHash, daqList* groups)
+daqErrCode daqUser_createUser(daqUser** obj, daqStringObject* username, daqStringObject* passwordHash, daqListObject* groups)
 {
     daq::IUser* ptr = nullptr;
     daqErrCode err = daq::createUser(&ptr, reinterpret_cast<daq::IString*>(username), reinterpret_cast<daq::IString*>(passwordHash), reinterpret_cast<daq::IList*>(groups));

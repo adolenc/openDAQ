@@ -23,12 +23,12 @@ void daqConfigProvider_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_CONFIG_PROVIDER_INTF_ID;
 }
 
-daqErrCode daqConfigProvider_populateOptions(daqConfigProvider* self, daqDict* options)
+daqErrCode daqConfigProvider_populateOptions(daqConfigProvider* self, daqDictObject* options)
 {
     return reinterpret_cast<daq::IConfigProvider*>(self)->populateOptions(reinterpret_cast<daq::IDict*>(options));
 }
 
-daqErrCode daqConfigProvider_createJsonConfigProvider(daqConfigProvider** obj, daqString* filename)
+daqErrCode daqConfigProvider_createJsonConfigProvider(daqConfigProvider** obj, daqStringObject* filename)
 {
     daq::IConfigProvider* ptr = nullptr;
     daqErrCode err = daq::createJsonConfigProvider(&ptr, reinterpret_cast<daq::IString*>(filename));
@@ -44,7 +44,7 @@ daqErrCode daqConfigProvider_createEnvConfigProvider(daqConfigProvider** obj)
     return err;
 }
 
-daqErrCode daqConfigProvider_createCmdLineArgsConfigProvider(daqConfigProvider** obj, daqList* cmdLineArgs)
+daqErrCode daqConfigProvider_createCmdLineArgsConfigProvider(daqConfigProvider** obj, daqListObject* cmdLineArgs)
 {
     daq::IConfigProvider* ptr = nullptr;
     daqErrCode err = daq::createCmdLineArgsConfigProvider(&ptr, reinterpret_cast<daq::IList*>(cmdLineArgs));

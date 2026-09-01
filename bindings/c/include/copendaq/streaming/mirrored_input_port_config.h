@@ -35,16 +35,16 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqMirroredInputPortConfig daqMirroredInputPortConfig;
-    typedef struct daqString daqString;
-    typedef struct daqList daqList;
+    typedef struct daqStringObject daqStringObject;
+    typedef struct daqListObject daqListObject;
 
     EXPORTED extern const daqIntfID DAQ_MIRRORED_INPUT_PORT_CONFIG_INTF_ID;
     void EXPORTED daqMirroredInputPortConfig_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqMirroredInputPortConfig_getRemoteId(daqMirroredInputPortConfig* self, daqString** id);
-    daqErrCode EXPORTED daqMirroredInputPortConfig_getStreamingSources(daqMirroredInputPortConfig* self, daqList** streamingConnectionStrings);
-    daqErrCode EXPORTED daqMirroredInputPortConfig_setActiveStreamingSource(daqMirroredInputPortConfig* self, daqString* streamingConnectionString);
-    daqErrCode EXPORTED daqMirroredInputPortConfig_getActiveStreamingSource(daqMirroredInputPortConfig* self, daqString** streamingConnectionString);
+    daqErrCode EXPORTED daqMirroredInputPortConfig_getRemoteId(daqMirroredInputPortConfig* self, daqStringObject** id);
+    daqErrCode EXPORTED daqMirroredInputPortConfig_getStreamingSources(daqMirroredInputPortConfig* self, daqListObject** streamingConnectionStrings);
+    daqErrCode EXPORTED daqMirroredInputPortConfig_setActiveStreamingSource(daqMirroredInputPortConfig* self, daqStringObject* streamingConnectionString);
+    daqErrCode EXPORTED daqMirroredInputPortConfig_getActiveStreamingSource(daqMirroredInputPortConfig* self, daqStringObject** streamingConnectionString);
 
 #ifdef __cplusplus
 }

@@ -16,14 +16,14 @@
 
 #include <copendaq_private.h>
 
-const daqIntfID DAQ_CORE_TYPE_OBJECT_INTF_ID = { daq::ICoreType::Id.Data1, daq::ICoreType::Id.Data2, daq::ICoreType::Id.Data3, daq::ICoreType::Id.Data4_UInt64 };
+const daqIntfID DAQ_CORE_TYPE_INTF_ID = { daq::ICoreType::Id.Data1, daq::ICoreType::Id.Data2, daq::ICoreType::Id.Data3, daq::ICoreType::Id.Data4_UInt64 };
 
-void daqCoreTypeObject_getInterfaceId(daqIntfID* intfId)
+void daqCoreType_getInterfaceId(daqIntfID* intfId)
 {
-    *intfId = DAQ_CORE_TYPE_OBJECT_INTF_ID;
+    *intfId = DAQ_CORE_TYPE_INTF_ID;
 }
 
-daqErrCode daqCoreTypeObject_getCoreType(daqCoreTypeObject* self, daqCoreType* coreType)
+daqErrCode daqCoreType_getCoreType(daqCoreTypeObject* self, daqCoreType* coreType)
 {
     return reinterpret_cast<daq::ICoreType*>(self)->getCoreType(reinterpret_cast<daq::CoreType*>(coreType));
 }

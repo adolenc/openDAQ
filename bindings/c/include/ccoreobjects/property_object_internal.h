@@ -36,9 +36,9 @@ extern "C"
 
     typedef struct daqPropertyObjectInternal daqPropertyObjectInternal;
     typedef struct daqProperty daqProperty;
-    typedef struct daqProcedure daqProcedure;
+    typedef struct daqProcedureObject daqProcedureObject;
     typedef struct daqPropertyObject daqPropertyObject;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
     typedef struct daqLockGuard daqLockGuard;
     typedef struct daqMutex daqMutex;
 
@@ -49,18 +49,18 @@ extern "C"
     daqErrCode EXPORTED daqPropertyObjectInternal_checkForReferencesNoLock(daqPropertyObjectInternal* self, daqProperty* property, daqBool* isReferenced);
     daqErrCode EXPORTED daqPropertyObjectInternal_enableCoreEventTrigger(daqPropertyObjectInternal* self);
     daqErrCode EXPORTED daqPropertyObjectInternal_disableCoreEventTrigger(daqPropertyObjectInternal* self);
-    daqErrCode EXPORTED daqPropertyObjectInternal_getCoreEventTrigger(daqPropertyObjectInternal* self, daqProcedure** trigger);
-    daqErrCode EXPORTED daqPropertyObjectInternal_setCoreEventTrigger(daqPropertyObjectInternal* self, daqProcedure* trigger);
+    daqErrCode EXPORTED daqPropertyObjectInternal_getCoreEventTrigger(daqPropertyObjectInternal* self, daqProcedureObject** trigger);
+    daqErrCode EXPORTED daqPropertyObjectInternal_setCoreEventTrigger(daqPropertyObjectInternal* self, daqProcedureObject* trigger);
     daqErrCode EXPORTED daqPropertyObjectInternal_clone(daqPropertyObjectInternal* self, daqPropertyObject** cloned);
-    daqErrCode EXPORTED daqPropertyObjectInternal_setPath(daqPropertyObjectInternal* self, daqString* path);
-    daqErrCode EXPORTED daqPropertyObjectInternal_getPath(daqPropertyObjectInternal* self, daqString** path);
+    daqErrCode EXPORTED daqPropertyObjectInternal_setPath(daqPropertyObjectInternal* self, daqStringObject* path);
+    daqErrCode EXPORTED daqPropertyObjectInternal_getPath(daqPropertyObjectInternal* self, daqStringObject** path);
     daqErrCode EXPORTED daqPropertyObjectInternal_isUpdating(daqPropertyObjectInternal* self, daqBool* updating);
     daqErrCode EXPORTED daqPropertyObjectInternal_hasUserReadAccess(daqPropertyObjectInternal* self, daqBaseObject* userContext, daqBool* hasAccessOut);
-    daqErrCode EXPORTED daqPropertyObjectInternal_getPropertyValueNoLock(daqPropertyObjectInternal* self, daqString* name, daqBaseObject** value);
-    daqErrCode EXPORTED daqPropertyObjectInternal_getPropertySelectionValueNoLock(daqPropertyObjectInternal* self, daqString* name, daqBaseObject** value);
-    daqErrCode EXPORTED daqPropertyObjectInternal_setPropertyValueNoLock(daqPropertyObjectInternal* self, daqString* name, daqBaseObject* value);
-    daqErrCode EXPORTED daqPropertyObjectInternal_setProtectedPropertyValueNoLock(daqPropertyObjectInternal* self, daqString* name, daqBaseObject* value);
-    daqErrCode EXPORTED daqPropertyObjectInternal_clearPropertyValueNoLock(daqPropertyObjectInternal* self, daqString* name);
+    daqErrCode EXPORTED daqPropertyObjectInternal_getPropertyValueNoLock(daqPropertyObjectInternal* self, daqStringObject* name, daqBaseObject** value);
+    daqErrCode EXPORTED daqPropertyObjectInternal_getPropertySelectionValueNoLock(daqPropertyObjectInternal* self, daqStringObject* name, daqBaseObject** value);
+    daqErrCode EXPORTED daqPropertyObjectInternal_setPropertyValueNoLock(daqPropertyObjectInternal* self, daqStringObject* name, daqBaseObject* value);
+    daqErrCode EXPORTED daqPropertyObjectInternal_setProtectedPropertyValueNoLock(daqPropertyObjectInternal* self, daqStringObject* name, daqBaseObject* value);
+    daqErrCode EXPORTED daqPropertyObjectInternal_clearPropertyValueNoLock(daqPropertyObjectInternal* self, daqStringObject* name);
     daqErrCode EXPORTED daqPropertyObjectInternal_getLockGuard(daqPropertyObjectInternal* self, daqLockGuard** lockGuard);
     daqErrCode EXPORTED daqPropertyObjectInternal_getRecursiveLockGuard(daqPropertyObjectInternal* self, daqLockGuard** lockGuard);
     daqErrCode EXPORTED daqPropertyObjectInternal_setLockingStrategy(daqPropertyObjectInternal* self, daqLockingStrategy strategy);

@@ -78,17 +78,17 @@ daqErrCode daqConnection_enqueueAndStealRef(daqConnection* self, daqPacket* pack
     return reinterpret_cast<daq::IConnection*>(self)->enqueueAndStealRef(reinterpret_cast<daq::IPacket*>(packet));
 }
 
-daqErrCode daqConnection_enqueueMultiple(daqConnection* self, daqList* packets)
+daqErrCode daqConnection_enqueueMultiple(daqConnection* self, daqListObject* packets)
 {
     return reinterpret_cast<daq::IConnection*>(self)->enqueueMultiple(reinterpret_cast<daq::IList*>(packets));
 }
 
-daqErrCode daqConnection_enqueueMultipleAndStealRef(daqConnection* self, daqList* packets)
+daqErrCode daqConnection_enqueueMultipleAndStealRef(daqConnection* self, daqListObject* packets)
 {
     return reinterpret_cast<daq::IConnection*>(self)->enqueueMultipleAndStealRef(reinterpret_cast<daq::IList*>(packets));
 }
 
-daqErrCode daqConnection_dequeueAll(daqConnection* self, daqList** packets)
+daqErrCode daqConnection_dequeueAll(daqConnection* self, daqListObject** packets)
 {
     return reinterpret_cast<daq::IConnection*>(self)->dequeueAll(reinterpret_cast<daq::IList**>(packets));
 }

@@ -35,16 +35,16 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqUnit daqUnit;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
 
     EXPORTED extern const daqIntfID DAQ_UNIT_INTF_ID;
     void EXPORTED daqUnit_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqUnit_getId(daqUnit* self, daqInt* id);
-    daqErrCode EXPORTED daqUnit_getSymbol(daqUnit* self, daqString** symbol);
-    daqErrCode EXPORTED daqUnit_getName(daqUnit* self, daqString** name);
-    daqErrCode EXPORTED daqUnit_getQuantity(daqUnit* self, daqString** quantity);
-    daqErrCode EXPORTED daqUnit_createUnit(daqUnit** obj, daqInt id, daqString* symbol, daqString* name, daqString* quantity);
+    daqErrCode EXPORTED daqUnit_getSymbol(daqUnit* self, daqStringObject** symbol);
+    daqErrCode EXPORTED daqUnit_getName(daqUnit* self, daqStringObject** name);
+    daqErrCode EXPORTED daqUnit_getQuantity(daqUnit* self, daqStringObject** quantity);
+    daqErrCode EXPORTED daqUnit_createUnit(daqUnit** obj, daqInt id, daqStringObject* symbol, daqStringObject* name, daqStringObject* quantity);
 
 #ifdef __cplusplus
 }

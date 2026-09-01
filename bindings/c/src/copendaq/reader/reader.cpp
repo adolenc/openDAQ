@@ -28,7 +28,7 @@ daqErrCode daqReader_getAvailableCount(daqReader* self, daqSizeT* count)
     return reinterpret_cast<daq::IReader*>(self)->getAvailableCount(count);
 }
 
-daqErrCode daqReader_setOnDataAvailable(daqReader* self, daqProcedure* callback)
+daqErrCode daqReader_setOnDataAvailable(daqReader* self, daqProcedureObject* callback)
 {
     return reinterpret_cast<daq::IReader*>(self)->setOnDataAvailable(reinterpret_cast<daq::IProcedure*>(callback));
 }

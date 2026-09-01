@@ -35,17 +35,17 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqConfigProvider daqConfigProvider;
-    typedef struct daqDict daqDict;
-    typedef struct daqString daqString;
-    typedef struct daqList daqList;
+    typedef struct daqDictObject daqDictObject;
+    typedef struct daqStringObject daqStringObject;
+    typedef struct daqListObject daqListObject;
 
     EXPORTED extern const daqIntfID DAQ_CONFIG_PROVIDER_INTF_ID;
     void EXPORTED daqConfigProvider_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqConfigProvider_populateOptions(daqConfigProvider* self, daqDict* options);
-    daqErrCode EXPORTED daqConfigProvider_createJsonConfigProvider(daqConfigProvider** obj, daqString* filename);
+    daqErrCode EXPORTED daqConfigProvider_populateOptions(daqConfigProvider* self, daqDictObject* options);
+    daqErrCode EXPORTED daqConfigProvider_createJsonConfigProvider(daqConfigProvider** obj, daqStringObject* filename);
     daqErrCode EXPORTED daqConfigProvider_createEnvConfigProvider(daqConfigProvider** obj);
-    daqErrCode EXPORTED daqConfigProvider_createCmdLineArgsConfigProvider(daqConfigProvider** obj, daqList* cmdLineArgs);
+    daqErrCode EXPORTED daqConfigProvider_createCmdLineArgsConfigProvider(daqConfigProvider** obj, daqListObject* cmdLineArgs);
 
 #ifdef __cplusplus
 }

@@ -23,7 +23,7 @@ void daqGraphVisualization_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_GRAPH_VISUALIZATION_INTF_ID;
 }
 
-daqErrCode daqGraphVisualization_dump(daqGraphVisualization* self, daqString** dot)
+daqErrCode daqGraphVisualization_dump(daqGraphVisualization* self, daqStringObject** dot)
 {
     return reinterpret_cast<daq::IGraphVisualization*>(self)->dump(reinterpret_cast<daq::IString**>(dot));
 }

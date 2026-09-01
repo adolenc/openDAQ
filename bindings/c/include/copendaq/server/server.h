@@ -35,8 +35,8 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqServer daqServer;
-    typedef struct daqString daqString;
-    typedef struct daqList daqList;
+    typedef struct daqStringObject daqStringObject;
+    typedef struct daqListObject daqListObject;
     typedef struct daqSearchFilter daqSearchFilter;
     typedef struct daqStreaming daqStreaming;
 
@@ -44,9 +44,9 @@ extern "C"
     void EXPORTED daqServer_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqServer_stop(daqServer* self);
-    daqErrCode EXPORTED daqServer_getId(daqServer* self, daqString** serverId);
+    daqErrCode EXPORTED daqServer_getId(daqServer* self, daqStringObject** serverId);
     daqErrCode EXPORTED daqServer_enableDiscovery(daqServer* self);
-    daqErrCode EXPORTED daqServer_getSignals(daqServer* self, daqList** signals, daqSearchFilter* searchFilter);
+    daqErrCode EXPORTED daqServer_getSignals(daqServer* self, daqListObject** signals, daqSearchFilter* searchFilter);
     daqErrCode EXPORTED daqServer_getStreaming(daqServer* self, daqStreaming** streaming);
     daqErrCode EXPORTED daqServer_disableDiscovery(daqServer* self);
 

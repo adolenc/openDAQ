@@ -35,19 +35,19 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqLogFileInfo daqLogFileInfo;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
     typedef struct daqLogFileInfoBuilder daqLogFileInfoBuilder;
 
     EXPORTED extern const daqIntfID DAQ_LOG_FILE_INFO_INTF_ID;
     void EXPORTED daqLogFileInfo_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqLogFileInfo_getId(daqLogFileInfo* self, daqString** id);
-    daqErrCode EXPORTED daqLogFileInfo_getLocalPath(daqLogFileInfo* self, daqString** localPath);
-    daqErrCode EXPORTED daqLogFileInfo_getName(daqLogFileInfo* self, daqString** name);
-    daqErrCode EXPORTED daqLogFileInfo_getDescription(daqLogFileInfo* self, daqString** description);
+    daqErrCode EXPORTED daqLogFileInfo_getId(daqLogFileInfo* self, daqStringObject** id);
+    daqErrCode EXPORTED daqLogFileInfo_getLocalPath(daqLogFileInfo* self, daqStringObject** localPath);
+    daqErrCode EXPORTED daqLogFileInfo_getName(daqLogFileInfo* self, daqStringObject** name);
+    daqErrCode EXPORTED daqLogFileInfo_getDescription(daqLogFileInfo* self, daqStringObject** description);
     daqErrCode EXPORTED daqLogFileInfo_getSize(daqLogFileInfo* self, daqSizeT* size);
-    daqErrCode EXPORTED daqLogFileInfo_getEncoding(daqLogFileInfo* self, daqString** encoding);
-    daqErrCode EXPORTED daqLogFileInfo_getLastModified(daqLogFileInfo* self, daqString** lastModified);
+    daqErrCode EXPORTED daqLogFileInfo_getEncoding(daqLogFileInfo* self, daqStringObject** encoding);
+    daqErrCode EXPORTED daqLogFileInfo_getLastModified(daqLogFileInfo* self, daqStringObject** lastModified);
     daqErrCode EXPORTED daqLogFileInfo_createLogFileInfoFromBuilder(daqLogFileInfo** obj, daqLogFileInfoBuilder* builder);
 
 #ifdef __cplusplus

@@ -35,17 +35,17 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqDeserializer daqDeserializer;
-    typedef struct daqString daqString;
-    typedef struct daqFunction daqFunction;
+    typedef struct daqStringObject daqStringObject;
+    typedef struct daqFunctionObject daqFunctionObject;
     typedef struct daqUpdatable daqUpdatable;
-    typedef struct daqProcedure daqProcedure;
+    typedef struct daqProcedureObject daqProcedureObject;
 
     EXPORTED extern const daqIntfID DAQ_DESERIALIZER_INTF_ID;
     void EXPORTED daqDeserializer_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqDeserializer_deserialize(daqDeserializer* self, daqString* serialized, daqBaseObject* context, daqFunction* factoryCallback, daqBaseObject** object);
-    daqErrCode EXPORTED daqDeserializer_update(daqDeserializer* self, daqUpdatable* updatable, daqString* serialized, daqBaseObject* config);
-    daqErrCode EXPORTED daqDeserializer_callCustomProc(daqDeserializer* self, daqProcedure* customDeserialize, daqString* serialized);
+    daqErrCode EXPORTED daqDeserializer_deserialize(daqDeserializer* self, daqStringObject* serialized, daqBaseObject* context, daqFunctionObject* factoryCallback, daqBaseObject** object);
+    daqErrCode EXPORTED daqDeserializer_update(daqDeserializer* self, daqUpdatable* updatable, daqStringObject* serialized, daqBaseObject* config);
+    daqErrCode EXPORTED daqDeserializer_callCustomProc(daqDeserializer* self, daqProcedureObject* customDeserialize, daqStringObject* serialized);
 
 #ifdef __cplusplus
 }

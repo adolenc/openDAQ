@@ -38,22 +38,22 @@ daqErrCode daqDimensionRuleBuilder_getType(daqDimensionRuleBuilder* self, daqDim
     return reinterpret_cast<daq::IDimensionRuleBuilder*>(self)->getType(reinterpret_cast<daq::DimensionRuleType*>(type));
 }
 
-daqErrCode daqDimensionRuleBuilder_setParameters(daqDimensionRuleBuilder* self, daqDict* parameters)
+daqErrCode daqDimensionRuleBuilder_setParameters(daqDimensionRuleBuilder* self, daqDictObject* parameters)
 {
     return reinterpret_cast<daq::IDimensionRuleBuilder*>(self)->setParameters(reinterpret_cast<daq::IDict*>(parameters));
 }
 
-daqErrCode daqDimensionRuleBuilder_getParameters(daqDimensionRuleBuilder* self, daqDict** parameters)
+daqErrCode daqDimensionRuleBuilder_getParameters(daqDimensionRuleBuilder* self, daqDictObject** parameters)
 {
     return reinterpret_cast<daq::IDimensionRuleBuilder*>(self)->getParameters(reinterpret_cast<daq::IDict**>(parameters));
 }
 
-daqErrCode daqDimensionRuleBuilder_addParameter(daqDimensionRuleBuilder* self, daqString* name, daqBaseObject* parameter)
+daqErrCode daqDimensionRuleBuilder_addParameter(daqDimensionRuleBuilder* self, daqStringObject* name, daqBaseObject* parameter)
 {
     return reinterpret_cast<daq::IDimensionRuleBuilder*>(self)->addParameter(reinterpret_cast<daq::IString*>(name), reinterpret_cast<daq::IBaseObject*>(parameter));
 }
 
-daqErrCode daqDimensionRuleBuilder_removeParameter(daqDimensionRuleBuilder* self, daqString* name)
+daqErrCode daqDimensionRuleBuilder_removeParameter(daqDimensionRuleBuilder* self, daqStringObject* name)
 {
     return reinterpret_cast<daq::IDimensionRuleBuilder*>(self)->removeParameter(reinterpret_cast<daq::IString*>(name));
 }

@@ -28,22 +28,22 @@ daqErrCode daqPropertyObjectClassBuilder_build(daqPropertyObjectClassBuilder* se
     return reinterpret_cast<daq::IPropertyObjectClassBuilder*>(self)->build(reinterpret_cast<daq::IPropertyObjectClass**>(propertyObjectClass));
 }
 
-daqErrCode daqPropertyObjectClassBuilder_setName(daqPropertyObjectClassBuilder* self, daqString* className)
+daqErrCode daqPropertyObjectClassBuilder_setName(daqPropertyObjectClassBuilder* self, daqStringObject* className)
 {
     return reinterpret_cast<daq::IPropertyObjectClassBuilder*>(self)->setName(reinterpret_cast<daq::IString*>(className));
 }
 
-daqErrCode daqPropertyObjectClassBuilder_getName(daqPropertyObjectClassBuilder* self, daqString** className)
+daqErrCode daqPropertyObjectClassBuilder_getName(daqPropertyObjectClassBuilder* self, daqStringObject** className)
 {
     return reinterpret_cast<daq::IPropertyObjectClassBuilder*>(self)->getName(reinterpret_cast<daq::IString**>(className));
 }
 
-daqErrCode daqPropertyObjectClassBuilder_setParentName(daqPropertyObjectClassBuilder* self, daqString* parentName)
+daqErrCode daqPropertyObjectClassBuilder_setParentName(daqPropertyObjectClassBuilder* self, daqStringObject* parentName)
 {
     return reinterpret_cast<daq::IPropertyObjectClassBuilder*>(self)->setParentName(reinterpret_cast<daq::IString*>(parentName));
 }
 
-daqErrCode daqPropertyObjectClassBuilder_getParentName(daqPropertyObjectClassBuilder* self, daqString** parentName)
+daqErrCode daqPropertyObjectClassBuilder_getParentName(daqPropertyObjectClassBuilder* self, daqStringObject** parentName)
 {
     return reinterpret_cast<daq::IPropertyObjectClassBuilder*>(self)->getParentName(reinterpret_cast<daq::IString**>(parentName));
 }
@@ -53,22 +53,22 @@ daqErrCode daqPropertyObjectClassBuilder_addProperty(daqPropertyObjectClassBuild
     return reinterpret_cast<daq::IPropertyObjectClassBuilder*>(self)->addProperty(reinterpret_cast<daq::IProperty*>(property));
 }
 
-daqErrCode daqPropertyObjectClassBuilder_getProperties(daqPropertyObjectClassBuilder* self, daqDict** properties)
+daqErrCode daqPropertyObjectClassBuilder_getProperties(daqPropertyObjectClassBuilder* self, daqDictObject** properties)
 {
     return reinterpret_cast<daq::IPropertyObjectClassBuilder*>(self)->getProperties(reinterpret_cast<daq::IDict**>(properties));
 }
 
-daqErrCode daqPropertyObjectClassBuilder_removeProperty(daqPropertyObjectClassBuilder* self, daqString* propertyName)
+daqErrCode daqPropertyObjectClassBuilder_removeProperty(daqPropertyObjectClassBuilder* self, daqStringObject* propertyName)
 {
     return reinterpret_cast<daq::IPropertyObjectClassBuilder*>(self)->removeProperty(reinterpret_cast<daq::IString*>(propertyName));
 }
 
-daqErrCode daqPropertyObjectClassBuilder_setPropertyOrder(daqPropertyObjectClassBuilder* self, daqList* orderedPropertyNames)
+daqErrCode daqPropertyObjectClassBuilder_setPropertyOrder(daqPropertyObjectClassBuilder* self, daqListObject* orderedPropertyNames)
 {
     return reinterpret_cast<daq::IPropertyObjectClassBuilder*>(self)->setPropertyOrder(reinterpret_cast<daq::IList*>(orderedPropertyNames));
 }
 
-daqErrCode daqPropertyObjectClassBuilder_getPropertyOrder(daqPropertyObjectClassBuilder* self, daqList** orderedPropertyNames)
+daqErrCode daqPropertyObjectClassBuilder_getPropertyOrder(daqPropertyObjectClassBuilder* self, daqListObject** orderedPropertyNames)
 {
     return reinterpret_cast<daq::IPropertyObjectClassBuilder*>(self)->getPropertyOrder(reinterpret_cast<daq::IList**>(orderedPropertyNames));
 }
@@ -78,7 +78,7 @@ daqErrCode daqPropertyObjectClassBuilder_getManager(daqPropertyObjectClassBuilde
     return reinterpret_cast<daq::IPropertyObjectClassBuilder*>(self)->getManager(reinterpret_cast<daq::ITypeManager**>(manager));
 }
 
-daqErrCode daqPropertyObjectClassBuilder_createPropertyObjectClassBuilder(daqPropertyObjectClassBuilder** obj, daqString* name)
+daqErrCode daqPropertyObjectClassBuilder_createPropertyObjectClassBuilder(daqPropertyObjectClassBuilder** obj, daqStringObject* name)
 {
     daq::IPropertyObjectClassBuilder* ptr = nullptr;
     daqErrCode err = daq::createPropertyObjectClassBuilder(&ptr, reinterpret_cast<daq::IString*>(name));
@@ -86,7 +86,7 @@ daqErrCode daqPropertyObjectClassBuilder_createPropertyObjectClassBuilder(daqPro
     return err;
 }
 
-daqErrCode daqPropertyObjectClassBuilder_createPropertyObjectClassBuilderWithManager(daqPropertyObjectClassBuilder** obj, daqTypeManager* manager, daqString* name)
+daqErrCode daqPropertyObjectClassBuilder_createPropertyObjectClassBuilderWithManager(daqPropertyObjectClassBuilder** obj, daqTypeManager* manager, daqStringObject* name)
 {
     daq::IPropertyObjectClassBuilder* ptr = nullptr;
     daqErrCode err = daq::createPropertyObjectClassBuilderWithManager(&ptr, reinterpret_cast<daq::ITypeManager*>(manager), reinterpret_cast<daq::IString*>(name));

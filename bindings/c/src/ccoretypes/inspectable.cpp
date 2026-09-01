@@ -30,7 +30,7 @@ daqErrCode daqInspectable_getInterfaceIds(daqInspectable* self, daqSizeT* idCoun
 }
 */
 
-daqErrCode daqInspectable_getRuntimeClassName(daqInspectable* self, daqString** implementationName)
+daqErrCode daqInspectable_getRuntimeClassName(daqInspectable* self, daqStringObject** implementationName)
 {
     return reinterpret_cast<daq::IInspectable*>(self)->getRuntimeClassName(reinterpret_cast<daq::IString**>(implementationName));
 }

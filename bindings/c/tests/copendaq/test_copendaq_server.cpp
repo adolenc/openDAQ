@@ -6,11 +6,11 @@ using COpendaqServerTest = testing::Test;
 
 TEST_F(COpendaqServerTest, ServerType)
 {
-    daqString* id = nullptr;
+    daqStringObject* id = nullptr;
     daqString_createString(&id, "id");
-    daqString* name = nullptr;
+    daqStringObject* name = nullptr;
     daqString_createString(&name, "name");
-    daqString* description = nullptr;
+    daqStringObject* description = nullptr;
     daqString_createString(&description, "description");
     daqPropertyObject* defaultConfig = nullptr;
     daqPropertyObject_createPropertyObject(&defaultConfig);

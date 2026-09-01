@@ -35,7 +35,7 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqScaling daqScaling;
-    typedef struct daqDict daqDict;
+    typedef struct daqDictObject daqDictObject;
     typedef struct daqNumber daqNumber;
     typedef struct daqScalingBuilder daqScalingBuilder;
 
@@ -45,9 +45,9 @@ extern "C"
     daqErrCode EXPORTED daqScaling_getInputSampleType(daqScaling* self, daqSampleType* type);
     daqErrCode EXPORTED daqScaling_getOutputSampleType(daqScaling* self, daqScaledSampleType* type);
     daqErrCode EXPORTED daqScaling_getType(daqScaling* self, daqScalingType* type);
-    daqErrCode EXPORTED daqScaling_getParameters(daqScaling* self, daqDict** parameters);
+    daqErrCode EXPORTED daqScaling_getParameters(daqScaling* self, daqDictObject** parameters);
     daqErrCode EXPORTED daqScaling_createLinearScaling(daqScaling** obj, daqNumber* scale, daqNumber* offset, daqSampleType inputDataType, daqScaledSampleType outputDataType);
-    daqErrCode EXPORTED daqScaling_createScaling(daqScaling** obj, daqSampleType inputDataType, daqScaledSampleType outputDataType, daqScalingType scalingType, daqDict* parameters);
+    daqErrCode EXPORTED daqScaling_createScaling(daqScaling** obj, daqSampleType inputDataType, daqScaledSampleType outputDataType, daqScalingType scalingType, daqDictObject* parameters);
     daqErrCode EXPORTED daqScaling_createScalingFromBuilder(daqScaling** obj, daqScalingBuilder* builder);
 
 #ifdef __cplusplus

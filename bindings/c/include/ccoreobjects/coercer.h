@@ -35,15 +35,15 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqCoercer daqCoercer;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
 
     EXPORTED extern const daqIntfID DAQ_COERCER_INTF_ID;
     void EXPORTED daqCoercer_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqCoercer_coerce(daqCoercer* self, daqBaseObject* propObj, daqBaseObject* value, daqBaseObject** result);
     daqErrCode EXPORTED daqCoercer_coerceNoLock(daqCoercer* self, daqBaseObject* propObj, daqBaseObject* value, daqBaseObject** result);
-    daqErrCode EXPORTED daqCoercer_getEval(daqCoercer* self, daqString** eval);
-    daqErrCode EXPORTED daqCoercer_createCoercer(daqCoercer** obj, daqString* eval);
+    daqErrCode EXPORTED daqCoercer_getEval(daqCoercer* self, daqStringObject** eval);
+    daqErrCode EXPORTED daqCoercer_createCoercer(daqCoercer** obj, daqStringObject* eval);
 
 #ifdef __cplusplus
 }

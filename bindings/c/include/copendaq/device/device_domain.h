@@ -35,20 +35,20 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqDeviceDomain daqDeviceDomain;
-    typedef struct daqRatio daqRatio;
-    typedef struct daqString daqString;
+    typedef struct daqRatioObject daqRatioObject;
+    typedef struct daqStringObject daqStringObject;
     typedef struct daqUnit daqUnit;
     typedef struct daqReferenceDomainInfo daqReferenceDomainInfo;
 
     EXPORTED extern const daqIntfID DAQ_DEVICE_DOMAIN_INTF_ID;
     void EXPORTED daqDeviceDomain_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqDeviceDomain_getTickResolution(daqDeviceDomain* self, daqRatio** tickResolution);
-    daqErrCode EXPORTED daqDeviceDomain_getOrigin(daqDeviceDomain* self, daqString** origin);
+    daqErrCode EXPORTED daqDeviceDomain_getTickResolution(daqDeviceDomain* self, daqRatioObject** tickResolution);
+    daqErrCode EXPORTED daqDeviceDomain_getOrigin(daqDeviceDomain* self, daqStringObject** origin);
     daqErrCode EXPORTED daqDeviceDomain_getUnit(daqDeviceDomain* self, daqUnit** unit);
     daqErrCode EXPORTED daqDeviceDomain_getReferenceDomainInfo(daqDeviceDomain* self, daqReferenceDomainInfo** referenceDomainInfo);
-    daqErrCode EXPORTED daqDeviceDomain_createDeviceDomain(daqDeviceDomain** obj, daqRatio* tickResolution, daqString* origin, daqUnit* unit);
-    daqErrCode EXPORTED daqDeviceDomain_createDeviceDomainWithReferenceDomainInfo(daqDeviceDomain** obj, daqRatio* tickResolution, daqString* origin, daqUnit* unit, daqReferenceDomainInfo* referenceDomainInfo);
+    daqErrCode EXPORTED daqDeviceDomain_createDeviceDomain(daqDeviceDomain** obj, daqRatioObject* tickResolution, daqStringObject* origin, daqUnit* unit);
+    daqErrCode EXPORTED daqDeviceDomain_createDeviceDomainWithReferenceDomainInfo(daqDeviceDomain** obj, daqRatioObject* tickResolution, daqStringObject* origin, daqUnit* unit, daqReferenceDomainInfo* referenceDomainInfo);
 
 #ifdef __cplusplus
 }

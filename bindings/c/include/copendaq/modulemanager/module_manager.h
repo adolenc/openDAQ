@@ -35,25 +35,25 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqModuleManager daqModuleManager;
-    typedef struct daqList daqList;
+    typedef struct daqListObject daqListObject;
     typedef struct daqModule daqModule;
     typedef struct daqContext daqContext;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
     typedef struct daqModuleAuthenticator daqModuleAuthenticator;
-    typedef struct daqDict daqDict;
+    typedef struct daqDictObject daqDictObject;
 
     EXPORTED extern const daqIntfID DAQ_MODULE_MANAGER_INTF_ID;
     void EXPORTED daqModuleManager_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqModuleManager_getModules(daqModuleManager* self, daqList** modules);
+    daqErrCode EXPORTED daqModuleManager_getModules(daqModuleManager* self, daqListObject** modules);
     daqErrCode EXPORTED daqModuleManager_addModule(daqModuleManager* self, daqModule* module);
     daqErrCode EXPORTED daqModuleManager_loadModules(daqModuleManager* self, daqContext* context);
-    daqErrCode EXPORTED daqModuleManager_loadModule(daqModuleManager* self, daqString* path, daqModule** module);
+    daqErrCode EXPORTED daqModuleManager_loadModule(daqModuleManager* self, daqStringObject* path, daqModule** module);
     daqErrCode EXPORTED daqModuleManager_setAuthenticatedOnly(daqModuleManager* self, daqBool authenticatedOnly);
     daqErrCode EXPORTED daqModuleManager_setModuleAuthenticator(daqModuleManager* self, daqModuleAuthenticator* authenticator);
-    daqErrCode EXPORTED daqModuleManager_getVendorKeys(daqModuleManager* self, daqDict** vendorKeys);
-    daqErrCode EXPORTED daqModuleManager_createModuleManager(daqModuleManager** obj, daqString* path);
-    daqErrCode EXPORTED daqModuleManager_createModuleManagerMultiplePaths(daqModuleManager** obj, daqList* paths);
+    daqErrCode EXPORTED daqModuleManager_getVendorKeys(daqModuleManager* self, daqDictObject** vendorKeys);
+    daqErrCode EXPORTED daqModuleManager_createModuleManager(daqModuleManager** obj, daqStringObject* path);
+    daqErrCode EXPORTED daqModuleManager_createModuleManagerMultiplePaths(daqModuleManager** obj, daqListObject* paths);
 
 #ifdef __cplusplus
 }

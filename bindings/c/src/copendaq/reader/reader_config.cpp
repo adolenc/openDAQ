@@ -23,17 +23,17 @@ void daqReaderConfig_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_READER_CONFIG_INTF_ID;
 }
 
-daqErrCode daqReaderConfig_getValueTransformFunction(daqReaderConfig* self, daqFunction** transform)
+daqErrCode daqReaderConfig_getValueTransformFunction(daqReaderConfig* self, daqFunctionObject** transform)
 {
     return reinterpret_cast<daq::IReaderConfig*>(self)->getValueTransformFunction(reinterpret_cast<daq::IFunction**>(transform));
 }
 
-daqErrCode daqReaderConfig_getDomainTransformFunction(daqReaderConfig* self, daqFunction** transform)
+daqErrCode daqReaderConfig_getDomainTransformFunction(daqReaderConfig* self, daqFunctionObject** transform)
 {
     return reinterpret_cast<daq::IReaderConfig*>(self)->getDomainTransformFunction(reinterpret_cast<daq::IFunction**>(transform));
 }
 
-daqErrCode daqReaderConfig_getInputPorts(daqReaderConfig* self, daqList** ports)
+daqErrCode daqReaderConfig_getInputPorts(daqReaderConfig* self, daqListObject** ports)
 {
     return reinterpret_cast<daq::IReaderConfig*>(self)->getInputPorts(reinterpret_cast<daq::IList**>(ports));
 }

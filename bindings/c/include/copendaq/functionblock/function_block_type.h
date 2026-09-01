@@ -35,13 +35,13 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqFunctionBlockType daqFunctionBlockType;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
     typedef struct daqPropertyObject daqPropertyObject;
 
     EXPORTED extern const daqIntfID DAQ_FUNCTION_BLOCK_TYPE_INTF_ID;
     void EXPORTED daqFunctionBlockType_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqFunctionBlockType_createFunctionBlockType(daqFunctionBlockType** obj, daqString* id, daqString* name, daqString* description, daqPropertyObject* defaultConfig);
+    daqErrCode EXPORTED daqFunctionBlockType_createFunctionBlockType(daqFunctionBlockType** obj, daqStringObject* id, daqStringObject* name, daqStringObject* description, daqPropertyObject* defaultConfig);
 
 #ifdef __cplusplus
 }

@@ -23,7 +23,7 @@ void daqStructBuilder_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_STRUCT_BUILDER_INTF_ID;
 }
 
-daqErrCode daqStructBuilder_build(daqStructBuilder* self, daqStruct** struct_)
+daqErrCode daqStructBuilder_build(daqStructBuilder* self, daqStructObject** struct_)
 {
     return reinterpret_cast<daq::IStructBuilder*>(self)->build(reinterpret_cast<daq::IStruct**>(struct_));
 }
@@ -33,42 +33,42 @@ daqErrCode daqStructBuilder_getStructType(daqStructBuilder* self, daqStructType*
     return reinterpret_cast<daq::IStructBuilder*>(self)->getStructType(reinterpret_cast<daq::IStructType**>(type));
 }
 
-daqErrCode daqStructBuilder_getFieldNames(daqStructBuilder* self, daqList** names)
+daqErrCode daqStructBuilder_getFieldNames(daqStructBuilder* self, daqListObject** names)
 {
     return reinterpret_cast<daq::IStructBuilder*>(self)->getFieldNames(reinterpret_cast<daq::IList**>(names));
 }
 
-daqErrCode daqStructBuilder_setFieldValues(daqStructBuilder* self, daqList* values)
+daqErrCode daqStructBuilder_setFieldValues(daqStructBuilder* self, daqListObject* values)
 {
     return reinterpret_cast<daq::IStructBuilder*>(self)->setFieldValues(reinterpret_cast<daq::IList*>(values));
 }
 
-daqErrCode daqStructBuilder_getFieldValues(daqStructBuilder* self, daqList** values)
+daqErrCode daqStructBuilder_getFieldValues(daqStructBuilder* self, daqListObject** values)
 {
     return reinterpret_cast<daq::IStructBuilder*>(self)->getFieldValues(reinterpret_cast<daq::IList**>(values));
 }
 
-daqErrCode daqStructBuilder_set(daqStructBuilder* self, daqString* name, daqBaseObject* field)
+daqErrCode daqStructBuilder_set(daqStructBuilder* self, daqStringObject* name, daqBaseObject* field)
 {
     return reinterpret_cast<daq::IStructBuilder*>(self)->set(reinterpret_cast<daq::IString*>(name), reinterpret_cast<daq::IBaseObject*>(field));
 }
 
-daqErrCode daqStructBuilder_get(daqStructBuilder* self, daqString* name, daqBaseObject** field)
+daqErrCode daqStructBuilder_get(daqStructBuilder* self, daqStringObject* name, daqBaseObject** field)
 {
     return reinterpret_cast<daq::IStructBuilder*>(self)->get(reinterpret_cast<daq::IString*>(name), reinterpret_cast<daq::IBaseObject**>(field));
 }
 
-daqErrCode daqStructBuilder_hasField(daqStructBuilder* self, daqString* name, daqBool* contains)
+daqErrCode daqStructBuilder_hasField(daqStructBuilder* self, daqStringObject* name, daqBool* contains)
 {
     return reinterpret_cast<daq::IStructBuilder*>(self)->hasField(reinterpret_cast<daq::IString*>(name), contains);
 }
 
-daqErrCode daqStructBuilder_getAsDictionary(daqStructBuilder* self, daqDict** dictionary)
+daqErrCode daqStructBuilder_getAsDictionary(daqStructBuilder* self, daqDictObject** dictionary)
 {
     return reinterpret_cast<daq::IStructBuilder*>(self)->getAsDictionary(reinterpret_cast<daq::IDict**>(dictionary));
 }
 
-daqErrCode daqStructBuilder_createStructBuilder(daqStructBuilder** obj, daqString* name, daqTypeManager* typeManager)
+daqErrCode daqStructBuilder_createStructBuilder(daqStructBuilder** obj, daqStringObject* name, daqTypeManager* typeManager)
 {
     daq::IStructBuilder* ptr = nullptr;
     daqErrCode err = daq::createStructBuilder(&ptr, reinterpret_cast<daq::IString*>(name), reinterpret_cast<daq::ITypeManager*>(typeManager));
@@ -76,7 +76,7 @@ daqErrCode daqStructBuilder_createStructBuilder(daqStructBuilder** obj, daqStrin
     return err;
 }
 
-daqErrCode daqStructBuilder_createStructBuilderFromStruct(daqStructBuilder** obj, daqStruct* struct_)
+daqErrCode daqStructBuilder_createStructBuilderFromStruct(daqStructBuilder** obj, daqStructObject* struct_)
 {
     daq::IStructBuilder* ptr = nullptr;
     daqErrCode err = daq::createStructBuilderFromStruct(&ptr, reinterpret_cast<daq::IStruct*>(struct_));

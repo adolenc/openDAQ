@@ -35,23 +35,23 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqLogger daqLogger;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
     typedef struct daqLoggerComponent daqLoggerComponent;
-    typedef struct daqList daqList;
+    typedef struct daqListObject daqListObject;
 
     EXPORTED extern const daqIntfID DAQ_LOGGER_INTF_ID;
     void EXPORTED daqLogger_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqLogger_setLevel(daqLogger* self, daqLogLevel level);
     daqErrCode EXPORTED daqLogger_getLevel(daqLogger* self, daqLogLevel* level);
-    daqErrCode EXPORTED daqLogger_getOrAddComponent(daqLogger* self, daqString* name, daqLoggerComponent** component);
-    daqErrCode EXPORTED daqLogger_addComponent(daqLogger* self, daqString* name, daqLoggerComponent** component);
-    daqErrCode EXPORTED daqLogger_removeComponent(daqLogger* self, daqString* name);
-    daqErrCode EXPORTED daqLogger_getComponents(daqLogger* self, daqList** components);
-    daqErrCode EXPORTED daqLogger_getComponent(daqLogger* self, daqString* name, daqLoggerComponent** component);
+    daqErrCode EXPORTED daqLogger_getOrAddComponent(daqLogger* self, daqStringObject* name, daqLoggerComponent** component);
+    daqErrCode EXPORTED daqLogger_addComponent(daqLogger* self, daqStringObject* name, daqLoggerComponent** component);
+    daqErrCode EXPORTED daqLogger_removeComponent(daqLogger* self, daqStringObject* name);
+    daqErrCode EXPORTED daqLogger_getComponents(daqLogger* self, daqListObject** components);
+    daqErrCode EXPORTED daqLogger_getComponent(daqLogger* self, daqStringObject* name, daqLoggerComponent** component);
     daqErrCode EXPORTED daqLogger_flush(daqLogger* self);
     daqErrCode EXPORTED daqLogger_flushOnLevel(daqLogger* self, daqLogLevel level);
-    daqErrCode EXPORTED daqLogger_createLogger(daqLogger** obj, daqList* sinks, daqLogLevel level);
+    daqErrCode EXPORTED daqLogger_createLogger(daqLogger** obj, daqListObject* sinks, daqLogLevel level);
 
 #ifdef __cplusplus
 }

@@ -35,7 +35,7 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqPermissionsBuilder daqPermissionsBuilder;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
     typedef struct daqPermissionMaskBuilder daqPermissionMaskBuilder;
     typedef struct daqPermissions daqPermissions;
 
@@ -43,9 +43,9 @@ extern "C"
     void EXPORTED daqPermissionsBuilder_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqPermissionsBuilder_inherit(daqPermissionsBuilder* self, daqBool inherit);
-    daqErrCode EXPORTED daqPermissionsBuilder_assign(daqPermissionsBuilder* self, daqString* groupId, daqPermissionMaskBuilder* permissions);
-    daqErrCode EXPORTED daqPermissionsBuilder_allow(daqPermissionsBuilder* self, daqString* groupId, daqPermissionMaskBuilder* permissions);
-    daqErrCode EXPORTED daqPermissionsBuilder_deny(daqPermissionsBuilder* self, daqString* groupId, daqPermissionMaskBuilder* permissions);
+    daqErrCode EXPORTED daqPermissionsBuilder_assign(daqPermissionsBuilder* self, daqStringObject* groupId, daqPermissionMaskBuilder* permissions);
+    daqErrCode EXPORTED daqPermissionsBuilder_allow(daqPermissionsBuilder* self, daqStringObject* groupId, daqPermissionMaskBuilder* permissions);
+    daqErrCode EXPORTED daqPermissionsBuilder_deny(daqPermissionsBuilder* self, daqStringObject* groupId, daqPermissionMaskBuilder* permissions);
     daqErrCode EXPORTED daqPermissionsBuilder_extend(daqPermissionsBuilder* self, daqPermissions* config);
     daqErrCode EXPORTED daqPermissionsBuilder_build(daqPermissionsBuilder* self, daqPermissions** configOut);
     daqErrCode EXPORTED daqPermissionsBuilder_createPermissionsBuilder(daqPermissionsBuilder** obj);

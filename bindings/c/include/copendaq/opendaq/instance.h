@@ -37,10 +37,10 @@ extern "C"
     typedef struct daqInstance daqInstance;
     typedef struct daqModuleManager daqModuleManager;
     typedef struct daqDevice daqDevice;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
     typedef struct daqPropertyObject daqPropertyObject;
-    typedef struct daqDict daqDict;
-    typedef struct daqList daqList;
+    typedef struct daqDictObject daqDictObject;
+    typedef struct daqListObject daqListObject;
     typedef struct daqContext daqContext;
     typedef struct daqInstanceBuilder daqInstanceBuilder;
     typedef struct daqDeviceInfo daqDeviceInfo;
@@ -51,13 +51,13 @@ extern "C"
 
     daqErrCode EXPORTED daqInstance_getModuleManager(daqInstance* self, daqModuleManager** manager);
     daqErrCode EXPORTED daqInstance_getRootDevice(daqInstance* self, daqDevice** rootDevice);
-    daqErrCode EXPORTED daqInstance_setRootDevice(daqInstance* self, daqString* connectionString, daqPropertyObject* config);
-    daqErrCode EXPORTED daqInstance_getAvailableServerTypes(daqInstance* self, daqDict** serverTypes);
-    daqErrCode EXPORTED daqInstance_addStandardServers(daqInstance* self, daqList** servers);
-    daqErrCode EXPORTED daqInstance_createInstance(daqInstance** obj, daqContext* context, daqString* localId);
+    daqErrCode EXPORTED daqInstance_setRootDevice(daqInstance* self, daqStringObject* connectionString, daqPropertyObject* config);
+    daqErrCode EXPORTED daqInstance_getAvailableServerTypes(daqInstance* self, daqDictObject** serverTypes);
+    daqErrCode EXPORTED daqInstance_addStandardServers(daqInstance* self, daqListObject** servers);
+    daqErrCode EXPORTED daqInstance_createInstance(daqInstance** obj, daqContext* context, daqStringObject* localId);
     daqErrCode EXPORTED daqInstance_createInstanceFromBuilder(daqInstance** obj, daqInstanceBuilder* builder);
 /*
-    daqErrCode EXPORTED daqDevice_createClient(daqDevice** obj, daqContext* ctx, daqString* localId, daqDeviceInfo* defaultDeviceInfo, daqComponent* parent);
+    daqErrCode EXPORTED daqDevice_createClient(daqDevice** obj, daqContext* ctx, daqStringObject* localId, daqDeviceInfo* defaultDeviceInfo, daqComponent* parent);
 */
 
 #ifdef __cplusplus

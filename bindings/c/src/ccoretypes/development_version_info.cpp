@@ -43,17 +43,17 @@ daqErrCode daqDevelopmentVersionInfo_getTweak(daqDevelopmentVersionInfo* self, d
     return reinterpret_cast<daq::IDevelopmentVersionInfo*>(self)->getTweak(tweak);
 }
 
-daqErrCode daqDevelopmentVersionInfo_getBranchName(daqDevelopmentVersionInfo* self, daqString** branchName)
+daqErrCode daqDevelopmentVersionInfo_getBranchName(daqDevelopmentVersionInfo* self, daqStringObject** branchName)
 {
     return reinterpret_cast<daq::IDevelopmentVersionInfo*>(self)->getBranchName(reinterpret_cast<daq::IString**>(branchName));
 }
 
-daqErrCode daqDevelopmentVersionInfo_getHashDigest(daqDevelopmentVersionInfo* self, daqString** hash)
+daqErrCode daqDevelopmentVersionInfo_getHashDigest(daqDevelopmentVersionInfo* self, daqStringObject** hash)
 {
     return reinterpret_cast<daq::IDevelopmentVersionInfo*>(self)->getHashDigest(reinterpret_cast<daq::IString**>(hash));
 }
 
-daqErrCode daqDevelopmentVersionInfo_createDevelopmentVersionInfo(daqDevelopmentVersionInfo** obj, daqSizeT major, daqSizeT minor, daqSizeT patch, daqSizeT tweak, daqString* branch, daqString* hash)
+daqErrCode daqDevelopmentVersionInfo_createDevelopmentVersionInfo(daqDevelopmentVersionInfo** obj, daqSizeT major, daqSizeT minor, daqSizeT patch, daqSizeT tweak, daqStringObject* branch, daqStringObject* hash)
 {
     daq::IDevelopmentVersionInfo* ptr = nullptr;
     daqErrCode err = daq::createDevelopmentVersionInfo(&ptr, major, minor, patch, tweak, reinterpret_cast<daq::IString*>(branch), reinterpret_cast<daq::IString*>(hash));

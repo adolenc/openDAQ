@@ -35,14 +35,14 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqStreamingType daqStreamingType;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
     typedef struct daqPropertyObject daqPropertyObject;
 
     EXPORTED extern const daqIntfID DAQ_STREAMING_TYPE_INTF_ID;
     void EXPORTED daqStreamingType_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqStreamingType_getConnectionStringPrefix(daqStreamingType* self, daqString** prefix);
-    daqErrCode EXPORTED daqStreamingType_createStreamingType(daqStreamingType** obj, daqString* id, daqString* name, daqString* description, daqString* prefix, daqPropertyObject* defaultConfig);
+    daqErrCode EXPORTED daqStreamingType_getConnectionStringPrefix(daqStreamingType* self, daqStringObject** prefix);
+    daqErrCode EXPORTED daqStreamingType_createStreamingType(daqStreamingType** obj, daqStringObject* id, daqStringObject* name, daqStringObject* description, daqStringObject* prefix, daqPropertyObject* defaultConfig);
 
 #ifdef __cplusplus
 }

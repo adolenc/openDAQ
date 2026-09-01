@@ -35,7 +35,7 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqDiscoveryServer daqDiscoveryServer;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
     typedef struct daqPropertyObject daqPropertyObject;
     typedef struct daqDeviceInfo daqDeviceInfo;
     typedef struct daqDevice daqDevice;
@@ -44,8 +44,8 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_DISCOVERY_SERVER_INTF_ID;
     void EXPORTED daqDiscoveryServer_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqDiscoveryServer_registerService(daqDiscoveryServer* self, daqString* id, daqPropertyObject* config, daqDeviceInfo* deviceInfo);
-    daqErrCode EXPORTED daqDiscoveryServer_unregisterService(daqDiscoveryServer* self, daqString* id);
+    daqErrCode EXPORTED daqDiscoveryServer_registerService(daqDiscoveryServer* self, daqStringObject* id, daqPropertyObject* config, daqDeviceInfo* deviceInfo);
+    daqErrCode EXPORTED daqDiscoveryServer_unregisterService(daqDiscoveryServer* self, daqStringObject* id);
     daqErrCode EXPORTED daqDiscoveryServer_setRootDevice(daqDiscoveryServer* self, daqDevice* device);
     daqErrCode EXPORTED daqDiscoveryServer_createMdnsDiscoveryServer(daqDiscoveryServer** obj, daqLogger* logger);
 

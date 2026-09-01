@@ -23,22 +23,22 @@ void daqStructType_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_STRUCT_TYPE_INTF_ID;
 }
 
-daqErrCode daqStructType_getFieldNames(daqStructType* self, daqList** names)
+daqErrCode daqStructType_getFieldNames(daqStructType* self, daqListObject** names)
 {
     return reinterpret_cast<daq::IStructType*>(self)->getFieldNames(reinterpret_cast<daq::IList**>(names));
 }
 
-daqErrCode daqStructType_getFieldDefaultValues(daqStructType* self, daqList** defaultValues)
+daqErrCode daqStructType_getFieldDefaultValues(daqStructType* self, daqListObject** defaultValues)
 {
     return reinterpret_cast<daq::IStructType*>(self)->getFieldDefaultValues(reinterpret_cast<daq::IList**>(defaultValues));
 }
 
-daqErrCode daqStructType_getFieldTypes(daqStructType* self, daqList** types)
+daqErrCode daqStructType_getFieldTypes(daqStructType* self, daqListObject** types)
 {
     return reinterpret_cast<daq::IStructType*>(self)->getFieldTypes(reinterpret_cast<daq::IList**>(types));
 }
 
-daqErrCode daqStructType_createStructType(daqStructType** obj, daqString* name, daqList* names, daqList* defaultValues, daqList* types)
+daqErrCode daqStructType_createStructType(daqStructType** obj, daqStringObject* name, daqListObject* names, daqListObject* defaultValues, daqListObject* types)
 {
     daq::IStructType* ptr = nullptr;
     daqErrCode err = daq::createStructType(&ptr, reinterpret_cast<daq::IString*>(name), reinterpret_cast<daq::IList*>(names), reinterpret_cast<daq::IList*>(defaultValues), reinterpret_cast<daq::IList*>(types));
@@ -46,7 +46,7 @@ daqErrCode daqStructType_createStructType(daqStructType** obj, daqString* name, 
     return err;
 }
 
-daqErrCode daqStructType_createStructTypeNoDefaults(daqStructType** obj, daqString* name, daqList* names, daqList* types)
+daqErrCode daqStructType_createStructTypeNoDefaults(daqStructType** obj, daqStringObject* name, daqListObject* names, daqListObject* types)
 {
     daq::IStructType* ptr = nullptr;
     daqErrCode err = daq::createStructTypeNoDefaults(&ptr, reinterpret_cast<daq::IString*>(name), reinterpret_cast<daq::IList*>(names), reinterpret_cast<daq::IList*>(types));

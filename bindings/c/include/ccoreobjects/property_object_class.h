@@ -35,18 +35,18 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqPropertyObjectClass daqPropertyObjectClass;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
     typedef struct daqProperty daqProperty;
-    typedef struct daqList daqList;
+    typedef struct daqListObject daqListObject;
     typedef struct daqPropertyObjectClassBuilder daqPropertyObjectClassBuilder;
 
     EXPORTED extern const daqIntfID DAQ_PROPERTY_OBJECT_CLASS_INTF_ID;
     void EXPORTED daqPropertyObjectClass_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqPropertyObjectClass_getParentName(daqPropertyObjectClass* self, daqString** parentName);
-    daqErrCode EXPORTED daqPropertyObjectClass_getProperty(daqPropertyObjectClass* self, daqString* propertyName, daqProperty** property);
-    daqErrCode EXPORTED daqPropertyObjectClass_hasProperty(daqPropertyObjectClass* self, daqString* propertyName, daqBool* hasProperty);
-    daqErrCode EXPORTED daqPropertyObjectClass_getProperties(daqPropertyObjectClass* self, daqBool includeInherited, daqList** properties);
+    daqErrCode EXPORTED daqPropertyObjectClass_getParentName(daqPropertyObjectClass* self, daqStringObject** parentName);
+    daqErrCode EXPORTED daqPropertyObjectClass_getProperty(daqPropertyObjectClass* self, daqStringObject* propertyName, daqProperty** property);
+    daqErrCode EXPORTED daqPropertyObjectClass_hasProperty(daqPropertyObjectClass* self, daqStringObject* propertyName, daqBool* hasProperty);
+    daqErrCode EXPORTED daqPropertyObjectClass_getProperties(daqPropertyObjectClass* self, daqBool includeInherited, daqListObject** properties);
     daqErrCode EXPORTED daqPropertyObjectClass_createPropertyObjectClassFromBuilder(daqPropertyObjectClass** obj, daqPropertyObjectClassBuilder* builder);
 
 #ifdef __cplusplus

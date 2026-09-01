@@ -43,12 +43,12 @@ daqErrCode daqSignal_getDomainSignal(daqSignal* self, daqSignal** signal)
     return reinterpret_cast<daq::ISignal*>(self)->getDomainSignal(reinterpret_cast<daq::ISignal**>(signal));
 }
 
-daqErrCode daqSignal_getRelatedSignals(daqSignal* self, daqList** signals)
+daqErrCode daqSignal_getRelatedSignals(daqSignal* self, daqListObject** signals)
 {
     return reinterpret_cast<daq::ISignal*>(self)->getRelatedSignals(reinterpret_cast<daq::IList**>(signals));
 }
 
-daqErrCode daqSignal_getConnections(daqSignal* self, daqList** connections)
+daqErrCode daqSignal_getConnections(daqSignal* self, daqListObject** connections)
 {
     return reinterpret_cast<daq::ISignal*>(self)->getConnections(reinterpret_cast<daq::IList**>(connections));
 }

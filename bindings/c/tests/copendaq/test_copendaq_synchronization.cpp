@@ -6,7 +6,7 @@ using COpendaqSynchronizationTest = testing::Test;
 
 TEST_F(COpendaqSynchronizationTest, SyncComponent)
 {
-    daqList* sinks = nullptr;
+    daqListObject* sinks = nullptr;
     daqList_createList(&sinks);
 
     daqLoggerSink* sink = nullptr;
@@ -19,7 +19,7 @@ TEST_F(COpendaqSynchronizationTest, SyncComponent)
     daqTypeManager* typeManager = nullptr;
     daqTypeManager_createTypeManager(&typeManager);
 
-    daqDict *options = nullptr, *discoveryServers = nullptr;
+    daqDictObject *options = nullptr, *discoveryServers = nullptr;
     daqDict_createDict(&options);
     daqDict_createDict(&discoveryServers);
 
@@ -27,7 +27,7 @@ TEST_F(COpendaqSynchronizationTest, SyncComponent)
     daqContext_createContext(&context, nullptr, logger, typeManager, nullptr, nullptr, options, discoveryServers);
 
     daqSyncComponent* syncComponent = nullptr;
-    daqString* localId = nullptr;
+    daqStringObject* localId = nullptr;
     daqString_createString(&localId, "localId");
 
     daqSyncComponent_createSyncComponent(&syncComponent, context, nullptr, localId);
@@ -38,14 +38,14 @@ TEST_F(COpendaqSynchronizationTest, SyncComponent)
     ASSERT_NE(syncComponentPrivate, nullptr);
 
     daqPropertyObject* interface = nullptr;
-    daqString* className = nullptr;
+    daqStringObject* className = nullptr;
     daqString_createString(&className, "InterfaceClockSync");
     daqPropertyObject_createPropertyObjectWithClassAndManager(&interface, typeManager, className);
 
     daqErrCode err = daqSyncComponentPrivate_addInterface(syncComponentPrivate, interface);
     ASSERT_EQ(err, 0u);
 
-    daqDict* interfaces = nullptr;
+    daqDictObject* interfaces = nullptr;
     daqSyncComponent_getInterfaces(syncComponent, &interfaces);
     ASSERT_NE(interfaces, nullptr);
     daqSizeT size = 0u;

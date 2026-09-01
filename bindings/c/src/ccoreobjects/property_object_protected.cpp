@@ -23,17 +23,17 @@ void daqPropertyObjectProtected_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_PROPERTY_OBJECT_PROTECTED_INTF_ID;
 }
 
-daqErrCode daqPropertyObjectProtected_setProtectedPropertyValue(daqPropertyObjectProtected* self, daqString* propertyName, daqBaseObject* value)
+daqErrCode daqPropertyObjectProtected_setProtectedPropertyValue(daqPropertyObjectProtected* self, daqStringObject* propertyName, daqBaseObject* value)
 {
     return reinterpret_cast<daq::IPropertyObjectProtected*>(self)->setProtectedPropertyValue(reinterpret_cast<daq::IString*>(propertyName), reinterpret_cast<daq::IBaseObject*>(value));
 }
 
-daqErrCode daqPropertyObjectProtected_clearProtectedPropertyValue(daqPropertyObjectProtected* self, daqString* propertyName)
+daqErrCode daqPropertyObjectProtected_clearProtectedPropertyValue(daqPropertyObjectProtected* self, daqStringObject* propertyName)
 {
     return reinterpret_cast<daq::IPropertyObjectProtected*>(self)->clearProtectedPropertyValue(reinterpret_cast<daq::IString*>(propertyName));
 }
 
-daqErrCode daqPropertyObjectProtected_setProtectedPropertySelectionValue(daqPropertyObjectProtected* self, daqString* propertyName, daqBaseObject* value)
+daqErrCode daqPropertyObjectProtected_setProtectedPropertySelectionValue(daqPropertyObjectProtected* self, daqStringObject* propertyName, daqBaseObject* value)
 {
     return reinterpret_cast<daq::IPropertyObjectProtected*>(self)->setProtectedPropertySelectionValue(reinterpret_cast<daq::IString*>(propertyName), reinterpret_cast<daq::IBaseObject*>(value));
 }

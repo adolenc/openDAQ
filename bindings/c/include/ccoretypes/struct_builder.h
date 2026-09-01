@@ -35,27 +35,27 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqStructBuilder daqStructBuilder;
-    typedef struct daqStruct daqStruct;
+    typedef struct daqStructObject daqStructObject;
     typedef struct daqStructType daqStructType;
-    typedef struct daqList daqList;
-    typedef struct daqString daqString;
-    typedef struct daqDict daqDict;
+    typedef struct daqListObject daqListObject;
+    typedef struct daqStringObject daqStringObject;
+    typedef struct daqDictObject daqDictObject;
     typedef struct daqTypeManager daqTypeManager;
 
     EXPORTED extern const daqIntfID DAQ_STRUCT_BUILDER_INTF_ID;
     void EXPORTED daqStructBuilder_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqStructBuilder_build(daqStructBuilder* self, daqStruct** struct_);
+    daqErrCode EXPORTED daqStructBuilder_build(daqStructBuilder* self, daqStructObject** struct_);
     daqErrCode EXPORTED daqStructBuilder_getStructType(daqStructBuilder* self, daqStructType** type);
-    daqErrCode EXPORTED daqStructBuilder_getFieldNames(daqStructBuilder* self, daqList** names);
-    daqErrCode EXPORTED daqStructBuilder_setFieldValues(daqStructBuilder* self, daqList* values);
-    daqErrCode EXPORTED daqStructBuilder_getFieldValues(daqStructBuilder* self, daqList** values);
-    daqErrCode EXPORTED daqStructBuilder_set(daqStructBuilder* self, daqString* name, daqBaseObject* field);
-    daqErrCode EXPORTED daqStructBuilder_get(daqStructBuilder* self, daqString* name, daqBaseObject** field);
-    daqErrCode EXPORTED daqStructBuilder_hasField(daqStructBuilder* self, daqString* name, daqBool* contains);
-    daqErrCode EXPORTED daqStructBuilder_getAsDictionary(daqStructBuilder* self, daqDict** dictionary);
-    daqErrCode EXPORTED daqStructBuilder_createStructBuilder(daqStructBuilder** obj, daqString* name, daqTypeManager* typeManager);
-    daqErrCode EXPORTED daqStructBuilder_createStructBuilderFromStruct(daqStructBuilder** obj, daqStruct* struct_);
+    daqErrCode EXPORTED daqStructBuilder_getFieldNames(daqStructBuilder* self, daqListObject** names);
+    daqErrCode EXPORTED daqStructBuilder_setFieldValues(daqStructBuilder* self, daqListObject* values);
+    daqErrCode EXPORTED daqStructBuilder_getFieldValues(daqStructBuilder* self, daqListObject** values);
+    daqErrCode EXPORTED daqStructBuilder_set(daqStructBuilder* self, daqStringObject* name, daqBaseObject* field);
+    daqErrCode EXPORTED daqStructBuilder_get(daqStructBuilder* self, daqStringObject* name, daqBaseObject** field);
+    daqErrCode EXPORTED daqStructBuilder_hasField(daqStructBuilder* self, daqStringObject* name, daqBool* contains);
+    daqErrCode EXPORTED daqStructBuilder_getAsDictionary(daqStructBuilder* self, daqDictObject** dictionary);
+    daqErrCode EXPORTED daqStructBuilder_createStructBuilder(daqStructBuilder** obj, daqStringObject* name, daqTypeManager* typeManager);
+    daqErrCode EXPORTED daqStructBuilder_createStructBuilderFromStruct(daqStructBuilder** obj, daqStructObject* struct_);
 
 #ifdef __cplusplus
 }

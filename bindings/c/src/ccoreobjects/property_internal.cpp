@@ -33,7 +33,7 @@ daqErrCode daqPropertyInternal_cloneWithOwner(daqPropertyInternal* self, daqProp
     return reinterpret_cast<daq::IPropertyInternal*>(self)->cloneWithOwner(reinterpret_cast<daq::IPropertyObject*>(owner), reinterpret_cast<daq::IProperty**>(clonedProperty));
 }
 
-daqErrCode daqPropertyInternal_getDescriptionUnresolved(daqPropertyInternal* self, daqString** description)
+daqErrCode daqPropertyInternal_getDescriptionUnresolved(daqPropertyInternal* self, daqStringObject** description)
 {
     return reinterpret_cast<daq::IPropertyInternal*>(self)->getDescriptionUnresolved(reinterpret_cast<daq::IString**>(description));
 }
@@ -58,17 +58,17 @@ daqErrCode daqPropertyInternal_getDefaultValueUnresolved(daqPropertyInternal* se
     return reinterpret_cast<daq::IPropertyInternal*>(self)->getDefaultValueUnresolved(reinterpret_cast<daq::IBaseObject**>(value));
 }
 
-daqErrCode daqPropertyInternal_getSuggestedValuesUnresolved(daqPropertyInternal* self, daqList** values)
+daqErrCode daqPropertyInternal_getSuggestedValuesUnresolved(daqPropertyInternal* self, daqListObject** values)
 {
     return reinterpret_cast<daq::IPropertyInternal*>(self)->getSuggestedValuesUnresolved(reinterpret_cast<daq::IList**>(values));
 }
 
-daqErrCode daqPropertyInternal_getVisibleUnresolved(daqPropertyInternal* self, daqBoolean** visible)
+daqErrCode daqPropertyInternal_getVisibleUnresolved(daqPropertyInternal* self, daqBooleanObject** visible)
 {
     return reinterpret_cast<daq::IPropertyInternal*>(self)->getVisibleUnresolved(reinterpret_cast<daq::IBoolean**>(visible));
 }
 
-daqErrCode daqPropertyInternal_getReadOnlyUnresolved(daqPropertyInternal* self, daqBoolean** readOnly)
+daqErrCode daqPropertyInternal_getReadOnlyUnresolved(daqPropertyInternal* self, daqBooleanObject** readOnly)
 {
     return reinterpret_cast<daq::IPropertyInternal*>(self)->getReadOnlyUnresolved(reinterpret_cast<daq::IBoolean**>(readOnly));
 }
@@ -113,7 +113,7 @@ daqErrCode daqPropertyInternal_getItemTypeNoLock(daqPropertyInternal* self, daqC
     return reinterpret_cast<daq::IPropertyInternal*>(self)->getItemTypeNoLock(reinterpret_cast<daq::CoreType*>(type));
 }
 
-daqErrCode daqPropertyInternal_getDescriptionNoLock(daqPropertyInternal* self, daqString** description)
+daqErrCode daqPropertyInternal_getDescriptionNoLock(daqPropertyInternal* self, daqStringObject** description)
 {
     return reinterpret_cast<daq::IPropertyInternal*>(self)->getDescriptionNoLock(reinterpret_cast<daq::IString**>(description));
 }
@@ -138,7 +138,7 @@ daqErrCode daqPropertyInternal_getDefaultValueNoLock(daqPropertyInternal* self, 
     return reinterpret_cast<daq::IPropertyInternal*>(self)->getDefaultValueNoLock(reinterpret_cast<daq::IBaseObject**>(value));
 }
 
-daqErrCode daqPropertyInternal_getSuggestedValuesNoLock(daqPropertyInternal* self, daqList** values)
+daqErrCode daqPropertyInternal_getSuggestedValuesNoLock(daqPropertyInternal* self, daqListObject** values)
 {
     return reinterpret_cast<daq::IPropertyInternal*>(self)->getSuggestedValuesNoLock(reinterpret_cast<daq::IList**>(values));
 }

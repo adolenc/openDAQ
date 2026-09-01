@@ -26,7 +26,7 @@ daqErrCode daqSearchFilter_createVisibleSearchFilter(daqSearchFilter** obj)
     return err;
 }
 
-daqErrCode daqSearchFilter_createRequiredTagsSearchFilter(daqSearchFilter** obj, daqList* requiredTags)
+daqErrCode daqSearchFilter_createRequiredTagsSearchFilter(daqSearchFilter** obj, daqListObject* requiredTags)
 {
     daq::ISearchFilter* ptr = nullptr;
     daqErrCode err = daq::createRequiredTagsSearchFilter(&ptr, reinterpret_cast<daq::IList*>(requiredTags));
@@ -34,7 +34,7 @@ daqErrCode daqSearchFilter_createRequiredTagsSearchFilter(daqSearchFilter** obj,
     return err;
 }
 
-daqErrCode daqSearchFilter_createExcludedTagsSearchFilter(daqSearchFilter** obj, daqList* excludedTags)
+daqErrCode daqSearchFilter_createExcludedTagsSearchFilter(daqSearchFilter** obj, daqListObject* excludedTags)
 {
     daq::ISearchFilter* ptr = nullptr;
     daqErrCode err = daq::createExcludedTagsSearchFilter(&ptr, reinterpret_cast<daq::IList*>(excludedTags));
@@ -50,7 +50,7 @@ daqErrCode daqSearchFilter_createInterfaceIdSearchFilter(daqSearchFilter** obj, 
     return err;
 }
 
-daqErrCode daqSearchFilter_createLocalIdSearchFilter(daqSearchFilter** obj, daqString* localId)
+daqErrCode daqSearchFilter_createLocalIdSearchFilter(daqSearchFilter** obj, daqStringObject* localId)
 {
     daq::ISearchFilter* ptr = nullptr;
     daqErrCode err = daq::createLocalIdSearchFilter(&ptr, reinterpret_cast<daq::IString*>(localId));

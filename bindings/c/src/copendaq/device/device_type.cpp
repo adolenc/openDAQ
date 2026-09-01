@@ -23,12 +23,12 @@ void daqDeviceType_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_DEVICE_TYPE_INTF_ID;
 }
 
-daqErrCode daqDeviceType_getConnectionStringPrefix(daqDeviceType* self, daqString** prefix)
+daqErrCode daqDeviceType_getConnectionStringPrefix(daqDeviceType* self, daqStringObject** prefix)
 {
     return reinterpret_cast<daq::IDeviceType*>(self)->getConnectionStringPrefix(reinterpret_cast<daq::IString**>(prefix));
 }
 
-daqErrCode daqDeviceType_createDeviceType(daqDeviceType** obj, daqString* id, daqString* name, daqString* description, daqPropertyObject* defaultConfig, daqString* prefix)
+daqErrCode daqDeviceType_createDeviceType(daqDeviceType** obj, daqStringObject* id, daqStringObject* name, daqStringObject* description, daqPropertyObject* defaultConfig, daqStringObject* prefix)
 {
     daq::IDeviceType* ptr = nullptr;
     daqErrCode err = daq::createDeviceType(&ptr, reinterpret_cast<daq::IString*>(id), reinterpret_cast<daq::IString*>(name), reinterpret_cast<daq::IString*>(description), reinterpret_cast<daq::IPropertyObject*>(defaultConfig), reinterpret_cast<daq::IString*>(prefix));

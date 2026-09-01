@@ -65,35 +65,66 @@ namespace RTGen.C.Generators
         protected static readonly String Prefix = "daq";
         protected static readonly String PrefixUpper = "DAQ_";
 
-        // Name-collision renames: these interfaces share their C name with a value type
-        // declared in ccommon.h (IFloat vs the daqFloat double alias, ICoreType vs the
-        // daqCoreType enum), so their C-facing symbols get an "Object" suffix. Matched on
-        // the full interface name (with the leading I) so the colliding value types, whose
-        // names have no I, are left untouched.
-        protected static string CNonInterfaceName(ITypeName type)
+        // The object interfaces behind the daqCoreType enum members, plus ICoreType itself.
+        // Some of them would collide outright with a value type declared in ccommon.h (IFloat
+        // vs the daqFloat double alias, ICoreType vs the daqCoreType enum) and the rest read
+        // as if they were one, so the whole family gets an "Object" suffix on its *type*:
+        // daqBooleanObject, daqIntegerObject, daqFloatObject, daqStringObject, ...
+        // IBaseObject (CoreType Object) is not in the set: its C form is the hand-written
+        // daqBaseObject void handle that every wrapper already passes around.
+        private static readonly HashSet<string> CoreTypeInterfaces = new HashSet<string>
         {
-            switch (type.Name)
-            {
-                case "IFloat":    return "FloatObject";
-                case "ICoreType": return "CoreTypeObject";
-                default:          return type.NonInterfaceName;
-            }
+            "IBoolean",
+            "IInteger",
+            "IFloat",
+            "IString",
+            "IList",
+            "IDict",
+            "IRatio",
+            "IProcedure",
+            "IFunction",
+            "IBinaryData",
+            "IComplexNumber",
+            "IStruct",
+            "IEnumeration",
+            "ICoreType"
+        };
+
+        // Interface name without its leading I. This is what every C *symbol* is named after -
+        // daq<Name>_<method>, DAQ_<NAME>_INTF_ID - so that the C name of a member is always a
+        // mechanical rewrite of the C++ one and never has to be looked up.
+        protected static string CSymbolName(ITypeName type)
+        {
+            return type.NonInterfaceName;
         }
 
-        // Same collision rename for factories, which carry the constructed interface name as
-        // a plain string; strips the leading I for the non-colliding common case.
-        protected static string CNonInterfaceNameFromInterface(string interfaceName)
+        // Same, for factories, which carry the constructed interface name as a plain string
+        // rather than a parsed type.
+        protected static string CSymbolNameFromInterface(string interfaceName)
         {
             if (string.IsNullOrEmpty(interfaceName))
             {
                 return "";
             }
-            switch (interfaceName)
-            {
-                case "IFloat":    return "FloatObject";
-                case "ICoreType": return "CoreTypeObject";
-                default:          return interfaceName.Remove(0, 1);
-            }
+            return interfaceName.StartsWith("I") ? interfaceName.Remove(0, 1) : interfaceName;
+        }
+
+        // C type name of an interface: the symbol name, plus the "Object" suffix for the core
+        // types above. Matched on the full name (with the I) so the colliding value types,
+        // whose names have no I, are left untouched. Only the type is suffixed; the functions
+        // taking it keep their plain daq<Name>_<method> spelling.
+        protected static string CNonInterfaceName(ITypeName type)
+        {
+            return CoreTypeInterfaces.Contains(type.Name)
+                       ? CSymbolName(type) + "Object"
+                       : CSymbolName(type);
+        }
+
+        // Same suffixing for factories' out-parameter type.
+        protected static string CNonInterfaceNameFromInterface(string interfaceName)
+        {
+            string name = CSymbolNameFromInterface(interfaceName);
+            return CoreTypeInterfaces.Contains(interfaceName) ? name + "Object" : name;
         }
 
         protected GeneratorType _generatorType = GeneratorType.Header;
@@ -223,8 +254,8 @@ namespace RTGen.C.Generators
         protected string GetIntfIDDeclaration()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine(base.Indentation + $"EXPORTED extern const {Prefix}IntfID {PrefixUpper}{CNonInterfaceName(RtFile.CurrentClass.Type).ToLowerSnakeCase().ToUpper()}_INTF_ID;");
-            sb.AppendLine(base.Indentation + $"void EXPORTED {Prefix}{CNonInterfaceName(RtFile.CurrentClass.Type)}_getInterfaceId({Prefix}IntfID* intfId);");
+            sb.AppendLine(base.Indentation + $"EXPORTED extern const {Prefix}IntfID {PrefixUpper}{CSymbolName(RtFile.CurrentClass.Type).ToLowerSnakeCase().ToUpper()}_INTF_ID;");
+            sb.AppendLine(base.Indentation + $"void EXPORTED {Prefix}{CSymbolName(RtFile.CurrentClass.Type)}_getInterfaceId({Prefix}IntfID* intfId);");
             return sb.ToString();
         }
 
@@ -234,12 +265,12 @@ namespace RTGen.C.Generators
             string ns = RtFile.CurrentClass.Type.Namespace.ToString();
             string iface = RtFile.CurrentClass.Type.Name;
 
-            sb.Append($"const {Prefix}IntfID {PrefixUpper}{CNonInterfaceName(RtFile.CurrentClass.Type).ToLowerSnakeCase().ToUpper()}_INTF_ID = ");
+            sb.Append($"const {Prefix}IntfID {PrefixUpper}{CSymbolName(RtFile.CurrentClass.Type).ToLowerSnakeCase().ToUpper()}_INTF_ID = ");
             sb.AppendLine($"{{ {ns}::{iface}::Id.Data1, {ns}::{iface}::Id.Data2, {ns}::{iface}::Id.Data3, {ns}::{iface}::Id.Data4_UInt64 }};");
             sb.AppendLine("");
-            sb.AppendLine($"void {Prefix}{CNonInterfaceName(RtFile.CurrentClass.Type)}_getInterfaceId({Prefix}IntfID* intfId)");
+            sb.AppendLine($"void {Prefix}{CSymbolName(RtFile.CurrentClass.Type)}_getInterfaceId({Prefix}IntfID* intfId)");
             sb.AppendLine("{");
-            sb.AppendLine(base.Indentation + $"*intfId = {PrefixUpper}{CNonInterfaceName(RtFile.CurrentClass.Type).ToLowerSnakeCase().ToUpper()}_INTF_ID;");
+            sb.AppendLine(base.Indentation + $"*intfId = {PrefixUpper}{CSymbolName(RtFile.CurrentClass.Type).ToLowerSnakeCase().ToUpper()}_INTF_ID;");
             sb.AppendLine("}");
             return sb.ToString();
         }
@@ -480,6 +511,10 @@ namespace RTGen.C.Generators
                         return method != null
                             ? CNonInterfaceName(iface.Type)
                             : CNonInterfaceNameFromInterface(factory.InterfaceName);
+                    case "FunctionOwner":
+                        return method != null
+                            ? CSymbolName(iface.Type)
+                            : CSymbolNameFromInterface(factory.InterfaceName);
                     case "Arguments":
                         return ArgumentsToString(methodOrFactory, ArgsListType.MethodDeclaration);
                     default:
@@ -506,6 +541,10 @@ namespace RTGen.C.Generators
                         return method != null
                             ? CNonInterfaceName(iface.Type)
                             : CNonInterfaceNameFromInterface(factory.InterfaceName);
+                    case "FunctionOwner":
+                        return method != null
+                            ? CSymbolName(iface.Type)
+                            : CSymbolNameFromInterface(factory.InterfaceName);
                     case "ArgTypeFull":
                         return iface.Type.FullName();
                     case "FactoryName":

@@ -1,2 +1,2 @@
-$ReturnType$ EXPORTED $Prefix$$NonInterfaceType$_$Name$($Arguments$);
-$ReturnType$ EXPORTED $Prefix$$NonInterfaceType$_$Name$($Arguments$);
+$ReturnType$ EXPORTED $Prefix$$FunctionOwner$_$Name$($Arguments$);
+$ReturnType$ EXPORTED $Prefix$$FunctionOwner$_$Name$($Arguments$);

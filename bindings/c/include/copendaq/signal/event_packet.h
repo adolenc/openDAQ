@@ -35,17 +35,17 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqEventPacket daqEventPacket;
-    typedef struct daqString daqString;
-    typedef struct daqDict daqDict;
+    typedef struct daqStringObject daqStringObject;
+    typedef struct daqDictObject daqDictObject;
     typedef struct daqDataDescriptor daqDataDescriptor;
     typedef struct daqNumber daqNumber;
 
     EXPORTED extern const daqIntfID DAQ_EVENT_PACKET_INTF_ID;
     void EXPORTED daqEventPacket_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqEventPacket_getEventId(daqEventPacket* self, daqString** id);
-    daqErrCode EXPORTED daqEventPacket_getParameters(daqEventPacket* self, daqDict** parameters);
-    daqErrCode EXPORTED daqEventPacket_createEventPacket(daqEventPacket** obj, daqString* id, daqDict* params);
+    daqErrCode EXPORTED daqEventPacket_getEventId(daqEventPacket* self, daqStringObject** id);
+    daqErrCode EXPORTED daqEventPacket_getParameters(daqEventPacket* self, daqDictObject** parameters);
+    daqErrCode EXPORTED daqEventPacket_createEventPacket(daqEventPacket** obj, daqStringObject* id, daqDictObject* params);
     daqErrCode EXPORTED daqEventPacket_createDataDescriptorChangedEventPacket(daqEventPacket** obj, daqDataDescriptor* dataDescriptor, daqDataDescriptor* domainDataDescriptor);
     daqErrCode EXPORTED daqEventPacket_createImplicitDomainGapDetectedEventPacket(daqEventPacket** obj, daqNumber* diff);
 

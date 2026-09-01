@@ -43,12 +43,12 @@ daqErrCode daqPropertyObjectInternal_disableCoreEventTrigger(daqPropertyObjectIn
     return reinterpret_cast<daq::IPropertyObjectInternal*>(self)->disableCoreEventTrigger();
 }
 
-daqErrCode daqPropertyObjectInternal_getCoreEventTrigger(daqPropertyObjectInternal* self, daqProcedure** trigger)
+daqErrCode daqPropertyObjectInternal_getCoreEventTrigger(daqPropertyObjectInternal* self, daqProcedureObject** trigger)
 {
     return reinterpret_cast<daq::IPropertyObjectInternal*>(self)->getCoreEventTrigger(reinterpret_cast<daq::IProcedure**>(trigger));
 }
 
-daqErrCode daqPropertyObjectInternal_setCoreEventTrigger(daqPropertyObjectInternal* self, daqProcedure* trigger)
+daqErrCode daqPropertyObjectInternal_setCoreEventTrigger(daqPropertyObjectInternal* self, daqProcedureObject* trigger)
 {
     return reinterpret_cast<daq::IPropertyObjectInternal*>(self)->setCoreEventTrigger(reinterpret_cast<daq::IProcedure*>(trigger));
 }
@@ -58,12 +58,12 @@ daqErrCode daqPropertyObjectInternal_clone(daqPropertyObjectInternal* self, daqP
     return reinterpret_cast<daq::IPropertyObjectInternal*>(self)->clone(reinterpret_cast<daq::IPropertyObject**>(cloned));
 }
 
-daqErrCode daqPropertyObjectInternal_setPath(daqPropertyObjectInternal* self, daqString* path)
+daqErrCode daqPropertyObjectInternal_setPath(daqPropertyObjectInternal* self, daqStringObject* path)
 {
     return reinterpret_cast<daq::IPropertyObjectInternal*>(self)->setPath(reinterpret_cast<daq::IString*>(path));
 }
 
-daqErrCode daqPropertyObjectInternal_getPath(daqPropertyObjectInternal* self, daqString** path)
+daqErrCode daqPropertyObjectInternal_getPath(daqPropertyObjectInternal* self, daqStringObject** path)
 {
     return reinterpret_cast<daq::IPropertyObjectInternal*>(self)->getPath(reinterpret_cast<daq::IString**>(path));
 }
@@ -78,27 +78,27 @@ daqErrCode daqPropertyObjectInternal_hasUserReadAccess(daqPropertyObjectInternal
     return reinterpret_cast<daq::IPropertyObjectInternal*>(self)->hasUserReadAccess(reinterpret_cast<daq::IBaseObject*>(userContext), hasAccessOut);
 }
 
-daqErrCode daqPropertyObjectInternal_getPropertyValueNoLock(daqPropertyObjectInternal* self, daqString* name, daqBaseObject** value)
+daqErrCode daqPropertyObjectInternal_getPropertyValueNoLock(daqPropertyObjectInternal* self, daqStringObject* name, daqBaseObject** value)
 {
     return reinterpret_cast<daq::IPropertyObjectInternal*>(self)->getPropertyValueNoLock(reinterpret_cast<daq::IString*>(name), reinterpret_cast<daq::IBaseObject**>(value));
 }
 
-daqErrCode daqPropertyObjectInternal_getPropertySelectionValueNoLock(daqPropertyObjectInternal* self, daqString* name, daqBaseObject** value)
+daqErrCode daqPropertyObjectInternal_getPropertySelectionValueNoLock(daqPropertyObjectInternal* self, daqStringObject* name, daqBaseObject** value)
 {
     return reinterpret_cast<daq::IPropertyObjectInternal*>(self)->getPropertySelectionValueNoLock(reinterpret_cast<daq::IString*>(name), reinterpret_cast<daq::IBaseObject**>(value));
 }
 
-daqErrCode daqPropertyObjectInternal_setPropertyValueNoLock(daqPropertyObjectInternal* self, daqString* name, daqBaseObject* value)
+daqErrCode daqPropertyObjectInternal_setPropertyValueNoLock(daqPropertyObjectInternal* self, daqStringObject* name, daqBaseObject* value)
 {
     return reinterpret_cast<daq::IPropertyObjectInternal*>(self)->setPropertyValueNoLock(reinterpret_cast<daq::IString*>(name), reinterpret_cast<daq::IBaseObject*>(value));
 }
 
-daqErrCode daqPropertyObjectInternal_setProtectedPropertyValueNoLock(daqPropertyObjectInternal* self, daqString* name, daqBaseObject* value)
+daqErrCode daqPropertyObjectInternal_setProtectedPropertyValueNoLock(daqPropertyObjectInternal* self, daqStringObject* name, daqBaseObject* value)
 {
     return reinterpret_cast<daq::IPropertyObjectInternal*>(self)->setProtectedPropertyValueNoLock(reinterpret_cast<daq::IString*>(name), reinterpret_cast<daq::IBaseObject*>(value));
 }
 
-daqErrCode daqPropertyObjectInternal_clearPropertyValueNoLock(daqPropertyObjectInternal* self, daqString* name)
+daqErrCode daqPropertyObjectInternal_clearPropertyValueNoLock(daqPropertyObjectInternal* self, daqStringObject* name)
 {
     return reinterpret_cast<daq::IPropertyObjectInternal*>(self)->clearPropertyValueNoLock(reinterpret_cast<daq::IString*>(name));
 }

@@ -38,32 +38,32 @@ daqErrCode daqUnitBuilder_getId(daqUnitBuilder* self, daqInt* id)
     return reinterpret_cast<daq::IUnitBuilder*>(self)->getId(id);
 }
 
-daqErrCode daqUnitBuilder_setSymbol(daqUnitBuilder* self, daqString* symbol)
+daqErrCode daqUnitBuilder_setSymbol(daqUnitBuilder* self, daqStringObject* symbol)
 {
     return reinterpret_cast<daq::IUnitBuilder*>(self)->setSymbol(reinterpret_cast<daq::IString*>(symbol));
 }
 
-daqErrCode daqUnitBuilder_getSymbol(daqUnitBuilder* self, daqString** symbol)
+daqErrCode daqUnitBuilder_getSymbol(daqUnitBuilder* self, daqStringObject** symbol)
 {
     return reinterpret_cast<daq::IUnitBuilder*>(self)->getSymbol(reinterpret_cast<daq::IString**>(symbol));
 }
 
-daqErrCode daqUnitBuilder_setName(daqUnitBuilder* self, daqString* name)
+daqErrCode daqUnitBuilder_setName(daqUnitBuilder* self, daqStringObject* name)
 {
     return reinterpret_cast<daq::IUnitBuilder*>(self)->setName(reinterpret_cast<daq::IString*>(name));
 }
 
-daqErrCode daqUnitBuilder_getName(daqUnitBuilder* self, daqString** name)
+daqErrCode daqUnitBuilder_getName(daqUnitBuilder* self, daqStringObject** name)
 {
     return reinterpret_cast<daq::IUnitBuilder*>(self)->getName(reinterpret_cast<daq::IString**>(name));
 }
 
-daqErrCode daqUnitBuilder_setQuantity(daqUnitBuilder* self, daqString* quantity)
+daqErrCode daqUnitBuilder_setQuantity(daqUnitBuilder* self, daqStringObject* quantity)
 {
     return reinterpret_cast<daq::IUnitBuilder*>(self)->setQuantity(reinterpret_cast<daq::IString*>(quantity));
 }
 
-daqErrCode daqUnitBuilder_getQuantity(daqUnitBuilder* self, daqString** quantity)
+daqErrCode daqUnitBuilder_getQuantity(daqUnitBuilder* self, daqStringObject** quantity)
 {
     return reinterpret_cast<daq::IUnitBuilder*>(self)->getQuantity(reinterpret_cast<daq::IString**>(quantity));
 }

@@ -33,7 +33,7 @@ daqErrCode daqMultiReaderBuilder_addSignal(daqMultiReaderBuilder* self, daqSigna
     return reinterpret_cast<daq::IMultiReaderBuilder*>(self)->addSignal(reinterpret_cast<daq::ISignal*>(signal));
 }
 
-daqErrCode daqMultiReaderBuilder_addSignals(daqMultiReaderBuilder* self, daqList* signals)
+daqErrCode daqMultiReaderBuilder_addSignals(daqMultiReaderBuilder* self, daqListObject* signals)
 {
     return reinterpret_cast<daq::IMultiReaderBuilder*>(self)->addSignals(reinterpret_cast<daq::IList*>(signals));
 }
@@ -43,12 +43,12 @@ daqErrCode daqMultiReaderBuilder_addInputPort(daqMultiReaderBuilder* self, daqIn
     return reinterpret_cast<daq::IMultiReaderBuilder*>(self)->addInputPort(reinterpret_cast<daq::IInputPort*>(port));
 }
 
-daqErrCode daqMultiReaderBuilder_addInputPorts(daqMultiReaderBuilder* self, daqList* ports)
+daqErrCode daqMultiReaderBuilder_addInputPorts(daqMultiReaderBuilder* self, daqListObject* ports)
 {
     return reinterpret_cast<daq::IMultiReaderBuilder*>(self)->addInputPorts(reinterpret_cast<daq::IList*>(ports));
 }
 
-daqErrCode daqMultiReaderBuilder_getSourceComponents(daqMultiReaderBuilder* self, daqList** components)
+daqErrCode daqMultiReaderBuilder_getSourceComponents(daqMultiReaderBuilder* self, daqListObject** components)
 {
     return reinterpret_cast<daq::IMultiReaderBuilder*>(self)->getSourceComponents(reinterpret_cast<daq::IList**>(components));
 }
@@ -123,12 +123,12 @@ daqErrCode daqMultiReaderBuilder_getMinReadCount(daqMultiReaderBuilder* self, da
     return reinterpret_cast<daq::IMultiReaderBuilder*>(self)->getMinReadCount(minReadCount);
 }
 
-daqErrCode daqMultiReaderBuilder_setTickOffsetTolerance(daqMultiReaderBuilder* self, daqRatio* offsetTolerance)
+daqErrCode daqMultiReaderBuilder_setTickOffsetTolerance(daqMultiReaderBuilder* self, daqRatioObject* offsetTolerance)
 {
     return reinterpret_cast<daq::IMultiReaderBuilder*>(self)->setTickOffsetTolerance(reinterpret_cast<daq::IRatio*>(offsetTolerance));
 }
 
-daqErrCode daqMultiReaderBuilder_getTickOffsetTolerance(daqMultiReaderBuilder* self, daqRatio** offsetTolerance)
+daqErrCode daqMultiReaderBuilder_getTickOffsetTolerance(daqMultiReaderBuilder* self, daqRatioObject** offsetTolerance)
 {
     return reinterpret_cast<daq::IMultiReaderBuilder*>(self)->getTickOffsetTolerance(reinterpret_cast<daq::IRatio**>(offsetTolerance));
 }
@@ -153,12 +153,12 @@ daqErrCode daqMultiReaderBuilder_getInputPortNotificationMethod(daqMultiReaderBu
     return reinterpret_cast<daq::IMultiReaderBuilder*>(self)->getInputPortNotificationMethod(reinterpret_cast<daq::PacketReadyNotification*>(notificationMethod));
 }
 
-daqErrCode daqMultiReaderBuilder_setInputPortNotificationMethods(daqMultiReaderBuilder* self, daqList* notificationMethods)
+daqErrCode daqMultiReaderBuilder_setInputPortNotificationMethods(daqMultiReaderBuilder* self, daqListObject* notificationMethods)
 {
     return reinterpret_cast<daq::IMultiReaderBuilder*>(self)->setInputPortNotificationMethods(reinterpret_cast<daq::IList*>(notificationMethods));
 }
 
-daqErrCode daqMultiReaderBuilder_getInputPortNotificationMethods(daqMultiReaderBuilder* self, daqList** notificationMethods)
+daqErrCode daqMultiReaderBuilder_getInputPortNotificationMethods(daqMultiReaderBuilder* self, daqListObject** notificationMethods)
 {
     return reinterpret_cast<daq::IMultiReaderBuilder*>(self)->getInputPortNotificationMethods(reinterpret_cast<daq::IList**>(notificationMethods));
 }

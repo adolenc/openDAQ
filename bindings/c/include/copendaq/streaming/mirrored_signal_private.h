@@ -37,7 +37,7 @@ extern "C"
     typedef struct daqMirroredSignalPrivate daqMirroredSignalPrivate;
     typedef struct daqEventPacket daqEventPacket;
     typedef struct daqStreaming daqStreaming;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
     typedef struct daqDataDescriptor daqDataDescriptor;
     typedef struct daqMirroredSignalConfig daqMirroredSignalConfig;
 
@@ -46,10 +46,10 @@ extern "C"
 
     daqErrCode EXPORTED daqMirroredSignalPrivate_triggerEvent(daqMirroredSignalPrivate* self, daqEventPacket* eventPacket, daqBool* forward);
     daqErrCode EXPORTED daqMirroredSignalPrivate_addStreamingSource(daqMirroredSignalPrivate* self, daqStreaming* streaming);
-    daqErrCode EXPORTED daqMirroredSignalPrivate_removeStreamingSource(daqMirroredSignalPrivate* self, daqString* streamingConnectionString);
-    daqErrCode EXPORTED daqMirroredSignalPrivate_subscribeCompleted(daqMirroredSignalPrivate* self, daqString* streamingConnectionString);
-    daqErrCode EXPORTED daqMirroredSignalPrivate_unsubscribeCompleted(daqMirroredSignalPrivate* self, daqString* streamingConnectionString);
-    daqErrCode EXPORTED daqMirroredSignalPrivate_unsubscribeCompletedNoLock(daqMirroredSignalPrivate* self, daqString* streamingConnectionString);
+    daqErrCode EXPORTED daqMirroredSignalPrivate_removeStreamingSource(daqMirroredSignalPrivate* self, daqStringObject* streamingConnectionString);
+    daqErrCode EXPORTED daqMirroredSignalPrivate_subscribeCompleted(daqMirroredSignalPrivate* self, daqStringObject* streamingConnectionString);
+    daqErrCode EXPORTED daqMirroredSignalPrivate_unsubscribeCompleted(daqMirroredSignalPrivate* self, daqStringObject* streamingConnectionString);
+    daqErrCode EXPORTED daqMirroredSignalPrivate_unsubscribeCompletedNoLock(daqMirroredSignalPrivate* self, daqStringObject* streamingConnectionString);
     daqErrCode EXPORTED daqMirroredSignalPrivate_getMirroredDataDescriptor(daqMirroredSignalPrivate* self, daqDataDescriptor** descriptor);
     daqErrCode EXPORTED daqMirroredSignalPrivate_setMirroredDataDescriptor(daqMirroredSignalPrivate* self, daqDataDescriptor* descriptor);
     daqErrCode EXPORTED daqMirroredSignalPrivate_getMirroredDomainSignal(daqMirroredSignalPrivate* self, daqMirroredSignalConfig** domainSignals);

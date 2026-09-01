@@ -23,15 +23,15 @@ void daqFunction_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_FUNCTION_INTF_ID;
 }
 
-daqErrCode daqFunction_call(daqFunction* self, daqBaseObject* params, daqBaseObject** result)
+daqErrCode daqFunction_call(daqFunctionObject* self, daqBaseObject* params, daqBaseObject** result)
 {
     return reinterpret_cast<daq::IFunction*>(self)->call(reinterpret_cast<daq::IBaseObject*>(params), reinterpret_cast<daq::IBaseObject**>(result));
 }
 
-daqErrCode daqFunction_createFunction(daqFunction** obj, daqFuncCall value)
+daqErrCode daqFunction_createFunction(daqFunctionObject** obj, daqFuncCall value)
 {
     daq::IFunction* ptr = nullptr;
     daqErrCode err = daq::createFunction(&ptr, reinterpret_cast<daq::FuncCall>(value));
-    *obj = reinterpret_cast<daqFunction*>(ptr);
+    *obj = reinterpret_cast<daqFunctionObject*>(ptr);
     return err;
 }

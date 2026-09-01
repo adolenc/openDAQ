@@ -6,7 +6,7 @@ class COpendaqComponentTest : public testing::Test
 {
     void SetUp() override
     {
-        daqList* sinks = nullptr;
+        daqListObject* sinks = nullptr;
         daqList_createList(&sinks);
 
         daqLoggerSink* sink = nullptr;
@@ -19,7 +19,7 @@ class COpendaqComponentTest : public testing::Test
         daqTypeManager* typeManager = nullptr;
         daqTypeManager_createTypeManager(&typeManager);
 
-        daqDict *options = nullptr, *discoveryServers = nullptr;
+        daqDictObject *options = nullptr, *discoveryServers = nullptr;
         daqDict_createDict(&options);
         daqDict_createDict(&discoveryServers);
 
@@ -44,16 +44,16 @@ protected:
 
 TEST_F(COpendaqComponentTest, ComponentPrivate)
 {
-    daqString* id = nullptr;
+    daqStringObject* id = nullptr;
     daqString_createString(&id, "parent");
 
     daqComponent* component = nullptr;
     daqComponent_createComponent(&component, ctx, nullptr, id, nullptr);
 
-    daqString* name = nullptr;
+    daqStringObject* name = nullptr;
     daqString_createString(&name, "Name");
 
-    daqString* desc = nullptr;
+    daqStringObject* desc = nullptr;
     daqString_createString(&desc, "Description");
 
     daqComponent_setName(component, name);
@@ -66,10 +66,10 @@ TEST_F(COpendaqComponentTest, ComponentPrivate)
 
     daqComponentPrivate_lockAllAttributes(priv);
 
-    daqString* newName = nullptr;
+    daqStringObject* newName = nullptr;
     daqString_createString(&newName, "New Name");
 
-    daqString* newDesc = nullptr;
+    daqStringObject* newDesc = nullptr;
     daqString_createString(&newDesc, "New Description");
 
     daqComponent_setName(component, newName);
@@ -77,9 +77,9 @@ TEST_F(COpendaqComponentTest, ComponentPrivate)
     daqComponent_setActive(component, False);
     daqComponent_setVisible(component, False);
 
-    daqString* outName = nullptr;
+    daqStringObject* outName = nullptr;
     daqComponent_getName(component, &outName);
-    daqString* outDesc = nullptr;
+    daqStringObject* outDesc = nullptr;
     daqComponent_getDescription(component, &outDesc);
     daqBool active = False;
     daqComponent_getActive(component, &active);
@@ -108,7 +108,7 @@ TEST_F(COpendaqComponentTest, ComponentPrivate)
 
 TEST_F(COpendaqComponentTest, ComponentStatusContainer)
 {
-    daqString* id = nullptr;
+    daqStringObject* id = nullptr;
     daqString_createString(&id, "parent");
 
     daqComponent* component = nullptr;
@@ -131,9 +131,9 @@ TEST_F(COpendaqComponentTest, ComponentStatusContainer)
 
 TEST_F(COpendaqComponentTest, Component)
 {
-    daqString* id = nullptr;
+    daqStringObject* id = nullptr;
     daqString_createString(&id, "parent");
-    daqString* idc = nullptr;
+    daqStringObject* idc = nullptr;
     daqString_createString(&idc, "child");
 
     daqComponent* component = nullptr;
@@ -142,12 +142,12 @@ TEST_F(COpendaqComponentTest, Component)
     daqComponent* child = nullptr;
     daqComponent_createComponent(&child, ctx, component, idc, nullptr);
 
-    daqString* childLocalId = nullptr;
+    daqStringObject* childLocalId = nullptr;
     daqComponent_getLocalId(child, &childLocalId);
     daqConstCharPtr childLocalIdStr = nullptr;
     daqString_getCharPtr(childLocalId, &childLocalIdStr);
 
-    daqString* childGlobalId = nullptr;
+    daqStringObject* childGlobalId = nullptr;
     daqComponent_getGlobalId(child, &childGlobalId);
     daqConstCharPtr childGlobalIdStr = nullptr;
     daqString_getCharPtr(childGlobalId, &childGlobalIdStr);
@@ -165,10 +165,10 @@ TEST_F(COpendaqComponentTest, Component)
 
 TEST_F(COpendaqComponentTest, Folder)
 {
-    daqString* folderId = nullptr;
+    daqStringObject* folderId = nullptr;
     daqString_createString(&folderId, "folder");
 
-    daqString* itemId = nullptr;
+    daqStringObject* itemId = nullptr;
     daqString_createString(&itemId, "item");
 
     daqFolderConfig* folder = nullptr;
@@ -197,7 +197,7 @@ TEST_F(COpendaqComponentTest, Folder)
 
 TEST_F(COpendaqComponentTest, Removable)
 {
-    daqString* id = nullptr;
+    daqStringObject* id = nullptr;
     daqString_createString(&id, "parent");
 
     daqComponent* component = nullptr;
@@ -224,7 +224,7 @@ TEST_F(COpendaqComponentTest, Tags)
     daqTagsPrivate* priv = nullptr;
     daqBaseObject_borrowInterface(tags, DAQ_TAGS_PRIVATE_INTF_ID, (void**) &priv);
 
-    daqString* tag = nullptr;
+    daqStringObject* tag = nullptr;
     daqString_createString(&tag, "test");
 
     daqTagsPrivate_add(priv, tag);

@@ -23,20 +23,20 @@ void daqInteger_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_INTEGER_INTF_ID;
 }
 
-daqErrCode daqInteger_getValue(daqInteger* self, daqInt* value)
+daqErrCode daqInteger_getValue(daqIntegerObject* self, daqInt* value)
 {
     return reinterpret_cast<daq::IInteger*>(self)->getValue(value);
 }
 
-daqErrCode daqInteger_equalsValue(daqInteger* self, daqInt value, daqBool* equals)
+daqErrCode daqInteger_equalsValue(daqIntegerObject* self, daqInt value, daqBool* equals)
 {
     return reinterpret_cast<daq::IInteger*>(self)->equalsValue(value, equals);
 }
 
-daqErrCode daqInteger_createInteger(daqInteger** obj, daqInt value)
+daqErrCode daqInteger_createInteger(daqIntegerObject** obj, daqInt value)
 {
     daq::IInteger* ptr = nullptr;
     daqErrCode err = daq::createInteger(&ptr, value);
-    *obj = reinterpret_cast<daqInteger*>(ptr);
+    *obj = reinterpret_cast<daqIntegerObject*>(ptr);
     return err;
 }

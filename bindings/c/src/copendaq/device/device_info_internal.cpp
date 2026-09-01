@@ -28,7 +28,7 @@ daqErrCode daqDeviceInfoInternal_addServerCapability(daqDeviceInfoInternal* self
     return reinterpret_cast<daq::IDeviceInfoInternal*>(self)->addServerCapability(reinterpret_cast<daq::IServerCapability*>(serverCapability));
 }
 
-daqErrCode daqDeviceInfoInternal_removeServerCapability(daqDeviceInfoInternal* self, daqString* protocolId)
+daqErrCode daqDeviceInfoInternal_removeServerCapability(daqDeviceInfoInternal* self, daqStringObject* protocolId)
 {
     return reinterpret_cast<daq::IDeviceInfoInternal*>(self)->removeServerCapability(reinterpret_cast<daq::IString*>(protocolId));
 }
@@ -38,7 +38,7 @@ daqErrCode daqDeviceInfoInternal_clearServerStreamingCapabilities(daqDeviceInfoI
     return reinterpret_cast<daq::IDeviceInfoInternal*>(self)->clearServerStreamingCapabilities();
 }
 
-daqErrCode daqDeviceInfoInternal_addNetworkInteface(daqDeviceInfoInternal* self, daqString* name, daqNetworkInterface* networkInterface)
+daqErrCode daqDeviceInfoInternal_addNetworkInteface(daqDeviceInfoInternal* self, daqStringObject* name, daqNetworkInterface* networkInterface)
 {
     return reinterpret_cast<daq::IDeviceInfoInternal*>(self)->addNetworkInteface(reinterpret_cast<daq::IString*>(name), reinterpret_cast<daq::INetworkInterface*>(networkInterface));
 }

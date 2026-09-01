@@ -23,12 +23,12 @@ void daqReferenceDomainInfo_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_REFERENCE_DOMAIN_INFO_INTF_ID;
 }
 
-daqErrCode daqReferenceDomainInfo_getReferenceDomainId(daqReferenceDomainInfo* self, daqString** referenceDomainId)
+daqErrCode daqReferenceDomainInfo_getReferenceDomainId(daqReferenceDomainInfo* self, daqStringObject** referenceDomainId)
 {
     return reinterpret_cast<daq::IReferenceDomainInfo*>(self)->getReferenceDomainId(reinterpret_cast<daq::IString**>(referenceDomainId));
 }
 
-daqErrCode daqReferenceDomainInfo_getReferenceDomainOffset(daqReferenceDomainInfo* self, daqInteger** referenceDomainOffset)
+daqErrCode daqReferenceDomainInfo_getReferenceDomainOffset(daqReferenceDomainInfo* self, daqIntegerObject** referenceDomainOffset)
 {
     return reinterpret_cast<daq::IReferenceDomainInfo*>(self)->getReferenceDomainOffset(reinterpret_cast<daq::IInteger**>(referenceDomainOffset));
 }

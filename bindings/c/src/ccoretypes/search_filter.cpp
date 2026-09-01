@@ -65,7 +65,7 @@ daqErrCode daqSearchFilter_createNotSearchFilter(daqSearchFilter** obj, daqSearc
     return err;
 }
 
-daqErrCode daqSearchFilter_createCustomSearchFilter(daqSearchFilter** obj, daqFunction* acceptsFunction, daqFunction* visitFunction)
+daqErrCode daqSearchFilter_createCustomSearchFilter(daqSearchFilter** obj, daqFunctionObject* acceptsFunction, daqFunctionObject* visitFunction)
 {
     daq::ISearchFilter* ptr = nullptr;
     daqErrCode err = daq::createCustomSearchFilter(&ptr, reinterpret_cast<daq::IFunction*>(acceptsFunction), reinterpret_cast<daq::IFunction*>(visitFunction));

@@ -23,17 +23,17 @@ void daqComponentUpdateContext_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_COMPONENT_UPDATE_CONTEXT_INTF_ID;
 }
 
-daqErrCode daqComponentUpdateContext_setInputPortConnection(daqComponentUpdateContext* self, daqString* parentId, daqString* portId, daqString* signalId)
+daqErrCode daqComponentUpdateContext_setInputPortConnection(daqComponentUpdateContext* self, daqStringObject* parentId, daqStringObject* portId, daqStringObject* signalId)
 {
     return reinterpret_cast<daq::IComponentUpdateContext*>(self)->setInputPortConnection(reinterpret_cast<daq::IString*>(parentId), reinterpret_cast<daq::IString*>(portId), reinterpret_cast<daq::IString*>(signalId));
 }
 
-daqErrCode daqComponentUpdateContext_getInputPortConnections(daqComponentUpdateContext* self, daqString* parentId, daqDict** connections)
+daqErrCode daqComponentUpdateContext_getInputPortConnections(daqComponentUpdateContext* self, daqStringObject* parentId, daqDictObject** connections)
 {
     return reinterpret_cast<daq::IComponentUpdateContext*>(self)->getInputPortConnections(reinterpret_cast<daq::IString*>(parentId), reinterpret_cast<daq::IDict**>(connections));
 }
 
-daqErrCode daqComponentUpdateContext_removeInputPortConnection(daqComponentUpdateContext* self, daqString* parentId)
+daqErrCode daqComponentUpdateContext_removeInputPortConnection(daqComponentUpdateContext* self, daqStringObject* parentId)
 {
     return reinterpret_cast<daq::IComponentUpdateContext*>(self)->removeInputPortConnection(reinterpret_cast<daq::IString*>(parentId));
 }
@@ -48,22 +48,22 @@ daqErrCode daqComponentUpdateContext_getRootComponent(daqComponentUpdateContext*
     return reinterpret_cast<daq::IComponentUpdateContext*>(self)->getRootComponent(reinterpret_cast<daq::IComponent**>(rootComponent));
 }
 
-daqErrCode daqComponentUpdateContext_getSignal(daqComponentUpdateContext* self, daqString* parentId, daqString* portId, daqSignal** signal)
+daqErrCode daqComponentUpdateContext_getSignal(daqComponentUpdateContext* self, daqStringObject* parentId, daqStringObject* portId, daqSignal** signal)
 {
     return reinterpret_cast<daq::IComponentUpdateContext*>(self)->getSignal(reinterpret_cast<daq::IString*>(parentId), reinterpret_cast<daq::IString*>(portId), reinterpret_cast<daq::ISignal**>(signal));
 }
 
-daqErrCode daqComponentUpdateContext_setSignalDependency(daqComponentUpdateContext* self, daqString* signalId, daqString* parentId)
+daqErrCode daqComponentUpdateContext_setSignalDependency(daqComponentUpdateContext* self, daqStringObject* signalId, daqStringObject* parentId)
 {
     return reinterpret_cast<daq::IComponentUpdateContext*>(self)->setSignalDependency(reinterpret_cast<daq::IString*>(signalId), reinterpret_cast<daq::IString*>(parentId));
 }
 
-daqErrCode daqComponentUpdateContext_addDeviceRemapping(daqComponentUpdateContext* self, daqString* originalDeviceId, daqString* newDeviceId)
+daqErrCode daqComponentUpdateContext_addDeviceRemapping(daqComponentUpdateContext* self, daqStringObject* originalDeviceId, daqStringObject* newDeviceId)
 {
     return reinterpret_cast<daq::IComponentUpdateContext*>(self)->addDeviceRemapping(reinterpret_cast<daq::IString*>(originalDeviceId), reinterpret_cast<daq::IString*>(newDeviceId));
 }
 
-daqErrCode daqComponentUpdateContext_getDeviceUpdateOptionsWithLocalIdOrNull(daqComponentUpdateContext* self, daqString* localId, daqDeviceUpdateOptions** options)
+daqErrCode daqComponentUpdateContext_getDeviceUpdateOptionsWithLocalIdOrNull(daqComponentUpdateContext* self, daqStringObject* localId, daqDeviceUpdateOptions** options)
 {
     return reinterpret_cast<daq::IComponentUpdateContext*>(self)->getDeviceUpdateOptionsWithLocalIdOrNull(reinterpret_cast<daq::IString*>(localId), reinterpret_cast<daq::IDeviceUpdateOptions**>(options));
 }
@@ -83,7 +83,7 @@ daqErrCode daqComponentUpdateContext_overrideState(daqComponentUpdateContext* se
     return reinterpret_cast<daq::IComponentUpdateContext*>(self)->overrideState(reinterpret_cast<daq::IComponentUpdateContext*>(updateContext));
 }
 
-daqErrCode daqComponentUpdateContext_getInternalState(daqComponentUpdateContext* self, daqDict** state)
+daqErrCode daqComponentUpdateContext_getInternalState(daqComponentUpdateContext* self, daqDictObject** state)
 {
     return reinterpret_cast<daq::IComponentUpdateContext*>(self)->getInternalState(reinterpret_cast<daq::IDict**>(state));
 }

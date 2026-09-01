@@ -23,28 +23,28 @@ void daqBoolean_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_BOOLEAN_INTF_ID;
 }
 
-daqErrCode daqBoolean_getValue(daqBoolean* self, daqBool* value)
+daqErrCode daqBoolean_getValue(daqBooleanObject* self, daqBool* value)
 {
     return reinterpret_cast<daq::IBoolean*>(self)->getValue(value);
 }
 
-daqErrCode daqBoolean_equalsValue(daqBoolean* self, daqBool value, daqBool* equal)
+daqErrCode daqBoolean_equalsValue(daqBooleanObject* self, daqBool value, daqBool* equal)
 {
     return reinterpret_cast<daq::IBoolean*>(self)->equalsValue(value, equal);
 }
 
-daqErrCode daqBoolean_createBoolean(daqBoolean** obj, daqBool value)
+daqErrCode daqBoolean_createBoolean(daqBooleanObject** obj, daqBool value)
 {
     daq::IBoolean* ptr = nullptr;
     daqErrCode err = daq::createBoolean(&ptr, value);
-    *obj = reinterpret_cast<daqBoolean*>(ptr);
+    *obj = reinterpret_cast<daqBooleanObject*>(ptr);
     return err;
 }
 
-daqErrCode daqBoolean_createBoolObject(daqBoolean** obj, daqBool value)
+daqErrCode daqBoolean_createBoolObject(daqBooleanObject** obj, daqBool value)
 {
     daq::IBoolean* ptr = nullptr;
     daqErrCode err = daq::createBoolObject(&ptr, value);
-    *obj = reinterpret_cast<daqBoolean*>(ptr);
+    *obj = reinterpret_cast<daqBooleanObject*>(ptr);
     return err;
 }

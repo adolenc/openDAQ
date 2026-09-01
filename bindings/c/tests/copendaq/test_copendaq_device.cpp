@@ -31,15 +31,15 @@ TEST_F(COpendaqDeviceTest, AddressInfo)
     daqAddressInfoBuilder* builder = nullptr;
     daqAddressInfoBuilder_createAddressInfoBuilder(&builder);
 
-    daqString* connectionString = nullptr;
+    daqStringObject* connectionString = nullptr;
     daqString_createString(&connectionString, "daqref://device0");
     daqAddressInfoBuilder_setConnectionString(builder, connectionString);
     daqAddressInfoBuilder_setReachabilityStatus(builder, daqAddressReachabilityStatusUnknown);
-    daqString* type = nullptr;
+    daqStringObject* type = nullptr;
     daqString_createString(&type, "Type");
     daqAddressInfoBuilder_setType(builder, type);
     daqBaseObject_releaseRef(type);
-    daqString* address = nullptr;
+    daqStringObject* address = nullptr;
     daqString_createString(&address, "Address");
     daqAddressInfoBuilder_setAddress(builder, connectionString);
     daqAddressInfoBuilder_setAddress(builder, address);
@@ -50,7 +50,7 @@ TEST_F(COpendaqDeviceTest, AddressInfo)
     daqAddressInfoBuilder_build(builder, &addressInfo);
     ASSERT_NE(addressInfo, nullptr);
 
-    daqString* connectionStringOut = nullptr;
+    daqStringObject* connectionStringOut = nullptr;
     daqAddressInfo_getConnectionString(addressInfo, &connectionStringOut);
     ASSERT_NE(connectionStringOut, nullptr);
 
@@ -64,13 +64,13 @@ TEST_F(COpendaqDeviceTest, DeviceInfo)
     daqDeviceInfo* deviceInfo = nullptr;
     daqDevice_getInfo(dev, &deviceInfo);
     ASSERT_NE(deviceInfo, nullptr);
-    daqString* connectionString = nullptr;
+    daqStringObject* connectionString = nullptr;
     daqDeviceInfo_getConnectionString(deviceInfo, &connectionString);
     ASSERT_NE(connectionString, nullptr);
     daqConstCharPtr connectionStringStr = nullptr;
     daqString_getCharPtr(connectionString, &connectionStringStr);
 
-    daqString* name = nullptr;
+    daqStringObject* name = nullptr;
     daqDeviceInfo_getName(deviceInfo, &name);
     daqConstCharPtr nameStr = nullptr;
     daqString_getCharPtr(name, &nameStr);
@@ -87,7 +87,7 @@ TEST_F(COpendaqDeviceTest, IoFolderConfig)
     ASSERT_NE(component, nullptr);
 
     daqFolderConfig* folderConfig = nullptr;
-    daqString* localId = nullptr;
+    daqStringObject* localId = nullptr;
     daqString_createString(&localId, "IoFolder");
     daqContext* ctx = nullptr;
     daqComponent_getContext(component, &ctx);

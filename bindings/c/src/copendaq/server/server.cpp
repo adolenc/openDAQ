@@ -28,7 +28,7 @@ daqErrCode daqServer_stop(daqServer* self)
     return reinterpret_cast<daq::IServer*>(self)->stop();
 }
 
-daqErrCode daqServer_getId(daqServer* self, daqString** serverId)
+daqErrCode daqServer_getId(daqServer* self, daqStringObject** serverId)
 {
     return reinterpret_cast<daq::IServer*>(self)->getId(reinterpret_cast<daq::IString**>(serverId));
 }
@@ -38,7 +38,7 @@ daqErrCode daqServer_enableDiscovery(daqServer* self)
     return reinterpret_cast<daq::IServer*>(self)->enableDiscovery();
 }
 
-daqErrCode daqServer_getSignals(daqServer* self, daqList** signals, daqSearchFilter* searchFilter)
+daqErrCode daqServer_getSignals(daqServer* self, daqListObject** signals, daqSearchFilter* searchFilter)
 {
     return reinterpret_cast<daq::IServer*>(self)->getSignals(reinterpret_cast<daq::IList**>(signals), reinterpret_cast<daq::ISearchFilter*>(searchFilter));
 }

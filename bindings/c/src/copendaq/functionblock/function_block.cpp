@@ -28,17 +28,17 @@ daqErrCode daqFunctionBlock_getFunctionBlockType(daqFunctionBlock* self, daqFunc
     return reinterpret_cast<daq::IFunctionBlock*>(self)->getFunctionBlockType(reinterpret_cast<daq::IFunctionBlockType**>(type));
 }
 
-daqErrCode daqFunctionBlock_getInputPorts(daqFunctionBlock* self, daqList** ports, daqSearchFilter* searchFilter)
+daqErrCode daqFunctionBlock_getInputPorts(daqFunctionBlock* self, daqListObject** ports, daqSearchFilter* searchFilter)
 {
     return reinterpret_cast<daq::IFunctionBlock*>(self)->getInputPorts(reinterpret_cast<daq::IList**>(ports), reinterpret_cast<daq::ISearchFilter*>(searchFilter));
 }
 
-daqErrCode daqFunctionBlock_getSignals(daqFunctionBlock* self, daqList** signals, daqSearchFilter* searchFilter)
+daqErrCode daqFunctionBlock_getSignals(daqFunctionBlock* self, daqListObject** signals, daqSearchFilter* searchFilter)
 {
     return reinterpret_cast<daq::IFunctionBlock*>(self)->getSignals(reinterpret_cast<daq::IList**>(signals), reinterpret_cast<daq::ISearchFilter*>(searchFilter));
 }
 
-daqErrCode daqFunctionBlock_getSignalsRecursive(daqFunctionBlock* self, daqList** signals, daqSearchFilter* searchFilter)
+daqErrCode daqFunctionBlock_getSignalsRecursive(daqFunctionBlock* self, daqListObject** signals, daqSearchFilter* searchFilter)
 {
     return reinterpret_cast<daq::IFunctionBlock*>(self)->getSignalsRecursive(reinterpret_cast<daq::IList**>(signals), reinterpret_cast<daq::ISearchFilter*>(searchFilter));
 }
@@ -48,17 +48,17 @@ daqErrCode daqFunctionBlock_getStatusSignal(daqFunctionBlock* self, daqSignal** 
     return reinterpret_cast<daq::IFunctionBlock*>(self)->getStatusSignal(reinterpret_cast<daq::ISignal**>(statusSignal));
 }
 
-daqErrCode daqFunctionBlock_getFunctionBlocks(daqFunctionBlock* self, daqList** functionBlocks, daqSearchFilter* searchFilter)
+daqErrCode daqFunctionBlock_getFunctionBlocks(daqFunctionBlock* self, daqListObject** functionBlocks, daqSearchFilter* searchFilter)
 {
     return reinterpret_cast<daq::IFunctionBlock*>(self)->getFunctionBlocks(reinterpret_cast<daq::IList**>(functionBlocks), reinterpret_cast<daq::ISearchFilter*>(searchFilter));
 }
 
-daqErrCode daqFunctionBlock_getAvailableFunctionBlockTypes(daqFunctionBlock* self, daqDict** functionBlockTypes)
+daqErrCode daqFunctionBlock_getAvailableFunctionBlockTypes(daqFunctionBlock* self, daqDictObject** functionBlockTypes)
 {
     return reinterpret_cast<daq::IFunctionBlock*>(self)->getAvailableFunctionBlockTypes(reinterpret_cast<daq::IDict**>(functionBlockTypes));
 }
 
-daqErrCode daqFunctionBlock_addFunctionBlock(daqFunctionBlock* self, daqFunctionBlock** functionBlock, daqString* typeId, daqPropertyObject* config)
+daqErrCode daqFunctionBlock_addFunctionBlock(daqFunctionBlock* self, daqFunctionBlock** functionBlock, daqStringObject* typeId, daqPropertyObject* config)
 {
     return reinterpret_cast<daq::IFunctionBlock*>(self)->addFunctionBlock(reinterpret_cast<daq::IFunctionBlock**>(functionBlock), reinterpret_cast<daq::IString*>(typeId), reinterpret_cast<daq::IPropertyObject*>(config));
 }

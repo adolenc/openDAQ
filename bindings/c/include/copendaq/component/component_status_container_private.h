@@ -35,16 +35,16 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqComponentStatusContainerPrivate daqComponentStatusContainerPrivate;
-    typedef struct daqString daqString;
-    typedef struct daqEnumeration daqEnumeration;
+    typedef struct daqStringObject daqStringObject;
+    typedef struct daqEnumerationObject daqEnumerationObject;
 
     EXPORTED extern const daqIntfID DAQ_COMPONENT_STATUS_CONTAINER_PRIVATE_INTF_ID;
     void EXPORTED daqComponentStatusContainerPrivate_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqComponentStatusContainerPrivate_addStatus(daqComponentStatusContainerPrivate* self, daqString* name, daqEnumeration* initialValue);
-    daqErrCode EXPORTED daqComponentStatusContainerPrivate_setStatus(daqComponentStatusContainerPrivate* self, daqString* name, daqEnumeration* value);
-    daqErrCode EXPORTED daqComponentStatusContainerPrivate_addStatusWithMessage(daqComponentStatusContainerPrivate* self, daqString* name, daqEnumeration* initialValue, daqString* message);
-    daqErrCode EXPORTED daqComponentStatusContainerPrivate_setStatusWithMessage(daqComponentStatusContainerPrivate* self, daqString* name, daqEnumeration* value, daqString* message);
+    daqErrCode EXPORTED daqComponentStatusContainerPrivate_addStatus(daqComponentStatusContainerPrivate* self, daqStringObject* name, daqEnumerationObject* initialValue);
+    daqErrCode EXPORTED daqComponentStatusContainerPrivate_setStatus(daqComponentStatusContainerPrivate* self, daqStringObject* name, daqEnumerationObject* value);
+    daqErrCode EXPORTED daqComponentStatusContainerPrivate_addStatusWithMessage(daqComponentStatusContainerPrivate* self, daqStringObject* name, daqEnumerationObject* initialValue, daqStringObject* message);
+    daqErrCode EXPORTED daqComponentStatusContainerPrivate_setStatusWithMessage(daqComponentStatusContainerPrivate* self, daqStringObject* name, daqEnumerationObject* value, daqStringObject* message);
 
 #ifdef __cplusplus
 }

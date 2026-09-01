@@ -35,18 +35,18 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqConnectedClientInfo daqConnectedClientInfo;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
 
     EXPORTED extern const daqIntfID DAQ_CONNECTED_CLIENT_INFO_INTF_ID;
     void EXPORTED daqConnectedClientInfo_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqConnectedClientInfo_getAddress(daqConnectedClientInfo* self, daqString** address);
+    daqErrCode EXPORTED daqConnectedClientInfo_getAddress(daqConnectedClientInfo* self, daqStringObject** address);
     daqErrCode EXPORTED daqConnectedClientInfo_getProtocolType(daqConnectedClientInfo* self, daqProtocolType* type);
-    daqErrCode EXPORTED daqConnectedClientInfo_getProtocolName(daqConnectedClientInfo* self, daqString** protocolName);
-    daqErrCode EXPORTED daqConnectedClientInfo_getClientTypeName(daqConnectedClientInfo* self, daqString** type);
-    daqErrCode EXPORTED daqConnectedClientInfo_getHostName(daqConnectedClientInfo* self, daqString** hostName);
+    daqErrCode EXPORTED daqConnectedClientInfo_getProtocolName(daqConnectedClientInfo* self, daqStringObject** protocolName);
+    daqErrCode EXPORTED daqConnectedClientInfo_getClientTypeName(daqConnectedClientInfo* self, daqStringObject** type);
+    daqErrCode EXPORTED daqConnectedClientInfo_getHostName(daqConnectedClientInfo* self, daqStringObject** hostName);
     daqErrCode EXPORTED daqConnectedClientInfo_createConnectedClientInfo(daqConnectedClientInfo** obj);
-    daqErrCode EXPORTED daqConnectedClientInfo_createConnectedClientInfoWithParams(daqConnectedClientInfo** obj, daqString* address, daqProtocolType protocolType, daqString* protocolName, daqString* clientType, daqString* hostName);
+    daqErrCode EXPORTED daqConnectedClientInfo_createConnectedClientInfoWithParams(daqConnectedClientInfo** obj, daqStringObject* address, daqProtocolType protocolType, daqStringObject* protocolName, daqStringObject* clientType, daqStringObject* hostName);
 
 #ifdef __cplusplus
 }

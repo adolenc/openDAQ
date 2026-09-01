@@ -23,22 +23,22 @@ void daqErrorInfo_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_ERROR_INFO_INTF_ID;
 }
 
-daqErrCode daqErrorInfo_setMessage(daqErrorInfo* self, daqString* message)
+daqErrCode daqErrorInfo_setMessage(daqErrorInfo* self, daqStringObject* message)
 {
     return reinterpret_cast<daq::IErrorInfo*>(self)->setMessage(reinterpret_cast<daq::IString*>(message));
 }
 
-daqErrCode daqErrorInfo_getMessage(daqErrorInfo* self, daqString** message)
+daqErrCode daqErrorInfo_getMessage(daqErrorInfo* self, daqStringObject** message)
 {
     return reinterpret_cast<daq::IErrorInfo*>(self)->getMessage(reinterpret_cast<daq::IString**>(message));
 }
 
-daqErrCode daqErrorInfo_setSource(daqErrorInfo* self, daqString* source)
+daqErrCode daqErrorInfo_setSource(daqErrorInfo* self, daqStringObject* source)
 {
     return reinterpret_cast<daq::IErrorInfo*>(self)->setSource(reinterpret_cast<daq::IString*>(source));
 }
 
-daqErrCode daqErrorInfo_getSource(daqErrorInfo* self, daqString** source)
+daqErrCode daqErrorInfo_getSource(daqErrorInfo* self, daqStringObject** source)
 {
     return reinterpret_cast<daq::IErrorInfo*>(self)->getSource(reinterpret_cast<daq::IString**>(source));
 }
@@ -83,7 +83,7 @@ daqErrCode daqErrorInfo_getPreviousErrorCode(daqErrorInfo* self, daqErrCode* pre
     return reinterpret_cast<daq::IErrorInfo*>(self)->getPreviousErrorCode(reinterpret_cast<daq::ErrCode*>(prevErrCode));
 }
 
-daqErrCode daqErrorInfo_getFormattedMessage(daqErrorInfo* self, daqString** message)
+daqErrCode daqErrorInfo_getFormattedMessage(daqErrorInfo* self, daqStringObject** message)
 {
     return reinterpret_cast<daq::IErrorInfo*>(self)->getFormattedMessage(reinterpret_cast<daq::IString**>(message));
 }

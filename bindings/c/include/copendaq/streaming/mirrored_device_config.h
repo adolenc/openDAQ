@@ -36,14 +36,14 @@ extern "C"
 
     typedef struct daqMirroredDeviceConfig daqMirroredDeviceConfig;
     typedef struct daqStreaming daqStreaming;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
     typedef struct daqDeviceType daqDeviceType;
 
     EXPORTED extern const daqIntfID DAQ_MIRRORED_DEVICE_CONFIG_INTF_ID;
     void EXPORTED daqMirroredDeviceConfig_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqMirroredDeviceConfig_addStreamingSource(daqMirroredDeviceConfig* self, daqStreaming* streamingSource);
-    daqErrCode EXPORTED daqMirroredDeviceConfig_removeStreamingSource(daqMirroredDeviceConfig* self, daqString* streamingConnectionString);
+    daqErrCode EXPORTED daqMirroredDeviceConfig_removeStreamingSource(daqMirroredDeviceConfig* self, daqStringObject* streamingConnectionString);
     daqErrCode EXPORTED daqMirroredDeviceConfig_setMirroredDeviceType(daqMirroredDeviceConfig* self, daqDeviceType* type);
 
 #ifdef __cplusplus

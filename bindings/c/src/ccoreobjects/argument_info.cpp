@@ -23,7 +23,7 @@ void daqArgumentInfo_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_ARGUMENT_INFO_INTF_ID;
 }
 
-daqErrCode daqArgumentInfo_getName(daqArgumentInfo* self, daqString** name)
+daqErrCode daqArgumentInfo_getName(daqArgumentInfo* self, daqStringObject** name)
 {
     return reinterpret_cast<daq::IArgumentInfo*>(self)->getName(reinterpret_cast<daq::IString**>(name));
 }
@@ -43,7 +43,7 @@ daqErrCode daqArgumentInfo_getKeyType(daqArgumentInfo* self, daqCoreType* keyTyp
     return reinterpret_cast<daq::IArgumentInfo*>(self)->getKeyType(reinterpret_cast<daq::CoreType*>(keyType));
 }
 
-daqErrCode daqArgumentInfo_createArgumentInfo(daqArgumentInfo** obj, daqString* name, daqCoreType type)
+daqErrCode daqArgumentInfo_createArgumentInfo(daqArgumentInfo** obj, daqStringObject* name, daqCoreType type)
 {
     daq::IArgumentInfo* ptr = nullptr;
     daqErrCode err = daq::createArgumentInfo(&ptr, reinterpret_cast<daq::IString*>(name), static_cast<daq::CoreType>(type));
@@ -51,7 +51,7 @@ daqErrCode daqArgumentInfo_createArgumentInfo(daqArgumentInfo** obj, daqString* 
     return err;
 }
 
-daqErrCode daqArgumentInfo_createListArgumentInfo(daqArgumentInfo** obj, daqString* name, daqCoreType itemType)
+daqErrCode daqArgumentInfo_createListArgumentInfo(daqArgumentInfo** obj, daqStringObject* name, daqCoreType itemType)
 {
     daq::IArgumentInfo* ptr = nullptr;
     daqErrCode err = daq::createListArgumentInfo(&ptr, reinterpret_cast<daq::IString*>(name), static_cast<daq::CoreType>(itemType));
@@ -59,7 +59,7 @@ daqErrCode daqArgumentInfo_createListArgumentInfo(daqArgumentInfo** obj, daqStri
     return err;
 }
 
-daqErrCode daqArgumentInfo_createDictArgumentInfo(daqArgumentInfo** obj, daqString* name, daqCoreType keyType, daqCoreType itemType)
+daqErrCode daqArgumentInfo_createDictArgumentInfo(daqArgumentInfo** obj, daqStringObject* name, daqCoreType keyType, daqCoreType itemType)
 {
     daq::IArgumentInfo* ptr = nullptr;
     daqErrCode err = daq::createDictArgumentInfo(&ptr, reinterpret_cast<daq::IString*>(name), static_cast<daq::CoreType>(keyType), static_cast<daq::CoreType>(itemType));

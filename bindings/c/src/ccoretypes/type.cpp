@@ -23,7 +23,7 @@ void daqType_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_TYPE_INTF_ID;
 }
 
-daqErrCode daqType_getName(daqType* self, daqString** typeName)
+daqErrCode daqType_getName(daqType* self, daqStringObject** typeName)
 {
     return reinterpret_cast<daq::IType*>(self)->getName(reinterpret_cast<daq::IString**>(typeName));
 }

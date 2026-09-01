@@ -35,21 +35,21 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqAuthenticationProvider daqAuthenticationProvider;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
     typedef struct daqUser daqUser;
-    typedef struct daqList daqList;
+    typedef struct daqListObject daqListObject;
 
     EXPORTED extern const daqIntfID DAQ_AUTHENTICATION_PROVIDER_INTF_ID;
     void EXPORTED daqAuthenticationProvider_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqAuthenticationProvider_authenticate(daqAuthenticationProvider* self, daqString* username, daqString* password, daqUser** userOut);
+    daqErrCode EXPORTED daqAuthenticationProvider_authenticate(daqAuthenticationProvider* self, daqStringObject* username, daqStringObject* password, daqUser** userOut);
     daqErrCode EXPORTED daqAuthenticationProvider_isAnonymousAllowed(daqAuthenticationProvider* self, daqBool* allowedOut);
     daqErrCode EXPORTED daqAuthenticationProvider_authenticateAnonymous(daqAuthenticationProvider* self, daqUser** userOut);
-    daqErrCode EXPORTED daqAuthenticationProvider_findUser(daqAuthenticationProvider* self, daqString* username, daqUser** userOut);
+    daqErrCode EXPORTED daqAuthenticationProvider_findUser(daqAuthenticationProvider* self, daqStringObject* username, daqUser** userOut);
     daqErrCode EXPORTED daqAuthenticationProvider_createAuthenticationProvider(daqAuthenticationProvider** obj, daqBool allowAnonymous);
-    daqErrCode EXPORTED daqAuthenticationProvider_createStaticAuthenticationProvider(daqAuthenticationProvider** obj, daqBool allowAnonymous, daqList* userList);
-    daqErrCode EXPORTED daqAuthenticationProvider_createJsonStringAuthenticationProvider(daqAuthenticationProvider** obj, daqString* jsonString);
-    daqErrCode EXPORTED daqAuthenticationProvider_createJsonFileAuthenticationProvider(daqAuthenticationProvider** obj, daqString* filename);
+    daqErrCode EXPORTED daqAuthenticationProvider_createStaticAuthenticationProvider(daqAuthenticationProvider** obj, daqBool allowAnonymous, daqListObject* userList);
+    daqErrCode EXPORTED daqAuthenticationProvider_createJsonStringAuthenticationProvider(daqAuthenticationProvider** obj, daqStringObject* jsonString);
+    daqErrCode EXPORTED daqAuthenticationProvider_createJsonFileAuthenticationProvider(daqAuthenticationProvider** obj, daqStringObject* filename);
 
 #ifdef __cplusplus
 }

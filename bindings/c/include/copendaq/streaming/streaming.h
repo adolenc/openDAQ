@@ -35,25 +35,25 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqStreaming daqStreaming;
-    typedef struct daqList daqList;
-    typedef struct daqString daqString;
-    typedef struct daqEnumeration daqEnumeration;
+    typedef struct daqListObject daqListObject;
+    typedef struct daqStringObject daqStringObject;
+    typedef struct daqEnumerationObject daqEnumerationObject;
 
     EXPORTED extern const daqIntfID DAQ_STREAMING_INTF_ID;
     void EXPORTED daqStreaming_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqStreaming_getActive(daqStreaming* self, daqBool* active);
     daqErrCode EXPORTED daqStreaming_setActive(daqStreaming* self, daqBool active);
-    daqErrCode EXPORTED daqStreaming_addSignals(daqStreaming* self, daqList* signals);
-    daqErrCode EXPORTED daqStreaming_removeSignals(daqStreaming* self, daqList* signals);
+    daqErrCode EXPORTED daqStreaming_addSignals(daqStreaming* self, daqListObject* signals);
+    daqErrCode EXPORTED daqStreaming_removeSignals(daqStreaming* self, daqListObject* signals);
     daqErrCode EXPORTED daqStreaming_removeAllSignals(daqStreaming* self);
-    daqErrCode EXPORTED daqStreaming_getConnectionString(daqStreaming* self, daqString** connectionString);
-    daqErrCode EXPORTED daqStreaming_getConnectionStatus(daqStreaming* self, daqEnumeration** connectionStatus);
-    daqErrCode EXPORTED daqStreaming_addInputPorts(daqStreaming* self, daqList* inputPorts);
-    daqErrCode EXPORTED daqStreaming_removeInputPorts(daqStreaming* self, daqList* inputPorts);
+    daqErrCode EXPORTED daqStreaming_getConnectionString(daqStreaming* self, daqStringObject** connectionString);
+    daqErrCode EXPORTED daqStreaming_getConnectionStatus(daqStreaming* self, daqEnumerationObject** connectionStatus);
+    daqErrCode EXPORTED daqStreaming_addInputPorts(daqStreaming* self, daqListObject* inputPorts);
+    daqErrCode EXPORTED daqStreaming_removeInputPorts(daqStreaming* self, daqListObject* inputPorts);
     daqErrCode EXPORTED daqStreaming_removeAllInputPorts(daqStreaming* self);
-    daqErrCode EXPORTED daqStreaming_getOwnerDeviceRemoteId(daqStreaming* self, daqString** deviceRemoteId);
-    daqErrCode EXPORTED daqStreaming_getProtocolId(daqStreaming* self, daqString** protocolId);
+    daqErrCode EXPORTED daqStreaming_getOwnerDeviceRemoteId(daqStreaming* self, daqStringObject** deviceRemoteId);
+    daqErrCode EXPORTED daqStreaming_getProtocolId(daqStreaming* self, daqStringObject** protocolId);
     daqErrCode EXPORTED daqStreaming_getClientToDeviceStreamingEnabled(daqStreaming* self, daqBool* enabled);
 
 #ifdef __cplusplus

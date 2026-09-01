@@ -23,7 +23,7 @@ void daqModuleManager_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_MODULE_MANAGER_INTF_ID;
 }
 
-daqErrCode daqModuleManager_getModules(daqModuleManager* self, daqList** modules)
+daqErrCode daqModuleManager_getModules(daqModuleManager* self, daqListObject** modules)
 {
     return reinterpret_cast<daq::IModuleManager*>(self)->getModules(reinterpret_cast<daq::IList**>(modules));
 }
@@ -38,7 +38,7 @@ daqErrCode daqModuleManager_loadModules(daqModuleManager* self, daqContext* cont
     return reinterpret_cast<daq::IModuleManager*>(self)->loadModules(reinterpret_cast<daq::IContext*>(context));
 }
 
-daqErrCode daqModuleManager_loadModule(daqModuleManager* self, daqString* path, daqModule** module)
+daqErrCode daqModuleManager_loadModule(daqModuleManager* self, daqStringObject* path, daqModule** module)
 {
     return reinterpret_cast<daq::IModuleManager*>(self)->loadModule(reinterpret_cast<daq::IString*>(path), reinterpret_cast<daq::IModule**>(module));
 }
@@ -53,12 +53,12 @@ daqErrCode daqModuleManager_setModuleAuthenticator(daqModuleManager* self, daqMo
     return reinterpret_cast<daq::IModuleManager*>(self)->setModuleAuthenticator(reinterpret_cast<daq::IModuleAuthenticator*>(authenticator));
 }
 
-daqErrCode daqModuleManager_getVendorKeys(daqModuleManager* self, daqDict** vendorKeys)
+daqErrCode daqModuleManager_getVendorKeys(daqModuleManager* self, daqDictObject** vendorKeys)
 {
     return reinterpret_cast<daq::IModuleManager*>(self)->getVendorKeys(reinterpret_cast<daq::IDict**>(vendorKeys));
 }
 
-daqErrCode daqModuleManager_createModuleManager(daqModuleManager** obj, daqString* path)
+daqErrCode daqModuleManager_createModuleManager(daqModuleManager** obj, daqStringObject* path)
 {
     daq::IModuleManager* ptr = nullptr;
     daqErrCode err = daq::createModuleManager(&ptr, reinterpret_cast<daq::IString*>(path));
@@ -66,7 +66,7 @@ daqErrCode daqModuleManager_createModuleManager(daqModuleManager** obj, daqStrin
     return err;
 }
 
-daqErrCode daqModuleManager_createModuleManagerMultiplePaths(daqModuleManager** obj, daqList* paths)
+daqErrCode daqModuleManager_createModuleManagerMultiplePaths(daqModuleManager** obj, daqListObject* paths)
 {
     daq::IModuleManager* ptr = nullptr;
     daqErrCode err = daq::createModuleManagerMultiplePaths(&ptr, reinterpret_cast<daq::IList*>(paths));

@@ -38,7 +38,7 @@ extern "C"
     typedef struct daqInputPortNotifications daqInputPortNotifications;
     typedef struct daqContext daqContext;
     typedef struct daqComponent daqComponent;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
 
     EXPORTED extern const daqIntfID DAQ_INPUT_PORT_CONFIG_INTF_ID;
     void EXPORTED daqInputPortConfig_getInterfaceId(daqIntfID* intfId);
@@ -54,7 +54,7 @@ extern "C"
     daqErrCode EXPORTED daqInputPortConfig_getGapCheckingEnabled(daqInputPortConfig* self, daqBool* gapCheckingEnabled);
     daqErrCode EXPORTED daqInputPortConfig_notifyPacketEnqueuedWithScheduler(daqInputPortConfig* self);
     daqErrCode EXPORTED daqInputPortConfig_getListener(daqInputPortConfig* self, daqInputPortNotifications** port);
-    daqErrCode EXPORTED daqInputPortConfig_createInputPort(daqInputPortConfig** obj, daqContext* context, daqComponent* parent, daqString* localId, daqBool gapChecking);
+    daqErrCode EXPORTED daqInputPortConfig_createInputPort(daqInputPortConfig** obj, daqContext* context, daqComponent* parent, daqStringObject* localId, daqBool gapChecking);
 
 #ifdef __cplusplus
 }

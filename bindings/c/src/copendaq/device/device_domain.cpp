@@ -23,12 +23,12 @@ void daqDeviceDomain_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_DEVICE_DOMAIN_INTF_ID;
 }
 
-daqErrCode daqDeviceDomain_getTickResolution(daqDeviceDomain* self, daqRatio** tickResolution)
+daqErrCode daqDeviceDomain_getTickResolution(daqDeviceDomain* self, daqRatioObject** tickResolution)
 {
     return reinterpret_cast<daq::IDeviceDomain*>(self)->getTickResolution(reinterpret_cast<daq::IRatio**>(tickResolution));
 }
 
-daqErrCode daqDeviceDomain_getOrigin(daqDeviceDomain* self, daqString** origin)
+daqErrCode daqDeviceDomain_getOrigin(daqDeviceDomain* self, daqStringObject** origin)
 {
     return reinterpret_cast<daq::IDeviceDomain*>(self)->getOrigin(reinterpret_cast<daq::IString**>(origin));
 }
@@ -43,7 +43,7 @@ daqErrCode daqDeviceDomain_getReferenceDomainInfo(daqDeviceDomain* self, daqRefe
     return reinterpret_cast<daq::IDeviceDomain*>(self)->getReferenceDomainInfo(reinterpret_cast<daq::IReferenceDomainInfo**>(referenceDomainInfo));
 }
 
-daqErrCode daqDeviceDomain_createDeviceDomain(daqDeviceDomain** obj, daqRatio* tickResolution, daqString* origin, daqUnit* unit)
+daqErrCode daqDeviceDomain_createDeviceDomain(daqDeviceDomain** obj, daqRatioObject* tickResolution, daqStringObject* origin, daqUnit* unit)
 {
     daq::IDeviceDomain* ptr = nullptr;
     daqErrCode err = daq::createDeviceDomain(&ptr, reinterpret_cast<daq::IRatio*>(tickResolution), reinterpret_cast<daq::IString*>(origin), reinterpret_cast<daq::IUnit*>(unit));
@@ -51,7 +51,7 @@ daqErrCode daqDeviceDomain_createDeviceDomain(daqDeviceDomain** obj, daqRatio* t
     return err;
 }
 
-daqErrCode daqDeviceDomain_createDeviceDomainWithReferenceDomainInfo(daqDeviceDomain** obj, daqRatio* tickResolution, daqString* origin, daqUnit* unit, daqReferenceDomainInfo* referenceDomainInfo)
+daqErrCode daqDeviceDomain_createDeviceDomainWithReferenceDomainInfo(daqDeviceDomain** obj, daqRatioObject* tickResolution, daqStringObject* origin, daqUnit* unit, daqReferenceDomainInfo* referenceDomainInfo)
 {
     daq::IDeviceDomain* ptr = nullptr;
     daqErrCode err = daq::createDeviceDomainWithReferenceDomainInfo(&ptr, reinterpret_cast<daq::IRatio*>(tickResolution), reinterpret_cast<daq::IString*>(origin), reinterpret_cast<daq::IUnit*>(unit), reinterpret_cast<daq::IReferenceDomainInfo*>(referenceDomainInfo));

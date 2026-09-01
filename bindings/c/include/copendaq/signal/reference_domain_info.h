@@ -35,15 +35,15 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqReferenceDomainInfo daqReferenceDomainInfo;
-    typedef struct daqString daqString;
-    typedef struct daqInteger daqInteger;
+    typedef struct daqStringObject daqStringObject;
+    typedef struct daqIntegerObject daqIntegerObject;
     typedef struct daqReferenceDomainInfoBuilder daqReferenceDomainInfoBuilder;
 
     EXPORTED extern const daqIntfID DAQ_REFERENCE_DOMAIN_INFO_INTF_ID;
     void EXPORTED daqReferenceDomainInfo_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqReferenceDomainInfo_getReferenceDomainId(daqReferenceDomainInfo* self, daqString** referenceDomainId);
-    daqErrCode EXPORTED daqReferenceDomainInfo_getReferenceDomainOffset(daqReferenceDomainInfo* self, daqInteger** referenceDomainOffset);
+    daqErrCode EXPORTED daqReferenceDomainInfo_getReferenceDomainId(daqReferenceDomainInfo* self, daqStringObject** referenceDomainId);
+    daqErrCode EXPORTED daqReferenceDomainInfo_getReferenceDomainOffset(daqReferenceDomainInfo* self, daqIntegerObject** referenceDomainOffset);
     daqErrCode EXPORTED daqReferenceDomainInfo_getReferenceTimeProtocol(daqReferenceDomainInfo* self, daqTimeProtocol* referenceTimeProtocol);
     daqErrCode EXPORTED daqReferenceDomainInfo_getUsesOffset(daqReferenceDomainInfo* self, daqUsesOffset* usesOffset);
     daqErrCode EXPORTED daqReferenceDomainInfo_createReferenceDomainInfoFromBuilder(daqReferenceDomainInfo** obj, daqReferenceDomainInfoBuilder* builder);

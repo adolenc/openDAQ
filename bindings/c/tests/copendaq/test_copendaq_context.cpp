@@ -7,7 +7,7 @@ using COpendaqContextTest = testing::Test;
 TEST_F(COpendaqContextTest, Context)
 {
     daqContext* ctx = nullptr;
-    daqList* sinks = nullptr;
+    daqListObject* sinks = nullptr;
     daqList_createList(&sinks);
 
     daqLoggerSink* sink = nullptr;
@@ -20,7 +20,7 @@ TEST_F(COpendaqContextTest, Context)
     daqTypeManager* typeManager = nullptr;
     daqTypeManager_createTypeManager(&typeManager);
 
-    daqDict *options = nullptr, *discoveryServers = nullptr;
+    daqDictObject *options = nullptr, *discoveryServers = nullptr;
     daqDict_createDict(&options);
     daqDict_createDict(&discoveryServers);
 
@@ -28,7 +28,7 @@ TEST_F(COpendaqContextTest, Context)
 
     daqLogger* outLogger = nullptr;
     daqTypeManager* outTm = nullptr;
-    daqDict *outOptions = nullptr, *outDiscoveryServers = nullptr;
+    daqDictObject *outOptions = nullptr, *outDiscoveryServers = nullptr;
     daqContext_getLogger(ctx, &outLogger);
     daqContext_getTypeManager(ctx, &outTm);
     daqContext_getOptions(ctx, &outOptions);

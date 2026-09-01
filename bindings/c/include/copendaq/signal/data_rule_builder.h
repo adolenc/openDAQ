@@ -36,8 +36,8 @@ extern "C"
 
     typedef struct daqDataRuleBuilder daqDataRuleBuilder;
     typedef struct daqDataRule daqDataRule;
-    typedef struct daqDict daqDict;
-    typedef struct daqString daqString;
+    typedef struct daqDictObject daqDictObject;
+    typedef struct daqStringObject daqStringObject;
 
     EXPORTED extern const daqIntfID DAQ_DATA_RULE_BUILDER_INTF_ID;
     void EXPORTED daqDataRuleBuilder_getInterfaceId(daqIntfID* intfId);
@@ -45,10 +45,10 @@ extern "C"
     daqErrCode EXPORTED daqDataRuleBuilder_build(daqDataRuleBuilder* self, daqDataRule** dataRule);
     daqErrCode EXPORTED daqDataRuleBuilder_setType(daqDataRuleBuilder* self, daqDataRuleType type);
     daqErrCode EXPORTED daqDataRuleBuilder_getType(daqDataRuleBuilder* self, daqDataRuleType* type);
-    daqErrCode EXPORTED daqDataRuleBuilder_setParameters(daqDataRuleBuilder* self, daqDict* parameters);
-    daqErrCode EXPORTED daqDataRuleBuilder_getParameters(daqDataRuleBuilder* self, daqDict** parameters);
-    daqErrCode EXPORTED daqDataRuleBuilder_addParameter(daqDataRuleBuilder* self, daqString* name, daqBaseObject* parameter);
-    daqErrCode EXPORTED daqDataRuleBuilder_removeParameter(daqDataRuleBuilder* self, daqString* name);
+    daqErrCode EXPORTED daqDataRuleBuilder_setParameters(daqDataRuleBuilder* self, daqDictObject* parameters);
+    daqErrCode EXPORTED daqDataRuleBuilder_getParameters(daqDataRuleBuilder* self, daqDictObject** parameters);
+    daqErrCode EXPORTED daqDataRuleBuilder_addParameter(daqDataRuleBuilder* self, daqStringObject* name, daqBaseObject* parameter);
+    daqErrCode EXPORTED daqDataRuleBuilder_removeParameter(daqDataRuleBuilder* self, daqStringObject* name);
     daqErrCode EXPORTED daqDataRuleBuilder_createDataRuleBuilder(daqDataRuleBuilder** obj);
     daqErrCode EXPORTED daqDataRuleBuilder_createDataRuleBuilderFromExisting(daqDataRuleBuilder** obj, daqDataRule* ruleToCopy);
 

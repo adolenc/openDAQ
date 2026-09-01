@@ -23,12 +23,12 @@ void daqComponentHolder_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_COMPONENT_HOLDER_INTF_ID;
 }
 
-daqErrCode daqComponentHolder_getLocalId(daqComponentHolder* self, daqString** localId)
+daqErrCode daqComponentHolder_getLocalId(daqComponentHolder* self, daqStringObject** localId)
 {
     return reinterpret_cast<daq::IComponentHolder*>(self)->getLocalId(reinterpret_cast<daq::IString**>(localId));
 }
 
-daqErrCode daqComponentHolder_getParentGlobalId(daqComponentHolder* self, daqString** parentId)
+daqErrCode daqComponentHolder_getParentGlobalId(daqComponentHolder* self, daqStringObject** parentId)
 {
     return reinterpret_cast<daq::IComponentHolder*>(self)->getParentGlobalId(reinterpret_cast<daq::IString**>(parentId));
 }
@@ -46,7 +46,7 @@ daqErrCode daqComponentHolder_createComponentHolder(daqComponentHolder** obj, da
     return err;
 }
 
-daqErrCode daqComponentHolder_createComponentHolderWithIds(daqComponentHolder** obj, daqString* id, daqString* parentGlobalId, daqComponent* component)
+daqErrCode daqComponentHolder_createComponentHolderWithIds(daqComponentHolder** obj, daqStringObject* id, daqStringObject* parentGlobalId, daqComponent* component)
 {
     daq::IComponentHolder* ptr = nullptr;
     daqErrCode err = daq::createComponentHolderWithIds(&ptr, reinterpret_cast<daq::IString*>(id), reinterpret_cast<daq::IString*>(parentGlobalId), reinterpret_cast<daq::IComponent*>(component));

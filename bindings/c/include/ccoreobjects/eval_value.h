@@ -35,23 +35,23 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqEvalValue daqEvalValue;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
     typedef struct daqPropertyObject daqPropertyObject;
-    typedef struct daqList daqList;
-    typedef struct daqFunction daqFunction;
+    typedef struct daqListObject daqListObject;
+    typedef struct daqFunctionObject daqFunctionObject;
 
     EXPORTED extern const daqIntfID DAQ_EVAL_VALUE_INTF_ID;
     void EXPORTED daqEvalValue_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqEvalValue_getEval(daqEvalValue* self, daqString** eval);
+    daqErrCode EXPORTED daqEvalValue_getEval(daqEvalValue* self, daqStringObject** eval);
     daqErrCode EXPORTED daqEvalValue_getResult(daqEvalValue* self, daqBaseObject** obj);
     daqErrCode EXPORTED daqEvalValue_cloneWithOwner(daqEvalValue* self, daqPropertyObject* owner, daqEvalValue** clonedValue);
     daqErrCode EXPORTED daqEvalValue_getParseErrorCode(daqEvalValue* self);
-    daqErrCode EXPORTED daqEvalValue_getPropertyReferences(daqEvalValue* self, daqList** propertyReferences);
+    daqErrCode EXPORTED daqEvalValue_getPropertyReferences(daqEvalValue* self, daqListObject** propertyReferences);
     daqErrCode EXPORTED daqEvalValue_getResultNoLock(daqEvalValue* self, daqBaseObject** obj);
-    daqErrCode EXPORTED daqEvalValue_createEvalValue(daqEvalValue** obj, daqString* eval);
-    daqErrCode EXPORTED daqEvalValue_createEvalValueArgs(daqEvalValue** obj, daqString* eval, daqList* args);
-    daqErrCode EXPORTED daqEvalValue_createEvalValueFunc(daqEvalValue** obj, daqString* eval, daqFunction* func);
+    daqErrCode EXPORTED daqEvalValue_createEvalValue(daqEvalValue** obj, daqStringObject* eval);
+    daqErrCode EXPORTED daqEvalValue_createEvalValueArgs(daqEvalValue** obj, daqStringObject* eval, daqListObject* args);
+    daqErrCode EXPORTED daqEvalValue_createEvalValueFunc(daqEvalValue** obj, daqStringObject* eval, daqFunctionObject* func);
 
 #ifdef __cplusplus
 }

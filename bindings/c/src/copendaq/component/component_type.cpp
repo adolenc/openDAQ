@@ -23,17 +23,17 @@ void daqComponentType_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_COMPONENT_TYPE_INTF_ID;
 }
 
-daqErrCode daqComponentType_getId(daqComponentType* self, daqString** id)
+daqErrCode daqComponentType_getId(daqComponentType* self, daqStringObject** id)
 {
     return reinterpret_cast<daq::IComponentType*>(self)->getId(reinterpret_cast<daq::IString**>(id));
 }
 
-daqErrCode daqComponentType_getName(daqComponentType* self, daqString** name)
+daqErrCode daqComponentType_getName(daqComponentType* self, daqStringObject** name)
 {
     return reinterpret_cast<daq::IComponentType*>(self)->getName(reinterpret_cast<daq::IString**>(name));
 }
 
-daqErrCode daqComponentType_getDescription(daqComponentType* self, daqString** description)
+daqErrCode daqComponentType_getDescription(daqComponentType* self, daqStringObject** description)
 {
     return reinterpret_cast<daq::IComponentType*>(self)->getDescription(reinterpret_cast<daq::IString**>(description));
 }

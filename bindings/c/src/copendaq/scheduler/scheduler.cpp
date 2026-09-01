@@ -23,7 +23,7 @@ void daqScheduler_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_SCHEDULER_INTF_ID;
 }
 
-daqErrCode daqScheduler_scheduleFunction(daqScheduler* self, daqFunction* function, daqAwaitable** awaitable)
+daqErrCode daqScheduler_scheduleFunction(daqScheduler* self, daqFunctionObject* function, daqAwaitable** awaitable)
 {
     return reinterpret_cast<daq::IScheduler*>(self)->scheduleFunction(reinterpret_cast<daq::IFunction*>(function), reinterpret_cast<daq::IAwaitable**>(awaitable));
 }

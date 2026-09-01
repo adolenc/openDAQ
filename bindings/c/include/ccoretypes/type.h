@@ -35,12 +35,12 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqType daqType;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
 
     EXPORTED extern const daqIntfID DAQ_TYPE_INTF_ID;
     void EXPORTED daqType_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqType_getName(daqType* self, daqString** typeName);
+    daqErrCode EXPORTED daqType_getName(daqType* self, daqStringObject** typeName);
 
 #ifdef __cplusplus
 }

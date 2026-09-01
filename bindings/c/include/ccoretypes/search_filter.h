@@ -35,7 +35,7 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqSearchFilter daqSearchFilter;
-    typedef struct daqFunction daqFunction;
+    typedef struct daqFunctionObject daqFunctionObject;
 
     EXPORTED extern const daqIntfID DAQ_SEARCH_FILTER_INTF_ID;
     void EXPORTED daqSearchFilter_getInterfaceId(daqIntfID* intfId);
@@ -46,7 +46,7 @@ extern "C"
     daqErrCode EXPORTED daqSearchFilter_createAndSearchFilter(daqSearchFilter** obj, daqSearchFilter* left, daqSearchFilter* right);
     daqErrCode EXPORTED daqSearchFilter_createOrSearchFilter(daqSearchFilter** obj, daqSearchFilter* left, daqSearchFilter* right);
     daqErrCode EXPORTED daqSearchFilter_createNotSearchFilter(daqSearchFilter** obj, daqSearchFilter* filter);
-    daqErrCode EXPORTED daqSearchFilter_createCustomSearchFilter(daqSearchFilter** obj, daqFunction* acceptsFunction, daqFunction* visitFunction);
+    daqErrCode EXPORTED daqSearchFilter_createCustomSearchFilter(daqSearchFilter** obj, daqFunctionObject* acceptsFunction, daqFunctionObject* visitFunction);
     daqErrCode EXPORTED daqSearchFilter_createRecursiveSearchFilter(daqSearchFilter** obj, daqSearchFilter* filter);
 
 #ifdef __cplusplus

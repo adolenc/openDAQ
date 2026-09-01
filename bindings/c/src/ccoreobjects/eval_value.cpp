@@ -23,7 +23,7 @@ void daqEvalValue_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_EVAL_VALUE_INTF_ID;
 }
 
-daqErrCode daqEvalValue_getEval(daqEvalValue* self, daqString** eval)
+daqErrCode daqEvalValue_getEval(daqEvalValue* self, daqStringObject** eval)
 {
     return reinterpret_cast<daq::IEvalValue*>(self)->getEval(reinterpret_cast<daq::IString**>(eval));
 }
@@ -43,7 +43,7 @@ daqErrCode daqEvalValue_getParseErrorCode(daqEvalValue* self)
     return reinterpret_cast<daq::IEvalValue*>(self)->getParseErrorCode();
 }
 
-daqErrCode daqEvalValue_getPropertyReferences(daqEvalValue* self, daqList** propertyReferences)
+daqErrCode daqEvalValue_getPropertyReferences(daqEvalValue* self, daqListObject** propertyReferences)
 {
     return reinterpret_cast<daq::IEvalValue*>(self)->getPropertyReferences(reinterpret_cast<daq::IList**>(propertyReferences));
 }
@@ -53,7 +53,7 @@ daqErrCode daqEvalValue_getResultNoLock(daqEvalValue* self, daqBaseObject** obj)
     return reinterpret_cast<daq::IEvalValue*>(self)->getResultNoLock(reinterpret_cast<daq::IBaseObject**>(obj));
 }
 
-daqErrCode daqEvalValue_createEvalValue(daqEvalValue** obj, daqString* eval)
+daqErrCode daqEvalValue_createEvalValue(daqEvalValue** obj, daqStringObject* eval)
 {
     daq::IEvalValue* ptr = nullptr;
     daqErrCode err = daq::createEvalValue(&ptr, reinterpret_cast<daq::IString*>(eval));
@@ -61,7 +61,7 @@ daqErrCode daqEvalValue_createEvalValue(daqEvalValue** obj, daqString* eval)
     return err;
 }
 
-daqErrCode daqEvalValue_createEvalValueArgs(daqEvalValue** obj, daqString* eval, daqList* args)
+daqErrCode daqEvalValue_createEvalValueArgs(daqEvalValue** obj, daqStringObject* eval, daqListObject* args)
 {
     daq::IEvalValue* ptr = nullptr;
     daqErrCode err = daq::createEvalValueArgs(&ptr, reinterpret_cast<daq::IString*>(eval), reinterpret_cast<daq::IList*>(args));
@@ -69,7 +69,7 @@ daqErrCode daqEvalValue_createEvalValueArgs(daqEvalValue** obj, daqString* eval,
     return err;
 }
 
-daqErrCode daqEvalValue_createEvalValueFunc(daqEvalValue** obj, daqString* eval, daqFunction* func)
+daqErrCode daqEvalValue_createEvalValueFunc(daqEvalValue** obj, daqStringObject* eval, daqFunctionObject* func)
 {
     daq::IEvalValue* ptr = nullptr;
     daqErrCode err = daq::createEvalValueFunc(&ptr, reinterpret_cast<daq::IString*>(eval), reinterpret_cast<daq::IFunction*>(func));

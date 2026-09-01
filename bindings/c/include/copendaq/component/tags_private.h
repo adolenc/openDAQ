@@ -35,15 +35,15 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqTagsPrivate daqTagsPrivate;
-    typedef struct daqString daqString;
-    typedef struct daqList daqList;
+    typedef struct daqStringObject daqStringObject;
+    typedef struct daqListObject daqListObject;
 
     EXPORTED extern const daqIntfID DAQ_TAGS_PRIVATE_INTF_ID;
     void EXPORTED daqTagsPrivate_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqTagsPrivate_add(daqTagsPrivate* self, daqString* name);
-    daqErrCode EXPORTED daqTagsPrivate_remove(daqTagsPrivate* self, daqString* name);
-    daqErrCode EXPORTED daqTagsPrivate_replace(daqTagsPrivate* self, daqList* tags);
+    daqErrCode EXPORTED daqTagsPrivate_add(daqTagsPrivate* self, daqStringObject* name);
+    daqErrCode EXPORTED daqTagsPrivate_remove(daqTagsPrivate* self, daqStringObject* name);
+    daqErrCode EXPORTED daqTagsPrivate_replace(daqTagsPrivate* self, daqListObject* tags);
 
 #ifdef __cplusplus
 }

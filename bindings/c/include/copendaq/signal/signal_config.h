@@ -37,28 +37,28 @@ extern "C"
     typedef struct daqSignalConfig daqSignalConfig;
     typedef struct daqDataDescriptor daqDataDescriptor;
     typedef struct daqSignal daqSignal;
-    typedef struct daqList daqList;
+    typedef struct daqListObject daqListObject;
     typedef struct daqPacket daqPacket;
     typedef struct daqContext daqContext;
     typedef struct daqComponent daqComponent;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
 
     EXPORTED extern const daqIntfID DAQ_SIGNAL_CONFIG_INTF_ID;
     void EXPORTED daqSignalConfig_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqSignalConfig_setDescriptor(daqSignalConfig* self, daqDataDescriptor* descriptor);
     daqErrCode EXPORTED daqSignalConfig_setDomainSignal(daqSignalConfig* self, daqSignal* signal);
-    daqErrCode EXPORTED daqSignalConfig_setRelatedSignals(daqSignalConfig* self, daqList* signals);
+    daqErrCode EXPORTED daqSignalConfig_setRelatedSignals(daqSignalConfig* self, daqListObject* signals);
     daqErrCode EXPORTED daqSignalConfig_addRelatedSignal(daqSignalConfig* self, daqSignal* signal);
     daqErrCode EXPORTED daqSignalConfig_removeRelatedSignal(daqSignalConfig* self, daqSignal* signal);
     daqErrCode EXPORTED daqSignalConfig_clearRelatedSignals(daqSignalConfig* self);
     daqErrCode EXPORTED daqSignalConfig_sendPacket(daqSignalConfig* self, daqPacket* packet);
-    daqErrCode EXPORTED daqSignalConfig_sendPackets(daqSignalConfig* self, daqList* packets);
+    daqErrCode EXPORTED daqSignalConfig_sendPackets(daqSignalConfig* self, daqListObject* packets);
     daqErrCode EXPORTED daqSignalConfig_sendPacketAndStealRef(daqSignalConfig* self, daqPacket* packet);
-    daqErrCode EXPORTED daqSignalConfig_sendPacketsAndStealRef(daqSignalConfig* self, daqList* packets);
+    daqErrCode EXPORTED daqSignalConfig_sendPacketsAndStealRef(daqSignalConfig* self, daqListObject* packets);
     daqErrCode EXPORTED daqSignalConfig_setLastValue(daqSignalConfig* self, daqBaseObject* lastValue);
-    daqErrCode EXPORTED daqSignalConfig_createSignal(daqSignalConfig** obj, daqContext* context, daqComponent* parent, daqString* localId, daqString* className);
-    daqErrCode EXPORTED daqSignalConfig_createSignalWithDescriptor(daqSignalConfig** obj, daqContext* context, daqDataDescriptor* descriptor, daqComponent* parent, daqString* localId, daqString* className);
+    daqErrCode EXPORTED daqSignalConfig_createSignal(daqSignalConfig** obj, daqContext* context, daqComponent* parent, daqStringObject* localId, daqStringObject* className);
+    daqErrCode EXPORTED daqSignalConfig_createSignalWithDescriptor(daqSignalConfig** obj, daqContext* context, daqDataDescriptor* descriptor, daqComponent* parent, daqStringObject* localId, daqStringObject* className);
 
 #ifdef __cplusplus
 }

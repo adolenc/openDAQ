@@ -28,12 +28,12 @@ daqErrCode daqDimensionBuilder_build(daqDimensionBuilder* self, daqDimension** d
     return reinterpret_cast<daq::IDimensionBuilder*>(self)->build(reinterpret_cast<daq::IDimension**>(dimension));
 }
 
-daqErrCode daqDimensionBuilder_setName(daqDimensionBuilder* self, daqString* name)
+daqErrCode daqDimensionBuilder_setName(daqDimensionBuilder* self, daqStringObject* name)
 {
     return reinterpret_cast<daq::IDimensionBuilder*>(self)->setName(reinterpret_cast<daq::IString*>(name));
 }
 
-daqErrCode daqDimensionBuilder_getName(daqDimensionBuilder* self, daqString** name)
+daqErrCode daqDimensionBuilder_getName(daqDimensionBuilder* self, daqStringObject** name)
 {
     return reinterpret_cast<daq::IDimensionBuilder*>(self)->getName(reinterpret_cast<daq::IString**>(name));
 }

@@ -23,7 +23,7 @@ void daqDeserializeComponent_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_DESERIALIZE_COMPONENT_INTF_ID;
 }
 
-daqErrCode daqDeserializeComponent_deserializeValues(daqDeserializeComponent* self, daqSerializedObject* serializedObject, daqBaseObject* context, daqFunction* callbackFactory)
+daqErrCode daqDeserializeComponent_deserializeValues(daqDeserializeComponent* self, daqSerializedObject* serializedObject, daqBaseObject* context, daqFunctionObject* callbackFactory)
 {
     return reinterpret_cast<daq::IDeserializeComponent*>(self)->deserializeValues(reinterpret_cast<daq::ISerializedObject*>(serializedObject), reinterpret_cast<daq::IBaseObject*>(context), reinterpret_cast<daq::IFunction*>(callbackFactory));
 }
@@ -33,7 +33,7 @@ daqErrCode daqDeserializeComponent_complete(daqDeserializeComponent* self)
     return reinterpret_cast<daq::IDeserializeComponent*>(self)->complete();
 }
 
-daqErrCode daqDeserializeComponent_getDeserializedParameter(daqDeserializeComponent* self, daqString* parameter, daqBaseObject** value)
+daqErrCode daqDeserializeComponent_getDeserializedParameter(daqDeserializeComponent* self, daqStringObject* parameter, daqBaseObject** value)
 {
     return reinterpret_cast<daq::IDeserializeComponent*>(self)->getDeserializedParameter(reinterpret_cast<daq::IString*>(parameter), reinterpret_cast<daq::IBaseObject**>(value));
 }

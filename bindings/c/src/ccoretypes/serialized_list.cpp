@@ -33,17 +33,17 @@ daqErrCode daqSerializedList_readSerializedList(daqSerializedList* self, daqSeri
     return reinterpret_cast<daq::ISerializedList*>(self)->readSerializedList(reinterpret_cast<daq::ISerializedList**>(list));
 }
 
-daqErrCode daqSerializedList_readList(daqSerializedList* self, daqBaseObject* context, daqFunction* factoryCallback, daqList** list)
+daqErrCode daqSerializedList_readList(daqSerializedList* self, daqBaseObject* context, daqFunctionObject* factoryCallback, daqListObject** list)
 {
     return reinterpret_cast<daq::ISerializedList*>(self)->readList(reinterpret_cast<daq::IBaseObject*>(context), reinterpret_cast<daq::IFunction*>(factoryCallback), reinterpret_cast<daq::IList**>(list));
 }
 
-daqErrCode daqSerializedList_readObject(daqSerializedList* self, daqBaseObject* context, daqFunction* factoryCallback, daqBaseObject** obj)
+daqErrCode daqSerializedList_readObject(daqSerializedList* self, daqBaseObject* context, daqFunctionObject* factoryCallback, daqBaseObject** obj)
 {
     return reinterpret_cast<daq::ISerializedList*>(self)->readObject(reinterpret_cast<daq::IBaseObject*>(context), reinterpret_cast<daq::IFunction*>(factoryCallback), reinterpret_cast<daq::IBaseObject**>(obj));
 }
 
-daqErrCode daqSerializedList_readString(daqSerializedList* self, daqString** string)
+daqErrCode daqSerializedList_readString(daqSerializedList* self, daqStringObject** string)
 {
     return reinterpret_cast<daq::ISerializedList*>(self)->readString(reinterpret_cast<daq::IString**>(string));
 }

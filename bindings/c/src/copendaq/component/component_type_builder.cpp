@@ -28,12 +28,12 @@ daqErrCode daqComponentTypeBuilder_build(daqComponentTypeBuilder* self, daqCompo
     return reinterpret_cast<daq::IComponentTypeBuilder*>(self)->build(reinterpret_cast<daq::IComponentType**>(componentType));
 }
 
-daqErrCode daqComponentTypeBuilder_setId(daqComponentTypeBuilder* self, daqString* id)
+daqErrCode daqComponentTypeBuilder_setId(daqComponentTypeBuilder* self, daqStringObject* id)
 {
     return reinterpret_cast<daq::IComponentTypeBuilder*>(self)->setId(reinterpret_cast<daq::IString*>(id));
 }
 
-daqErrCode daqComponentTypeBuilder_getId(daqComponentTypeBuilder* self, daqString** id)
+daqErrCode daqComponentTypeBuilder_getId(daqComponentTypeBuilder* self, daqStringObject** id)
 {
     return reinterpret_cast<daq::IComponentTypeBuilder*>(self)->getId(reinterpret_cast<daq::IString**>(id));
 }
@@ -48,32 +48,32 @@ daqErrCode daqComponentTypeBuilder_getTypeSort(daqComponentTypeBuilder* self, da
     return reinterpret_cast<daq::IComponentTypeBuilder*>(self)->getTypeSort(reinterpret_cast<daq::ComponentTypeSort*>(sort));
 }
 
-daqErrCode daqComponentTypeBuilder_setName(daqComponentTypeBuilder* self, daqString* name)
+daqErrCode daqComponentTypeBuilder_setName(daqComponentTypeBuilder* self, daqStringObject* name)
 {
     return reinterpret_cast<daq::IComponentTypeBuilder*>(self)->setName(reinterpret_cast<daq::IString*>(name));
 }
 
-daqErrCode daqComponentTypeBuilder_getName(daqComponentTypeBuilder* self, daqString** name)
+daqErrCode daqComponentTypeBuilder_getName(daqComponentTypeBuilder* self, daqStringObject** name)
 {
     return reinterpret_cast<daq::IComponentTypeBuilder*>(self)->getName(reinterpret_cast<daq::IString**>(name));
 }
 
-daqErrCode daqComponentTypeBuilder_setDescription(daqComponentTypeBuilder* self, daqString* description)
+daqErrCode daqComponentTypeBuilder_setDescription(daqComponentTypeBuilder* self, daqStringObject* description)
 {
     return reinterpret_cast<daq::IComponentTypeBuilder*>(self)->setDescription(reinterpret_cast<daq::IString*>(description));
 }
 
-daqErrCode daqComponentTypeBuilder_getDescription(daqComponentTypeBuilder* self, daqString** description)
+daqErrCode daqComponentTypeBuilder_getDescription(daqComponentTypeBuilder* self, daqStringObject** description)
 {
     return reinterpret_cast<daq::IComponentTypeBuilder*>(self)->getDescription(reinterpret_cast<daq::IString**>(description));
 }
 
-daqErrCode daqComponentTypeBuilder_setConnectionStringPrefix(daqComponentTypeBuilder* self, daqString* prefix)
+daqErrCode daqComponentTypeBuilder_setConnectionStringPrefix(daqComponentTypeBuilder* self, daqStringObject* prefix)
 {
     return reinterpret_cast<daq::IComponentTypeBuilder*>(self)->setConnectionStringPrefix(reinterpret_cast<daq::IString*>(prefix));
 }
 
-daqErrCode daqComponentTypeBuilder_getConnectionStringPrefix(daqComponentTypeBuilder* self, daqString** prefix)
+daqErrCode daqComponentTypeBuilder_getConnectionStringPrefix(daqComponentTypeBuilder* self, daqStringObject** prefix)
 {
     return reinterpret_cast<daq::IComponentTypeBuilder*>(self)->getConnectionStringPrefix(reinterpret_cast<daq::IString**>(prefix));
 }

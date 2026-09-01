@@ -35,14 +35,14 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqPropertyObjectProtected daqPropertyObjectProtected;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
 
     EXPORTED extern const daqIntfID DAQ_PROPERTY_OBJECT_PROTECTED_INTF_ID;
     void EXPORTED daqPropertyObjectProtected_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqPropertyObjectProtected_setProtectedPropertyValue(daqPropertyObjectProtected* self, daqString* propertyName, daqBaseObject* value);
-    daqErrCode EXPORTED daqPropertyObjectProtected_clearProtectedPropertyValue(daqPropertyObjectProtected* self, daqString* propertyName);
-    daqErrCode EXPORTED daqPropertyObjectProtected_setProtectedPropertySelectionValue(daqPropertyObjectProtected* self, daqString* propertyName, daqBaseObject* value);
+    daqErrCode EXPORTED daqPropertyObjectProtected_setProtectedPropertyValue(daqPropertyObjectProtected* self, daqStringObject* propertyName, daqBaseObject* value);
+    daqErrCode EXPORTED daqPropertyObjectProtected_clearProtectedPropertyValue(daqPropertyObjectProtected* self, daqStringObject* propertyName);
+    daqErrCode EXPORTED daqPropertyObjectProtected_setProtectedPropertySelectionValue(daqPropertyObjectProtected* self, daqStringObject* propertyName, daqBaseObject* value);
     daqErrCode EXPORTED daqPropertyObjectProtected_clearProtectedPropertyValues(daqPropertyObjectProtected* self);
 
 #ifdef __cplusplus

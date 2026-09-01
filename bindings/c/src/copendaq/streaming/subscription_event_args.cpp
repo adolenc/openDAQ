@@ -23,7 +23,7 @@ void daqSubscriptionEventArgs_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_SUBSCRIPTION_EVENT_ARGS_INTF_ID;
 }
 
-daqErrCode daqSubscriptionEventArgs_getStreamingConnectionString(daqSubscriptionEventArgs* self, daqString** streamingConnectionString)
+daqErrCode daqSubscriptionEventArgs_getStreamingConnectionString(daqSubscriptionEventArgs* self, daqStringObject** streamingConnectionString)
 {
     return reinterpret_cast<daq::ISubscriptionEventArgs*>(self)->getStreamingConnectionString(reinterpret_cast<daq::IString**>(streamingConnectionString));
 }
@@ -33,7 +33,7 @@ daqErrCode daqSubscriptionEventArgs_getSubscriptionEventType(daqSubscriptionEven
     return reinterpret_cast<daq::ISubscriptionEventArgs*>(self)->getSubscriptionEventType(reinterpret_cast<daq::SubscriptionEventType*>(type));
 }
 
-daqErrCode daqSubscriptionEventArgs_createSubscriptionEventArgs(daqSubscriptionEventArgs** obj, daqString* streamingConnectionString, daqSubscriptionEventType type)
+daqErrCode daqSubscriptionEventArgs_createSubscriptionEventArgs(daqSubscriptionEventArgs** obj, daqStringObject* streamingConnectionString, daqSubscriptionEventType type)
 {
     daq::ISubscriptionEventArgs* ptr = nullptr;
     daqErrCode err = daq::createSubscriptionEventArgs(&ptr, reinterpret_cast<daq::IString*>(streamingConnectionString), static_cast<daq::SubscriptionEventType>(type));

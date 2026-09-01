@@ -23,17 +23,17 @@ void daqEventPacket_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_EVENT_PACKET_INTF_ID;
 }
 
-daqErrCode daqEventPacket_getEventId(daqEventPacket* self, daqString** id)
+daqErrCode daqEventPacket_getEventId(daqEventPacket* self, daqStringObject** id)
 {
     return reinterpret_cast<daq::IEventPacket*>(self)->getEventId(reinterpret_cast<daq::IString**>(id));
 }
 
-daqErrCode daqEventPacket_getParameters(daqEventPacket* self, daqDict** parameters)
+daqErrCode daqEventPacket_getParameters(daqEventPacket* self, daqDictObject** parameters)
 {
     return reinterpret_cast<daq::IEventPacket*>(self)->getParameters(reinterpret_cast<daq::IDict**>(parameters));
 }
 
-daqErrCode daqEventPacket_createEventPacket(daqEventPacket** obj, daqString* id, daqDict* params)
+daqErrCode daqEventPacket_createEventPacket(daqEventPacket** obj, daqStringObject* id, daqDictObject* params)
 {
     daq::IEventPacket* ptr = nullptr;
     daqErrCode err = daq::createEventPacket(&ptr, reinterpret_cast<daq::IString*>(id), reinterpret_cast<daq::IDict*>(params));

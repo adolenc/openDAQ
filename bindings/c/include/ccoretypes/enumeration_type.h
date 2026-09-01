@@ -35,19 +35,19 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqEnumerationType daqEnumerationType;
-    typedef struct daqList daqList;
-    typedef struct daqDict daqDict;
-    typedef struct daqString daqString;
+    typedef struct daqListObject daqListObject;
+    typedef struct daqDictObject daqDictObject;
+    typedef struct daqStringObject daqStringObject;
 
     EXPORTED extern const daqIntfID DAQ_ENUMERATION_TYPE_INTF_ID;
     void EXPORTED daqEnumerationType_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqEnumerationType_getEnumeratorNames(daqEnumerationType* self, daqList** names);
-    daqErrCode EXPORTED daqEnumerationType_getAsDictionary(daqEnumerationType* self, daqDict** dictionary);
-    daqErrCode EXPORTED daqEnumerationType_getEnumeratorIntValue(daqEnumerationType* self, daqString* name, daqInt* value);
+    daqErrCode EXPORTED daqEnumerationType_getEnumeratorNames(daqEnumerationType* self, daqListObject** names);
+    daqErrCode EXPORTED daqEnumerationType_getAsDictionary(daqEnumerationType* self, daqDictObject** dictionary);
+    daqErrCode EXPORTED daqEnumerationType_getEnumeratorIntValue(daqEnumerationType* self, daqStringObject* name, daqInt* value);
     daqErrCode EXPORTED daqEnumerationType_getCount(daqEnumerationType* self, daqSizeT* count);
-    daqErrCode EXPORTED daqEnumerationType_createEnumerationType(daqEnumerationType** obj, daqString* typeName, daqList* enumeratorNames, daqInt firstEnumeratorIntValue);
-    daqErrCode EXPORTED daqEnumerationType_createEnumerationTypeWithValues(daqEnumerationType** obj, daqString* typeName, daqDict* enumerators);
+    daqErrCode EXPORTED daqEnumerationType_createEnumerationType(daqEnumerationType** obj, daqStringObject* typeName, daqListObject* enumeratorNames, daqInt firstEnumeratorIntValue);
+    daqErrCode EXPORTED daqEnumerationType_createEnumerationTypeWithValues(daqEnumerationType** obj, daqStringObject* typeName, daqDictObject* enumerators);
 
 #ifdef __cplusplus
 }

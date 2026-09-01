@@ -23,49 +23,49 @@ void daqEnumeration_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_ENUMERATION_INTF_ID;
 }
 
-daqErrCode daqEnumeration_getEnumerationType(daqEnumeration* self, daqEnumerationType** type)
+daqErrCode daqEnumeration_getEnumerationType(daqEnumerationObject* self, daqEnumerationType** type)
 {
     return reinterpret_cast<daq::IEnumeration*>(self)->getEnumerationType(reinterpret_cast<daq::IEnumerationType**>(type));
 }
 
-daqErrCode daqEnumeration_getValue(daqEnumeration* self, daqString** value)
+daqErrCode daqEnumeration_getValue(daqEnumerationObject* self, daqStringObject** value)
 {
     return reinterpret_cast<daq::IEnumeration*>(self)->getValue(reinterpret_cast<daq::IString**>(value));
 }
 
-daqErrCode daqEnumeration_getIntValue(daqEnumeration* self, daqInt* value)
+daqErrCode daqEnumeration_getIntValue(daqEnumerationObject* self, daqInt* value)
 {
     return reinterpret_cast<daq::IEnumeration*>(self)->getIntValue(value);
 }
 
-daqErrCode daqEnumeration_createEnumeration(daqEnumeration** obj, daqString* name, daqString* value, daqTypeManager* typeManager)
+daqErrCode daqEnumeration_createEnumeration(daqEnumerationObject** obj, daqStringObject* name, daqStringObject* value, daqTypeManager* typeManager)
 {
     daq::IEnumeration* ptr = nullptr;
     daqErrCode err = daq::createEnumeration(&ptr, reinterpret_cast<daq::IString*>(name), reinterpret_cast<daq::IString*>(value), reinterpret_cast<daq::ITypeManager*>(typeManager));
-    *obj = reinterpret_cast<daqEnumeration*>(ptr);
+    *obj = reinterpret_cast<daqEnumerationObject*>(ptr);
     return err;
 }
 
-daqErrCode daqEnumeration_createEnumerationWithIntValue(daqEnumeration** obj, daqString* name, daqInteger* value, daqTypeManager* typeManager)
+daqErrCode daqEnumeration_createEnumerationWithIntValue(daqEnumerationObject** obj, daqStringObject* name, daqIntegerObject* value, daqTypeManager* typeManager)
 {
     daq::IEnumeration* ptr = nullptr;
     daqErrCode err = daq::createEnumerationWithIntValue(&ptr, reinterpret_cast<daq::IString*>(name), reinterpret_cast<daq::IInteger*>(value), reinterpret_cast<daq::ITypeManager*>(typeManager));
-    *obj = reinterpret_cast<daqEnumeration*>(ptr);
+    *obj = reinterpret_cast<daqEnumerationObject*>(ptr);
     return err;
 }
 
-daqErrCode daqEnumeration_createEnumerationWithType(daqEnumeration** obj, daqEnumerationType* type, daqString* value)
+daqErrCode daqEnumeration_createEnumerationWithType(daqEnumerationObject** obj, daqEnumerationType* type, daqStringObject* value)
 {
     daq::IEnumeration* ptr = nullptr;
     daqErrCode err = daq::createEnumerationWithType(&ptr, reinterpret_cast<daq::IEnumerationType*>(type), reinterpret_cast<daq::IString*>(value));
-    *obj = reinterpret_cast<daqEnumeration*>(ptr);
+    *obj = reinterpret_cast<daqEnumerationObject*>(ptr);
     return err;
 }
 
-daqErrCode daqEnumeration_createEnumerationWithIntValueAndType(daqEnumeration** obj, daqEnumerationType* type, daqInteger* value)
+daqErrCode daqEnumeration_createEnumerationWithIntValueAndType(daqEnumerationObject** obj, daqEnumerationType* type, daqIntegerObject* value)
 {
     daq::IEnumeration* ptr = nullptr;
     daqErrCode err = daq::createEnumerationWithIntValueAndType(&ptr, reinterpret_cast<daq::IEnumerationType*>(type), reinterpret_cast<daq::IInteger*>(value));
-    *obj = reinterpret_cast<daqEnumeration*>(ptr);
+    *obj = reinterpret_cast<daqEnumerationObject*>(ptr);
     return err;
 }

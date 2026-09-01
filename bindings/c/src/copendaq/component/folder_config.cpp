@@ -33,7 +33,7 @@ daqErrCode daqFolderConfig_removeItem(daqFolderConfig* self, daqComponent* item)
     return reinterpret_cast<daq::IFolderConfig*>(self)->removeItem(reinterpret_cast<daq::IComponent*>(item));
 }
 
-daqErrCode daqFolderConfig_removeItemWithLocalId(daqFolderConfig* self, daqString* localId)
+daqErrCode daqFolderConfig_removeItemWithLocalId(daqFolderConfig* self, daqStringObject* localId)
 {
     return reinterpret_cast<daq::IFolderConfig*>(self)->removeItemWithLocalId(reinterpret_cast<daq::IString*>(localId));
 }
@@ -43,7 +43,7 @@ daqErrCode daqFolderConfig_clear(daqFolderConfig* self)
     return reinterpret_cast<daq::IFolderConfig*>(self)->clear();
 }
 
-daqErrCode daqFolderConfig_createFolder(daqFolderConfig** obj, daqContext* context, daqComponent* parent, daqString* localId)
+daqErrCode daqFolderConfig_createFolder(daqFolderConfig** obj, daqContext* context, daqComponent* parent, daqStringObject* localId)
 {
     daq::IFolderConfig* ptr = nullptr;
     daqErrCode err = daq::createFolder(&ptr, reinterpret_cast<daq::IContext*>(context), reinterpret_cast<daq::IComponent*>(parent), reinterpret_cast<daq::IString*>(localId));
@@ -51,7 +51,7 @@ daqErrCode daqFolderConfig_createFolder(daqFolderConfig** obj, daqContext* conte
     return err;
 }
 
-daqErrCode daqFolderConfig_createFolderWithItemType(daqFolderConfig** obj, daqIntfID itemType, daqContext* context, daqComponent* parent, daqString* localId)
+daqErrCode daqFolderConfig_createFolderWithItemType(daqFolderConfig** obj, daqIntfID itemType, daqContext* context, daqComponent* parent, daqStringObject* localId)
 {
     daq::IFolderConfig* ptr = nullptr;
     daqErrCode err = daq::createFolderWithItemType(&ptr, copendaq::utils::toDaqIntfId(itemType), reinterpret_cast<daq::IContext*>(context), reinterpret_cast<daq::IComponent*>(parent), reinterpret_cast<daq::IString*>(localId));
@@ -59,7 +59,7 @@ daqErrCode daqFolderConfig_createFolderWithItemType(daqFolderConfig** obj, daqIn
     return err;
 }
 
-daqErrCode daqFolderConfig_createIoFolder(daqFolderConfig** obj, daqContext* context, daqComponent* parent, daqString* localId)
+daqErrCode daqFolderConfig_createIoFolder(daqFolderConfig** obj, daqContext* context, daqComponent* parent, daqStringObject* localId)
 {
     daq::IFolderConfig* ptr = nullptr;
     daqErrCode err = daq::createIoFolder(&ptr, reinterpret_cast<daq::IContext*>(context), reinterpret_cast<daq::IComponent*>(parent), reinterpret_cast<daq::IString*>(localId));

@@ -38,47 +38,47 @@ daqErrCode daqDevice_getInputsOutputsFolder(daqDevice* self, daqFolder** inputsO
     return reinterpret_cast<daq::IDevice*>(self)->getInputsOutputsFolder(reinterpret_cast<daq::IFolder**>(inputsOutputsFolder));
 }
 
-daqErrCode daqDevice_getCustomComponents(daqDevice* self, daqList** customComponents)
+daqErrCode daqDevice_getCustomComponents(daqDevice* self, daqListObject** customComponents)
 {
     return reinterpret_cast<daq::IDevice*>(self)->getCustomComponents(reinterpret_cast<daq::IList**>(customComponents));
 }
 
-daqErrCode daqDevice_getSignals(daqDevice* self, daqList** signals, daqSearchFilter* searchFilter)
+daqErrCode daqDevice_getSignals(daqDevice* self, daqListObject** signals, daqSearchFilter* searchFilter)
 {
     return reinterpret_cast<daq::IDevice*>(self)->getSignals(reinterpret_cast<daq::IList**>(signals), reinterpret_cast<daq::ISearchFilter*>(searchFilter));
 }
 
-daqErrCode daqDevice_getSignalsRecursive(daqDevice* self, daqList** signals, daqSearchFilter* searchFilter)
+daqErrCode daqDevice_getSignalsRecursive(daqDevice* self, daqListObject** signals, daqSearchFilter* searchFilter)
 {
     return reinterpret_cast<daq::IDevice*>(self)->getSignalsRecursive(reinterpret_cast<daq::IList**>(signals), reinterpret_cast<daq::ISearchFilter*>(searchFilter));
 }
 
-daqErrCode daqDevice_getChannels(daqDevice* self, daqList** channels, daqSearchFilter* searchFilter)
+daqErrCode daqDevice_getChannels(daqDevice* self, daqListObject** channels, daqSearchFilter* searchFilter)
 {
     return reinterpret_cast<daq::IDevice*>(self)->getChannels(reinterpret_cast<daq::IList**>(channels), reinterpret_cast<daq::ISearchFilter*>(searchFilter));
 }
 
-daqErrCode daqDevice_getChannelsRecursive(daqDevice* self, daqList** channels, daqSearchFilter* searchFilter)
+daqErrCode daqDevice_getChannelsRecursive(daqDevice* self, daqListObject** channels, daqSearchFilter* searchFilter)
 {
     return reinterpret_cast<daq::IDevice*>(self)->getChannelsRecursive(reinterpret_cast<daq::IList**>(channels), reinterpret_cast<daq::ISearchFilter*>(searchFilter));
 }
 
-daqErrCode daqDevice_getDevices(daqDevice* self, daqList** devices, daqSearchFilter* searchFilter)
+daqErrCode daqDevice_getDevices(daqDevice* self, daqListObject** devices, daqSearchFilter* searchFilter)
 {
     return reinterpret_cast<daq::IDevice*>(self)->getDevices(reinterpret_cast<daq::IList**>(devices), reinterpret_cast<daq::ISearchFilter*>(searchFilter));
 }
 
-daqErrCode daqDevice_getAvailableDevices(daqDevice* self, daqList** availableDevices)
+daqErrCode daqDevice_getAvailableDevices(daqDevice* self, daqListObject** availableDevices)
 {
     return reinterpret_cast<daq::IDevice*>(self)->getAvailableDevices(reinterpret_cast<daq::IList**>(availableDevices));
 }
 
-daqErrCode daqDevice_getAvailableDeviceTypes(daqDevice* self, daqDict** deviceTypes)
+daqErrCode daqDevice_getAvailableDeviceTypes(daqDevice* self, daqDictObject** deviceTypes)
 {
     return reinterpret_cast<daq::IDevice*>(self)->getAvailableDeviceTypes(reinterpret_cast<daq::IDict**>(deviceTypes));
 }
 
-daqErrCode daqDevice_addDevice(daqDevice* self, daqDevice** device, daqString* connectionString, daqPropertyObject* config)
+daqErrCode daqDevice_addDevice(daqDevice* self, daqDevice** device, daqStringObject* connectionString, daqPropertyObject* config)
 {
     return reinterpret_cast<daq::IDevice*>(self)->addDevice(reinterpret_cast<daq::IDevice**>(device), reinterpret_cast<daq::IString*>(connectionString), reinterpret_cast<daq::IPropertyObject*>(config));
 }
@@ -88,17 +88,17 @@ daqErrCode daqDevice_removeDevice(daqDevice* self, daqDevice* device)
     return reinterpret_cast<daq::IDevice*>(self)->removeDevice(reinterpret_cast<daq::IDevice*>(device));
 }
 
-daqErrCode daqDevice_getFunctionBlocks(daqDevice* self, daqList** functionBlocks, daqSearchFilter* searchFilter)
+daqErrCode daqDevice_getFunctionBlocks(daqDevice* self, daqListObject** functionBlocks, daqSearchFilter* searchFilter)
 {
     return reinterpret_cast<daq::IDevice*>(self)->getFunctionBlocks(reinterpret_cast<daq::IList**>(functionBlocks), reinterpret_cast<daq::ISearchFilter*>(searchFilter));
 }
 
-daqErrCode daqDevice_getAvailableFunctionBlockTypes(daqDevice* self, daqDict** functionBlockTypes)
+daqErrCode daqDevice_getAvailableFunctionBlockTypes(daqDevice* self, daqDictObject** functionBlockTypes)
 {
     return reinterpret_cast<daq::IDevice*>(self)->getAvailableFunctionBlockTypes(reinterpret_cast<daq::IDict**>(functionBlockTypes));
 }
 
-daqErrCode daqDevice_addFunctionBlock(daqDevice* self, daqFunctionBlock** functionBlock, daqString* typeId, daqPropertyObject* config)
+daqErrCode daqDevice_addFunctionBlock(daqDevice* self, daqFunctionBlock** functionBlock, daqStringObject* typeId, daqPropertyObject* config)
 {
     return reinterpret_cast<daq::IDevice*>(self)->addFunctionBlock(reinterpret_cast<daq::IFunctionBlock**>(functionBlock), reinterpret_cast<daq::IString*>(typeId), reinterpret_cast<daq::IPropertyObject*>(config));
 }
@@ -108,12 +108,12 @@ daqErrCode daqDevice_removeFunctionBlock(daqDevice* self, daqFunctionBlock* func
     return reinterpret_cast<daq::IDevice*>(self)->removeFunctionBlock(reinterpret_cast<daq::IFunctionBlock*>(functionBlock));
 }
 
-daqErrCode daqDevice_saveConfiguration(daqDevice* self, daqString** configuration)
+daqErrCode daqDevice_saveConfiguration(daqDevice* self, daqStringObject** configuration)
 {
     return reinterpret_cast<daq::IDevice*>(self)->saveConfiguration(reinterpret_cast<daq::IString**>(configuration));
 }
 
-daqErrCode daqDevice_loadConfiguration(daqDevice* self, daqString* configuration, daqUpdateParameters* config)
+daqErrCode daqDevice_loadConfiguration(daqDevice* self, daqStringObject* configuration, daqUpdateParameters* config)
 {
     return reinterpret_cast<daq::IDevice*>(self)->loadConfiguration(reinterpret_cast<daq::IString*>(configuration), reinterpret_cast<daq::IUpdateParameters*>(config));
 }
@@ -123,7 +123,7 @@ daqErrCode daqDevice_getTicksSinceOrigin(daqDevice* self, daqUInt* ticks)
     return reinterpret_cast<daq::IDevice*>(self)->getTicksSinceOrigin(reinterpret_cast<daq::UInt*>(ticks));
 }
 
-daqErrCode daqDevice_addStreaming(daqDevice* self, daqStreaming** streaming, daqString* connectionString, daqPropertyObject* config)
+daqErrCode daqDevice_addStreaming(daqDevice* self, daqStreaming** streaming, daqStringObject* connectionString, daqPropertyObject* config)
 {
     return reinterpret_cast<daq::IDevice*>(self)->addStreaming(reinterpret_cast<daq::IStreaming**>(streaming), reinterpret_cast<daq::IString*>(connectionString), reinterpret_cast<daq::IPropertyObject*>(config));
 }
@@ -138,7 +138,7 @@ daqErrCode daqDevice_getSyncComponent(daqDevice* self, daqSyncComponent** sync)
     return reinterpret_cast<daq::IDevice*>(self)->getSyncComponent(reinterpret_cast<daq::ISyncComponent**>(sync));
 }
 
-daqErrCode daqDevice_addServer(daqDevice* self, daqString* typeId, daqPropertyObject* config, daqServer** server)
+daqErrCode daqDevice_addServer(daqDevice* self, daqStringObject* typeId, daqPropertyObject* config, daqServer** server)
 {
     return reinterpret_cast<daq::IDevice*>(self)->addServer(reinterpret_cast<daq::IString*>(typeId), reinterpret_cast<daq::IPropertyObject*>(config), reinterpret_cast<daq::IServer**>(server));
 }
@@ -148,7 +148,7 @@ daqErrCode daqDevice_removeServer(daqDevice* self, daqServer* server)
     return reinterpret_cast<daq::IDevice*>(self)->removeServer(reinterpret_cast<daq::IServer*>(server));
 }
 
-daqErrCode daqDevice_getServers(daqDevice* self, daqList** servers)
+daqErrCode daqDevice_getServers(daqDevice* self, daqListObject** servers)
 {
     return reinterpret_cast<daq::IDevice*>(self)->getServers(reinterpret_cast<daq::IList**>(servers));
 }
@@ -168,12 +168,12 @@ daqErrCode daqDevice_isLocked(daqDevice* self, daqBool* locked)
     return reinterpret_cast<daq::IDevice*>(self)->isLocked(locked);
 }
 
-daqErrCode daqDevice_getLogFileInfos(daqDevice* self, daqList** logFileInfos)
+daqErrCode daqDevice_getLogFileInfos(daqDevice* self, daqListObject** logFileInfos)
 {
     return reinterpret_cast<daq::IDevice*>(self)->getLogFileInfos(reinterpret_cast<daq::IList**>(logFileInfos));
 }
 
-daqErrCode daqDevice_getLog(daqDevice* self, daqString** log, daqString* id, daqInt size, daqInt offset)
+daqErrCode daqDevice_getLog(daqDevice* self, daqStringObject** log, daqStringObject* id, daqInt size, daqInt offset)
 {
     return reinterpret_cast<daq::IDevice*>(self)->getLog(reinterpret_cast<daq::IString**>(log), reinterpret_cast<daq::IString*>(id), size, offset);
 }
@@ -183,7 +183,7 @@ daqErrCode daqDevice_getConnectionStatusContainer(daqDevice* self, daqComponentS
     return reinterpret_cast<daq::IDevice*>(self)->getConnectionStatusContainer(reinterpret_cast<daq::IComponentStatusContainer**>(statusContainer));
 }
 
-daqErrCode daqDevice_getAvailableOperationModes(daqDevice* self, daqList** availableOpModes)
+daqErrCode daqDevice_getAvailableOperationModes(daqDevice* self, daqListObject** availableOpModes)
 {
     return reinterpret_cast<daq::IDevice*>(self)->getAvailableOperationModes(reinterpret_cast<daq::IList**>(availableOpModes));
 }
@@ -198,7 +198,7 @@ daqErrCode daqDevice_setOperationModeRecursive(daqDevice* self, daqOperationMode
     return reinterpret_cast<daq::IDevice*>(self)->setOperationModeRecursive(static_cast<daq::OperationModeType>(modeType));
 }
 
-daqErrCode daqDevice_addDevices(daqDevice* self, daqDict** devices, daqDict* connectionArgs, daqDict* errCodes, daqDict* errorInfos)
+daqErrCode daqDevice_addDevices(daqDevice* self, daqDictObject** devices, daqDictObject* connectionArgs, daqDictObject* errCodes, daqDictObject* errorInfos)
 {
     return reinterpret_cast<daq::IDevice*>(self)->addDevices(reinterpret_cast<daq::IDict**>(devices), reinterpret_cast<daq::IDict*>(connectionArgs), reinterpret_cast<daq::IDict*>(errCodes), reinterpret_cast<daq::IDict*>(errorInfos));
 }

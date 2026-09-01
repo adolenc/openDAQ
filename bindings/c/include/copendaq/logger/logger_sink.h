@@ -35,7 +35,7 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqLoggerSink daqLoggerSink;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
 
     EXPORTED extern const daqIntfID DAQ_LOGGER_SINK_INTF_ID;
     void EXPORTED daqLoggerSink_getInterfaceId(daqIntfID* intfId);
@@ -43,12 +43,12 @@ extern "C"
     daqErrCode EXPORTED daqLoggerSink_setLevel(daqLoggerSink* self, daqLogLevel level);
     daqErrCode EXPORTED daqLoggerSink_getLevel(daqLoggerSink* self, daqLogLevel* level);
     daqErrCode EXPORTED daqLoggerSink_shouldLog(daqLoggerSink* self, daqLogLevel level, daqBool* willLog);
-    daqErrCode EXPORTED daqLoggerSink_setPattern(daqLoggerSink* self, daqString* pattern);
+    daqErrCode EXPORTED daqLoggerSink_setPattern(daqLoggerSink* self, daqStringObject* pattern);
     daqErrCode EXPORTED daqLoggerSink_flush(daqLoggerSink* self);
     daqErrCode EXPORTED daqLoggerSink_createStdErrLoggerSink(daqLoggerSink** obj);
     daqErrCode EXPORTED daqLoggerSink_createStdOutLoggerSink(daqLoggerSink** obj);
-    daqErrCode EXPORTED daqLoggerSink_createRotatingFileLoggerSink(daqLoggerSink** obj, daqString* fileName, daqSizeT maxFileByteSize, daqSizeT maxFiles);
-    daqErrCode EXPORTED daqLoggerSink_createBasicFileLoggerSink(daqLoggerSink** obj, daqString* fileName);
+    daqErrCode EXPORTED daqLoggerSink_createRotatingFileLoggerSink(daqLoggerSink** obj, daqStringObject* fileName, daqSizeT maxFileByteSize, daqSizeT maxFiles);
+    daqErrCode EXPORTED daqLoggerSink_createBasicFileLoggerSink(daqLoggerSink** obj, daqStringObject* fileName);
 #ifdef _WIN32
     daqErrCode EXPORTED daqLoggerSink_createWinDebugLoggerSink(daqLoggerSink** obj);
 #endif

@@ -23,12 +23,12 @@ void daqDataDescriptor_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_DATA_DESCRIPTOR_INTF_ID;
 }
 
-daqErrCode daqDataDescriptor_getName(daqDataDescriptor* self, daqString** name)
+daqErrCode daqDataDescriptor_getName(daqDataDescriptor* self, daqStringObject** name)
 {
     return reinterpret_cast<daq::IDataDescriptor*>(self)->getName(reinterpret_cast<daq::IString**>(name));
 }
 
-daqErrCode daqDataDescriptor_getDimensions(daqDataDescriptor* self, daqList** dimensions)
+daqErrCode daqDataDescriptor_getDimensions(daqDataDescriptor* self, daqListObject** dimensions)
 {
     return reinterpret_cast<daq::IDataDescriptor*>(self)->getDimensions(reinterpret_cast<daq::IList**>(dimensions));
 }
@@ -53,12 +53,12 @@ daqErrCode daqDataDescriptor_getRule(daqDataDescriptor* self, daqDataRule** rule
     return reinterpret_cast<daq::IDataDescriptor*>(self)->getRule(reinterpret_cast<daq::IDataRule**>(rule));
 }
 
-daqErrCode daqDataDescriptor_getOrigin(daqDataDescriptor* self, daqString** origin)
+daqErrCode daqDataDescriptor_getOrigin(daqDataDescriptor* self, daqStringObject** origin)
 {
     return reinterpret_cast<daq::IDataDescriptor*>(self)->getOrigin(reinterpret_cast<daq::IString**>(origin));
 }
 
-daqErrCode daqDataDescriptor_getTickResolution(daqDataDescriptor* self, daqRatio** tickResolution)
+daqErrCode daqDataDescriptor_getTickResolution(daqDataDescriptor* self, daqRatioObject** tickResolution)
 {
     return reinterpret_cast<daq::IDataDescriptor*>(self)->getTickResolution(reinterpret_cast<daq::IRatio**>(tickResolution));
 }
@@ -68,12 +68,12 @@ daqErrCode daqDataDescriptor_getPostScaling(daqDataDescriptor* self, daqScaling*
     return reinterpret_cast<daq::IDataDescriptor*>(self)->getPostScaling(reinterpret_cast<daq::IScaling**>(scaling));
 }
 
-daqErrCode daqDataDescriptor_getStructFields(daqDataDescriptor* self, daqList** structFields)
+daqErrCode daqDataDescriptor_getStructFields(daqDataDescriptor* self, daqListObject** structFields)
 {
     return reinterpret_cast<daq::IDataDescriptor*>(self)->getStructFields(reinterpret_cast<daq::IList**>(structFields));
 }
 
-daqErrCode daqDataDescriptor_getMetadata(daqDataDescriptor* self, daqDict** metadata)
+daqErrCode daqDataDescriptor_getMetadata(daqDataDescriptor* self, daqDictObject** metadata)
 {
     return reinterpret_cast<daq::IDataDescriptor*>(self)->getMetadata(reinterpret_cast<daq::IDict**>(metadata));
 }

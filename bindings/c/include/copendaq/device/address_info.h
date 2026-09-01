@@ -35,15 +35,15 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqAddressInfo daqAddressInfo;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
     typedef struct daqAddressInfoBuilder daqAddressInfoBuilder;
 
     EXPORTED extern const daqIntfID DAQ_ADDRESS_INFO_INTF_ID;
     void EXPORTED daqAddressInfo_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqAddressInfo_getAddress(daqAddressInfo* self, daqString** address);
-    daqErrCode EXPORTED daqAddressInfo_getConnectionString(daqAddressInfo* self, daqString** connectionString);
-    daqErrCode EXPORTED daqAddressInfo_getType(daqAddressInfo* self, daqString** type);
+    daqErrCode EXPORTED daqAddressInfo_getAddress(daqAddressInfo* self, daqStringObject** address);
+    daqErrCode EXPORTED daqAddressInfo_getConnectionString(daqAddressInfo* self, daqStringObject** connectionString);
+    daqErrCode EXPORTED daqAddressInfo_getType(daqAddressInfo* self, daqStringObject** type);
     daqErrCode EXPORTED daqAddressInfo_getReachabilityStatus(daqAddressInfo* self, daqAddressReachabilityStatus* addressReachability);
     daqErrCode EXPORTED daqAddressInfo_createAddressInfo(daqAddressInfo** obj);
     daqErrCode EXPORTED daqAddressInfo_createAddressInfoFromBuilder(daqAddressInfo** obj, daqAddressInfoBuilder* builder);

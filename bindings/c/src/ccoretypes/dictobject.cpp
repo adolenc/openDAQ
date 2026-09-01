@@ -23,73 +23,73 @@ void daqDict_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_DICT_INTF_ID;
 }
 
-daqErrCode daqDict_get(daqDict* self, daqBaseObject* key, daqBaseObject** value)
+daqErrCode daqDict_get(daqDictObject* self, daqBaseObject* key, daqBaseObject** value)
 {
     return reinterpret_cast<daq::IDict*>(self)->get(reinterpret_cast<daq::IBaseObject*>(key), reinterpret_cast<daq::IBaseObject**>(value));
 }
 
-daqErrCode daqDict_set(daqDict* self, daqBaseObject* key, daqBaseObject* value)
+daqErrCode daqDict_set(daqDictObject* self, daqBaseObject* key, daqBaseObject* value)
 {
     return reinterpret_cast<daq::IDict*>(self)->set(reinterpret_cast<daq::IBaseObject*>(key), reinterpret_cast<daq::IBaseObject*>(value));
 }
 
-daqErrCode daqDict_remove(daqDict* self, daqBaseObject* key, daqBaseObject** value)
+daqErrCode daqDict_remove(daqDictObject* self, daqBaseObject* key, daqBaseObject** value)
 {
     return reinterpret_cast<daq::IDict*>(self)->remove(reinterpret_cast<daq::IBaseObject*>(key), reinterpret_cast<daq::IBaseObject**>(value));
 }
 
-daqErrCode daqDict_deleteItem(daqDict* self, daqBaseObject* key)
+daqErrCode daqDict_deleteItem(daqDictObject* self, daqBaseObject* key)
 {
     return reinterpret_cast<daq::IDict*>(self)->deleteItem(reinterpret_cast<daq::IBaseObject*>(key));
 }
 
-daqErrCode daqDict_clear(daqDict* self)
+daqErrCode daqDict_clear(daqDictObject* self)
 {
     return reinterpret_cast<daq::IDict*>(self)->clear();
 }
 
-daqErrCode daqDict_getCount(daqDict* self, daqSizeT* size)
+daqErrCode daqDict_getCount(daqDictObject* self, daqSizeT* size)
 {
     return reinterpret_cast<daq::IDict*>(self)->getCount(size);
 }
 
-daqErrCode daqDict_hasKey(daqDict* self, daqBaseObject* key, daqBool* hasKey)
+daqErrCode daqDict_hasKey(daqDictObject* self, daqBaseObject* key, daqBool* hasKey)
 {
     return reinterpret_cast<daq::IDict*>(self)->hasKey(reinterpret_cast<daq::IBaseObject*>(key), hasKey);
 }
 
-daqErrCode daqDict_getKeyList(daqDict* self, daqList** keys)
+daqErrCode daqDict_getKeyList(daqDictObject* self, daqListObject** keys)
 {
     return reinterpret_cast<daq::IDict*>(self)->getKeyList(reinterpret_cast<daq::IList**>(keys));
 }
 
-daqErrCode daqDict_getValueList(daqDict* self, daqList** values)
+daqErrCode daqDict_getValueList(daqDictObject* self, daqListObject** values)
 {
     return reinterpret_cast<daq::IDict*>(self)->getValueList(reinterpret_cast<daq::IList**>(values));
 }
 
-daqErrCode daqDict_getKeys(daqDict* self, daqIterable** iterable)
+daqErrCode daqDict_getKeys(daqDictObject* self, daqIterable** iterable)
 {
     return reinterpret_cast<daq::IDict*>(self)->getKeys(reinterpret_cast<daq::IIterable**>(iterable));
 }
 
-daqErrCode daqDict_getValues(daqDict* self, daqIterable** iterable)
+daqErrCode daqDict_getValues(daqDictObject* self, daqIterable** iterable)
 {
     return reinterpret_cast<daq::IDict*>(self)->getValues(reinterpret_cast<daq::IIterable**>(iterable));
 }
 
-daqErrCode daqDict_createDict(daqDict** obj)
+daqErrCode daqDict_createDict(daqDictObject** obj)
 {
     daq::IDict* ptr = nullptr;
     daqErrCode err = daq::createDict(&ptr);
-    *obj = reinterpret_cast<daqDict*>(ptr);
+    *obj = reinterpret_cast<daqDictObject*>(ptr);
     return err;
 }
 
-daqErrCode daqDict_createDictWithExpectedTypes(daqDict** obj, daqIntfID keyType, daqIntfID valueType)
+daqErrCode daqDict_createDictWithExpectedTypes(daqDictObject** obj, daqIntfID keyType, daqIntfID valueType)
 {
     daq::IDict* ptr = nullptr;
     daqErrCode err = daq::createDictWithExpectedTypes(&ptr, copendaq::utils::toDaqIntfId(keyType), copendaq::utils::toDaqIntfId(valueType));
-    *obj = reinterpret_cast<daqDict*>(ptr);
+    *obj = reinterpret_cast<daqDictObject*>(ptr);
     return err;
 }

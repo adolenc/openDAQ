@@ -23,27 +23,27 @@ void daqConnectionStatusContainerPrivate_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_CONNECTION_STATUS_CONTAINER_PRIVATE_INTF_ID;
 }
 
-daqErrCode daqConnectionStatusContainerPrivate_addConfigurationConnectionStatus(daqConnectionStatusContainerPrivate* self, daqString* connectionString, daqEnumeration* initialValue)
+daqErrCode daqConnectionStatusContainerPrivate_addConfigurationConnectionStatus(daqConnectionStatusContainerPrivate* self, daqStringObject* connectionString, daqEnumerationObject* initialValue)
 {
     return reinterpret_cast<daq::IConnectionStatusContainerPrivate*>(self)->addConfigurationConnectionStatus(reinterpret_cast<daq::IString*>(connectionString), reinterpret_cast<daq::IEnumeration*>(initialValue));
 }
 
-daqErrCode daqConnectionStatusContainerPrivate_addStreamingConnectionStatus(daqConnectionStatusContainerPrivate* self, daqString* connectionString, daqEnumeration* initialValue, daqStreaming* streamingObject)
+daqErrCode daqConnectionStatusContainerPrivate_addStreamingConnectionStatus(daqConnectionStatusContainerPrivate* self, daqStringObject* connectionString, daqEnumerationObject* initialValue, daqStreaming* streamingObject)
 {
     return reinterpret_cast<daq::IConnectionStatusContainerPrivate*>(self)->addStreamingConnectionStatus(reinterpret_cast<daq::IString*>(connectionString), reinterpret_cast<daq::IEnumeration*>(initialValue), reinterpret_cast<daq::IStreaming*>(streamingObject));
 }
 
-daqErrCode daqConnectionStatusContainerPrivate_removeStreamingConnectionStatus(daqConnectionStatusContainerPrivate* self, daqString* connectionString)
+daqErrCode daqConnectionStatusContainerPrivate_removeStreamingConnectionStatus(daqConnectionStatusContainerPrivate* self, daqStringObject* connectionString)
 {
     return reinterpret_cast<daq::IConnectionStatusContainerPrivate*>(self)->removeStreamingConnectionStatus(reinterpret_cast<daq::IString*>(connectionString));
 }
 
-daqErrCode daqConnectionStatusContainerPrivate_updateConnectionStatus(daqConnectionStatusContainerPrivate* self, daqString* connectionString, daqEnumeration* value, daqStreaming* streamingObject)
+daqErrCode daqConnectionStatusContainerPrivate_updateConnectionStatus(daqConnectionStatusContainerPrivate* self, daqStringObject* connectionString, daqEnumerationObject* value, daqStreaming* streamingObject)
 {
     return reinterpret_cast<daq::IConnectionStatusContainerPrivate*>(self)->updateConnectionStatus(reinterpret_cast<daq::IString*>(connectionString), reinterpret_cast<daq::IEnumeration*>(value), reinterpret_cast<daq::IStreaming*>(streamingObject));
 }
 
-daqErrCode daqConnectionStatusContainerPrivate_updateConnectionStatusWithMessage(daqConnectionStatusContainerPrivate* self, daqString* connectionString, daqEnumeration* value, daqStreaming* streamingObject, daqString* message)
+daqErrCode daqConnectionStatusContainerPrivate_updateConnectionStatusWithMessage(daqConnectionStatusContainerPrivate* self, daqStringObject* connectionString, daqEnumerationObject* value, daqStreaming* streamingObject, daqStringObject* message)
 {
     return reinterpret_cast<daq::IConnectionStatusContainerPrivate*>(self)->updateConnectionStatusWithMessage(reinterpret_cast<daq::IString*>(connectionString), reinterpret_cast<daq::IEnumeration*>(value), reinterpret_cast<daq::IStreaming*>(streamingObject), reinterpret_cast<daq::IString*>(message));
 }

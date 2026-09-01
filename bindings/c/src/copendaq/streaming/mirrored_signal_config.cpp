@@ -23,22 +23,22 @@ void daqMirroredSignalConfig_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_MIRRORED_SIGNAL_CONFIG_INTF_ID;
 }
 
-daqErrCode daqMirroredSignalConfig_getRemoteId(daqMirroredSignalConfig* self, daqString** id)
+daqErrCode daqMirroredSignalConfig_getRemoteId(daqMirroredSignalConfig* self, daqStringObject** id)
 {
     return reinterpret_cast<daq::IMirroredSignalConfig*>(self)->getRemoteId(reinterpret_cast<daq::IString**>(id));
 }
 
-daqErrCode daqMirroredSignalConfig_getStreamingSources(daqMirroredSignalConfig* self, daqList** streamingConnectionStrings)
+daqErrCode daqMirroredSignalConfig_getStreamingSources(daqMirroredSignalConfig* self, daqListObject** streamingConnectionStrings)
 {
     return reinterpret_cast<daq::IMirroredSignalConfig*>(self)->getStreamingSources(reinterpret_cast<daq::IList**>(streamingConnectionStrings));
 }
 
-daqErrCode daqMirroredSignalConfig_setActiveStreamingSource(daqMirroredSignalConfig* self, daqString* streamingConnectionString)
+daqErrCode daqMirroredSignalConfig_setActiveStreamingSource(daqMirroredSignalConfig* self, daqStringObject* streamingConnectionString)
 {
     return reinterpret_cast<daq::IMirroredSignalConfig*>(self)->setActiveStreamingSource(reinterpret_cast<daq::IString*>(streamingConnectionString));
 }
 
-daqErrCode daqMirroredSignalConfig_getActiveStreamingSource(daqMirroredSignalConfig* self, daqString** streamingConnectionString)
+daqErrCode daqMirroredSignalConfig_getActiveStreamingSource(daqMirroredSignalConfig* self, daqStringObject** streamingConnectionString)
 {
     return reinterpret_cast<daq::IMirroredSignalConfig*>(self)->getActiveStreamingSource(reinterpret_cast<daq::IString**>(streamingConnectionString));
 }

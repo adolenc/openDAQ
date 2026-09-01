@@ -31,7 +31,7 @@ daqErrCode functionCall(daqBaseObject*, daqBaseObject**)
 
 TEST_F(COpendaqSchedulerTest, Scheduler)
 {
-    daqList* sinks = nullptr;
+    daqListObject* sinks = nullptr;
     daqList_createList(&sinks);
 
     daqLoggerSink* sink = nullptr;
@@ -45,10 +45,10 @@ TEST_F(COpendaqSchedulerTest, Scheduler)
     daqScheduler_createScheduler(&scheduler, logger, 1);
     ASSERT_NE(scheduler, nullptr);
 
-    daqProcedure* procGraph = nullptr;
+    daqProcedureObject* procGraph = nullptr;
     daqProcedure_createProcedure(&procGraph, procedureTaskGraph);
 
-    daqString* nameGraph = nullptr;
+    daqStringObject* nameGraph = nullptr;
     daqString_createString(&nameGraph, "taskGraph");
 
     daqTaskGraph* taskGraph = nullptr;
@@ -58,10 +58,10 @@ TEST_F(COpendaqSchedulerTest, Scheduler)
     daqBaseObject_borrowInterface(taskGraph, DAQ_TASK_INTF_ID, (void**) &task);
     ASSERT_NE(task, nullptr);
 
-    daqProcedure* taskProc = nullptr;
+    daqProcedureObject* taskProc = nullptr;
     daqProcedure_createProcedure(&taskProc, procedureTask);
 
-    daqString* name = nullptr;
+    daqStringObject* name = nullptr;
     daqString_createString(&name, "task");
 
     daqTask* task2 = nullptr;
@@ -73,7 +73,7 @@ TEST_F(COpendaqSchedulerTest, Scheduler)
     daqScheduler_scheduleGraph(scheduler, taskGraph, &awaitable);
     ASSERT_NE(awaitable, nullptr);
 
-    daqFunction* function = nullptr;
+    daqFunctionObject* function = nullptr;
     daqFunction_createFunction(&function, functionCall);
 
     daqAwaitable* awaitable2 = nullptr;

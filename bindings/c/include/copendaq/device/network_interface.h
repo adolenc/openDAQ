@@ -36,7 +36,7 @@ extern "C"
 
     typedef struct daqNetworkInterface daqNetworkInterface;
     typedef struct daqPropertyObject daqPropertyObject;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
 
     EXPORTED extern const daqIntfID DAQ_NETWORK_INTERFACE_INTF_ID;
     void EXPORTED daqNetworkInterface_getInterfaceId(daqIntfID* intfId);
@@ -44,7 +44,7 @@ extern "C"
     daqErrCode EXPORTED daqNetworkInterface_requestCurrentConfiguration(daqNetworkInterface* self, daqPropertyObject** config);
     daqErrCode EXPORTED daqNetworkInterface_submitConfiguration(daqNetworkInterface* self, daqPropertyObject* config);
     daqErrCode EXPORTED daqNetworkInterface_createDefaultConfiguration(daqNetworkInterface* self, daqPropertyObject** defaultConfig);
-    daqErrCode EXPORTED daqNetworkInterface_createNetworkInterface(daqNetworkInterface** obj, daqString* name, daqString* ownerDeviceManufacturerName, daqString* ownerDeviceSerialNumber, daqBaseObject* moduleManager);
+    daqErrCode EXPORTED daqNetworkInterface_createNetworkInterface(daqNetworkInterface** obj, daqStringObject* name, daqStringObject* ownerDeviceManufacturerName, daqStringObject* ownerDeviceSerialNumber, daqBaseObject* moduleManager);
 
 #ifdef __cplusplus
 }

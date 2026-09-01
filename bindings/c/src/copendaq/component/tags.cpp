@@ -23,17 +23,17 @@ void daqTags_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_TAGS_INTF_ID;
 }
 
-daqErrCode daqTags_getList(daqTags* self, daqList** value)
+daqErrCode daqTags_getList(daqTags* self, daqListObject** value)
 {
     return reinterpret_cast<daq::ITags*>(self)->getList(reinterpret_cast<daq::IList**>(value));
 }
 
-daqErrCode daqTags_contains(daqTags* self, daqString* name, daqBool* value)
+daqErrCode daqTags_contains(daqTags* self, daqStringObject* name, daqBool* value)
 {
     return reinterpret_cast<daq::ITags*>(self)->contains(reinterpret_cast<daq::IString*>(name), value);
 }
 
-daqErrCode daqTags_query(daqTags* self, daqString* query, daqBool* value)
+daqErrCode daqTags_query(daqTags* self, daqStringObject* query, daqBool* value)
 {
     return reinterpret_cast<daq::ITags*>(self)->query(reinterpret_cast<daq::IString*>(query), value);
 }

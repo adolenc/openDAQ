@@ -36,15 +36,15 @@ extern "C"
 
     typedef struct daqSearchFilter daqSearchFilter;
     typedef struct daqComponent daqComponent;
-    typedef struct daqList daqList;
-    typedef struct daqString daqString;
-    typedef struct daqFunction daqFunction;
+    typedef struct daqListObject daqListObject;
+    typedef struct daqStringObject daqStringObject;
+    typedef struct daqFunctionObject daqFunctionObject;
 
     daqErrCode EXPORTED daqSearchFilter_createVisibleSearchFilter(daqSearchFilter** obj);
-    daqErrCode EXPORTED daqSearchFilter_createRequiredTagsSearchFilter(daqSearchFilter** obj, daqList* requiredTags);
-    daqErrCode EXPORTED daqSearchFilter_createExcludedTagsSearchFilter(daqSearchFilter** obj, daqList* excludedTags);
+    daqErrCode EXPORTED daqSearchFilter_createRequiredTagsSearchFilter(daqSearchFilter** obj, daqListObject* requiredTags);
+    daqErrCode EXPORTED daqSearchFilter_createExcludedTagsSearchFilter(daqSearchFilter** obj, daqListObject* excludedTags);
     daqErrCode EXPORTED daqSearchFilter_createInterfaceIdSearchFilter(daqSearchFilter** obj, daqIntfID intfId);
-    daqErrCode EXPORTED daqSearchFilter_createLocalIdSearchFilter(daqSearchFilter** obj, daqString* localId);    
+    daqErrCode EXPORTED daqSearchFilter_createLocalIdSearchFilter(daqSearchFilter** obj, daqStringObject* localId);    
 
 #ifdef __cplusplus
 }

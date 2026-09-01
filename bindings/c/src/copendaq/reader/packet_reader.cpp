@@ -28,7 +28,7 @@ daqErrCode daqPacketReader_read(daqPacketReader* self, daqPacket** packet)
     return reinterpret_cast<daq::IPacketReader*>(self)->read(reinterpret_cast<daq::IPacket**>(packet));
 }
 
-daqErrCode daqPacketReader_readAll(daqPacketReader* self, daqList** packets)
+daqErrCode daqPacketReader_readAll(daqPacketReader* self, daqListObject** packets)
 {
     return reinterpret_cast<daq::IPacketReader*>(self)->readAll(reinterpret_cast<daq::IList**>(packets));
 }

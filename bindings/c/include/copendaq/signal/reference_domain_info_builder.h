@@ -36,17 +36,17 @@ extern "C"
 
     typedef struct daqReferenceDomainInfoBuilder daqReferenceDomainInfoBuilder;
     typedef struct daqReferenceDomainInfo daqReferenceDomainInfo;
-    typedef struct daqString daqString;
-    typedef struct daqInteger daqInteger;
+    typedef struct daqStringObject daqStringObject;
+    typedef struct daqIntegerObject daqIntegerObject;
 
     EXPORTED extern const daqIntfID DAQ_REFERENCE_DOMAIN_INFO_BUILDER_INTF_ID;
     void EXPORTED daqReferenceDomainInfoBuilder_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqReferenceDomainInfoBuilder_build(daqReferenceDomainInfoBuilder* self, daqReferenceDomainInfo** referenceDomainInfo);
-    daqErrCode EXPORTED daqReferenceDomainInfoBuilder_setReferenceDomainId(daqReferenceDomainInfoBuilder* self, daqString* referenceDomainId);
-    daqErrCode EXPORTED daqReferenceDomainInfoBuilder_getReferenceDomainId(daqReferenceDomainInfoBuilder* self, daqString** referenceDomainId);
-    daqErrCode EXPORTED daqReferenceDomainInfoBuilder_setReferenceDomainOffset(daqReferenceDomainInfoBuilder* self, daqInteger* referenceDomainOffset);
-    daqErrCode EXPORTED daqReferenceDomainInfoBuilder_getReferenceDomainOffset(daqReferenceDomainInfoBuilder* self, daqInteger** referenceDomainOffset);
+    daqErrCode EXPORTED daqReferenceDomainInfoBuilder_setReferenceDomainId(daqReferenceDomainInfoBuilder* self, daqStringObject* referenceDomainId);
+    daqErrCode EXPORTED daqReferenceDomainInfoBuilder_getReferenceDomainId(daqReferenceDomainInfoBuilder* self, daqStringObject** referenceDomainId);
+    daqErrCode EXPORTED daqReferenceDomainInfoBuilder_setReferenceDomainOffset(daqReferenceDomainInfoBuilder* self, daqIntegerObject* referenceDomainOffset);
+    daqErrCode EXPORTED daqReferenceDomainInfoBuilder_getReferenceDomainOffset(daqReferenceDomainInfoBuilder* self, daqIntegerObject** referenceDomainOffset);
     daqErrCode EXPORTED daqReferenceDomainInfoBuilder_setReferenceTimeProtocol(daqReferenceDomainInfoBuilder* self, daqTimeProtocol referenceTimeProtocol);
     daqErrCode EXPORTED daqReferenceDomainInfoBuilder_getReferenceTimeProtocol(daqReferenceDomainInfoBuilder* self, daqTimeProtocol* referenceTimeProtocol);
     daqErrCode EXPORTED daqReferenceDomainInfoBuilder_setUsesOffset(daqReferenceDomainInfoBuilder* self, daqUsesOffset usesOffset);

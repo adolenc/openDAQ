@@ -36,7 +36,7 @@ extern "C"
 
     typedef struct daqSerializer daqSerializer;
     typedef struct daqSerializable daqSerializable;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
 
     EXPORTED extern const daqIntfID DAQ_SERIALIZER_INTF_ID;
     void EXPORTED daqSerializer_getInterfaceId(daqIntfID* intfId);
@@ -46,9 +46,9 @@ extern "C"
     daqErrCode EXPORTED daqSerializer_endObject(daqSerializer* self);
     daqErrCode EXPORTED daqSerializer_startList(daqSerializer* self);
     daqErrCode EXPORTED daqSerializer_endList(daqSerializer* self);
-    daqErrCode EXPORTED daqSerializer_getOutput(daqSerializer* self, daqString** serialized);
+    daqErrCode EXPORTED daqSerializer_getOutput(daqSerializer* self, daqStringObject** serialized);
     daqErrCode EXPORTED daqSerializer_key(daqSerializer* self, daqConstCharPtr string);
-    daqErrCode EXPORTED daqSerializer_keyStr(daqSerializer* self, daqString* name);
+    daqErrCode EXPORTED daqSerializer_keyStr(daqSerializer* self, daqStringObject* name);
     daqErrCode EXPORTED daqSerializer_keyRaw(daqSerializer* self, daqConstCharPtr string, daqSizeT length);
     daqErrCode EXPORTED daqSerializer_writeInt(daqSerializer* self, daqInt integer);
     daqErrCode EXPORTED daqSerializer_writeBool(daqSerializer* self, daqBool boolean);

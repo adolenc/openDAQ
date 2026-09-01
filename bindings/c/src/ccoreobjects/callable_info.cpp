@@ -28,7 +28,7 @@ daqErrCode daqCallableInfo_getReturnType(daqCallableInfo* self, daqCoreType* typ
     return reinterpret_cast<daq::ICallableInfo*>(self)->getReturnType(reinterpret_cast<daq::CoreType*>(type));
 }
 
-daqErrCode daqCallableInfo_getArguments(daqCallableInfo* self, daqList** argumentInfo)
+daqErrCode daqCallableInfo_getArguments(daqCallableInfo* self, daqListObject** argumentInfo)
 {
     return reinterpret_cast<daq::ICallableInfo*>(self)->getArguments(reinterpret_cast<daq::IList**>(argumentInfo));
 }
@@ -38,7 +38,7 @@ daqErrCode daqCallableInfo_isConst(daqCallableInfo* self, daqBool* constFlag)
     return reinterpret_cast<daq::ICallableInfo*>(self)->isConst(constFlag);
 }
 
-daqErrCode daqCallableInfo_createCallableInfo(daqCallableInfo** obj, daqList* argumentInfo, daqCoreType returnType, daqBool constFlag)
+daqErrCode daqCallableInfo_createCallableInfo(daqCallableInfo** obj, daqListObject* argumentInfo, daqCoreType returnType, daqBool constFlag)
 {
     daq::ICallableInfo* ptr = nullptr;
     daqErrCode err = daq::createCallableInfo(&ptr, reinterpret_cast<daq::IList*>(argumentInfo), static_cast<daq::CoreType>(returnType), constFlag);

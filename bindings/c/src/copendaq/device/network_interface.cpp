@@ -38,7 +38,7 @@ daqErrCode daqNetworkInterface_createDefaultConfiguration(daqNetworkInterface* s
     return reinterpret_cast<daq::INetworkInterface*>(self)->createDefaultConfiguration(reinterpret_cast<daq::IPropertyObject**>(defaultConfig));
 }
 
-daqErrCode daqNetworkInterface_createNetworkInterface(daqNetworkInterface** obj, daqString* name, daqString* ownerDeviceManufacturerName, daqString* ownerDeviceSerialNumber, daqBaseObject* moduleManager)
+daqErrCode daqNetworkInterface_createNetworkInterface(daqNetworkInterface** obj, daqStringObject* name, daqStringObject* ownerDeviceManufacturerName, daqStringObject* ownerDeviceSerialNumber, daqBaseObject* moduleManager)
 {
     daq::INetworkInterface* ptr = nullptr;
     daqErrCode err = daq::createNetworkInterface(&ptr, reinterpret_cast<daq::IString*>(name), reinterpret_cast<daq::IString*>(ownerDeviceManufacturerName), reinterpret_cast<daq::IString*>(ownerDeviceSerialNumber), reinterpret_cast<daq::IBaseObject*>(moduleManager));

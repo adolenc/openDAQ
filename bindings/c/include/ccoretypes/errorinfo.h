@@ -35,15 +35,15 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqErrorInfo daqErrorInfo;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
 
     EXPORTED extern const daqIntfID DAQ_ERROR_INFO_INTF_ID;
     void EXPORTED daqErrorInfo_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqErrorInfo_setMessage(daqErrorInfo* self, daqString* message);
-    daqErrCode EXPORTED daqErrorInfo_getMessage(daqErrorInfo* self, daqString** message);
-    daqErrCode EXPORTED daqErrorInfo_setSource(daqErrorInfo* self, daqString* source);
-    daqErrCode EXPORTED daqErrorInfo_getSource(daqErrorInfo* self, daqString** source);
+    daqErrCode EXPORTED daqErrorInfo_setMessage(daqErrorInfo* self, daqStringObject* message);
+    daqErrCode EXPORTED daqErrorInfo_getMessage(daqErrorInfo* self, daqStringObject** message);
+    daqErrCode EXPORTED daqErrorInfo_setSource(daqErrorInfo* self, daqStringObject* source);
+    daqErrCode EXPORTED daqErrorInfo_getSource(daqErrorInfo* self, daqStringObject** source);
     daqErrCode EXPORTED daqErrorInfo_setFileName(daqErrorInfo* self, daqConstCharPtr fileName);
     daqErrCode EXPORTED daqErrorInfo_getFileName(daqErrorInfo* self, daqConstCharPtr* fileName);
     daqErrCode EXPORTED daqErrorInfo_setFileLine(daqErrorInfo* self, daqInt fileLine);
@@ -52,7 +52,7 @@ extern "C"
     daqErrCode EXPORTED daqErrorInfo_getErrorCode(daqErrorInfo* self, daqErrCode* errorCode);
     daqErrCode EXPORTED daqErrorInfo_setPreviousErrorCode(daqErrorInfo* self, daqErrCode prevErrCode);
     daqErrCode EXPORTED daqErrorInfo_getPreviousErrorCode(daqErrorInfo* self, daqErrCode* prevErrCode);
-    daqErrCode EXPORTED daqErrorInfo_getFormattedMessage(daqErrorInfo* self, daqString** message);
+    daqErrCode EXPORTED daqErrorInfo_getFormattedMessage(daqErrorInfo* self, daqStringObject** message);
     daqErrCode EXPORTED daqErrorInfo_createErrorInfo(daqErrorInfo** obj);
 
 #ifdef __cplusplus

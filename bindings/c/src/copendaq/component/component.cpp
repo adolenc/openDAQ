@@ -23,12 +23,12 @@ void daqComponent_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_COMPONENT_INTF_ID;
 }
 
-daqErrCode daqComponent_getLocalId(daqComponent* self, daqString** localId)
+daqErrCode daqComponent_getLocalId(daqComponent* self, daqStringObject** localId)
 {
     return reinterpret_cast<daq::IComponent*>(self)->getLocalId(reinterpret_cast<daq::IString**>(localId));
 }
 
-daqErrCode daqComponent_getGlobalId(daqComponent* self, daqString** globalId)
+daqErrCode daqComponent_getGlobalId(daqComponent* self, daqStringObject** globalId)
 {
     return reinterpret_cast<daq::IComponent*>(self)->getGlobalId(reinterpret_cast<daq::IString**>(globalId));
 }
@@ -53,22 +53,22 @@ daqErrCode daqComponent_getParent(daqComponent* self, daqComponent** parent)
     return reinterpret_cast<daq::IComponent*>(self)->getParent(reinterpret_cast<daq::IComponent**>(parent));
 }
 
-daqErrCode daqComponent_getName(daqComponent* self, daqString** name)
+daqErrCode daqComponent_getName(daqComponent* self, daqStringObject** name)
 {
     return reinterpret_cast<daq::IComponent*>(self)->getName(reinterpret_cast<daq::IString**>(name));
 }
 
-daqErrCode daqComponent_setName(daqComponent* self, daqString* name)
+daqErrCode daqComponent_setName(daqComponent* self, daqStringObject* name)
 {
     return reinterpret_cast<daq::IComponent*>(self)->setName(reinterpret_cast<daq::IString*>(name));
 }
 
-daqErrCode daqComponent_getDescription(daqComponent* self, daqString** description)
+daqErrCode daqComponent_getDescription(daqComponent* self, daqStringObject** description)
 {
     return reinterpret_cast<daq::IComponent*>(self)->getDescription(reinterpret_cast<daq::IString**>(description));
 }
 
-daqErrCode daqComponent_setDescription(daqComponent* self, daqString* description)
+daqErrCode daqComponent_setDescription(daqComponent* self, daqStringObject* description)
 {
     return reinterpret_cast<daq::IComponent*>(self)->setDescription(reinterpret_cast<daq::IString*>(description));
 }
@@ -88,7 +88,7 @@ daqErrCode daqComponent_setVisible(daqComponent* self, daqBool visible)
     return reinterpret_cast<daq::IComponent*>(self)->setVisible(visible);
 }
 
-daqErrCode daqComponent_getLockedAttributes(daqComponent* self, daqList** attributes)
+daqErrCode daqComponent_getLockedAttributes(daqComponent* self, daqListObject** attributes)
 {
     return reinterpret_cast<daq::IComponent*>(self)->getLockedAttributes(reinterpret_cast<daq::IList**>(attributes));
 }
@@ -103,7 +103,7 @@ daqErrCode daqComponent_getStatusContainer(daqComponent* self, daqComponentStatu
     return reinterpret_cast<daq::IComponent*>(self)->getStatusContainer(reinterpret_cast<daq::IComponentStatusContainer**>(statusContainer));
 }
 
-daqErrCode daqComponent_findComponent(daqComponent* self, daqString* id, daqComponent** outComponent)
+daqErrCode daqComponent_findComponent(daqComponent* self, daqStringObject* id, daqComponent** outComponent)
 {
     return reinterpret_cast<daq::IComponent*>(self)->findComponent(reinterpret_cast<daq::IString*>(id), reinterpret_cast<daq::IComponent**>(outComponent));
 }
@@ -123,7 +123,7 @@ daqErrCode daqComponent_getParentActive(daqComponent* self, daqBool* parentActiv
     return reinterpret_cast<daq::IComponent*>(self)->getParentActive(parentActive);
 }
 
-daqErrCode daqComponent_createComponent(daqComponent** obj, daqContext* context, daqComponent* parent, daqString* localId, daqString* className)
+daqErrCode daqComponent_createComponent(daqComponent** obj, daqContext* context, daqComponent* parent, daqStringObject* localId, daqStringObject* className)
 {
     daq::IComponent* ptr = nullptr;
     daqErrCode err = daq::createComponent(&ptr, reinterpret_cast<daq::IContext*>(context), reinterpret_cast<daq::IComponent*>(parent), reinterpret_cast<daq::IString*>(localId), reinterpret_cast<daq::IString*>(className));

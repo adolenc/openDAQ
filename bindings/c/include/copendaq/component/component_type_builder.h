@@ -36,23 +36,23 @@ extern "C"
 
     typedef struct daqComponentTypeBuilder daqComponentTypeBuilder;
     typedef struct daqComponentType daqComponentType;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
     typedef struct daqPropertyObject daqPropertyObject;
 
     EXPORTED extern const daqIntfID DAQ_COMPONENT_TYPE_BUILDER_INTF_ID;
     void EXPORTED daqComponentTypeBuilder_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqComponentTypeBuilder_build(daqComponentTypeBuilder* self, daqComponentType** componentType);
-    daqErrCode EXPORTED daqComponentTypeBuilder_setId(daqComponentTypeBuilder* self, daqString* id);
-    daqErrCode EXPORTED daqComponentTypeBuilder_getId(daqComponentTypeBuilder* self, daqString** id);
+    daqErrCode EXPORTED daqComponentTypeBuilder_setId(daqComponentTypeBuilder* self, daqStringObject* id);
+    daqErrCode EXPORTED daqComponentTypeBuilder_getId(daqComponentTypeBuilder* self, daqStringObject** id);
     daqErrCode EXPORTED daqComponentTypeBuilder_setTypeSort(daqComponentTypeBuilder* self, daqComponentTypeSort sort);
     daqErrCode EXPORTED daqComponentTypeBuilder_getTypeSort(daqComponentTypeBuilder* self, daqComponentTypeSort* sort);
-    daqErrCode EXPORTED daqComponentTypeBuilder_setName(daqComponentTypeBuilder* self, daqString* name);
-    daqErrCode EXPORTED daqComponentTypeBuilder_getName(daqComponentTypeBuilder* self, daqString** name);
-    daqErrCode EXPORTED daqComponentTypeBuilder_setDescription(daqComponentTypeBuilder* self, daqString* description);
-    daqErrCode EXPORTED daqComponentTypeBuilder_getDescription(daqComponentTypeBuilder* self, daqString** description);
-    daqErrCode EXPORTED daqComponentTypeBuilder_setConnectionStringPrefix(daqComponentTypeBuilder* self, daqString* prefix);
-    daqErrCode EXPORTED daqComponentTypeBuilder_getConnectionStringPrefix(daqComponentTypeBuilder* self, daqString** prefix);
+    daqErrCode EXPORTED daqComponentTypeBuilder_setName(daqComponentTypeBuilder* self, daqStringObject* name);
+    daqErrCode EXPORTED daqComponentTypeBuilder_getName(daqComponentTypeBuilder* self, daqStringObject** name);
+    daqErrCode EXPORTED daqComponentTypeBuilder_setDescription(daqComponentTypeBuilder* self, daqStringObject* description);
+    daqErrCode EXPORTED daqComponentTypeBuilder_getDescription(daqComponentTypeBuilder* self, daqStringObject** description);
+    daqErrCode EXPORTED daqComponentTypeBuilder_setConnectionStringPrefix(daqComponentTypeBuilder* self, daqStringObject* prefix);
+    daqErrCode EXPORTED daqComponentTypeBuilder_getConnectionStringPrefix(daqComponentTypeBuilder* self, daqStringObject** prefix);
     daqErrCode EXPORTED daqComponentTypeBuilder_setDefaultConfig(daqComponentTypeBuilder* self, daqPropertyObject* defaultConfig);
     daqErrCode EXPORTED daqComponentTypeBuilder_getDefaultConfig(daqComponentTypeBuilder* self, daqPropertyObject** defaultConfig);
     daqErrCode EXPORTED daqComponentTypeBuilder_createComponentTypeBuilder(daqComponentTypeBuilder** obj);

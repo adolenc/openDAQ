@@ -35,16 +35,16 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqMultiReaderStatus daqMultiReaderStatus;
-    typedef struct daqDict daqDict;
+    typedef struct daqDictObject daqDictObject;
     typedef struct daqEventPacket daqEventPacket;
     typedef struct daqNumber daqNumber;
 
     EXPORTED extern const daqIntfID DAQ_MULTI_READER_STATUS_INTF_ID;
     void EXPORTED daqMultiReaderStatus_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqMultiReaderStatus_getEventPackets(daqMultiReaderStatus* self, daqDict** eventPackets);
+    daqErrCode EXPORTED daqMultiReaderStatus_getEventPackets(daqMultiReaderStatus* self, daqDictObject** eventPackets);
     daqErrCode EXPORTED daqMultiReaderStatus_getMainDescriptor(daqMultiReaderStatus* self, daqEventPacket** descriptor);
-    daqErrCode EXPORTED daqMultiReaderStatus_createMultiReaderStatus(daqMultiReaderStatus** obj, daqEventPacket* mainDescriptor, daqDict* eventPackets, daqBool valid, daqNumber* offset);
+    daqErrCode EXPORTED daqMultiReaderStatus_createMultiReaderStatus(daqMultiReaderStatus** obj, daqEventPacket* mainDescriptor, daqDictObject* eventPackets, daqBool valid, daqNumber* offset);
 
 #ifdef __cplusplus
 }

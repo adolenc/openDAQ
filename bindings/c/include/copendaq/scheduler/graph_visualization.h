@@ -35,12 +35,12 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqGraphVisualization daqGraphVisualization;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
 
     EXPORTED extern const daqIntfID DAQ_GRAPH_VISUALIZATION_INTF_ID;
     void EXPORTED daqGraphVisualization_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqGraphVisualization_dump(daqGraphVisualization* self, daqString** dot);
+    daqErrCode EXPORTED daqGraphVisualization_dump(daqGraphVisualization* self, daqStringObject** dot);
 
 #ifdef __cplusplus
 }

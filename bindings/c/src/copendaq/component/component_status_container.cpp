@@ -23,17 +23,17 @@ void daqComponentStatusContainer_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_COMPONENT_STATUS_CONTAINER_INTF_ID;
 }
 
-daqErrCode daqComponentStatusContainer_getStatus(daqComponentStatusContainer* self, daqString* name, daqEnumeration** value)
+daqErrCode daqComponentStatusContainer_getStatus(daqComponentStatusContainer* self, daqStringObject* name, daqEnumerationObject** value)
 {
     return reinterpret_cast<daq::IComponentStatusContainer*>(self)->getStatus(reinterpret_cast<daq::IString*>(name), reinterpret_cast<daq::IEnumeration**>(value));
 }
 
-daqErrCode daqComponentStatusContainer_getStatuses(daqComponentStatusContainer* self, daqDict** statuses)
+daqErrCode daqComponentStatusContainer_getStatuses(daqComponentStatusContainer* self, daqDictObject** statuses)
 {
     return reinterpret_cast<daq::IComponentStatusContainer*>(self)->getStatuses(reinterpret_cast<daq::IDict**>(statuses));
 }
 
-daqErrCode daqComponentStatusContainer_getStatusMessage(daqComponentStatusContainer* self, daqString* name, daqString** message)
+daqErrCode daqComponentStatusContainer_getStatusMessage(daqComponentStatusContainer* self, daqStringObject* name, daqStringObject** message)
 {
     return reinterpret_cast<daq::IComponentStatusContainer*>(self)->getStatusMessage(reinterpret_cast<daq::IString*>(name), reinterpret_cast<daq::IString**>(message));
 }

@@ -35,16 +35,16 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqComponentPrivate daqComponentPrivate;
-    typedef struct daqList daqList;
+    typedef struct daqListObject daqListObject;
     typedef struct daqCoreEventArgs daqCoreEventArgs;
     typedef struct daqPropertyObject daqPropertyObject;
 
     EXPORTED extern const daqIntfID DAQ_COMPONENT_PRIVATE_INTF_ID;
     void EXPORTED daqComponentPrivate_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqComponentPrivate_lockAttributes(daqComponentPrivate* self, daqList* attributes);
+    daqErrCode EXPORTED daqComponentPrivate_lockAttributes(daqComponentPrivate* self, daqListObject* attributes);
     daqErrCode EXPORTED daqComponentPrivate_lockAllAttributes(daqComponentPrivate* self);
-    daqErrCode EXPORTED daqComponentPrivate_unlockAttributes(daqComponentPrivate* self, daqList* attributes);
+    daqErrCode EXPORTED daqComponentPrivate_unlockAttributes(daqComponentPrivate* self, daqListObject* attributes);
     daqErrCode EXPORTED daqComponentPrivate_unlockAllAttributes(daqComponentPrivate* self);
     daqErrCode EXPORTED daqComponentPrivate_triggerComponentCoreEvent(daqComponentPrivate* self, daqCoreEventArgs* args);
     daqErrCode EXPORTED daqComponentPrivate_updateOperationMode(daqComponentPrivate* self, daqOperationModeType modeType);

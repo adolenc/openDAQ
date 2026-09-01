@@ -23,22 +23,22 @@ void daqComponentStatusContainerPrivate_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_COMPONENT_STATUS_CONTAINER_PRIVATE_INTF_ID;
 }
 
-daqErrCode daqComponentStatusContainerPrivate_addStatus(daqComponentStatusContainerPrivate* self, daqString* name, daqEnumeration* initialValue)
+daqErrCode daqComponentStatusContainerPrivate_addStatus(daqComponentStatusContainerPrivate* self, daqStringObject* name, daqEnumerationObject* initialValue)
 {
     return reinterpret_cast<daq::IComponentStatusContainerPrivate*>(self)->addStatus(reinterpret_cast<daq::IString*>(name), reinterpret_cast<daq::IEnumeration*>(initialValue));
 }
 
-daqErrCode daqComponentStatusContainerPrivate_setStatus(daqComponentStatusContainerPrivate* self, daqString* name, daqEnumeration* value)
+daqErrCode daqComponentStatusContainerPrivate_setStatus(daqComponentStatusContainerPrivate* self, daqStringObject* name, daqEnumerationObject* value)
 {
     return reinterpret_cast<daq::IComponentStatusContainerPrivate*>(self)->setStatus(reinterpret_cast<daq::IString*>(name), reinterpret_cast<daq::IEnumeration*>(value));
 }
 
-daqErrCode daqComponentStatusContainerPrivate_addStatusWithMessage(daqComponentStatusContainerPrivate* self, daqString* name, daqEnumeration* initialValue, daqString* message)
+daqErrCode daqComponentStatusContainerPrivate_addStatusWithMessage(daqComponentStatusContainerPrivate* self, daqStringObject* name, daqEnumerationObject* initialValue, daqStringObject* message)
 {
     return reinterpret_cast<daq::IComponentStatusContainerPrivate*>(self)->addStatusWithMessage(reinterpret_cast<daq::IString*>(name), reinterpret_cast<daq::IEnumeration*>(initialValue), reinterpret_cast<daq::IString*>(message));
 }
 
-daqErrCode daqComponentStatusContainerPrivate_setStatusWithMessage(daqComponentStatusContainerPrivate* self, daqString* name, daqEnumeration* value, daqString* message)
+daqErrCode daqComponentStatusContainerPrivate_setStatusWithMessage(daqComponentStatusContainerPrivate* self, daqStringObject* name, daqEnumerationObject* value, daqStringObject* message)
 {
     return reinterpret_cast<daq::IComponentStatusContainerPrivate*>(self)->setStatusWithMessage(reinterpret_cast<daq::IString*>(name), reinterpret_cast<daq::IEnumeration*>(value), reinterpret_cast<daq::IString*>(message));
 }

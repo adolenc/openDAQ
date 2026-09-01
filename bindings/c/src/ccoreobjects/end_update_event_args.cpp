@@ -23,7 +23,7 @@ void daqEndUpdateEventArgs_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_END_UPDATE_EVENT_ARGS_INTF_ID;
 }
 
-daqErrCode daqEndUpdateEventArgs_getProperties(daqEndUpdateEventArgs* self, daqList** properties)
+daqErrCode daqEndUpdateEventArgs_getProperties(daqEndUpdateEventArgs* self, daqListObject** properties)
 {
     return reinterpret_cast<daq::IEndUpdateEventArgs*>(self)->getProperties(reinterpret_cast<daq::IList**>(properties));
 }
@@ -33,7 +33,7 @@ daqErrCode daqEndUpdateEventArgs_getIsParentUpdating(daqEndUpdateEventArgs* self
     return reinterpret_cast<daq::IEndUpdateEventArgs*>(self)->getIsParentUpdating(isParentUpdating);
 }
 
-daqErrCode daqEndUpdateEventArgs_createEndUpdateEventArgs(daqEndUpdateEventArgs** obj, daqList* properties, daqBool isParentUpdating)
+daqErrCode daqEndUpdateEventArgs_createEndUpdateEventArgs(daqEndUpdateEventArgs** obj, daqListObject* properties, daqBool isParentUpdating)
 {
     daq::IEndUpdateEventArgs* ptr = nullptr;
     daqErrCode err = daq::createEndUpdateEventArgs(&ptr, reinterpret_cast<daq::IList*>(properties), isParentUpdating);

@@ -35,15 +35,15 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqTags daqTags;
-    typedef struct daqList daqList;
-    typedef struct daqString daqString;
+    typedef struct daqListObject daqListObject;
+    typedef struct daqStringObject daqStringObject;
 
     EXPORTED extern const daqIntfID DAQ_TAGS_INTF_ID;
     void EXPORTED daqTags_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqTags_getList(daqTags* self, daqList** value);
-    daqErrCode EXPORTED daqTags_contains(daqTags* self, daqString* name, daqBool* value);
-    daqErrCode EXPORTED daqTags_query(daqTags* self, daqString* query, daqBool* value);
+    daqErrCode EXPORTED daqTags_getList(daqTags* self, daqListObject** value);
+    daqErrCode EXPORTED daqTags_contains(daqTags* self, daqStringObject* name, daqBool* value);
+    daqErrCode EXPORTED daqTags_query(daqTags* self, daqStringObject* query, daqBool* value);
     daqErrCode EXPORTED daqTags_createTags(daqTags** obj);
 
 #ifdef __cplusplus

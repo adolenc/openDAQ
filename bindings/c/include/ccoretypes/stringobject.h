@@ -34,15 +34,15 @@ extern "C"
 
 #include <ccommon.h>
 
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
 
     EXPORTED extern const daqIntfID DAQ_STRING_INTF_ID;
     void EXPORTED daqString_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqString_getCharPtr(daqString* self, daqConstCharPtr* value);
-    daqErrCode EXPORTED daqString_getLength(daqString* self, daqSizeT* size);
-    daqErrCode EXPORTED daqString_createString(daqString** obj, daqConstCharPtr str);
-    daqErrCode EXPORTED daqString_createStringN(daqString** obj, daqConstCharPtr str, daqSizeT length);
+    daqErrCode EXPORTED daqString_getCharPtr(daqStringObject* self, daqConstCharPtr* value);
+    daqErrCode EXPORTED daqString_getLength(daqStringObject* self, daqSizeT* size);
+    daqErrCode EXPORTED daqString_createString(daqStringObject** obj, daqConstCharPtr str);
+    daqErrCode EXPORTED daqString_createStringN(daqStringObject** obj, daqConstCharPtr str, daqSizeT length);
 
 #ifdef __cplusplus
 }

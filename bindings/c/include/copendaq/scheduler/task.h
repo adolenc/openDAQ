@@ -35,16 +35,16 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqTask daqTask;
-    typedef struct daqString daqString;
-    typedef struct daqProcedure daqProcedure;
+    typedef struct daqStringObject daqStringObject;
+    typedef struct daqProcedureObject daqProcedureObject;
 
     EXPORTED extern const daqIntfID DAQ_TASK_INTF_ID;
     void EXPORTED daqTask_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqTask_getName(daqTask* self, daqString** name);
-    daqErrCode EXPORTED daqTask_setName(daqTask* self, daqString* name);
+    daqErrCode EXPORTED daqTask_getName(daqTask* self, daqStringObject** name);
+    daqErrCode EXPORTED daqTask_setName(daqTask* self, daqStringObject* name);
     daqErrCode EXPORTED daqTask_then(daqTask* self, daqTask* continuation);
-    daqErrCode EXPORTED daqTask_createTask(daqTask** obj, daqProcedure* work, daqString* name);
+    daqErrCode EXPORTED daqTask_createTask(daqTask** obj, daqProcedureObject* work, daqStringObject* name);
 
 #ifdef __cplusplus
 }

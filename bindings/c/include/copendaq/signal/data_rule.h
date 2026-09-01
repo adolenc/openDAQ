@@ -35,7 +35,7 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqDataRule daqDataRule;
-    typedef struct daqDict daqDict;
+    typedef struct daqDictObject daqDictObject;
     typedef struct daqNumber daqNumber;
     typedef struct daqDataRuleBuilder daqDataRuleBuilder;
 
@@ -43,12 +43,12 @@ extern "C"
     void EXPORTED daqDataRule_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqDataRule_getType(daqDataRule* self, daqDataRuleType* type);
-    daqErrCode EXPORTED daqDataRule_getParameters(daqDataRule* self, daqDict** parameters);
+    daqErrCode EXPORTED daqDataRule_getParameters(daqDataRule* self, daqDictObject** parameters);
     daqErrCode EXPORTED daqDataRule_createLinearDataRule(daqDataRule** obj, daqNumber* delta, daqNumber* start);
     daqErrCode EXPORTED daqDataRule_createConstantDataRule(daqDataRule** obj);
     daqErrCode EXPORTED daqDataRule_createExplicitDataRule(daqDataRule** obj);
     daqErrCode EXPORTED daqDataRule_createExplicitDomainDataRule(daqDataRule** obj, daqNumber* minExpectedDelta, daqNumber* maxExpectedDelta);
-    daqErrCode EXPORTED daqDataRule_createDataRule(daqDataRule** obj, daqDataRuleType ruleType, daqDict* parameters);
+    daqErrCode EXPORTED daqDataRule_createDataRule(daqDataRule** obj, daqDataRuleType ruleType, daqDictObject* parameters);
     daqErrCode EXPORTED daqDataRule_createDataRuleFromBuilder(daqDataRule** obj, daqDataRuleBuilder* builder);
 
 #ifdef __cplusplus

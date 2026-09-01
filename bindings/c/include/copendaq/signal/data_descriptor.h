@@ -35,31 +35,31 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqDataDescriptor daqDataDescriptor;
-    typedef struct daqString daqString;
-    typedef struct daqList daqList;
+    typedef struct daqStringObject daqStringObject;
+    typedef struct daqListObject daqListObject;
     typedef struct daqUnit daqUnit;
     typedef struct daqRange daqRange;
     typedef struct daqDataRule daqDataRule;
-    typedef struct daqRatio daqRatio;
+    typedef struct daqRatioObject daqRatioObject;
     typedef struct daqScaling daqScaling;
-    typedef struct daqDict daqDict;
+    typedef struct daqDictObject daqDictObject;
     typedef struct daqReferenceDomainInfo daqReferenceDomainInfo;
     typedef struct daqDataDescriptorBuilder daqDataDescriptorBuilder;
 
     EXPORTED extern const daqIntfID DAQ_DATA_DESCRIPTOR_INTF_ID;
     void EXPORTED daqDataDescriptor_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqDataDescriptor_getName(daqDataDescriptor* self, daqString** name);
-    daqErrCode EXPORTED daqDataDescriptor_getDimensions(daqDataDescriptor* self, daqList** dimensions);
+    daqErrCode EXPORTED daqDataDescriptor_getName(daqDataDescriptor* self, daqStringObject** name);
+    daqErrCode EXPORTED daqDataDescriptor_getDimensions(daqDataDescriptor* self, daqListObject** dimensions);
     daqErrCode EXPORTED daqDataDescriptor_getSampleType(daqDataDescriptor* self, daqSampleType* sampleType);
     daqErrCode EXPORTED daqDataDescriptor_getUnit(daqDataDescriptor* self, daqUnit** unit);
     daqErrCode EXPORTED daqDataDescriptor_getValueRange(daqDataDescriptor* self, daqRange** range);
     daqErrCode EXPORTED daqDataDescriptor_getRule(daqDataDescriptor* self, daqDataRule** rule);
-    daqErrCode EXPORTED daqDataDescriptor_getOrigin(daqDataDescriptor* self, daqString** origin);
-    daqErrCode EXPORTED daqDataDescriptor_getTickResolution(daqDataDescriptor* self, daqRatio** tickResolution);
+    daqErrCode EXPORTED daqDataDescriptor_getOrigin(daqDataDescriptor* self, daqStringObject** origin);
+    daqErrCode EXPORTED daqDataDescriptor_getTickResolution(daqDataDescriptor* self, daqRatioObject** tickResolution);
     daqErrCode EXPORTED daqDataDescriptor_getPostScaling(daqDataDescriptor* self, daqScaling** scaling);
-    daqErrCode EXPORTED daqDataDescriptor_getStructFields(daqDataDescriptor* self, daqList** structFields);
-    daqErrCode EXPORTED daqDataDescriptor_getMetadata(daqDataDescriptor* self, daqDict** metadata);
+    daqErrCode EXPORTED daqDataDescriptor_getStructFields(daqDataDescriptor* self, daqListObject** structFields);
+    daqErrCode EXPORTED daqDataDescriptor_getMetadata(daqDataDescriptor* self, daqDictObject** metadata);
     daqErrCode EXPORTED daqDataDescriptor_getSampleSize(daqDataDescriptor* self, daqSizeT* sampleSize);
     daqErrCode EXPORTED daqDataDescriptor_getRawSampleSize(daqDataDescriptor* self, daqSizeT* rawSampleSize);
     daqErrCode EXPORTED daqDataDescriptor_getReferenceDomainInfo(daqDataDescriptor* self, daqReferenceDomainInfo** referenceDomainInfo);

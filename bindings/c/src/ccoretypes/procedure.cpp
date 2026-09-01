@@ -23,15 +23,15 @@ void daqProcedure_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_PROCEDURE_INTF_ID;
 }
 
-daqErrCode daqProcedure_dispatch(daqProcedure* self, daqBaseObject* params)
+daqErrCode daqProcedure_dispatch(daqProcedureObject* self, daqBaseObject* params)
 {
     return reinterpret_cast<daq::IProcedure*>(self)->dispatch(reinterpret_cast<daq::IBaseObject*>(params));
 }
 
-daqErrCode daqProcedure_createProcedure(daqProcedure** obj, daqProcCall value)
+daqErrCode daqProcedure_createProcedure(daqProcedureObject** obj, daqProcCall value)
 {
     daq::IProcedure* ptr = nullptr;
     daqErrCode err = daq::createProcedure(&ptr, reinterpret_cast<daq::ProcCall>(value));
-    *obj = reinterpret_cast<daqProcedure*>(ptr);
+    *obj = reinterpret_cast<daqProcedureObject*>(ptr);
     return err;
 }

@@ -36,7 +36,7 @@ extern "C"
 
     typedef struct daqPacketReader daqPacketReader;
     typedef struct daqPacket daqPacket;
-    typedef struct daqList daqList;
+    typedef struct daqListObject daqListObject;
     typedef struct daqSignal daqSignal;
     typedef struct daqInputPortConfig daqInputPortConfig;
 
@@ -44,7 +44,7 @@ extern "C"
     void EXPORTED daqPacketReader_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqPacketReader_read(daqPacketReader* self, daqPacket** packet);
-    daqErrCode EXPORTED daqPacketReader_readAll(daqPacketReader* self, daqList** packets);
+    daqErrCode EXPORTED daqPacketReader_readAll(daqPacketReader* self, daqListObject** packets);
     daqErrCode EXPORTED daqPacketReader_createPacketReader(daqPacketReader** obj, daqSignal* signal);
     daqErrCode EXPORTED daqPacketReader_createPacketReaderFromPort(daqPacketReader** obj, daqInputPortConfig* port);
 

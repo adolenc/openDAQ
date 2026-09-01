@@ -23,17 +23,17 @@ void daqAddressInfo_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_ADDRESS_INFO_INTF_ID;
 }
 
-daqErrCode daqAddressInfo_getAddress(daqAddressInfo* self, daqString** address)
+daqErrCode daqAddressInfo_getAddress(daqAddressInfo* self, daqStringObject** address)
 {
     return reinterpret_cast<daq::IAddressInfo*>(self)->getAddress(reinterpret_cast<daq::IString**>(address));
 }
 
-daqErrCode daqAddressInfo_getConnectionString(daqAddressInfo* self, daqString** connectionString)
+daqErrCode daqAddressInfo_getConnectionString(daqAddressInfo* self, daqStringObject** connectionString)
 {
     return reinterpret_cast<daq::IAddressInfo*>(self)->getConnectionString(reinterpret_cast<daq::IString**>(connectionString));
 }
 
-daqErrCode daqAddressInfo_getType(daqAddressInfo* self, daqString** type)
+daqErrCode daqAddressInfo_getType(daqAddressInfo* self, daqStringObject** type)
 {
     return reinterpret_cast<daq::IAddressInfo*>(self)->getType(reinterpret_cast<daq::IString**>(type));
 }

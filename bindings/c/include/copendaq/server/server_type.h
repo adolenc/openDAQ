@@ -35,13 +35,13 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqServerType daqServerType;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
     typedef struct daqPropertyObject daqPropertyObject;
 
     EXPORTED extern const daqIntfID DAQ_SERVER_TYPE_INTF_ID;
     void EXPORTED daqServerType_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqServerType_createServerType(daqServerType** obj, daqString* id, daqString* name, daqString* description, daqPropertyObject* defaultConfig);
+    daqErrCode EXPORTED daqServerType_createServerType(daqServerType** obj, daqStringObject* id, daqStringObject* name, daqStringObject* description, daqPropertyObject* defaultConfig);
 
 #ifdef __cplusplus
 }

@@ -47,11 +47,21 @@ Notable mechanical rules encoded in `CGenerator`:
   own core C++ header (`<coretypes|coreobjects|opendaq/<name>.h>`). The umbrella
   header does not declare private/internal/newer interfaces, so the specific header
   is needed for the `daq::I<Name>` type to be visible.
-- **Name-collision renames.** `IFloat` and `ICoreType` collide with the `daqFloat`
-  (`double`) and `daqCoreType` (enum) value types declared in `ccommon.h`, so their
-  C symbols get an `Object` suffix everywhere: `daqFloatObject`, `daqCoreTypeObject`,
-  `DAQ_FLOAT_OBJECT_INTF_ID`, `daqFloatObject_getValue`, etc. Matched on the leading
-  `I`, so the value types themselves are untouched. TODO: should just use Object suffix for every core type
+- **Symbol names are always `daq<Name>_<method>`**, with `<Name>` the C++ interface name
+  minus its leading `I`, so every C function can be derived from the C++ one without a
+  lookup table. Same for the interface id: `IList` → `DAQ_LIST_INTF_ID` and
+  `daqList_getInterfaceId`.
+- **Core-type `Object` suffix — on the type only.** The interfaces behind the
+  `daqCoreType` enum members — `IBoolean`, `IInteger`, `IFloat`, `IString`, `IList`,
+  `IDict`, `IRatio`, `IProcedure`, `IFunction`, `IBinaryData`, `IComplexNumber`,
+  `IStruct`, `IEnumeration` — plus `ICoreType` name their opaque handle
+  `daq<Name>Object`. Two of them (`IFloat`, `ICoreType`) would otherwise collide outright
+  with the `daqFloat` (`double`) and `daqCoreType` (enum) value types declared in
+  `ccommon.h`; the rest are suffixed so the family reads consistently. So `IList` gives
+  `typedef struct daqListObject daqListObject;` while its members stay `daqList_pushBack`,
+  `daqList_createList`, etc. Matched on the full interface name (with the leading `I`), so
+  the value types themselves are untouched. `IBaseObject` is not in the set — its C form
+  is the hand-written `daqBaseObject` (`void`) handle.
 - void-returning methods emit a bare `void` return type (not `daqvoid`).
 - Callback typedefs (`FuncCall`/`ProcCall`/`EventCall`) are forwarded with
   `reinterpret_cast`, not `static_cast`.

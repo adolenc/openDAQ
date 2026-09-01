@@ -23,7 +23,7 @@ void daqComponentPrivate_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_COMPONENT_PRIVATE_INTF_ID;
 }
 
-daqErrCode daqComponentPrivate_lockAttributes(daqComponentPrivate* self, daqList* attributes)
+daqErrCode daqComponentPrivate_lockAttributes(daqComponentPrivate* self, daqListObject* attributes)
 {
     return reinterpret_cast<daq::IComponentPrivate*>(self)->lockAttributes(reinterpret_cast<daq::IList*>(attributes));
 }
@@ -33,7 +33,7 @@ daqErrCode daqComponentPrivate_lockAllAttributes(daqComponentPrivate* self)
     return reinterpret_cast<daq::IComponentPrivate*>(self)->lockAllAttributes();
 }
 
-daqErrCode daqComponentPrivate_unlockAttributes(daqComponentPrivate* self, daqList* attributes)
+daqErrCode daqComponentPrivate_unlockAttributes(daqComponentPrivate* self, daqListObject* attributes)
 {
     return reinterpret_cast<daq::IComponentPrivate*>(self)->unlockAttributes(reinterpret_cast<daq::IList*>(attributes));
 }

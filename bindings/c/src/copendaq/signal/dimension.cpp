@@ -23,7 +23,7 @@ void daqDimension_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_DIMENSION_INTF_ID;
 }
 
-daqErrCode daqDimension_getName(daqDimension* self, daqString** name)
+daqErrCode daqDimension_getName(daqDimension* self, daqStringObject** name)
 {
     return reinterpret_cast<daq::IDimension*>(self)->getName(reinterpret_cast<daq::IString**>(name));
 }
@@ -38,7 +38,7 @@ daqErrCode daqDimension_getUnit(daqDimension* self, daqUnit** unit)
     return reinterpret_cast<daq::IDimension*>(self)->getUnit(reinterpret_cast<daq::IUnit**>(unit));
 }
 
-daqErrCode daqDimension_getLabels(daqDimension* self, daqList** labels)
+daqErrCode daqDimension_getLabels(daqDimension* self, daqListObject** labels)
 {
     return reinterpret_cast<daq::IDimension*>(self)->getLabels(reinterpret_cast<daq::IList**>(labels));
 }
@@ -48,7 +48,7 @@ daqErrCode daqDimension_getRule(daqDimension* self, daqDimensionRule** rule)
     return reinterpret_cast<daq::IDimension*>(self)->getRule(reinterpret_cast<daq::IDimensionRule**>(rule));
 }
 
-daqErrCode daqDimension_createDimension(daqDimension** obj, daqDimensionRule* rule, daqUnit* unit, daqString* name)
+daqErrCode daqDimension_createDimension(daqDimension** obj, daqDimensionRule* rule, daqUnit* unit, daqStringObject* name)
 {
     daq::IDimension* ptr = nullptr;
     daqErrCode err = daq::createDimension(&ptr, reinterpret_cast<daq::IDimensionRule*>(rule), reinterpret_cast<daq::IUnit*>(unit), reinterpret_cast<daq::IString*>(name));

@@ -28,42 +28,42 @@ daqErrCode daqLogFileInfoBuilder_build(daqLogFileInfoBuilder* self, daqLogFileIn
     return reinterpret_cast<daq::ILogFileInfoBuilder*>(self)->build(reinterpret_cast<daq::ILogFileInfo**>(logFileInfo));
 }
 
-daqErrCode daqLogFileInfoBuilder_getLocalPath(daqLogFileInfoBuilder* self, daqString** localPath)
+daqErrCode daqLogFileInfoBuilder_getLocalPath(daqLogFileInfoBuilder* self, daqStringObject** localPath)
 {
     return reinterpret_cast<daq::ILogFileInfoBuilder*>(self)->getLocalPath(reinterpret_cast<daq::IString**>(localPath));
 }
 
-daqErrCode daqLogFileInfoBuilder_setLocalPath(daqLogFileInfoBuilder* self, daqString* localPath)
+daqErrCode daqLogFileInfoBuilder_setLocalPath(daqLogFileInfoBuilder* self, daqStringObject* localPath)
 {
     return reinterpret_cast<daq::ILogFileInfoBuilder*>(self)->setLocalPath(reinterpret_cast<daq::IString*>(localPath));
 }
 
-daqErrCode daqLogFileInfoBuilder_getName(daqLogFileInfoBuilder* self, daqString** name)
+daqErrCode daqLogFileInfoBuilder_getName(daqLogFileInfoBuilder* self, daqStringObject** name)
 {
     return reinterpret_cast<daq::ILogFileInfoBuilder*>(self)->getName(reinterpret_cast<daq::IString**>(name));
 }
 
-daqErrCode daqLogFileInfoBuilder_setName(daqLogFileInfoBuilder* self, daqString* name)
+daqErrCode daqLogFileInfoBuilder_setName(daqLogFileInfoBuilder* self, daqStringObject* name)
 {
     return reinterpret_cast<daq::ILogFileInfoBuilder*>(self)->setName(reinterpret_cast<daq::IString*>(name));
 }
 
-daqErrCode daqLogFileInfoBuilder_getId(daqLogFileInfoBuilder* self, daqString** id)
+daqErrCode daqLogFileInfoBuilder_getId(daqLogFileInfoBuilder* self, daqStringObject** id)
 {
     return reinterpret_cast<daq::ILogFileInfoBuilder*>(self)->getId(reinterpret_cast<daq::IString**>(id));
 }
 
-daqErrCode daqLogFileInfoBuilder_setId(daqLogFileInfoBuilder* self, daqString* id)
+daqErrCode daqLogFileInfoBuilder_setId(daqLogFileInfoBuilder* self, daqStringObject* id)
 {
     return reinterpret_cast<daq::ILogFileInfoBuilder*>(self)->setId(reinterpret_cast<daq::IString*>(id));
 }
 
-daqErrCode daqLogFileInfoBuilder_getDescription(daqLogFileInfoBuilder* self, daqString** description)
+daqErrCode daqLogFileInfoBuilder_getDescription(daqLogFileInfoBuilder* self, daqStringObject** description)
 {
     return reinterpret_cast<daq::ILogFileInfoBuilder*>(self)->getDescription(reinterpret_cast<daq::IString**>(description));
 }
 
-daqErrCode daqLogFileInfoBuilder_setDescription(daqLogFileInfoBuilder* self, daqString* description)
+daqErrCode daqLogFileInfoBuilder_setDescription(daqLogFileInfoBuilder* self, daqStringObject* description)
 {
     return reinterpret_cast<daq::ILogFileInfoBuilder*>(self)->setDescription(reinterpret_cast<daq::IString*>(description));
 }
@@ -78,22 +78,22 @@ daqErrCode daqLogFileInfoBuilder_setSize(daqLogFileInfoBuilder* self, daqSizeT s
     return reinterpret_cast<daq::ILogFileInfoBuilder*>(self)->setSize(size);
 }
 
-daqErrCode daqLogFileInfoBuilder_getEncoding(daqLogFileInfoBuilder* self, daqString** encoding)
+daqErrCode daqLogFileInfoBuilder_getEncoding(daqLogFileInfoBuilder* self, daqStringObject** encoding)
 {
     return reinterpret_cast<daq::ILogFileInfoBuilder*>(self)->getEncoding(reinterpret_cast<daq::IString**>(encoding));
 }
 
-daqErrCode daqLogFileInfoBuilder_setEncoding(daqLogFileInfoBuilder* self, daqString* encoding)
+daqErrCode daqLogFileInfoBuilder_setEncoding(daqLogFileInfoBuilder* self, daqStringObject* encoding)
 {
     return reinterpret_cast<daq::ILogFileInfoBuilder*>(self)->setEncoding(reinterpret_cast<daq::IString*>(encoding));
 }
 
-daqErrCode daqLogFileInfoBuilder_getLastModified(daqLogFileInfoBuilder* self, daqString** lastModified)
+daqErrCode daqLogFileInfoBuilder_getLastModified(daqLogFileInfoBuilder* self, daqStringObject** lastModified)
 {
     return reinterpret_cast<daq::ILogFileInfoBuilder*>(self)->getLastModified(reinterpret_cast<daq::IString**>(lastModified));
 }
 
-daqErrCode daqLogFileInfoBuilder_setLastModified(daqLogFileInfoBuilder* self, daqString* lastModified)
+daqErrCode daqLogFileInfoBuilder_setLastModified(daqLogFileInfoBuilder* self, daqStringObject* lastModified)
 {
     return reinterpret_cast<daq::ILogFileInfoBuilder*>(self)->setLastModified(reinterpret_cast<daq::IString*>(lastModified));
 }

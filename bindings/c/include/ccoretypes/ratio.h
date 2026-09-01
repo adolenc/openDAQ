@@ -34,15 +34,15 @@ extern "C"
 
 #include <ccommon.h>
 
-    typedef struct daqRatio daqRatio;
+    typedef struct daqRatioObject daqRatioObject;
 
     EXPORTED extern const daqIntfID DAQ_RATIO_INTF_ID;
     void EXPORTED daqRatio_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqRatio_getNumerator(daqRatio* self, daqInt* numerator);
-    daqErrCode EXPORTED daqRatio_getDenominator(daqRatio* self, daqInt* denominator);
-    daqErrCode EXPORTED daqRatio_simplify(daqRatio* self, daqRatio** simplifiedRatio);
-    daqErrCode EXPORTED daqRatio_createRatio(daqRatio** obj, daqInt numerator, daqInt denominator);
+    daqErrCode EXPORTED daqRatio_getNumerator(daqRatioObject* self, daqInt* numerator);
+    daqErrCode EXPORTED daqRatio_getDenominator(daqRatioObject* self, daqInt* denominator);
+    daqErrCode EXPORTED daqRatio_simplify(daqRatioObject* self, daqRatioObject** simplifiedRatio);
+    daqErrCode EXPORTED daqRatio_createRatio(daqRatioObject** obj, daqInt numerator, daqInt denominator);
 
 #ifdef __cplusplus
 }

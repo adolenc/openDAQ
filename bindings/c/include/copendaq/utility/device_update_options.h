@@ -35,26 +35,26 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqDeviceUpdateOptions daqDeviceUpdateOptions;
-    typedef struct daqString daqString;
-    typedef struct daqList daqList;
+    typedef struct daqStringObject daqStringObject;
+    typedef struct daqListObject daqListObject;
 
     EXPORTED extern const daqIntfID DAQ_DEVICE_UPDATE_OPTIONS_INTF_ID;
     void EXPORTED daqDeviceUpdateOptions_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqDeviceUpdateOptions_getLocalId(daqDeviceUpdateOptions* self, daqString** localId);
-    daqErrCode EXPORTED daqDeviceUpdateOptions_getManufacturer(daqDeviceUpdateOptions* self, daqString** manufacturer);
-    daqErrCode EXPORTED daqDeviceUpdateOptions_getSerialNumber(daqDeviceUpdateOptions* self, daqString** serialNumber);
-    daqErrCode EXPORTED daqDeviceUpdateOptions_getConnectionString(daqDeviceUpdateOptions* self, daqString** connectionString);
-    daqErrCode EXPORTED daqDeviceUpdateOptions_setNewManufacturer(daqDeviceUpdateOptions* self, daqString* manufacturer);
-    daqErrCode EXPORTED daqDeviceUpdateOptions_getNewManufacturer(daqDeviceUpdateOptions* self, daqString** manufacturer);
-    daqErrCode EXPORTED daqDeviceUpdateOptions_setNewSerialNumber(daqDeviceUpdateOptions* self, daqString* serialNumber);
-    daqErrCode EXPORTED daqDeviceUpdateOptions_getNewSerialNumber(daqDeviceUpdateOptions* self, daqString** serialNumber);
-    daqErrCode EXPORTED daqDeviceUpdateOptions_setNewConnectionString(daqDeviceUpdateOptions* self, daqString* connectionString);
-    daqErrCode EXPORTED daqDeviceUpdateOptions_getNewConnectionString(daqDeviceUpdateOptions* self, daqString** connectionString);
+    daqErrCode EXPORTED daqDeviceUpdateOptions_getLocalId(daqDeviceUpdateOptions* self, daqStringObject** localId);
+    daqErrCode EXPORTED daqDeviceUpdateOptions_getManufacturer(daqDeviceUpdateOptions* self, daqStringObject** manufacturer);
+    daqErrCode EXPORTED daqDeviceUpdateOptions_getSerialNumber(daqDeviceUpdateOptions* self, daqStringObject** serialNumber);
+    daqErrCode EXPORTED daqDeviceUpdateOptions_getConnectionString(daqDeviceUpdateOptions* self, daqStringObject** connectionString);
+    daqErrCode EXPORTED daqDeviceUpdateOptions_setNewManufacturer(daqDeviceUpdateOptions* self, daqStringObject* manufacturer);
+    daqErrCode EXPORTED daqDeviceUpdateOptions_getNewManufacturer(daqDeviceUpdateOptions* self, daqStringObject** manufacturer);
+    daqErrCode EXPORTED daqDeviceUpdateOptions_setNewSerialNumber(daqDeviceUpdateOptions* self, daqStringObject* serialNumber);
+    daqErrCode EXPORTED daqDeviceUpdateOptions_getNewSerialNumber(daqDeviceUpdateOptions* self, daqStringObject** serialNumber);
+    daqErrCode EXPORTED daqDeviceUpdateOptions_setNewConnectionString(daqDeviceUpdateOptions* self, daqStringObject* connectionString);
+    daqErrCode EXPORTED daqDeviceUpdateOptions_getNewConnectionString(daqDeviceUpdateOptions* self, daqStringObject** connectionString);
     daqErrCode EXPORTED daqDeviceUpdateOptions_getUpdateMode(daqDeviceUpdateOptions* self, daqDeviceUpdateMode* mode);
     daqErrCode EXPORTED daqDeviceUpdateOptions_setUpdateMode(daqDeviceUpdateOptions* self, daqDeviceUpdateMode mode);
-    daqErrCode EXPORTED daqDeviceUpdateOptions_getChildDeviceOptions(daqDeviceUpdateOptions* self, daqList** childDeviceOptions);
-    daqErrCode EXPORTED daqDeviceUpdateOptions_createDeviceUpdateOptions(daqDeviceUpdateOptions** obj, daqString* setupString);
+    daqErrCode EXPORTED daqDeviceUpdateOptions_getChildDeviceOptions(daqDeviceUpdateOptions* self, daqListObject** childDeviceOptions);
+    daqErrCode EXPORTED daqDeviceUpdateOptions_createDeviceUpdateOptions(daqDeviceUpdateOptions** obj, daqStringObject* setupString);
 
 #ifdef __cplusplus
 }

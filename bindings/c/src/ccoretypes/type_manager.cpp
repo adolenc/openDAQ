@@ -28,22 +28,22 @@ daqErrCode daqTypeManager_addType(daqTypeManager* self, daqType* type)
     return reinterpret_cast<daq::ITypeManager*>(self)->addType(reinterpret_cast<daq::IType*>(type));
 }
 
-daqErrCode daqTypeManager_removeType(daqTypeManager* self, daqString* typeName)
+daqErrCode daqTypeManager_removeType(daqTypeManager* self, daqStringObject* typeName)
 {
     return reinterpret_cast<daq::ITypeManager*>(self)->removeType(reinterpret_cast<daq::IString*>(typeName));
 }
 
-daqErrCode daqTypeManager_getType(daqTypeManager* self, daqString* typeName, daqType** type)
+daqErrCode daqTypeManager_getType(daqTypeManager* self, daqStringObject* typeName, daqType** type)
 {
     return reinterpret_cast<daq::ITypeManager*>(self)->getType(reinterpret_cast<daq::IString*>(typeName), reinterpret_cast<daq::IType**>(type));
 }
 
-daqErrCode daqTypeManager_getTypes(daqTypeManager* self, daqList** types)
+daqErrCode daqTypeManager_getTypes(daqTypeManager* self, daqListObject** types)
 {
     return reinterpret_cast<daq::ITypeManager*>(self)->getTypes(reinterpret_cast<daq::IList**>(types));
 }
 
-daqErrCode daqTypeManager_hasType(daqTypeManager* self, daqString* typeName, daqBool* hasType)
+daqErrCode daqTypeManager_hasType(daqTypeManager* self, daqStringObject* typeName, daqBool* hasType)
 {
     return reinterpret_cast<daq::ITypeManager*>(self)->hasType(reinterpret_cast<daq::IString*>(typeName), hasType);
 }

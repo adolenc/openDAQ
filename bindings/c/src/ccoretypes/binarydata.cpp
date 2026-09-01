@@ -23,20 +23,20 @@ void daqBinaryData_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_BINARY_DATA_INTF_ID;
 }
 
-daqErrCode daqBinaryData_getAddress(daqBinaryData* self, void** data)
+daqErrCode daqBinaryData_getAddress(daqBinaryDataObject* self, void** data)
 {
     return reinterpret_cast<daq::IBinaryData*>(self)->getAddress(data);
 }
 
-daqErrCode daqBinaryData_getSize(daqBinaryData* self, daqSizeT* size)
+daqErrCode daqBinaryData_getSize(daqBinaryDataObject* self, daqSizeT* size)
 {
     return reinterpret_cast<daq::IBinaryData*>(self)->getSize(size);
 }
 
-daqErrCode daqBinaryData_createBinaryData(daqBinaryData** obj, daqSizeT size)
+daqErrCode daqBinaryData_createBinaryData(daqBinaryDataObject** obj, daqSizeT size)
 {
     daq::IBinaryData* ptr = nullptr;
     daqErrCode err = daq::createBinaryData(&ptr, size);
-    *obj = reinterpret_cast<daqBinaryData*>(ptr);
+    *obj = reinterpret_cast<daqBinaryDataObject*>(ptr);
     return err;
 }

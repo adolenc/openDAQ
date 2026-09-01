@@ -78,7 +78,7 @@ daqErrCode daqInputPortConfig_getListener(daqInputPortConfig* self, daqInputPort
     return reinterpret_cast<daq::IInputPortConfig*>(self)->getListener(reinterpret_cast<daq::IInputPortNotifications**>(port));
 }
 
-daqErrCode daqInputPortConfig_createInputPort(daqInputPortConfig** obj, daqContext* context, daqComponent* parent, daqString* localId, daqBool gapChecking)
+daqErrCode daqInputPortConfig_createInputPort(daqInputPortConfig** obj, daqContext* context, daqComponent* parent, daqStringObject* localId, daqBool gapChecking)
 {
     daq::IInputPortConfig* ptr = nullptr;
     daqErrCode err = daq::createInputPort(&ptr, reinterpret_cast<daq::IContext*>(context), reinterpret_cast<daq::IComponent*>(parent), reinterpret_cast<daq::IString*>(localId), gapChecking);

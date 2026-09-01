@@ -23,22 +23,22 @@ void daqLogFileInfo_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_LOG_FILE_INFO_INTF_ID;
 }
 
-daqErrCode daqLogFileInfo_getId(daqLogFileInfo* self, daqString** id)
+daqErrCode daqLogFileInfo_getId(daqLogFileInfo* self, daqStringObject** id)
 {
     return reinterpret_cast<daq::ILogFileInfo*>(self)->getId(reinterpret_cast<daq::IString**>(id));
 }
 
-daqErrCode daqLogFileInfo_getLocalPath(daqLogFileInfo* self, daqString** localPath)
+daqErrCode daqLogFileInfo_getLocalPath(daqLogFileInfo* self, daqStringObject** localPath)
 {
     return reinterpret_cast<daq::ILogFileInfo*>(self)->getLocalPath(reinterpret_cast<daq::IString**>(localPath));
 }
 
-daqErrCode daqLogFileInfo_getName(daqLogFileInfo* self, daqString** name)
+daqErrCode daqLogFileInfo_getName(daqLogFileInfo* self, daqStringObject** name)
 {
     return reinterpret_cast<daq::ILogFileInfo*>(self)->getName(reinterpret_cast<daq::IString**>(name));
 }
 
-daqErrCode daqLogFileInfo_getDescription(daqLogFileInfo* self, daqString** description)
+daqErrCode daqLogFileInfo_getDescription(daqLogFileInfo* self, daqStringObject** description)
 {
     return reinterpret_cast<daq::ILogFileInfo*>(self)->getDescription(reinterpret_cast<daq::IString**>(description));
 }
@@ -48,12 +48,12 @@ daqErrCode daqLogFileInfo_getSize(daqLogFileInfo* self, daqSizeT* size)
     return reinterpret_cast<daq::ILogFileInfo*>(self)->getSize(size);
 }
 
-daqErrCode daqLogFileInfo_getEncoding(daqLogFileInfo* self, daqString** encoding)
+daqErrCode daqLogFileInfo_getEncoding(daqLogFileInfo* self, daqStringObject** encoding)
 {
     return reinterpret_cast<daq::ILogFileInfo*>(self)->getEncoding(reinterpret_cast<daq::IString**>(encoding));
 }
 
-daqErrCode daqLogFileInfo_getLastModified(daqLogFileInfo* self, daqString** lastModified)
+daqErrCode daqLogFileInfo_getLastModified(daqLogFileInfo* self, daqStringObject** lastModified)
 {
     return reinterpret_cast<daq::ILogFileInfo*>(self)->getLastModified(reinterpret_cast<daq::IString**>(lastModified));
 }

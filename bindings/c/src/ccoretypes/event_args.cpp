@@ -28,12 +28,12 @@ daqErrCode daqEventArgs_getEventId(daqEventArgs* self, daqInt* id)
     return reinterpret_cast<daq::IEventArgs*>(self)->getEventId(id);
 }
 
-daqErrCode daqEventArgs_getEventName(daqEventArgs* self, daqString** name)
+daqErrCode daqEventArgs_getEventName(daqEventArgs* self, daqStringObject** name)
 {
     return reinterpret_cast<daq::IEventArgs*>(self)->getEventName(reinterpret_cast<daq::IString**>(name));
 }
 
-daqErrCode daqEventArgs_createEventArgs(daqEventArgs** obj, daqInt eventId, daqString* eventName)
+daqErrCode daqEventArgs_createEventArgs(daqEventArgs** obj, daqInt eventId, daqStringObject* eventName)
 {
     daq::IEventArgs* ptr = nullptr;
     daqErrCode err = daq::createEventArgs(&ptr, eventId, reinterpret_cast<daq::IString*>(eventName));

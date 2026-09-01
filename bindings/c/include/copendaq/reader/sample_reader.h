@@ -35,15 +35,15 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqSampleReader daqSampleReader;
-    typedef struct daqFunction daqFunction;
+    typedef struct daqFunctionObject daqFunctionObject;
 
     EXPORTED extern const daqIntfID DAQ_SAMPLE_READER_INTF_ID;
     void EXPORTED daqSampleReader_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqSampleReader_getValueReadType(daqSampleReader* self, daqSampleType* sampleType);
     daqErrCode EXPORTED daqSampleReader_getDomainReadType(daqSampleReader* self, daqSampleType* sampleType);
-    daqErrCode EXPORTED daqSampleReader_setValueTransformFunction(daqSampleReader* self, daqFunction* transform);
-    daqErrCode EXPORTED daqSampleReader_setDomainTransformFunction(daqSampleReader* self, daqFunction* transform);
+    daqErrCode EXPORTED daqSampleReader_setValueTransformFunction(daqSampleReader* self, daqFunctionObject* transform);
+    daqErrCode EXPORTED daqSampleReader_setDomainTransformFunction(daqSampleReader* self, daqFunctionObject* transform);
     daqErrCode EXPORTED daqSampleReader_getReadMode(daqSampleReader* self, daqReadMode* mode);
 
 #ifdef __cplusplus

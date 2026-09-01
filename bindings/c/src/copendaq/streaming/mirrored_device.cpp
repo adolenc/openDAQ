@@ -23,12 +23,12 @@ void daqMirroredDevice_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_MIRRORED_DEVICE_INTF_ID;
 }
 
-daqErrCode daqMirroredDevice_getStreamingSources(daqMirroredDevice* self, daqList** streamingSources)
+daqErrCode daqMirroredDevice_getStreamingSources(daqMirroredDevice* self, daqListObject** streamingSources)
 {
     return reinterpret_cast<daq::IMirroredDevice*>(self)->getStreamingSources(reinterpret_cast<daq::IList**>(streamingSources));
 }
 
-daqErrCode daqMirroredDevice_getRemoteId(daqMirroredDevice* self, daqString** id)
+daqErrCode daqMirroredDevice_getRemoteId(daqMirroredDevice* self, daqStringObject** id)
 {
     return reinterpret_cast<daq::IMirroredDevice*>(self)->getRemoteId(reinterpret_cast<daq::IString**>(id));
 }

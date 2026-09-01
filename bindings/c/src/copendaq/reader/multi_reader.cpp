@@ -38,12 +38,12 @@ daqErrCode daqMultiReader_skipSamples(daqMultiReader* self, daqSizeT* count, daq
     return reinterpret_cast<daq::IMultiReader*>(self)->skipSamples(count, reinterpret_cast<daq::IMultiReaderStatus**>(status));
 }
 
-daqErrCode daqMultiReader_getTickResolution(daqMultiReader* self, daqRatio** resolution)
+daqErrCode daqMultiReader_getTickResolution(daqMultiReader* self, daqRatioObject** resolution)
 {
     return reinterpret_cast<daq::IMultiReader*>(self)->getTickResolution(reinterpret_cast<daq::IRatio**>(resolution));
 }
 
-daqErrCode daqMultiReader_getOrigin(daqMultiReader* self, daqString** origin)
+daqErrCode daqMultiReader_getOrigin(daqMultiReader* self, daqStringObject** origin)
 {
     return reinterpret_cast<daq::IMultiReader*>(self)->getOrigin(reinterpret_cast<daq::IString**>(origin));
 }
@@ -78,22 +78,22 @@ daqErrCode daqMultiReader_addInput(daqMultiReader* self, daqComponent* input)
     return reinterpret_cast<daq::IMultiReader*>(self)->addInput(reinterpret_cast<daq::IComponent*>(input));
 }
 
-daqErrCode daqMultiReader_removeInput(daqMultiReader* self, daqString* id)
+daqErrCode daqMultiReader_removeInput(daqMultiReader* self, daqStringObject* id)
 {
     return reinterpret_cast<daq::IMultiReader*>(self)->removeInput(reinterpret_cast<daq::IString*>(id));
 }
 
-daqErrCode daqMultiReader_setInputUsed(daqMultiReader* self, daqString* id, daqBool isUsed)
+daqErrCode daqMultiReader_setInputUsed(daqMultiReader* self, daqStringObject* id, daqBool isUsed)
 {
     return reinterpret_cast<daq::IMultiReader*>(self)->setInputUsed(reinterpret_cast<daq::IString*>(id), isUsed);
 }
 
-daqErrCode daqMultiReader_getInputUsed(daqMultiReader* self, daqString* id, daqBool* isUsed)
+daqErrCode daqMultiReader_getInputUsed(daqMultiReader* self, daqStringObject* id, daqBool* isUsed)
 {
     return reinterpret_cast<daq::IMultiReader*>(self)->getInputUsed(reinterpret_cast<daq::IString*>(id), isUsed);
 }
 
-daqErrCode daqMultiReader_createMultiReader(daqMultiReader** obj, daqList* signals, daqSampleType valueReadType, daqSampleType domainReadType, daqReadMode mode, daqReadTimeoutType timeoutType)
+daqErrCode daqMultiReader_createMultiReader(daqMultiReader** obj, daqListObject* signals, daqSampleType valueReadType, daqSampleType domainReadType, daqReadMode mode, daqReadTimeoutType timeoutType)
 {
     daq::IMultiReader* ptr = nullptr;
     daqErrCode err = daq::createMultiReader(&ptr, reinterpret_cast<daq::IList*>(signals), static_cast<daq::SampleType>(valueReadType), static_cast<daq::SampleType>(domainReadType), static_cast<daq::ReadMode>(mode), static_cast<daq::ReadTimeoutType>(timeoutType));
@@ -101,7 +101,7 @@ daqErrCode daqMultiReader_createMultiReader(daqMultiReader** obj, daqList* signa
     return err;
 }
 
-daqErrCode daqMultiReader_createMultiReaderEx(daqMultiReader** obj, daqList* signals, daqSampleType valueReadType, daqSampleType domainReadType, daqReadMode mode, daqReadTimeoutType timeoutType, daqInt requiredCommonSampleRate, daqBool startOnFullUnitOfDomain, daqSizeT minReadCount)
+daqErrCode daqMultiReader_createMultiReaderEx(daqMultiReader** obj, daqListObject* signals, daqSampleType valueReadType, daqSampleType domainReadType, daqReadMode mode, daqReadTimeoutType timeoutType, daqInt requiredCommonSampleRate, daqBool startOnFullUnitOfDomain, daqSizeT minReadCount)
 {
     daq::IMultiReader* ptr = nullptr;
     daqErrCode err = daq::createMultiReaderEx(&ptr, reinterpret_cast<daq::IList*>(signals), static_cast<daq::SampleType>(valueReadType), static_cast<daq::SampleType>(domainReadType), static_cast<daq::ReadMode>(mode), static_cast<daq::ReadTimeoutType>(timeoutType), requiredCommonSampleRate, startOnFullUnitOfDomain, minReadCount);

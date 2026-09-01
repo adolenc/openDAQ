@@ -35,17 +35,17 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqComponentHolder daqComponentHolder;
-    typedef struct daqString daqString;
+    typedef struct daqStringObject daqStringObject;
     typedef struct daqComponent daqComponent;
 
     EXPORTED extern const daqIntfID DAQ_COMPONENT_HOLDER_INTF_ID;
     void EXPORTED daqComponentHolder_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqComponentHolder_getLocalId(daqComponentHolder* self, daqString** localId);
-    daqErrCode EXPORTED daqComponentHolder_getParentGlobalId(daqComponentHolder* self, daqString** parentId);
+    daqErrCode EXPORTED daqComponentHolder_getLocalId(daqComponentHolder* self, daqStringObject** localId);
+    daqErrCode EXPORTED daqComponentHolder_getParentGlobalId(daqComponentHolder* self, daqStringObject** parentId);
     daqErrCode EXPORTED daqComponentHolder_getComponent(daqComponentHolder* self, daqComponent** component);
     daqErrCode EXPORTED daqComponentHolder_createComponentHolder(daqComponentHolder** obj, daqComponent* component);
-    daqErrCode EXPORTED daqComponentHolder_createComponentHolderWithIds(daqComponentHolder** obj, daqString* id, daqString* parentGlobalId, daqComponent* component);
+    daqErrCode EXPORTED daqComponentHolder_createComponentHolderWithIds(daqComponentHolder** obj, daqStringObject* id, daqStringObject* parentGlobalId, daqComponent* component);
 
 #ifdef __cplusplus
 }

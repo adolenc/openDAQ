@@ -35,17 +35,17 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqStructType daqStructType;
-    typedef struct daqList daqList;
-    typedef struct daqString daqString;
+    typedef struct daqListObject daqListObject;
+    typedef struct daqStringObject daqStringObject;
 
     EXPORTED extern const daqIntfID DAQ_STRUCT_TYPE_INTF_ID;
     void EXPORTED daqStructType_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqStructType_getFieldNames(daqStructType* self, daqList** names);
-    daqErrCode EXPORTED daqStructType_getFieldDefaultValues(daqStructType* self, daqList** defaultValues);
-    daqErrCode EXPORTED daqStructType_getFieldTypes(daqStructType* self, daqList** types);
-    daqErrCode EXPORTED daqStructType_createStructType(daqStructType** obj, daqString* name, daqList* names, daqList* defaultValues, daqList* types);
-    daqErrCode EXPORTED daqStructType_createStructTypeNoDefaults(daqStructType** obj, daqString* name, daqList* names, daqList* types);
+    daqErrCode EXPORTED daqStructType_getFieldNames(daqStructType* self, daqListObject** names);
+    daqErrCode EXPORTED daqStructType_getFieldDefaultValues(daqStructType* self, daqListObject** defaultValues);
+    daqErrCode EXPORTED daqStructType_getFieldTypes(daqStructType* self, daqListObject** types);
+    daqErrCode EXPORTED daqStructType_createStructType(daqStructType** obj, daqStringObject* name, daqListObject* names, daqListObject* defaultValues, daqListObject* types);
+    daqErrCode EXPORTED daqStructType_createStructTypeNoDefaults(daqStructType** obj, daqStringObject* name, daqListObject* names, daqListObject* types);
 
 #ifdef __cplusplus
 }
