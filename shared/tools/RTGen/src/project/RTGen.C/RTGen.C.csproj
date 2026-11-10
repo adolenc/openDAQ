@@ -56,6 +56,9 @@
     <Compile Include="..\RTGen.Shared\HeaderSanitizer.cs">
       <Link>Shared\HeaderSanitizer.cs</Link>
     </Compile>
+    <Compile Include="..\RTGen.Shared\PreprocessorConditions.cs">
+      <Link>Shared\PreprocessorConditions.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

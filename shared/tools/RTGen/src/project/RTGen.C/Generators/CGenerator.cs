@@ -74,6 +74,9 @@ namespace RTGen.C.Generators
         protected GeneratorType _generatorType = GeneratorType.Header;
         /// <summary>Exact file to write, used when generating a whole tree at once.</summary>
         protected string _outputPathOverride;
+        /// <summary>Preprocessor condition of each factory the header declares conditionally.</summary>
+        protected IDictionary<string, string> _factoryConditions = new Dictionary<string, string>();
+
         protected ISet<string> _typesToDeclare = new HashSet<string>();
 
         //Overriden
@@ -234,6 +237,9 @@ namespace RTGen.C.Generators
                     continue;
                 }
 
+                IDictionary<string, string> factoryConditions =
+                    PreprocessorConditions.OfFactories(File.ReadAllText(target.HeaderPath));
+
                 if (parsed.Classes.Count == 0 && parsed.Factories.Count == 0)
                 {
                     withoutOutput.Add($"{target.Library}/{target.Name} (nothing to generate)");
@@ -260,7 +266,8 @@ namespace RTGen.C.Generators
                     {
                         Options = fileOptions,
                         RtFile = parsed,
-                        _outputPathOverride = output.Path
+                        _outputPathOverride = output.Path,
+                        _factoryConditions = factoryConditions
                     };
                     generator.GenerateFile(templatePath);
                 }
@@ -699,7 +706,17 @@ namespace RTGen.C.Generators
                     return ReplaceVariable(variable, GeneratorType.Header, factoryClass, factory, templatePath);
                 });
 
+                //a factory that only exists under a preprocessor condition is declared under the same one
+                bool conditional = _factoryConditions.TryGetValue(factory.Name, out string condition);
+                if (conditional)
+                {
+                    methods.AppendLine($"#if {condition}");
+                }
                 methods.AppendLine(base.Indentation + generatedFactory);
+                if (conditional)
+                {
+                    methods.AppendLine("#endif");
+                }
             }
 
             return methods;
@@ -787,6 +804,11 @@ namespace RTGen.C.Generators
                     ReplaceVariable(m.Groups[1].Value, GeneratorType.Source, factoryClass, factory, templatePath)
                 );
 
+                bool conditional = _factoryConditions.TryGetValue(factory.Name, out string condition);
+                if (conditional)
+                {
+                    methods.AppendLine($"#if {condition}");
+                }
                 methods.AppendLine(generatedFactory);
                 methods.AppendLine("{");
                 methods.AppendLine(base.Indentation + objectPointer);
@@ -794,6 +816,10 @@ namespace RTGen.C.Generators
                 methods.AppendLine(base.Indentation + objectPointerCast);
                 methods.AppendLine(base.Indentation + returnErrorTemplate);
                 methods.AppendLine("}");
+                if (conditional)
+                {
+                    methods.AppendLine("#endif");
+                }
                 methods.AppendLine();
             }
             return methods;

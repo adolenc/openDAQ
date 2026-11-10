@@ -5,17 +5,23 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 //
-//     RTGen (CGenerator v0.7.0) on 03.06.2025 22:54:18.
+//     RTGen (CGenerator v0.7.0).
 // </auto-generated>
 //------------------------------------------------------------------------------
 
 #include <copendaq/logger/logger_sink.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/logger_sink.h>
 
 #include <copendaq_private.h>
 
 const daqIntfID DAQ_LOGGER_SINK_INTF_ID = { daq::ILoggerSink::Id.Data1, daq::ILoggerSink::Id.Data2, daq::ILoggerSink::Id.Data3, daq::ILoggerSink::Id.Data4_UInt64 };
+
+void daqLoggerSink_getInterfaceId(daqIntfID* intfId)
+{
+    *intfId = DAQ_LOGGER_SINK_INTF_ID;
+}
 
 daqErrCode daqLoggerSink_setLevel(daqLoggerSink* self, daqLogLevel level)
 {
@@ -74,7 +80,7 @@ daqErrCode daqLoggerSink_createBasicFileLoggerSink(daqLoggerSink** obj, daqStrin
     return err;
 }
 
-#ifdef _WIN32
+#if defined(_WIN32)
 daqErrCode daqLoggerSink_createWinDebugLoggerSink(daqLoggerSink** obj)
 {
     daq::ILoggerSink* ptr = nullptr;

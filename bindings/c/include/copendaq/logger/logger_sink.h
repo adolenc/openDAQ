@@ -5,7 +5,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 //
-//     RTGen (CGenerator v0.7.0) on 03.06.2025 22:54:18.
+//     RTGen (CGenerator v0.7.0).
 // </auto-generated>
 //------------------------------------------------------------------------------
 
@@ -38,6 +38,7 @@ extern "C"
     typedef struct daqString daqString;
 
     EXPORTED extern const daqIntfID DAQ_LOGGER_SINK_INTF_ID;
+    void EXPORTED daqLoggerSink_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqLoggerSink_setLevel(daqLoggerSink* self, daqLogLevel level);
     daqErrCode EXPORTED daqLoggerSink_getLevel(daqLoggerSink* self, daqLogLevel* level);
@@ -48,7 +49,7 @@ extern "C"
     daqErrCode EXPORTED daqLoggerSink_createStdOutLoggerSink(daqLoggerSink** obj);
     daqErrCode EXPORTED daqLoggerSink_createRotatingFileLoggerSink(daqLoggerSink** obj, daqString* fileName, daqCSizeT maxFileByteSize, daqCSizeT maxFiles);
     daqErrCode EXPORTED daqLoggerSink_createBasicFileLoggerSink(daqLoggerSink** obj, daqString* fileName);
-#ifdef _WIN32
+#if defined(_WIN32)
     daqErrCode EXPORTED daqLoggerSink_createWinDebugLoggerSink(daqLoggerSink** obj);
 #endif
 

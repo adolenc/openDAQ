@@ -12,6 +12,7 @@
 #include <copendaq/signal/allocator.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/allocator.h>
 
 #include <copendaq_private.h>
 
@@ -40,6 +41,7 @@ daqErrCode daqAllocator_createMallocAllocator(daqAllocator** obj)
     return err;
 }
 
+#if defined(OPENDAQ_MIMALLOC_SUPPORT)
 daqErrCode daqAllocator_createMiMallocAllocator(daqAllocator** obj)
 {
     daq::IAllocator* ptr = nullptr;
@@ -47,6 +49,7 @@ daqErrCode daqAllocator_createMiMallocAllocator(daqAllocator** obj)
     *obj = reinterpret_cast<daqAllocator*>(ptr);
     return err;
 }
+#endif
 
 daqErrCode daqAllocator_createExternalAllocator(daqAllocator** obj, void* data, daqDeleter* deleter)
 {

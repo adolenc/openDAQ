@@ -47,11 +47,6 @@ namespace RTGen.C
             ["data_rule_calc_private.h"]     = "takes a NumberPtr reference",
             ["streaming_private.h"]          = "takes a StringPtr",
 
-            // Declared inside a preprocessor conditional, which the parser does not preserve, so the
-            // generated code would reference a factory that is not always compiled into the core.
-            ["logger_sink.h"]                = "WinDebug factory is guarded by #ifdef _WIN32",
-            ["allocator.h"]                  = "MiMalloc factory is guarded by #ifdef OPENDAQ_MIMALLOC_SUPPORT",
-
             // Overloads collapse onto a single name in C.
             ["scaling_calc_private.h"]       = "two scaleData overloads would generate the same function"
         };
