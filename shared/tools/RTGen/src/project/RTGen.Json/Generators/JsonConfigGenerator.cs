@@ -33,8 +33,10 @@ namespace RTGen.Json.Generators
             @"#define\s+OPENDAQ_ERRTYPE_(\w+)\s+0x([0-9A-Fa-f]+)u?");
         private static readonly Regex ErrCodeRegex = new Regex(
             @"#define\s+(OPENDAQ_ERR_\w+)\s+OPENDAQ_ERROR_CODE\(\s*OPENDAQ_ERRTYPE_(\w+)\s*,\s*0x([0-9A-Fa-f]+)u?\s*\)");
-        private static readonly Regex SuccessRegex = new Regex(
-            @"#define\s+(OPENDAQ_SUCCESS)\s+0x([0-9A-Fa-f]+)u?");
+        // Status codes that are not errors (OPENDAQ_SUCCESS, OPENDAQ_NO_MORE_ITEMS, ...) are spelled as a
+        // full 32-bit literal, unlike the error codes, which are composed by OPENDAQ_ERROR_CODE.
+        private static readonly Regex StatusRegex = new Regex(
+            @"#define\s+(OPENDAQ_[A-Z_]+)\s+0x([0-9A-Fa-f]{8})u?\s*$", RegexOptions.Multiline);
         private static readonly Regex CommentRegex = new Regex(
             @"/\*.*?\*/|//[^\n]*", RegexOptions.Singleline);
         private static readonly Regex EnumRegex = new Regex(
@@ -556,7 +558,7 @@ namespace RTGen.Json.Generators
             {
                 string text = File.ReadAllText(header);
                 string relHeader = RelativeHeader(header, coreRoot);
-                foreach (Match match in SuccessRegex.Matches(text))
+                foreach (Match match in StatusRegex.Matches(text))
                 {
                     if (seen.Add(match.Groups[1].Value))
                     {

@@ -39689,6 +39689,41 @@
       "header": "core/coretypes/include/coretypes/errors.h"
     },
     {
+      "name": "OPENDAQ_LOWER",
+      "code": 2,
+      "header": "core/coretypes/include/coretypes/errors.h"
+    },
+    {
+      "name": "OPENDAQ_EQUAL",
+      "code": 3,
+      "header": "core/coretypes/include/coretypes/errors.h"
+    },
+    {
+      "name": "OPENDAQ_GREATER",
+      "code": 4,
+      "header": "core/coretypes/include/coretypes/errors.h"
+    },
+    {
+      "name": "OPENDAQ_NO_MORE_ITEMS",
+      "code": 5,
+      "header": "core/coretypes/include/coretypes/errors.h"
+    },
+    {
+      "name": "OPENDAQ_IGNORED",
+      "code": 6,
+      "header": "core/coretypes/include/coretypes/errors.h"
+    },
+    {
+      "name": "OPENDAQ_NOTFOUND",
+      "code": 7,
+      "header": "core/coretypes/include/coretypes/errors.h"
+    },
+    {
+      "name": "OPENDAQ_PARTIAL_SUCCESS",
+      "code": 8,
+      "header": "core/coretypes/include/coretypes/errors.h"
+    },
+    {
       "name": "OPENDAQ_ERR_NOMEMORY",
       "code": 2147483648,
       "header": "core/coretypes/include/coretypes/errors.h"
