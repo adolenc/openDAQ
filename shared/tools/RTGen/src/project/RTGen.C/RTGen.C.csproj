@@ -59,6 +59,9 @@
     <Compile Include="..\RTGen.Shared\PreprocessorConditions.cs">
       <Link>Shared\PreprocessorConditions.cs</Link>
     </Compile>
+    <Compile Include="..\RTGen.Shared\CBindingRules.cs">
+      <Link>Shared\CBindingRules.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

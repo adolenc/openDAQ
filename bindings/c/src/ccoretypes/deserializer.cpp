@@ -37,3 +37,9 @@ daqErrCode daqDeserializer_callCustomProc(daqDeserializer* self, daqProcedure* c
 {
     return reinterpret_cast<daq::IDeserializer*>(self)->callCustomProc(reinterpret_cast<daq::IProcedure*>(customDeserialize), reinterpret_cast<daq::IString*>(serialized));
 }
+
+daqErrCode daqDeserializer_unregisterSerializerFactory(daqCConstCharPtr id)
+{
+    using namespace daq;
+    return daqUnregisterSerializerFactory(id);
+}

@@ -26,41 +26,8 @@ namespace RTGen.C
     /// </summary>
     public static class CBatchGeneration
     {
-        /// <summary>
-        /// Interfaces that are deliberately not bound, keyed by header file name, with the reason.
-        /// Extend this when an interface cannot be expressed in the generated language.
-        /// </summary>
-        /// <remarks>
-        /// Note that most "private" and "internal" interfaces bind perfectly well and are generated; only
-        /// the ones listed here are a problem, so they are excluded individually rather than by name pattern.
-        /// </remarks>
-        private static readonly IDictionary<string, string> ExcludedHeaders = new Dictionary<string, string>
-        {
-            // Written by hand, because their C shape deliberately differs from the C++ one.
-            ["baseobject.h"]                 = "IUnknown and IBaseObject are written by hand in base_object.h",
-            ["errorinfo.h"]                  = "carries hand written wrappers for the error info functions",
-
-            // Expose C++ only types (smart pointers, references, third party types) that have no C equivalent.
-            ["logger_sink_base_private.h"]   = "returns spdlog SinkPtr",
-            ["logger_thread_pool_private.h"] = "returns spdlog ThreadPoolPtr",
-            ["task_internal.h"]              = "returns Taskflow and Task by value",
-            ["data_rule_calc_private.h"]     = "takes a NumberPtr reference",
-            ["streaming_private.h"]          = "takes a StringPtr",
-
-            // Overloads collapse onto a single name in C.
-            ["scaling_calc_private.h"]       = "two scaleData overloads would generate the same function"
-        };
-
         /// <summary>Directories holding test support code, which is not part of the shipped API.</summary>
         private static readonly string[] NonShippingDirectories = { "mocks", "tests", "test" };
-
-        /// <summary>Checks whether bindings should be generated for the header.</summary>
-        /// <param name="headerPath">Full path of the core header.</param>
-        /// <param name="reason">Why the header is excluded, when it is.</param>
-        public static bool IsExcluded(string headerPath, out string reason)
-        {
-            return ExcludedHeaders.TryGetValue(Path.GetFileName(headerPath) ?? "", out reason);
-        }
 
         /// <summary>Checks whether the header belongs to test support code rather than to the shipped API.</summary>
         private static bool IsNonShipping(string headerPath)

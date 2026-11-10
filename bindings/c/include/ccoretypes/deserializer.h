@@ -46,6 +46,7 @@ extern "C"
     daqErrCode EXPORTED daqDeserializer_deserialize(daqDeserializer* self, daqString* serialized, daqBaseObject* context, daqFunction* factoryCallback, daqBaseObject** object);
     daqErrCode EXPORTED daqDeserializer_update(daqDeserializer* self, daqUpdatable* updatable, daqString* serialized, daqBaseObject* config);
     daqErrCode EXPORTED daqDeserializer_callCustomProc(daqDeserializer* self, daqProcedure* customDeserialize, daqString* serialized);
+    daqErrCode EXPORTED daqDeserializer_unregisterSerializerFactory(daqCConstCharPtr id);
 
 #ifdef __cplusplus
 }

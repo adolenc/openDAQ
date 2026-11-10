@@ -5,17 +5,23 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 //
-//     RTGen (CGenerator v0.7.0) on 03.06.2025 17:17:49.
+//     RTGen (CGenerator v0.7.0).
 // </auto-generated>
 //------------------------------------------------------------------------------
 
 #include <ccoretypes/errorinfo.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/errorinfo.h>
 
 #include <copendaq_private.h>
 
 const daqIntfID DAQ_ERROR_INFO_INTF_ID = { daq::IErrorInfo::Id.Data1, daq::IErrorInfo::Id.Data2, daq::IErrorInfo::Id.Data3, daq::IErrorInfo::Id.Data4_UInt64 };
+
+void daqErrorInfo_getInterfaceId(daqIntfID* intfId)
+{
+    *intfId = DAQ_ERROR_INFO_INTF_ID;
+}
 
 daqErrCode daqErrorInfo_setMessage(daqErrorInfo* self, daqString* message)
 {
@@ -57,6 +63,31 @@ daqErrCode daqErrorInfo_getFileLine(daqErrorInfo* self, daqCInt* fileLine)
     return reinterpret_cast<daq::IErrorInfo*>(self)->getFileLine(fileLine);
 }
 
+daqErrCode daqErrorInfo_setErrorCode(daqErrorInfo* self, daqErrCode errorCode)
+{
+    return reinterpret_cast<daq::IErrorInfo*>(self)->setErrorCode(static_cast<daq::ErrCode>(errorCode));
+}
+
+daqErrCode daqErrorInfo_getErrorCode(daqErrorInfo* self, daqErrCode* errorCode)
+{
+    return reinterpret_cast<daq::IErrorInfo*>(self)->getErrorCode(reinterpret_cast<daq::ErrCode*>(errorCode));
+}
+
+daqErrCode daqErrorInfo_setPreviousErrorCode(daqErrorInfo* self, daqErrCode prevErrCode)
+{
+    return reinterpret_cast<daq::IErrorInfo*>(self)->setPreviousErrorCode(static_cast<daq::ErrCode>(prevErrCode));
+}
+
+daqErrCode daqErrorInfo_getPreviousErrorCode(daqErrorInfo* self, daqErrCode* prevErrCode)
+{
+    return reinterpret_cast<daq::IErrorInfo*>(self)->getPreviousErrorCode(reinterpret_cast<daq::ErrCode*>(prevErrCode));
+}
+
+daqErrCode daqErrorInfo_getFormattedMessage(daqErrorInfo* self, daqString** message)
+{
+    return reinterpret_cast<daq::IErrorInfo*>(self)->getFormattedMessage(reinterpret_cast<daq::IString**>(message));
+}
+
 daqErrCode daqErrorInfo_createErrorInfo(daqErrorInfo** obj)
 {
     daq::IErrorInfo* ptr = nullptr;
@@ -65,57 +96,38 @@ daqErrCode daqErrorInfo_createErrorInfo(daqErrorInfo** obj)
     return err;
 }
 
-daqErrCode daqErrorInfo_setErrorCode(daqErrorInfo* self, daqErrCode errorCode)
+void daqErrorInfo_setErrorInfo(daqErrorInfo* errorInfo)
 {
-    return reinterpret_cast<daq::IErrorInfo*>(self)->setErrorCode(errorCode);
-}
-
-daqErrCode daqErrorInfo_getErrorCode(daqErrorInfo* self, daqErrCode* errorCode)
-{
-    return reinterpret_cast<daq::IErrorInfo*>(self)->getErrorCode(errorCode);
-}
-
-daqErrCode daqErrorInfo_setPreviousErrorCode(daqErrorInfo* self, daqErrCode prevErrCode)
-{
-    return reinterpret_cast<daq::IErrorInfo*>(self)->setPreviousErrorCode(prevErrCode);
-}
-
-daqErrCode daqErrorInfo_getPreviousErrorCode(daqErrorInfo* self, daqErrCode* prevErrCode)
-{
-    return reinterpret_cast<daq::IErrorInfo*>(self)->getPreviousErrorCode(prevErrCode);
-}
-
-daqErrCode daqErrorInfo_getFormattedMessage(daqErrorInfo* self, daqString** message)
-{
-    return reinterpret_cast<daq::IErrorInfo*>(self)->getFormattedMessage(reinterpret_cast<daq::IString**>(message));
-}
-
-void daqErrorInfo_set(daqErrorInfo* errorInfo)
-{
+    using namespace daq;
     daqSetErrorInfo(reinterpret_cast<daq::IErrorInfo*>(errorInfo));
 }
 
-void daqErrorInfo_extend(daqErrorInfo* errorInfo)
+void daqErrorInfo_extendErrorInfo(daqErrorInfo* errorInfo)
 {
+    using namespace daq;
     daqExtendErrorInfo(reinterpret_cast<daq::IErrorInfo*>(errorInfo));
 }
 
-void daqErrorInfo_get(daqErrorInfo** errorInfo)
+void daqErrorInfo_getErrorInfo(daqErrorInfo** errorInfo)
 {
+    using namespace daq;
     daqGetErrorInfo(reinterpret_cast<daq::IErrorInfo**>(errorInfo));
 }
 
-void daqErrorInfo_clear()
+void daqErrorInfo_clearErrorInfo()
 {
+    using namespace daq;
     daqClearErrorInfo();
 }
 
-void daqErrorInfo_getList(daqList** errorInfoList)
+void daqErrorInfo_getErrorInfoList(daqList** errorInfoList)
 {
+    using namespace daq;
     daqGetErrorInfoList(reinterpret_cast<daq::IList**>(errorInfoList));
 }
 
-daqErrCode daqErrorInfo_getMessageForThread(daqString** errorMessage)
+daqErrCode daqErrorInfo_getErrorInfoMessage(daqString** errorMessage)
 {
+    using namespace daq;
     return daqGetErrorInfoMessage(reinterpret_cast<daq::IString**>(errorMessage));
 }

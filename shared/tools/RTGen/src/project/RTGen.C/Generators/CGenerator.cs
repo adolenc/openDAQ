@@ -44,30 +44,6 @@ namespace RTGen.C.Generators
         /// their arguments, which a static_cast does not convert between.</summary>
         protected static readonly ISet<string> CallbackTypes = new HashSet<string> { "FuncCall", "ProcCall", "EventCall" };
 
-        /// <summary>Renames the C name of a CoreTypes value type (the interface names are left untouched).</summary>
-        /// <remarks>
-        /// Plain C values get a "daqC" prefix, openDAQ objects keep the plain "daq" prefix, so that every
-        /// interface "IX" maps to "daqX" without exception. Without this the C bindings, which drop the "I"
-        /// prefix from interface names, would emit the same identifier for an interface and a value type
-        /// that share a name (Float/IFloat, CoreType/ICoreType).
-        /// Only the aliases of C fundamental types are renamed; openDAQ's own enums (SampleType, PacketType,
-        /// LogLevel, ...) as well as ErrCode and IntfID are domain types rather than C values and keep their
-        /// "daq" prefix.
-        /// </remarks>
-        protected static readonly IDictionary<string, string> ValueTypeNames = new Dictionary<string, string>
-        {
-            { "Bool", "CBool" },
-            { "Int", "CInt" },
-            { "UInt", "CUInt" },
-            { "Float", "CFloat" },
-            { "CharPtr", "CCharPtr" },
-            { "ConstCharPtr", "CConstCharPtr" },
-            { "VoidPtr", "CVoidPtr" },
-            { "SizeT", "CSizeT" },
-            { "EnumType", "CEnumType" },
-            { "CoreType", "CCoreType" }
-        };
-
         protected static readonly String Prefix = "daq";
         protected static readonly String PrefixUpper = "DAQ_";
 
@@ -76,6 +52,9 @@ namespace RTGen.C.Generators
         protected string _outputPathOverride;
         /// <summary>Preprocessor condition of each factory the header declares conditionally.</summary>
         protected IDictionary<string, string> _factoryConditions = new Dictionary<string, string>();
+
+        /// <summary>Freestanding extern "C" functions the header declares next to its interface.</summary>
+        protected IList<ExportedFunction> _exportedFunctions = new List<ExportedFunction>();
 
         protected ISet<string> _typesToDeclare = new HashSet<string>();
 
@@ -129,7 +108,7 @@ namespace RTGen.C.Generators
         /// <param name="name">The type name without the "daq" prefix.</param>
         protected static string MapValueTypeName(string name)
         {
-            return ValueTypeNames.TryGetValue(name, out string renamed) ? renamed : name;
+            return CBindingRules.ValueTypeNames.TryGetValue(name, out string renamed) ? renamed : name;
         }
 
         /// <summary>Gets the C name of the type (without the "daq" prefix), honouring the value type renames.</summary>
@@ -208,7 +187,8 @@ namespace RTGen.C.Generators
                 expected.Add(Path.GetFullPath(headerPath));
                 expected.Add(Path.GetFullPath(sourcePath));
 
-                if (CBatchGeneration.IsExcluded(target.HeaderPath, out string reason))
+                if (CBindingRules.IsUnbound(target.HeaderPath, out string reason)
+                    || CBindingRules.IsHandWritten(target.HeaderPath, out reason))
                 {
                     Log.Info($"excluded {target.Library}/{target.Name}: {reason}");
                     excluded++;
@@ -216,12 +196,13 @@ namespace RTGen.C.Generators
                 }
 
                 IRTFile parsed;
+                List<ExportedFunction> exportedFunctions = new List<ExportedFunction>();
                 try
                 {
                     // Headers the grammar rejects are parsed from a sanitized copy, exactly as the JSON
                     // generator does, so that both describe the same set of interfaces.
                     parsed = HeaderSanitizer.Parse(new CppParser(), parserOptions, target.HeaderPath,
-                                                   new List<ExportedFunction>());
+                                                   exportedFunctions);
                     parsed.SourceFileName = Path.GetFileName(target.HeaderPath) ?? "";
 
                     // The stand-in the sanitizer gives factory-only headers is not an interface to bind.
@@ -267,7 +248,8 @@ namespace RTGen.C.Generators
                         Options = fileOptions,
                         RtFile = parsed,
                         _outputPathOverride = output.Path,
-                        _factoryConditions = factoryConditions
+                        _factoryConditions = factoryConditions,
+                        _exportedFunctions = exportedFunctions
                     };
                     generator.GenerateFile(templatePath);
                 }
@@ -719,7 +701,66 @@ namespace RTGen.C.Generators
                 }
             }
 
+            AppendExportedFunctions(methods, GeneratorType.Header);
+
             return methods;
+        }
+
+        /// <summary>
+        /// Wraps the freestanding functions of the header (for example daqSetErrorInfo), which the core
+        /// exports from its own library rather than through an interface. They are named after the
+        /// interface the header declares; one whose signature has no C spelling is left out.
+        /// </summary>
+        protected void AppendExportedFunctions(StringBuilder methods, GeneratorType generatorType)
+        {
+            IRTInterface owner = RtFile.Classes.LastOrDefault();
+            if (owner == null)
+            {
+                return;
+            }
+
+            foreach (ExportedFunction function in _exportedFunctions)
+            {
+                if (!CBindingRules.IsBindable(function))
+                {
+                    Log.Info($"not bound {function.Name}: its signature has no C equivalent");
+                    continue;
+                }
+
+                CBindingRules.TryMapType(function.ReturnType, out string returnType, out _);
+                string symbol = CBindingRules.FunctionSymbol(owner.Type.Name, function.Name);
+
+                List<string> declared = new List<string>();
+                List<string> forwarded = new List<string>();
+                foreach (KeyValuePair<string, string> argument in function.Arguments)
+                {
+                    CBindingRules.TryMapType(argument.Key, out string cType, out string cppType);
+                    declared.Add($"{cType} {argument.Value}");
+                    forwarded.Add(cppType == null ? argument.Value : $"reinterpret_cast<{cppType}>({argument.Value})");
+
+                    string handle = cType.TrimEnd('*');
+                    if (cppType != null && handle.StartsWith(Prefix) && !handle.StartsWith(Prefix + "C") && handle != Prefix + "ErrCode")
+                    {
+                        _typesToDeclare.Add(handle.Substring(Prefix.Length));
+                    }
+                }
+
+                if (generatorType == GeneratorType.Header)
+                {
+                    string arguments = declared.Count == 0 ? "void" : String.Join(", ", declared);
+                    methods.AppendLine(base.Indentation + $"{returnType} EXPORTED {symbol}({arguments});");
+                }
+                else
+                {
+                    methods.AppendLine($"{returnType} {symbol}({String.Join(", ", declared)})");
+                    methods.AppendLine("{");
+                    //some of these functions are declared in the daq namespace and some outside of it
+                    methods.AppendLine(base.Indentation + "using namespace daq;");
+                    methods.AppendLine(base.Indentation + $"{(returnType == "void" ? "" : "return ")}{function.Name}({String.Join(", ", forwarded)});");
+                    methods.AppendLine("}");
+                    methods.AppendLine();
+                }
+            }
         }
 
         protected StringBuilder GenerateMethodsSource(string templatePath)
@@ -822,6 +863,8 @@ namespace RTGen.C.Generators
                 }
                 methods.AppendLine();
             }
+            AppendExportedFunctions(methods, GeneratorType.Source);
+
             return methods;
         }
     }
