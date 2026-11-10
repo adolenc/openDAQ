@@ -16,10 +16,11 @@ projects="$rtgen/src/project"
 
 build_generator() {
     local name="$1"
+    shift
     local sources=()
     while IFS= read -r file; do
         sources+=("$file")
-    done < <(find "$projects/RTGen.$name" "$projects/RTGen.Shared" -name '*.cs' \
+    done < <(find "$projects/RTGen.$name" "$projects/RTGen.Shared" "$@" -name '*.cs' \
                   -not -path '*/obj/*' -not -path '*/bin/*' 2>/dev/null | LC_ALL=C sort)
 
     mcs -nologo -nowarn:1591 -target:library -out:"$rtgen/bin/RTGen.$name.dll" \
@@ -38,7 +39,9 @@ if [ "${1:-}" != "--no-build" ]; then
         echo "mcs (the mono C# compiler) is not installed; install it or pass --no-build." >&2
         exit 1
     fi
-    build_generator C
+    # The C generator also compiles the model builder of the JSON generator: the enums and the status
+    # codes of the C bindings are emitted from the linked API description.
+    build_generator C "$projects/RTGen.Json/Generators"
     build_generator Json
 fi
 

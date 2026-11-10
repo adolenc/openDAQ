@@ -568,7 +568,7 @@ TEST_F(CCoreobjectsTest, PropertyValueEventArgs)
     daqInteger_createInteger(&value2, 30);
 
     err = daqPropertyValueEventArgs_createPropertyValueEventArgs(
-        &eventArgs, prop, value2, value1, daqPropertyEventType::daqPropertyEventTypeEventTypeUpdate, daqFalse);
+        &eventArgs, prop, value2, value1, daqPropertyEventType::daqPropertyEventTypeUpdate, daqFalse);
     ASSERT_EQ(err, 0u);
     ASSERT_NE(eventArgs, nullptr);
 

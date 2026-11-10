@@ -257,6 +257,11 @@ namespace RTGen.C.Generators
                 generated++;
             }
 
+            foreach (string treeHeader in CTreeHeaders.Write(bindingsRoot, Options, batch.SourceDir))
+            {
+                expected.Add(Path.GetFullPath(treeHeader));
+            }
+
             IList<string> orphans = CBatchGeneration.PruneOrphans(bindingsRoot, expected);
             foreach (string orphan in orphans)
             {
