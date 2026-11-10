@@ -12,6 +12,14 @@ daqErrCode daqSerializer_createJsonSerializer(daqSerializer** obj, daqCBool pret
     return err;
 }
 
+daqErrCode daqSerializer_createJsonSerializerWithVersion(daqSerializer** obj, daqCInt version, daqCBool pretty)
+{
+    daq::ISerializer* ptr = nullptr;
+    daqErrCode err = daq::createJsonSerializerWithVersion(&ptr, version, pretty);
+    *obj = reinterpret_cast<daqSerializer*>(ptr);
+    return err;
+}
+
 daqErrCode daqEventHandler_createEventHandler(daqEventHandler** obj, daqEventCall call)
 {
     daq::IEventHandler* ptr = nullptr;

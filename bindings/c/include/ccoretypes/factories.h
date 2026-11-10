@@ -27,6 +27,7 @@ extern "C"
     typedef struct daqEventHandler daqEventHandler;
 
     daqErrCode EXPORTED daqSerializer_createJsonSerializer(daqSerializer** obj, daqCBool pretty);
+    daqErrCode EXPORTED daqSerializer_createJsonSerializerWithVersion(daqSerializer** obj, daqCInt version, daqCBool pretty);
     daqErrCode EXPORTED daqEventHandler_createEventHandler(daqEventHandler** obj, daqEventCall call);
 
 #ifdef __cplusplus

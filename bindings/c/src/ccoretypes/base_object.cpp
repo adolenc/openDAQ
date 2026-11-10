@@ -7,6 +7,16 @@
 const daqIntfID DAQ_UNKNOWN_INTF_ID = { daq::IUnknown::Id.Data1, daq::IUnknown::Id.Data2, daq::IUnknown::Id.Data3, daq::IUnknown::Id.Data4_UInt64 };
 const daqIntfID DAQ_BASE_OBJECT_INTF_ID = { daq::IBaseObject::Id.Data1, daq::IBaseObject::Id.Data2 , daq::IBaseObject::Id.Data3, daq::IBaseObject::Id.Data4_UInt64 };
 
+void daqUnknown_getInterfaceId(daqIntfID* intfId)
+{
+    *intfId = DAQ_UNKNOWN_INTF_ID;
+}
+
+void daqBaseObject_getInterfaceId(daqIntfID* intfId)
+{
+    *intfId = DAQ_BASE_OBJECT_INTF_ID;
+}
+
 daqErrCode daqUnknown_queryInterface(daqUnknown* self, daqIntfID intfId, daqBaseObject** interfacePtr)
 {
     return static_cast<daq::IUnknown*>(self)->queryInterface(copendaq::utils::toDaqIntfId(intfId), interfacePtr);

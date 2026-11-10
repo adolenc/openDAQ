@@ -25,6 +25,8 @@ extern "C"
 
     EXPORTED extern const daqIntfID DAQ_UNKNOWN_INTF_ID;
     EXPORTED extern const daqIntfID DAQ_BASE_OBJECT_INTF_ID;
+    void EXPORTED daqUnknown_getInterfaceId(daqIntfID* intfId);
+    void EXPORTED daqBaseObject_getInterfaceId(daqIntfID* intfId);
 
     /* IUnknown. Reference counting and interface discovery, available on every openDAQ object. */
     daqErrCode EXPORTED daqUnknown_queryInterface(daqUnknown* self, daqIntfID intfId, daqBaseObject** interfacePtr);
