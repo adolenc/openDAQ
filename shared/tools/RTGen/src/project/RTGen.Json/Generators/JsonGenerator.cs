@@ -269,10 +269,10 @@ namespace RTGen.Json.Generators
 
         /// <summary>Spells out the element types of the container interfaces, which the
         /// headers annotate with [elementType]/[templateType]: a list has a value type, a
-        /// dictionary a key and a value type. The generic arguments of everything else
-        /// (the genuine C++ templates, IEvent&lt;TSender, TArgs&gt; and std::shared_ptr)
-        /// are dropped: they do not affect the ABI, which passes the plain interface
-        /// pointer either way.</summary>
+        /// dictionary a key and a value type, an event the types of its sender and of its
+        /// arguments. The generic arguments of everything else (the genuine C++ templates
+        /// and std::shared_ptr) are dropped. None of them affects the ABI, which passes the
+        /// plain interface pointer either way; they say what a binding may narrow it to.</summary>
         private static void AddElementTypes(OrderedDict target, string typeName,
                                             List<OrderedDict> generics)
         {
@@ -295,6 +295,11 @@ namespace RTGen.Json.Generators
             {
                 target.Add("key_type", names[0]);
                 target.Add("value_type", names[1]);
+            }
+            else if (typeName == "IEvent" && names.Count == 2)
+            {
+                target.Add("sender_type", names[0]);
+                target.Add("args_type", names[1]);
             }
         }
 

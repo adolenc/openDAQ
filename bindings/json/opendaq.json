@@ -2752,7 +2752,9 @@
               "name": "event",
               "type": {
                 "name": "IEvent",
-                "pointers": 2
+                "pointers": 2,
+                "sender_type": "IComponent",
+                "args_type": "ICoreEventArgs"
               },
               "direction": "out"
             }
@@ -5507,7 +5509,9 @@
               "name": "event",
               "type": {
                 "name": "IEvent",
-                "pointers": 2
+                "pointers": 2,
+                "sender_type": "IComponent",
+                "args_type": "ICoreEventArgs"
               },
               "direction": "out"
             }
@@ -19704,7 +19708,9 @@
               "name": "event",
               "type": {
                 "name": "IEvent",
-                "pointers": 2
+                "pointers": 2,
+                "sender_type": "IMirroredSignalConfig",
+                "args_type": "ISubscriptionEventArgs"
               },
               "direction": "out"
             }
@@ -19723,7 +19729,9 @@
               "name": "event",
               "type": {
                 "name": "IEvent",
-                "pointers": 2
+                "pointers": 2,
+                "sender_type": "IMirroredSignalConfig",
+                "args_type": "ISubscriptionEventArgs"
               },
               "direction": "out"
             }
@@ -24138,7 +24146,9 @@
               "name": "event",
               "type": {
                 "name": "IEvent",
-                "pointers": 2
+                "pointers": 2,
+                "sender_type": "IPropertyObject",
+                "args_type": "IPropertyValueEventArgs"
               },
               "direction": "out"
             }
@@ -24157,7 +24167,9 @@
               "name": "event",
               "type": {
                 "name": "IEvent",
-                "pointers": 2
+                "pointers": 2,
+                "sender_type": "IPropertyObject",
+                "args_type": "IPropertyValueEventArgs"
               },
               "direction": "out"
             }
@@ -24214,7 +24226,9 @@
               "name": "event",
               "type": {
                 "name": "IEvent",
-                "pointers": 2
+                "pointers": 2,
+                "sender_type": "IProperty",
+                "args_type": "IPropertyMetadataReadArgs"
               },
               "direction": "out"
             }
@@ -24233,7 +24247,9 @@
               "name": "event",
               "type": {
                 "name": "IEvent",
-                "pointers": 2
+                "pointers": 2,
+                "sender_type": "IProperty",
+                "args_type": "IPropertyMetadataReadArgs"
               },
               "direction": "out"
             }
@@ -25477,7 +25493,9 @@
               "name": "event",
               "type": {
                 "name": "IEvent",
-                "pointers": 2
+                "pointers": 2,
+                "sender_type": "IPropertyObject",
+                "args_type": "IPropertyValueEventArgs"
               },
               "direction": "out"
             }
@@ -25515,7 +25533,9 @@
               "name": "event",
               "type": {
                 "name": "IEvent",
-                "pointers": 2
+                "pointers": 2,
+                "sender_type": "IPropertyObject",
+                "args_type": "IPropertyValueEventArgs"
               },
               "direction": "out"
             }
@@ -25553,7 +25573,9 @@
               "name": "event",
               "type": {
                 "name": "IEvent",
-                "pointers": 2
+                "pointers": 2,
+                "sender_type": "IProperty",
+                "args_type": "IPropertyMetadataReadArgs"
               },
               "direction": "out"
             }
@@ -25591,7 +25613,9 @@
               "name": "event",
               "type": {
                 "name": "IEvent",
-                "pointers": 2
+                "pointers": 2,
+                "sender_type": "IProperty",
+                "args_type": "IPropertyMetadataReadArgs"
               },
               "direction": "out"
             }
@@ -26417,7 +26441,9 @@
               "name": "event",
               "type": {
                 "name": "IEvent",
-                "pointers": 2
+                "pointers": 2,
+                "sender_type": "IPropertyObject",
+                "args_type": "IPropertyValueEventArgs"
               },
               "direction": "out"
             }
@@ -26435,7 +26461,9 @@
               "name": "event",
               "type": {
                 "name": "IEvent",
-                "pointers": 2
+                "pointers": 2,
+                "sender_type": "IPropertyObject",
+                "args_type": "IPropertyValueEventArgs"
               },
               "direction": "out"
             }
@@ -27191,7 +27219,9 @@
               "name": "event",
               "type": {
                 "name": "IEvent",
-                "pointers": 2
+                "pointers": 2,
+                "sender_type": "IPropertyObject",
+                "args_type": "IPropertyValueEventArgs"
               },
               "direction": "out"
             }
@@ -27218,7 +27248,9 @@
               "name": "event",
               "type": {
                 "name": "IEvent",
-                "pointers": 2
+                "pointers": 2,
+                "sender_type": "IPropertyObject",
+                "args_type": "IPropertyValueEventArgs"
               },
               "direction": "out"
             }
@@ -27237,7 +27269,9 @@
               "name": "event",
               "type": {
                 "name": "IEvent",
-                "pointers": 2
+                "pointers": 2,
+                "sender_type": "IPropertyObject",
+                "args_type": "IPropertyValueEventArgs"
               },
               "direction": "out"
             }
@@ -27256,7 +27290,9 @@
               "name": "event",
               "type": {
                 "name": "IEvent",
-                "pointers": 2
+                "pointers": 2,
+                "sender_type": "IPropertyObject",
+                "args_type": "IPropertyValueEventArgs"
               },
               "direction": "out"
             }
@@ -27374,7 +27410,9 @@
               "name": "event",
               "type": {
                 "name": "IEvent",
-                "pointers": 2
+                "pointers": 2,
+                "sender_type": "IPropertyObject",
+                "args_type": "IEndUpdateEventArgs"
               },
               "direction": "out"
             }

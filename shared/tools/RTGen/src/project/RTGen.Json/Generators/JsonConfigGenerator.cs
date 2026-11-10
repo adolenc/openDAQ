@@ -364,7 +364,8 @@ namespace RTGen.Json.Generators
                     walkType(generic);
                 }
                 // Container element types are plain names, not nested type objects.
-                foreach (string element in new[] { type.GetString("key_type"), type.GetString("value_type") })
+                foreach (string element in new[] { type.GetString("key_type"), type.GetString("value_type"),
+                                                   type.GetString("sender_type"), type.GetString("args_type") })
                 {
                     if (element != null)
                     {

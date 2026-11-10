@@ -17,7 +17,8 @@ alternative to RTGen.
   inherited vtable (single inheritance, declaration order).
 - Container types carry the element types the headers annotate them with:
   `IList` has a `value_type`, `IDict` a `key_type` and a `value_type` (absent
-  when the header leaves the container untyped).
+  when the header leaves the container untyped). `IEvent` likewise carries the
+  `sender_type` and `args_type` its handlers are called with.
 - `interfaces[].factories` are the constructors for objects that have the
   corresponding interface as their main one.
 - `functions` are the freestanding `extern "C"` exports that are not tied to
