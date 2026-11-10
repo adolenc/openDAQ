@@ -78,6 +78,21 @@ namespace RTGen.Json.Generators
                     "--source=<core dir> is required (the directory to discover headers in).");
             }
 
+            string summary;
+            OrderedDict root = BuildApi(coreRoot, out summary);
+
+            Directory.CreateDirectory(outputDir);
+            File.WriteAllText(outputPath, JsonValue.Serialize(root, 0) + "\n", new UTF8Encoding(false));
+
+            Log.Info($"{summary} -> {outputPath}");
+        }
+
+        /// <summary>Parses every core header below <paramref name="coreRoot"/> and links the result
+        /// into the API description that is written out as opendaq.json. The C generator builds the
+        /// same description to emit the parts of the C bindings that span the whole API rather than
+        /// one header (the enums and the status codes).</summary>
+        internal OrderedDict BuildApi(string coreRoot, out string summary)
+        {
             var interfaces = new List<OrderedDict>();
             var interfacesByName = new Dictionary<string, OrderedDict>();
             var enums = new Dictionary<string, OrderedDict>();
@@ -111,12 +126,12 @@ namespace RTGen.Json.Generators
                 string library = moduleHeader.Value;
 
                 OrderedDict data;
+                List<ExportedFunction> exported;
                 try
                 {
                     parserOptions.LibraryInfo.Name = library;
-                    var exported = new List<ExportedFunction>();
+                    exported = new List<ExportedFunction>();
                     IRTFile rtFile = HeaderSanitizer.Parse(parser, parserOptions, moduleHeader.Key, exported);
-                    exportedFunctions.AddRange(exported.Select(f => BuildExportedFunction(f, header, library)));
                     rtFile.SourceFileName = Path.GetFileName(moduleHeader.Key);
                     data = new JsonGenerator { Options = Options, RtFile = rtFile }.BuildModel(header);
                     parsedCount++;
@@ -129,6 +144,24 @@ namespace RTGen.Json.Generators
                 }
 
                 coveredSources.Add(Path.GetFileName(header));
+
+                // The C bindings wrap a freestanding function under the name of the interface its
+                // header declares (the last one, should there be several).
+                string owner = DictItems(data.GetList("interfaces"))
+                    .Select(i => i.GetString("name"))
+                    .LastOrDefault(name => name != HeaderSanitizer.PlaceholderInterface);
+                foreach (ExportedFunction function in exported)
+                {
+                    OrderedDict described = BuildExportedFunction(function, header, library);
+                    if (owner != null && IsGeneratedForC(header) && CBindingRules.IsBindable(function))
+                    {
+                        described.Add("c_symbol", CBindingRules.FunctionSymbol(owner, function.Name));
+                    }
+                    exportedFunctions.Add(described);
+                }
+
+                IDictionary<string, string> factoryConditions =
+                    PreprocessorConditions.OfFactories(File.ReadAllText(moduleHeader.Key));
 
                 foreach (OrderedDict iface in DictItems(data.GetList("interfaces")))
                 {
@@ -157,6 +190,11 @@ namespace RTGen.Json.Generators
                     factory.Set("library", library);
                     factory.Set("header", header);
                     string factoryName = factory.GetString("name");
+                    string condition;
+                    if (factoryConditions.TryGetValue(factoryName, out condition))
+                    {
+                        factory.Set("condition", condition);
+                    }
                     if (factories.ContainsKey(factoryName))
                     {
                         Log.Warning($"Duplicate factory {factoryName} from {header} ignored.");
@@ -181,9 +219,16 @@ namespace RTGen.Json.Generators
                 }
             }
 
+            foreach (CBindingRules.HandWrittenFactory handWritten in CBindingRules.HandWrittenFactories)
+            {
+                factories.Add(handWritten.Name, BuildHandWrittenFactory(handWritten));
+            }
+
             VerifyInterfaceIds(interfacesByName);
             AssignVtableSlots(interfaces, interfacesByName);
             string callingConvention = HoistCallingConvention(interfaces);
+            // Before the factories are nested, while each still says which header declares it.
+            AddCBindingNames(interfaces, factories.Values);
             List<object> unmatchedFactories = NestFactories(factories, interfacesByName);
 
             // The supplemental scan sweeps every header under the include roots, which
@@ -199,6 +244,8 @@ namespace RTGen.Json.Generators
                     enums.Add(name, enumeration);
                 }
             }
+
+            AddCEnumNames(enums.Values);
 
             var root = new OrderedDict
             {
@@ -226,13 +273,10 @@ namespace RTGen.Json.Generators
                 root.Add("factories", unmatchedFactories);
             }
 
-            Directory.CreateDirectory(outputDir);
-            File.WriteAllText(outputPath, JsonValue.Serialize(root, 0) + "\n", new UTF8Encoding(false));
-
-            Log.Info($"Parsed {parsedCount} headers ({failedCount} parse failures, expected: see README.md); "
-                     + $"linked {interfaces.Count} interfaces, {enums.Count} enums, "
-                     + $"{factories.Count} factories, {((List<object>)root.Get("error_codes")).Count} error codes "
-                     + $"-> {outputPath}");
+            summary = $"Parsed {parsedCount} headers ({failedCount} parse failures, expected: see README.md); "
+                      + $"linked {interfaces.Count} interfaces, {enums.Count} enums, "
+                      + $"{factories.Count} factories, {((List<object>)root.Get("error_codes")).Count} error codes";
+            return root;
         }
 
         // -------------------------------------------------------------------
@@ -658,6 +702,95 @@ namespace RTGen.Json.Generators
                 }
             }
             return result;
+        }
+
+        // -------------------------------------------------------------------
+        //  C bindings
+        // -------------------------------------------------------------------
+
+        /// <summary>Whether the C generator emits bindings for the header (as opposed to leaving
+        /// it out, or to its C counterpart being written by hand).</summary>
+        private static bool IsGeneratedForC(string header)
+        {
+            string reason;
+            return !CBindingRules.IsUnbound(header, out reason) && !CBindingRules.IsHandWritten(header, out reason);
+        }
+
+        /// <summary>Records the name everything has in the C bindings, by the rules the C generator
+        /// emits them with (<see cref="CBindingRules"/>). An entity without a C name is not part of
+        /// the C bindings.</summary>
+        private static void AddCBindingNames(List<OrderedDict> interfaces, IEnumerable<OrderedDict> factories)
+        {
+            string reason;
+            foreach (OrderedDict iface in interfaces)
+            {
+                if (CBindingRules.IsUnbound(iface.GetString("header"), out reason))
+                {
+                    continue;
+                }
+                string name = iface.GetString("name");
+                iface.Add("c_name", CBindingRules.InterfaceTypeName(name));
+                iface.Add("c_interface_id_symbol", CBindingRules.InterfaceIdSymbol(name));
+                foreach (OrderedDict method in DictItems(iface.GetList("methods")))
+                {
+                    method.Add("c_symbol", CBindingRules.MemberSymbol(name, method.GetString("name")));
+                }
+            }
+
+            foreach (OrderedDict factory in factories)
+            {
+                if (!CBindingRules.IsUnbound(factory.GetString("header"), out reason))
+                {
+                    factory.Set("c_symbol", CBindingRules.MemberSymbol(factory.GetString("interface"),
+                                                                       factory.GetString("name")));
+                }
+            }
+        }
+
+        private static void AddCEnumNames(IEnumerable<OrderedDict> enums)
+        {
+            foreach (OrderedDict enumeration in enums)
+            {
+                string name = enumeration.GetString("name");
+                enumeration.Add("c_name", CBindingRules.EnumTypeName(name));
+                foreach (OrderedDict option in DictItems(enumeration.GetList("options")))
+                {
+                    option.Add("c_name", CBindingRules.EnumOptionName(name, option.GetString("name")));
+                }
+            }
+        }
+
+        private static OrderedDict BuildHandWrittenFactory(CBindingRules.HandWrittenFactory factory)
+        {
+            var arguments = new List<object>
+            {
+                new OrderedDict
+                {
+                    { "name", "obj" },
+                    { "type", new OrderedDict { { "name", factory.Interface }, { "pointers", 2L } } },
+                    { "direction", "out" }
+                }
+            };
+            foreach (KeyValuePair<string, string> argument in factory.Arguments)
+            {
+                arguments.Add(new OrderedDict
+                {
+                    { "name", argument.Value },
+                    { "type", CppTypeDesc(argument.Key) },
+                    { "direction", "in" }
+                });
+            }
+            return new OrderedDict
+            {
+                { "name", factory.Name },
+                { "return_type", new OrderedDict { { "name", "ErrCode" } } },
+                { "interface", factory.Interface },
+                { "arguments", arguments },
+                { "doc", factory.Doc },
+                { "c_only", true },
+                { "library", "copendaq" },
+                { "header", "bindings/c/include/ccoretypes/factories.h" }
+            };
         }
 
         private static readonly Regex PlainFactoryRegex = new Regex(

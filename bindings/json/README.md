@@ -24,23 +24,51 @@ alternative to RTGen.
 - `functions` are the freestanding `extern "C"` exports that are not tied to
   an interface (the `daqSetErrorInfo`/`daqGetErrorInfo` error-info helpers and
   the serializer-factory registry).
+- `error_codes` holds every status a call can return: the `OPENDAQ_ERR_*`
+  errors and the non-error statuses (`OPENDAQ_SUCCESS`, `OPENDAQ_NO_MORE_ITEMS`,
+  ...).
 
-## C binding names
+## C bindings
 
 Languages that cannot call through vtables go through the C bindings
-(`bindings/c/`), which wrap this same surface 1:1. Their names can be derived
-mechanically from the JSON:
+(`bindings/c/`), which wrap this same surface. The JSON states the C name of
+everything the C library exports, so a binding generator never has to derive
+or guess one:
 
-- type: `daq` + name without the leading interface `I` - `IStreamReader` →
-  `daqStreamReader`; likewise enums (`daqSampleType`) and typedefs.
-- method: `daq<Type>_<method>`, with `self` of type `daq<Type>*` prepended to
-  the arguments - `daqStreamReader_read(self, samples, count, timeoutMs)`.
-- factory: `daq<Type>_<factory name>` —
-  `daqStreamReader_createStreamReaderFromPort`.
-- per interface there is additionally `daq<Type>_getInterfaceId(daqIntfID*)`,
-  which returns the interface's `id` from the JSON. It exists only in the C
-  library: in C++ the ID is a static constant, not a method, so it is not
-  listed among the JSON methods.
+- `interfaces[].c_name` is the opaque handle type (`IStreamReader` →
+  `daqStreamReader`), `c_interface_id_symbol` the function returning the
+  interface's `id` (`daqStreamReader_getInterfaceId(daqIntfID*)`; it exists only
+  in the C library, as in C++ the ID is a static constant).
+- `methods[].c_symbol` is the function wrapping the method. It takes `self`, of
+  type `<c_name>*`, followed by the method's arguments:
+  `daqStreamReader_read(self, samples, count, timeoutMs, status)`.
+- `factories[].c_symbol` is the function wrapping the factory, with the
+  factory's own arguments. A factory with a `condition` is only compiled into
+  the libraries when that preprocessor condition holds
+  (`createWinDebugLoggerSink`: `defined(_WIN32)`), so it cannot be relied on to
+  be present. A factory marked `c_only` exists in the C bindings alone.
+- `functions[].c_symbol` is the function wrapping a freestanding function
+  (`daqSetErrorInfo` → `daqErrorInfo_setErrorInfo`).
+- `enums[].c_name` and `enums[].options[].c_name` are the C enum and its
+  enumerators.
+
+**Whatever has no `c_name` / `c_symbol` is not part of the C bindings.** That is
+the case for a handful of internal interfaces whose signatures use C++ only
+types; `bindings/c/README.md` lists them with the reasons.
+
+The names follow from the rules in
+[`CBindingRules.cs`](../../shared/tools/RTGen/src/project/RTGen.Shared/CBindingRules.cs),
+which is compiled into both this generator and the C bindings generator, and
+`check_c_bindings.py` verifies that the JSON and the C headers agree symbol for
+symbol.
+
+Argument types translate to C as follows: an interface `IFoo` is the opaque
+`daqFoo` with the same number of pointers; the aliases of C fundamental types
+get a `daqC` prefix (`Bool` → `daqCBool`, `Int` → `daqCInt`, `SizeT` →
+`daqCSizeT`, ...); other value types and enums a plain `daq` prefix
+(`ErrCode` → `daqErrCode`, `IntfID` → `daqIntfID`, `SampleType` →
+`daqSampleType`). A const reference to a value type (`const IntfID&`) is passed
+by value.
 
 ## Known gaps
 

@@ -69,6 +69,40 @@ namespace RTGen.Shared
             { "CoreType", "CCoreType" }
         };
 
+        /// <summary>
+        /// Enums whose options are not prefixed with the enum name in C, because their C++ options
+        /// already carry a prefix of their own (ctBool) or because the short C names are long established.
+        /// </summary>
+        public static readonly ISet<string> EnumsWithUnprefixedOptions = new HashSet<string> { "CoreType", "LockingStrategy" };
+
+        /// <summary>A function of the C bindings that has no counterpart in the C++ API.</summary>
+        public class HandWrittenFactory
+        {
+            public string Interface;
+            public string Name;
+            /// <summary>Arguments after the created object: C++ type and name.</summary>
+            public KeyValuePair<string, string>[] Arguments;
+            public string Doc;
+        }
+
+        /// <summary>
+        /// Factories that exist only in the C bindings and are written by hand (ccoretypes/factories.h).
+        /// They are listed here so that the API description knows about them.
+        /// </summary>
+        public static readonly HandWrittenFactory[] HandWrittenFactories =
+        {
+            new HandWrittenFactory
+            {
+                Interface = "IEventHandler",
+                Name = "createEventHandler",
+                Arguments = new[] { new KeyValuePair<string, string>("EventCall", "call") },
+                Doc = "@brief Creates an event handler that calls a C function.\n"
+                      + "@param call The function to call with the sender and the arguments of the event.\n\n"
+                      + "C++ creates event handlers from callables through templates, which have no exported "
+                      + "symbol; this factory is provided by the C bindings."
+            }
+        };
+
         private static readonly Regex InterfaceNameRegex = new Regex(@"^I[A-Z]\w*$");
 
         /// <summary>Whether the header is left out of the C bindings altogether.</summary>
@@ -93,6 +127,20 @@ namespace RTGen.Shared
         public static string MemberSymbol(string interfaceName, string memberName)
         {
             return $"{InterfaceTypeName(interfaceName)}_{memberName}";
+        }
+
+        /// <summary>The C name of an enum: "SampleType" gives "daqSampleType".</summary>
+        public static string EnumTypeName(string enumName)
+        {
+            return Prefix + (ValueTypeNames.TryGetValue(enumName, out string renamed) ? renamed : enumName);
+        }
+
+        /// <summary>The C name of an enum option: "SampleType::Float64" gives "daqSampleTypeFloat64".</summary>
+        public static string EnumOptionName(string enumName, string optionName)
+        {
+            return EnumsWithUnprefixedOptions.Contains(enumName)
+                       ? Prefix + char.ToUpperInvariant(optionName[0]) + optionName.Substring(1)
+                       : Prefix + enumName + optionName;
         }
 
         /// <summary>The C function that returns the interface id.</summary>
