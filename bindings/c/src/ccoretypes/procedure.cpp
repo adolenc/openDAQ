@@ -5,17 +5,23 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 //
-//     RTGen (CGenerator v0.7.0) on 03.06.2025 17:17:57.
+//     RTGen (CGenerator v0.7.0).
 // </auto-generated>
 //------------------------------------------------------------------------------
 
 #include <ccoretypes/procedure.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/procedure.h>
 
 #include <copendaq_private.h>
 
 const daqIntfID DAQ_PROCEDURE_INTF_ID = { daq::IProcedure::Id.Data1, daq::IProcedure::Id.Data2, daq::IProcedure::Id.Data3, daq::IProcedure::Id.Data4_UInt64 };
+
+void daqProcedure_getInterfaceId(daqIntfID* intfId)
+{
+    *intfId = DAQ_PROCEDURE_INTF_ID;
+}
 
 daqErrCode daqProcedure_dispatch(daqProcedure* self, daqBaseObject* params)
 {

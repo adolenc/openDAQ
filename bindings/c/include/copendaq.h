@@ -35,6 +35,8 @@ extern "C"
 #include <ccoreobjects/mutex.h>
 #include <ccoreobjects/object_lock_guard.h>
 #include <ccoreobjects/ownable.h>
+#include <ccoreobjects/owning_dict_factory.h>
+#include <ccoreobjects/owning_list_factory.h>
 #include <ccoreobjects/permission_manager.h>
 #include <ccoreobjects/permission_manager_internal.h>
 #include <ccoreobjects/permission_mask_builder.h>
@@ -53,6 +55,7 @@ extern "C"
 #include <ccoreobjects/property_object_internal.h>
 #include <ccoreobjects/property_object_protected.h>
 #include <ccoreobjects/property_value_event_args.h>
+#include <ccoreobjects/search_filter.h>
 #include <ccoreobjects/unit.h>
 #include <ccoreobjects/unit_builder.h>
 #include <ccoreobjects/user.h>
@@ -87,6 +90,7 @@ extern "C"
 #include <ccoretypes/integer.h>
 #include <ccoretypes/iterable.h>
 #include <ccoretypes/iterator.h>
+#include <ccoretypes/json_deserializer.h>
 #include <ccoretypes/list_element_type.h>
 #include <ccoretypes/listobject.h>
 #include <ccoretypes/number.h>
@@ -140,6 +144,7 @@ extern "C"
 #include <copendaq/device/common.h>
 #include <copendaq/device/connected_client_info.h>
 #include <copendaq/device/connection_status_container_private.h>
+#include <copendaq/device/core_opendaq_event_args.h>
 #include <copendaq/device/device.h>
 #include <copendaq/device/device_domain.h>
 #include <copendaq/device/device_errors.h>
@@ -222,6 +227,7 @@ extern "C"
 #include <copendaq/server/server_type.h>
 
 #include <copendaq/signal/allocator.h>
+#include <copendaq/signal/binary_data_packet.h>
 #include <copendaq/signal/common.h>
 #include <copendaq/signal/connection.h>
 #include <copendaq/signal/connection_internal.h>

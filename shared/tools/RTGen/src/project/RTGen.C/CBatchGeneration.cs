@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
+using RTGen.Shared;
 
 namespace RTGen.C
 {
@@ -26,10 +26,6 @@ namespace RTGen.C
     /// </summary>
     public static class CBatchGeneration
     {
-        private static readonly Regex InterfaceOrFactory = new Regex(
-            @"DECLARE_OPENDAQ_INTERFACE\w*\(\s*I\w+|OPENDAQ_DECLARE_(CLASS_)?FACTORY",
-            RegexOptions.Compiled);
-
         /// <summary>
         /// Interfaces that are deliberately not bound, keyed by header file name, with the reason.
         /// Extend this when an interface cannot be expressed in the generated language.
@@ -40,6 +36,10 @@ namespace RTGen.C
         /// </remarks>
         private static readonly IDictionary<string, string> ExcludedHeaders = new Dictionary<string, string>
         {
+            // Written by hand, because their C shape deliberately differs from the C++ one.
+            ["baseobject.h"]                 = "IUnknown and IBaseObject are written by hand in base_object.h",
+            ["errorinfo.h"]                  = "carries hand written wrappers for the error info functions",
+
             // Expose C++ only types (smart pointers, references, third party types) that have no C equivalent.
             ["logger_sink_base_private.h"]   = "returns spdlog SinkPtr",
             ["logger_thread_pool_private.h"] = "returns spdlog ThreadPoolPtr",
@@ -87,7 +87,7 @@ namespace RTGen.C
                     continue;
                 }
 
-                if (!InterfaceOrFactory.IsMatch(File.ReadAllText(path)))
+                if (!HeaderSanitizer.DeclaresBindings(File.ReadAllText(path)))
                 {
                     continue;
                 }

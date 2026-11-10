@@ -4,6 +4,7 @@ using RTGen.Interfaces;
 using RTGen.Types;
 using RTGen.Util;
 using RTGen.Cpp;
+using RTGen.Shared;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -38,6 +39,10 @@ namespace RTGen.C.Generators
             { "ComplexFloat64", "copendaq::utils::toDaqComplexFloat64" },
             { "SourceLocation", "copendaq::utils::toDaqSourceLocation" }
         };
+
+        /// <summary>Function pointer types. The C and C++ declarations differ only in the pointer types of
+        /// their arguments, which a static_cast does not convert between.</summary>
+        protected static readonly ISet<string> CallbackTypes = new HashSet<string> { "FuncCall", "ProcCall", "EventCall" };
 
         /// <summary>Renames the C name of a CoreTypes value type (the interface names are left untouched).</summary>
         /// <remarks>
@@ -210,8 +215,18 @@ namespace RTGen.C.Generators
                 IRTFile parsed;
                 try
                 {
-                    parsed = new CppParser().Parse(target.HeaderPath, parserOptions);
+                    // Headers the grammar rejects are parsed from a sanitized copy, exactly as the JSON
+                    // generator does, so that both describe the same set of interfaces.
+                    parsed = HeaderSanitizer.Parse(new CppParser(), parserOptions, target.HeaderPath,
+                                                   new List<ExportedFunction>());
                     parsed.SourceFileName = Path.GetFileName(target.HeaderPath) ?? "";
+
+                    // The stand-in the sanitizer gives factory-only headers is not an interface to bind.
+                    foreach (IRTInterface placeholder in parsed.Classes
+                                 .Where(c => c.Type.Name == HeaderSanitizer.PlaceholderInterface).ToList())
+                    {
+                        parsed.Classes.Remove(placeholder);
+                    }
                 }
                 catch (Exception e)
                 {
@@ -381,6 +396,16 @@ namespace RTGen.C.Generators
             return String.IsNullOrEmpty(ns) ? Options.LibraryInfo.Namespace?.ToString() ?? "daq" : ns;
         }
 
+        /// <summary>Gets the pointer modifiers of the type as they are spelled in C.</summary>
+        /// <remarks>
+        /// C has no references. The only ones in the bound API are const references to value types
+        /// (<c>const IntfID&amp;</c>), which C passes by value instead.
+        /// </remarks>
+        protected static string GetCModifiers(ITypeName type)
+        {
+            return (type.Modifiers ?? "").Replace("&", "");
+        }
+
         protected string ArgumentListToString(IEnumerable<IArgument> args, string separator)
         {
             return String.Join(separator, args.Select(arg => arg.Name));
@@ -416,7 +441,7 @@ namespace RTGen.C.Generators
 
                 if (listType == ArgsListType.MethodDeclaration)
                 {
-                    sb.Append($"{(arg.Type.Name != "void" ? Prefix : "")}{GetCTypeName(arg.Type)}{arg.Type.Modifiers} {arg.Name}");
+                    sb.Append($"{(arg.Type.Name != "void" ? Prefix : "")}{GetCTypeName(arg.Type)}{GetCModifiers(arg.Type)} {arg.Name}");
                 }
                 else
                 {
@@ -431,12 +456,17 @@ namespace RTGen.C.Generators
                     {
                         if ((!arg.Type.Flags.IsCoreType && arg.Type.Name != "void") || arg.Type.Name == "CoreType")
                         {
-                            if (String.IsNullOrEmpty(arg.Type.Modifiers))
+                            if (String.IsNullOrEmpty(GetCModifiers(arg.Type)))
                             {
                                 //a struct passed by value has no conversion to its C++ counterpart, so it goes through a helper
                                 if (ValueTypeConverters.TryGetValue(arg.Type.Name, out string converter))
                                 {
                                     sb.Append($"{converter}({arg.Name})");
+                                }
+                                else if (CallbackTypes.Contains(arg.Type.Name))
+                                {
+                                    //the C callback takes opaque handles where the C++ one takes interface pointers
+                                    sb.Append($"reinterpret_cast<{arg.Type.Namespace}::{arg.Type.Name}>({arg.Name})");
                                 }
                                 else
                                 {
