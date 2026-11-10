@@ -32228,7 +32228,66 @@
         }
       ],
       "library": "coretypes",
-      "header": "core/coretypes/include/coretypes/serializer.h"
+      "header": "core/coretypes/include/coretypes/serializer.h",
+      "factories": [
+        {
+          "name": "createJsonSerializer",
+          "return_type": {
+            "name": "ErrCode"
+          },
+          "arguments": [
+            {
+              "name": "obj",
+              "type": {
+                "name": "ISerializer",
+                "pointers": 2
+              },
+              "direction": "out"
+            },
+            {
+              "name": "pretty",
+              "type": {
+                "name": "Bool"
+              },
+              "direction": "in",
+              "default_value": "False"
+            }
+          ],
+          "header": "core/coretypes/include/coretypes/json_serializer.h"
+        },
+        {
+          "name": "createJsonSerializerWithVersion",
+          "return_type": {
+            "name": "ErrCode"
+          },
+          "arguments": [
+            {
+              "name": "obj",
+              "type": {
+                "name": "ISerializer",
+                "pointers": 2
+              },
+              "direction": "out"
+            },
+            {
+              "name": "version",
+              "type": {
+                "name": "Int"
+              },
+              "direction": "in"
+            },
+            {
+              "name": "pretty",
+              "type": {
+                "name": "Bool"
+              },
+              "direction": "in",
+              "default_value": "False"
+            }
+          ],
+          "header": "core/coretypes/include/coretypes/json_serializer.h"
+        }
+      ]
     },
     {
       "name": "IServer",

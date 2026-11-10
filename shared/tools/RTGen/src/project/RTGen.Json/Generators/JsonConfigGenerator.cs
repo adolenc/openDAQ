@@ -172,6 +172,15 @@ namespace RTGen.Json.Generators
                     $"No parseable interface headers found under \"{coreRoot}\".");
             }
 
+            foreach (OrderedDict factory in ScanPlainFactories(coreRoot))
+            {
+                string factoryName = factory.GetString("name");
+                if (!factories.ContainsKey(factoryName))
+                {
+                    factories.Add(factoryName, factory);
+                }
+            }
+
             VerifyInterfaceIds(interfacesByName);
             AssignVtableSlots(interfaces, interfacesByName);
             string callingConvention = HoistCallingConvention(interfaces);
@@ -645,6 +654,70 @@ namespace RTGen.Json.Generators
                         };
                         ResolveEnumValues(enumeration);
                         result.Add(enumeration);
+                    }
+                }
+            }
+            return result;
+        }
+
+        private static readonly Regex PlainFactoryRegex = new Regex(
+            @"\bErrCode\s+PUBLIC_EXPORT\s+(create\w+)\s*\(\s*(I\w+)\s*\*\*\s*(\w+)\s*(?:,([^)]*))?\)\s*;");
+
+        /// <summary>Factories declared as plain exported functions instead of through a factory
+        /// macro (createJsonSerializer). They sit in headers without any interface, which the
+        /// parser has nothing to make of, so they are read off the header text: an exported
+        /// <c>ErrCode create...(IInterface** obj, ...)</c> constructs that interface.</summary>
+        private List<OrderedDict> ScanPlainFactories(string coreRoot)
+        {
+            var result = new List<OrderedDict>();
+            foreach (KeyValuePair<string, string> root in ModuleRoots(coreRoot))
+            {
+                foreach (string header in HeadersUnder(root.Key))
+                {
+                    string text = CommentRegex.Replace(
+                        HeaderSanitizer.StripMacroDefinitions(File.ReadAllText(header)), "");
+                    foreach (Match match in PlainFactoryRegex.Matches(text))
+                    {
+                        var arguments = new List<object>
+                        {
+                            new OrderedDict
+                            {
+                                { "name", match.Groups[3].Value },
+                                { "type", new OrderedDict { { "name", match.Groups[2].Value }, { "pointers", 2L } } },
+                                { "direction", "out" }
+                            }
+                        };
+                        foreach (string rawArg in match.Groups[4].Value.Split(','))
+                        {
+                            string[] declaration = rawArg.Split(new[] { '=' }, 2);
+                            string arg = string.Join(" ", declaration[0].Split((char[])null, StringSplitOptions.RemoveEmptyEntries));
+                            if (arg.Length == 0)
+                            {
+                                continue;
+                            }
+                            int nameStart = arg.LastIndexOfAny(new[] { ' ', '*', '&' }) + 1;
+                            var argument = new OrderedDict
+                            {
+                                { "name", arg.Substring(nameStart) },
+                                { "type", CppTypeDesc(arg.Substring(0, nameStart)) },
+                                { "direction", "in" }
+                            };
+                            if (declaration.Length > 1)
+                            {
+                                argument.Add("default_value", declaration[1].Trim());
+                            }
+                            arguments.Add(argument);
+                        }
+
+                        result.Add(new OrderedDict
+                        {
+                            { "name", match.Groups[1].Value },
+                            { "return_type", new OrderedDict { { "name", "ErrCode" } } },
+                            { "interface", match.Groups[2].Value },
+                            { "arguments", arguments },
+                            { "library", root.Value },
+                            { "header", RelativeHeader(header, coreRoot) }
+                        });
                     }
                 }
             }

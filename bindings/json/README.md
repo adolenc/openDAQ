@@ -44,9 +44,6 @@ mechanically from the JSON:
 
 ## Known gaps
 
-- Factories declared as plain `PUBLIC_EXPORT` functions without a factory
-  macro (`createJsonSerializer`, `createJsonSerializerWithVersion`,
-  `createEventHandler`) are not discovered.
 - The two interfaces with overloaded methods (`IDataRuleCalcPrivate`,
   `IScalingCalcPrivate`): MSVC lays out adjacent overloads in reverse
   declaration order, so those slots are compiler-dependent.
