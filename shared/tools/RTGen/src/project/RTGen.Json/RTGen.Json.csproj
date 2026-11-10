@@ -52,6 +52,9 @@
     <Compile Include="Generators\JsonGenerator.cs" />
     <Compile Include="Generators\JsonModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\RTGen.Shared\HeaderSanitizer.cs">
+      <Link>Shared\HeaderSanitizer.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

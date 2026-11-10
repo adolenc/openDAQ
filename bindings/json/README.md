@@ -59,17 +59,16 @@ Run the `run_rtgen.sh` script from this folder:
 ./run_rtgen.sh
 ```
 
-If the [generator sources](shared/tools/RTGen/src/project/RTGen.Json/) were updated
-you first need to rebuild the `RTGen.Json.dll` binary. With mono, from
-`shared/tools/RTGen`:
+If the [generator sources](../../shared/tools/RTGen/src/project/RTGen.Json/) were updated
+the `RTGen.Json.dll` binary has to be rebuilt first. `bindings/regenerate.sh` does both, for
+the JSON and for the C bindings (it needs the mono C# compiler, `mcs`):
 
 ```sh
-mcs -target:library -out:bin/RTGen.Json.dll \
-    -r:bin/RTGen.Library.dll -r:bin/RTGen.Cpp.dll -r:bin/LightInject.dll -r:System.Core.dll \
-    src/project/RTGen.Json/Generators/*.cs \
-    src/project/RTGen.Json/JsonCompositionRoot.cs \
-    src/project/RTGen.Json/Properties/AssemblyInfo.cs
+../regenerate.sh
 ```
+
+Sources under `RTGen.Shared/` are compiled into both `RTGen.Json.dll` and `RTGen.C.dll`: the
+two generators walk the same headers and must agree on what they declare.
 
 The project is also part of `src/project/RTGen.sln` for building with Visual
 Studio.

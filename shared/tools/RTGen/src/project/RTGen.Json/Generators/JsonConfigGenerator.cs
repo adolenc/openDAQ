@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using RTGen.Cpp;
 using RTGen.Interfaces;
+using RTGen.Shared;
 using RTGen.Types;
 using RTGen.Util;
 
@@ -20,7 +21,7 @@ namespace RTGen.Json.Generators
     /// interface IDs against the UUIDv5 scheme, scans the preprocessor-only error-code
     /// headers and enum-only headers, and nests every factory under the interface it
     /// constructs. Headers the grammar rejects verbatim are re-parsed from a sanitized
-    /// copy (see <see cref="ParseHeader"/>).
+    /// copy (see <see cref="HeaderSanitizer"/>).
     ///
     /// Options: --source points at the core sources root,
     /// --outputDir/--output/--extension name the merged output file.</summary>
@@ -38,18 +39,6 @@ namespace RTGen.Json.Generators
             @"/\*.*?\*/|//[^\n]*", RegexOptions.Singleline);
         private static readonly Regex EnumRegex = new Regex(
             @"enum(?:\s+class)?\s+(\w+)\s*(?::\s*\w+)?\s*\{(.*?)\}\s*;", RegexOptions.Singleline);
-        private static readonly Regex DeclRegex = new Regex(
-            @"^\s*(DECLARE_(TEMPLATED_)?OPENDAQ_(CUSTOM_)?INTERFACE[A-Z_]*|OPENDAQ_DECLARE_CLASS_FACTORY[A-Z_]*)\s*\(",
-            RegexOptions.Multiline);
-        private static readonly Regex ExportedFunctionRegex = new Regex(
-            @"extern\s+""C""\s+([\w:]+)\s+PUBLIC_EXPORT\s+(\w+)\s*\(([^)]*)\)\s*;",
-            RegexOptions.Singleline);
-        private static readonly Regex FunctionPointerTypedefRegex = new Regex(
-            @"typedef\s+[\w:]+\s*\(\s*\*\s*\w+\s*\)\s*\([^)]*\)\s*;");
-        private static readonly Regex UsingAliasRegex = new Regex(
-            @"^\s*using\s+\w+\s*=[^;]*;", RegexOptions.Multiline);
-        private const string PlaceholderInterface = "IRtGenSanitizerPlaceholder";
-
         private IGeneratorOptions _options;
 
         public IVersionInfo Version => new VersionInfo
@@ -122,8 +111,9 @@ namespace RTGen.Json.Generators
                 try
                 {
                     parserOptions.LibraryInfo.Name = library;
-                    IRTFile rtFile = ParseHeader(parser, parserOptions, moduleHeader.Key,
-                                                 exportedFunctions, header, library);
+                    var exported = new List<ExportedFunction>();
+                    IRTFile rtFile = HeaderSanitizer.Parse(parser, parserOptions, moduleHeader.Key, exported);
+                    exportedFunctions.AddRange(exported.Select(f => BuildExportedFunction(f, header, library)));
                     rtFile.SourceFileName = Path.GetFileName(moduleHeader.Key);
                     data = new JsonGenerator { Options = Options, RtFile = rtFile }.BuildModel(header);
                     parsedCount++;
@@ -139,7 +129,7 @@ namespace RTGen.Json.Generators
 
                 foreach (OrderedDict iface in DictItems(data.GetList("interfaces")))
                 {
-                    if (iface.GetString("name") == PlaceholderInterface)
+                    if (iface.GetString("name") == HeaderSanitizer.PlaceholderInterface)
                     {
                         continue;
                     }
@@ -432,201 +422,22 @@ namespace RTGen.Json.Generators
             return conventions.FirstOrDefault() ?? "stdcall";
         }
 
-        // -------------------------------------------------------------------
-        //  Parsing with sanitize-and-retry
-        // -------------------------------------------------------------------
-
-        /// <summary>Parses the header as-is; when the grammar rejects it, retries with a
-        /// sanitized copy that strips the constructs rtgen's parser cannot handle (macro
-        /// bodies, function-pointer typedefs, using-aliases, inline template helpers) and
-        /// injects a placeholder interface into factory-only headers (the parser crashes
-        /// on factories when the file declares no interface). Freestanding extern "C"
-        /// PUBLIC_EXPORT declarations are recorded into the functions section, since the
-        /// grammar cannot parse them either.</summary>
-        private static IRTFile ParseHeader(CppParser parser, IParserOptions parserOptions,
-                                           string path, List<OrderedDict> exportedFunctions,
-                                           string header, string library)
-        {
-            try
-            {
-                return parser.Parse(path, parserOptions);
-            }
-            catch (Exception)
-            {
-                var exported = new List<OrderedDict>();
-                string sanitized = SanitizeHeaderSource(File.ReadAllText(path), exported, header, library);
-
-                string tempDir = Path.Combine(Path.GetTempPath(), "rtgen-json-sanitized");
-                Directory.CreateDirectory(tempDir);
-                string tempPath = Path.Combine(tempDir, Path.GetFileName(path));
-                File.WriteAllText(tempPath, sanitized, new UTF8Encoding(false));
-
-                IRTFile rtFile = parser.Parse(tempPath, parserOptions);
-                // Contribute the extracted exports only when the retry actually parsed.
-                exportedFunctions.AddRange(exported);
-                return rtFile;
-            }
-        }
-
-        private static string SanitizeHeaderSource(string text, List<OrderedDict> exported,
-                                                   string header, string library)
-        {
-            text = StripMacroDefinitions(text);
-
-            text = ExportedFunctionRegex.Replace(text, match =>
-            {
-                exported.Add(BuildExportedFunction(match, header, library));
-                return "";
-            });
-
-            text = FunctionPointerTypedefRegex.Replace(text, "");
-            text = UsingAliasRegex.Replace(text, "");
-            text = StripTemplates(text);
-
-            // Factory-only header: the parser needs a current interface for the factory's
-            // out-parameter namespace; give it a throwaway one (dropped after the merge).
-            if (!text.Contains("DECLARE_OPENDAQ_INTERFACE") && DeclRegex.IsMatch(text))
-            {
-                int marker = text.IndexOf("BEGIN_NAMESPACE_OPENDAQ", StringComparison.Ordinal);
-                if (marker >= 0)
-                {
-                    int lineEnd = text.IndexOf('\n', marker);
-                    if (lineEnd >= 0)
-                    {
-                        text = text.Insert(lineEnd + 1,
-                            $"DECLARE_OPENDAQ_INTERFACE({PlaceholderInterface}, IBaseObject)\n{{\n}};\n");
-                    }
-                }
-            }
-            return text;
-        }
-
-        /// <summary>Blanks #define directives including their line continuations. Macro
-        /// bodies routinely contain tokens the grammar cannot lex (->, #stringification,
-        /// class definitions).</summary>
-        private static string StripMacroDefinitions(string text)
-        {
-            string[] lines = text.Split('\n');
-            bool inDefine = false;
-            for (int i = 0; i < lines.Length; i++)
-            {
-                bool blank = inDefine || lines[i].TrimStart().StartsWith("#define");
-                if (blank)
-                {
-                    inDefine = lines[i].TrimEnd().EndsWith("\\");
-                    lines[i] = "";
-                }
-            }
-            return string.Join("\n", lines);
-        }
-
-        /// <summary>Blanks template declarations/definitions (inline smart-pointer helper
-        /// functions next to factory macros); they are C++ convenience sugar with no ABI
-        /// of their own. Newlines are preserved so parser positions stay meaningful.</summary>
-        private static string StripTemplates(string text)
-        {
-            var sb = new StringBuilder(text);
-            int searchFrom = 0;
-            while (true)
-            {
-                int start = FindWord(sb, "template", searchFrom);
-                if (start < 0)
-                {
-                    return sb.ToString();
-                }
-
-                int pos = start + "template".Length;
-                while (pos < sb.Length && char.IsWhiteSpace(sb[pos]))
-                {
-                    pos++;
-                }
-                if (pos >= sb.Length || sb[pos] != '<')
-                {
-                    searchFrom = start + 1;
-                    continue;
-                }
-
-                int angleDepth = 0;
-                int braceDepth = 0;
-                bool sawBrace = false;
-                int end = -1;
-                for (; pos < sb.Length; pos++)
-                {
-                    char c = sb[pos];
-                    if (c == '<' && braceDepth == 0) angleDepth++;
-                    else if (c == '>' && braceDepth == 0 && angleDepth > 0) angleDepth--;
-                    else if (c == '{') { braceDepth++; sawBrace = true; }
-                    else if (c == '}')
-                    {
-                        braceDepth--;
-                        if (sawBrace && braceDepth == 0) { end = pos + 1; break; }
-                    }
-                    else if (c == ';' && braceDepth == 0 && angleDepth == 0 && !sawBrace)
-                    {
-                        end = pos + 1;
-                        break;
-                    }
-                }
-                if (end < 0)
-                {
-                    return sb.ToString();
-                }
-                while (end < sb.Length && (char.IsWhiteSpace(sb[end]) || sb[end] == ';'))
-                {
-                    if (sb[end] == ';') { end++; break; }
-                    end++;
-                }
-                for (int i = start; i < end; i++)
-                {
-                    if (sb[i] != '\n')
-                    {
-                        sb[i] = ' ';
-                    }
-                }
-                searchFrom = start;
-            }
-        }
-
-        private static int FindWord(StringBuilder sb, string word, int from)
-        {
-            string text = sb.ToString();
-            for (int index = text.IndexOf(word, from, StringComparison.Ordinal);
-                 index >= 0;
-                 index = text.IndexOf(word, index + 1, StringComparison.Ordinal))
-            {
-                bool startOk = index == 0 || !char.IsLetterOrDigit(text[index - 1]) && text[index - 1] != '_';
-                int after = index + word.Length;
-                bool endOk = after >= text.Length || !char.IsLetterOrDigit(text[after]) && text[after] != '_';
-                if (startOk && endOk)
-                {
-                    return index;
-                }
-            }
-            return -1;
-        }
-
-        private static OrderedDict BuildExportedFunction(Match match, string header, string library)
+        private static OrderedDict BuildExportedFunction(ExportedFunction function, string header, string library)
         {
             var arguments = new List<object>();
-            foreach (string rawArg in match.Groups[3].Value.Split(','))
+            foreach (KeyValuePair<string, string> argument in function.Arguments)
             {
-                string arg = string.Join(" ", rawArg.Split((char[])null, StringSplitOptions.RemoveEmptyEntries));
-                if (arg.Length == 0)
-                {
-                    continue;
-                }
-                int nameStart = arg.LastIndexOfAny(new[] { ' ', '*', '&' }) + 1;
                 arguments.Add(new OrderedDict
                 {
-                    { "name", arg.Substring(nameStart) },
-                    { "type", CppTypeDesc(arg.Substring(0, nameStart)) }
+                    { "name", argument.Value },
+                    { "type", CppTypeDesc(argument.Key) }
                 });
             }
 
             return new OrderedDict
             {
-                { "name", match.Groups[2].Value },
-                { "return_type", CppTypeDesc(match.Groups[1].Value) },
+                { "name", function.Name },
+                { "return_type", CppTypeDesc(function.ReturnType) },
                 { "arguments", arguments },
                 { "library", library },
                 { "header", header }
@@ -703,7 +514,7 @@ namespace RTGen.Json.Generators
                 {
                     // Match on define-stripped text so the factory macro machinery
                     // (factory.h) is not mistaken for declarations.
-                    if (DeclRegex.IsMatch(StripMacroDefinitions(File.ReadAllText(header))))
+                    if (HeaderSanitizer.DeclaresBindings(File.ReadAllText(header)))
                     {
                         yield return new KeyValuePair<string, string>(header, root.Value);
                     }
