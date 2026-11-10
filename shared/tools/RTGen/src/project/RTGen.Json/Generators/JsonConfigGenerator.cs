@@ -99,6 +99,7 @@ namespace RTGen.Json.Generators
             };
 
             var parser = new CppParser();
+            Dictionary<string, long> macros = ScanNumericMacros(coreRoot);
             var parserOptions = (IParserOptions)Options;
             var exportedFunctions = new List<OrderedDict>();
             int parsedCount = 0;
@@ -144,6 +145,7 @@ namespace RTGen.Json.Generators
                 {
                     enumeration.Set("header", header);
                     ResolveEnumValues(enumeration);
+                    ApplyMacroEnumValues(enumeration, moduleHeader.Key, macros);
                     if (!enums.ContainsKey(enumeration.GetString("name")))
                     {
                         enums.Add(enumeration.GetString("name"), enumeration);
@@ -646,6 +648,93 @@ namespace RTGen.Json.Generators
                 }
             }
             return result;
+        }
+
+        private static readonly Regex NumericMacroRegex = new Regex(
+            @"^[ \t]*#[ \t]*define[ \t]+(\w+)[ \t]+\(?[ \t]*(-?(?:0[xX][0-9A-Fa-f]+|\d+))[uUlL]*[ \t]*\)?[ \t]*(?://.*)?\r?$",
+            RegexOptions.Multiline);
+
+        /// <summary>Every macro in the public headers that is defined as a plain integer.</summary>
+        private static Dictionary<string, long> ScanNumericMacros(string coreRoot)
+        {
+            var macros = new Dictionary<string, long>();
+            foreach (string root in IncludeRoots(coreRoot))
+            {
+                foreach (string header in HeadersUnder(root))
+                {
+                    foreach (Match match in NumericMacroRegex.Matches(File.ReadAllText(header)))
+                    {
+                        long value;
+                        if (TryParseInt(match.Groups[2].Value, out value))
+                        {
+                            macros[match.Groups[1].Value] = value;
+                        }
+                    }
+                }
+            }
+            return macros;
+        }
+
+        /// <summary>Gives the options of an enum that is spelled with macros (LogLevel's
+        /// <c>Trace = OPENDAQ_LOG_LEVEL_TRACE</c>) their real values. The parser does not evaluate
+        /// macros and numbers such options consecutively instead, which is only right by coincidence.
+        /// The enum is re-read from the header text and the macros are looked up.</summary>
+        private static void ApplyMacroEnumValues(OrderedDict enumeration, string headerPath,
+                                                 Dictionary<string, long> macros)
+        {
+            string text = CommentRegex.Replace(File.ReadAllText(headerPath), "");
+            foreach (Match match in EnumRegex.Matches(text))
+            {
+                if (match.Groups[1].Value != enumeration.GetString("name"))
+                {
+                    continue;
+                }
+
+                var values = new Dictionary<string, long>();
+                bool usesMacro = false;
+                long nextValue = 0;
+                foreach (string rawPart in match.Groups[2].Value.Split(','))
+                {
+                    string part = rawPart.Trim();
+                    if (part.Length == 0)
+                    {
+                        continue;
+                    }
+                    int assign = part.IndexOf('=');
+                    string name = assign >= 0 ? part.Substring(0, assign).Trim() : part;
+                    if (assign >= 0)
+                    {
+                        string raw = part.Substring(assign + 1).Trim();
+                        long value;
+                        if (macros.TryGetValue(raw, out value))
+                        {
+                            usesMacro = true;
+                        }
+                        else if (!TryParseInt(raw, out value))
+                        {
+                            // An expression: leave the enum as the parser read it.
+                            return;
+                        }
+                        nextValue = value;
+                    }
+                    values[name] = nextValue++;
+                }
+
+                if (!usesMacro)
+                {
+                    return;
+                }
+                foreach (OrderedDict option in DictItems(enumeration.GetList("options")))
+                {
+                    long value;
+                    if (values.TryGetValue(option.GetString("name"), out value))
+                    {
+                        option.Remove("raw_value");
+                        option.Set("value", value);
+                    }
+                }
+                return;
+            }
         }
 
         private static void ResolveEnumValues(OrderedDict enumeration)
