@@ -97,7 +97,7 @@ TEST_F(COpendaqSynchronizationTest, Synchronization)
     ASSERT_EQ(daqSynchronization_createSynchronization(&synchronization, typeManager, deviceId), 0u);
     ASSERT_NE(synchronization, nullptr);
 
-    daqSizeT count = 0u;
+    daqCSizeT count = 0u;
 
     daqDict* interfaces = nullptr;
     daqSynchronization_getInterfaces(synchronization, &interfaces);
@@ -124,16 +124,16 @@ TEST_F(COpendaqSynchronizationTest, Synchronization)
     daqSyncInterface_getSyncType(source, &syncType);
     daqString* referenceDomainId = nullptr;
     daqSyncInterface_getReferenceDomainId(source, &referenceDomainId);
-    daqBool sourceSupported = False;
+    daqCBool sourceSupported = daqFalse;
     daqSyncInterface_getSourceSupported(source, &sourceSupported);
     daqSyncMode mode = daqSyncModeOff;
     daqSyncInterface_getMode(source, &mode);
 
-    daqConstCharPtr idStr = nullptr;
+    daqCConstCharPtr idStr = nullptr;
     daqString_getCharPtr(id, &idStr);
-    daqConstCharPtr syncTypeStr = nullptr;
+    daqCConstCharPtr syncTypeStr = nullptr;
     daqString_getCharPtr(syncType, &syncTypeStr);
-    daqConstCharPtr referenceDomainIdStr = nullptr;
+    daqCConstCharPtr referenceDomainIdStr = nullptr;
     daqString_getCharPtr(referenceDomainId, &referenceDomainIdStr);
 
     ASSERT_STREQ(idStr, "ClockSyncInterface");
@@ -147,21 +147,21 @@ TEST_F(COpendaqSynchronizationTest, Synchronization)
     ASSERT_NE(daqSynchronization_setSource(synchronization, unknownSource), 0u);
     daqClearErrorInfo();
 
-    daqBaseObject_releaseRef(unknownSource);
-    daqBaseObject_releaseRef(referenceDomainId);
-    daqBaseObject_releaseRef(syncType);
-    daqBaseObject_releaseRef(id);
-    daqBaseObject_releaseRef(source);
-    daqBaseObject_releaseRef(referenceDomainIds);
-    daqBaseObject_releaseRef(sources);
-    daqBaseObject_releaseRef(interfaces);
-    daqBaseObject_releaseRef(synchronization);
-    daqBaseObject_releaseRef(deviceId);
-    daqBaseObject_releaseRef(context);
-    daqBaseObject_releaseRef(discoveryServers);
-    daqBaseObject_releaseRef(options);
-    daqBaseObject_releaseRef(typeManager);
-    daqBaseObject_releaseRef(logger);
-    daqBaseObject_releaseRef(sink);
-    daqBaseObject_releaseRef(sinks);
+    daqUnknown_releaseRef(unknownSource);
+    daqUnknown_releaseRef(referenceDomainId);
+    daqUnknown_releaseRef(syncType);
+    daqUnknown_releaseRef(id);
+    daqUnknown_releaseRef(source);
+    daqUnknown_releaseRef(referenceDomainIds);
+    daqUnknown_releaseRef(sources);
+    daqUnknown_releaseRef(interfaces);
+    daqUnknown_releaseRef(synchronization);
+    daqUnknown_releaseRef(deviceId);
+    daqUnknown_releaseRef(context);
+    daqUnknown_releaseRef(discoveryServers);
+    daqUnknown_releaseRef(options);
+    daqUnknown_releaseRef(typeManager);
+    daqUnknown_releaseRef(logger);
+    daqUnknown_releaseRef(sink);
+    daqUnknown_releaseRef(sinks);
 }
