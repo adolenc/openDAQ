@@ -8,7 +8,8 @@ partly by hand. This script reads the C headers and verifies that the two agree:
 
   * every function the JSON describes is declared, with the same return and argument types,
   * every function the headers declare is described by the JSON,
-  * the enums and the status codes agree by name and by value.
+  * the enums and the status codes agree by name and by value,
+  * every type the JSON uses is one it defines.
 
 It is what lets a language binding be generated from the JSON alone. Exits non-zero, listing the
 differences, when the JSON and the headers disagree.
@@ -19,6 +20,10 @@ import json
 import re
 import sys
 from pathlib import Path
+
+# The types of C itself, which the JSON uses without defining them.
+C_TYPES = {"void", "char", "int", "double", "size_t",
+           "uint8_t", "uint16_t", "uint32_t", "uint64_t", "int8_t", "int16_t", "int32_t", "int64_t"}
 
 FUNCTION_RE = re.compile(r"^[ \t]*(?!typedef\b)([\w \t\*]+?)\s+EXPORTED\s+(\w+)\s*\(([^;{]*)\)\s*;", re.M)
 ENUM_RE = re.compile(r"typedef\s+enum\s+(\w+)\s*\{(.*?)\}\s*(\w+)\s*;", re.S)
@@ -125,6 +130,34 @@ def main() -> int:
             have = "missing" if name not in statuses else f"0x{statuses[name]:08X}"
             want = "missing" if name not in codes else f"0x{codes[name]:08X}"
             problems.append(f"status {name}: {have} in the C headers, {want} in the JSON")
+
+    # ---- the JSON is self-contained --------------------------------------------------------------
+    defined = (C_TYPES | {t["name"] for t in spec["types"]} | {i["name"] for i in spec["interfaces"]}
+               | {e["name"] for e in spec["enums"]})
+    used: dict[str, str] = {}
+
+    def use(type_desc: dict, where: str) -> None:
+        for key in ("name", "key_type", "value_type", "sender_type", "args_type"):
+            if key in type_desc:
+                used.setdefault(type_desc[key], where)
+
+    for type_ in spec["types"]:
+        for field in type_.get("fields", []):
+            use(field["type"], type_["name"])
+        for part in [type_.get("type"), type_.get("return_type")] + [a["type"] for a in type_.get("arguments", [])]:
+            if part:
+                use(part, type_["name"])
+    for interface in spec["interfaces"]:
+        if "base" in interface:
+            used.setdefault(interface["base"], interface["name"])
+        for kind in ("methods", "factories", "functions"):
+            for member in interface.get(kind, []):
+                where = f"{interface['name']}_{member['name']}"
+                use(member["return_type"], where)
+                for argument in member["arguments"]:
+                    use(argument["type"], where)
+    for name in sorted(set(used) - defined):
+        problems.append(f"type {name}: used by {used[name]} but not defined by the JSON")
 
     print(f"{spec_path.name} describes {len(described)} functions, {len(spec['enums'])} enums and "
           f"{len(codes)} status codes; the C headers declare {len(functions)} functions, "

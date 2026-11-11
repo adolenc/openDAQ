@@ -5,6 +5,227 @@
     "intf_id_scheme": "RFC 4122 UUIDv5, DNS namespace, of the C++ interface name: 'IString.daq' for daqString",
     "vtable": "single inheritance, declaration order; absolute_vtable_slot indexes the whole vtable, relative_vtable_slot only the interface's own methods"
   },
+  "types": [
+    {
+      "name": "daqErrCode",
+      "kind": "alias",
+      "type": {
+        "name": "uint32_t"
+      }
+    },
+    {
+      "name": "daqCBool",
+      "kind": "alias",
+      "type": {
+        "name": "uint8_t"
+      }
+    },
+    {
+      "name": "daqCInt",
+      "kind": "alias",
+      "type": {
+        "name": "int64_t"
+      }
+    },
+    {
+      "name": "daqCUInt",
+      "kind": "alias",
+      "type": {
+        "name": "uint64_t"
+      }
+    },
+    {
+      "name": "daqCFloat",
+      "kind": "alias",
+      "type": {
+        "name": "double"
+      }
+    },
+    {
+      "name": "daqCCharPtr",
+      "kind": "alias",
+      "type": {
+        "name": "char",
+        "pointers": 1
+      }
+    },
+    {
+      "name": "daqCConstCharPtr",
+      "kind": "alias",
+      "type": {
+        "name": "char",
+        "pointers": 1,
+        "is_const": true
+      }
+    },
+    {
+      "name": "daqCVoidPtr",
+      "kind": "alias",
+      "type": {
+        "name": "void",
+        "pointers": 1
+      }
+    },
+    {
+      "name": "daqCSizeT",
+      "kind": "alias",
+      "type": {
+        "name": "size_t"
+      }
+    },
+    {
+      "name": "daqCEnumType",
+      "kind": "alias",
+      "type": {
+        "name": "uint32_t"
+      }
+    },
+    {
+      "name": "daqUnknown",
+      "kind": "alias",
+      "type": {
+        "name": "void"
+      }
+    },
+    {
+      "name": "daqBaseObject",
+      "kind": "alias",
+      "type": {
+        "name": "void"
+      }
+    },
+    {
+      "name": "daqComplexFloat64",
+      "kind": "struct",
+      "fields": [
+        {
+          "name": "real",
+          "type": {
+            "name": "double"
+          }
+        },
+        {
+          "name": "imaginary",
+          "type": {
+            "name": "double"
+          }
+        }
+      ],
+      "pack": 1
+    },
+    {
+      "name": "daqFuncCall",
+      "kind": "callback",
+      "return_type": {
+        "name": "daqErrCode"
+      },
+      "arguments": [
+        {
+          "type": {
+            "name": "daqBaseObject",
+            "pointers": 1
+          }
+        },
+        {
+          "type": {
+            "name": "daqBaseObject",
+            "pointers": 2
+          }
+        }
+      ]
+    },
+    {
+      "name": "daqProcCall",
+      "kind": "callback",
+      "return_type": {
+        "name": "daqErrCode"
+      },
+      "arguments": [
+        {
+          "type": {
+            "name": "daqBaseObject",
+            "pointers": 1
+          }
+        }
+      ]
+    },
+    {
+      "name": "daqEventCall",
+      "kind": "callback",
+      "return_type": {
+        "name": "void"
+      },
+      "arguments": [
+        {
+          "type": {
+            "name": "daqBaseObject",
+            "pointers": 1
+          }
+        },
+        {
+          "type": {
+            "name": "daqBaseObject",
+            "pointers": 1
+          }
+        }
+      ]
+    },
+    {
+      "name": "daqIntfID",
+      "kind": "struct",
+      "fields": [
+        {
+          "name": "Data1",
+          "type": {
+            "name": "uint32_t"
+          }
+        },
+        {
+          "name": "Data2",
+          "type": {
+            "name": "uint16_t"
+          }
+        },
+        {
+          "name": "Data3",
+          "type": {
+            "name": "uint16_t"
+          }
+        },
+        {
+          "name": "Data4",
+          "type": {
+            "name": "uint64_t"
+          }
+        }
+      ]
+    },
+    {
+      "name": "daqSourceLocation",
+      "kind": "struct",
+      "fields": [
+        {
+          "name": "fileName",
+          "type": {
+            "name": "daqCConstCharPtr"
+          }
+        },
+        {
+          "name": "line",
+          "type": {
+            "name": "daqCInt"
+          }
+        },
+        {
+          "name": "funcName",
+          "type": {
+            "name": "daqCConstCharPtr"
+          }
+        }
+      ],
+      "pack": 1
+    }
+  ],
   "interfaces": [
     {
       "name": "daqAddressInfo",

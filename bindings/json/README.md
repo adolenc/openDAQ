@@ -34,6 +34,12 @@ functions the core declares next to an interface without making them methods
 
 ## Schema notes
 
+- `types` defines the types of the C ABI that are neither interfaces nor
+  enums, as `bindings/c/include/ccommon.h` declares them: the aliases of C's
+  own types (`daqCBool` is a `uint8_t`), the structs passed by value
+  (`daqIntfID`, with their `fields` and, when packed, their `pack`), and the
+  callbacks. Together with the interfaces and the enums they are every type
+  the file uses, apart from C's own.
 - A type is its C `name` and its number of `pointers`. An argument marked
   `is_reference` is a value type that C++ takes by const reference
   (`const IntfID&`): the C function takes the value itself, a call through the
@@ -70,7 +76,8 @@ name things by the same code,
 [`CBindingRules.cs`](../../shared/tools/RTGen/src/project/RTGen.Shared/CBindingRules.cs).
 `check_c_bindings.py` verifies the outcome: that every function described here
 is declared in the C headers with the same signature and the other way around,
-and that the enums and status codes agree by name and value.
+that the enums and status codes agree by name and value, and that the file
+defines every type it uses.
 
 ## Regenerating the JSON
 

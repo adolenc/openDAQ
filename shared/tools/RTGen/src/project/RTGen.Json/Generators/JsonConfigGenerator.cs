@@ -266,6 +266,7 @@ namespace RTGen.Json.Generators
                                     + "whole vtable, relative_vtable_slot only the interface's own methods" }
                     }
                 },
+                { "types", ScanAbiTypes(coreRoot) },
                 { "interfaces", interfaces.OrderBy(i => i.GetString("name"), StringComparer.Ordinal).ToList<object>() },
                 { "enums", enums.Values.OrderBy(e => e.GetString("name"), StringComparer.Ordinal).ToList<object>() },
                 { "error_codes", errorCodes }
@@ -786,6 +787,132 @@ namespace RTGen.Json.Generators
             {
                 code.Set("name", CBindingRules.StatusName(code.GetString("name")));
             }
+        }
+
+        private static readonly Regex AbiStructRegex = new Regex(
+            @"typedef\s+struct\s+\w+\s*\{([^}]*)\}\s*(\w+)\s*;", RegexOptions.Singleline);
+        private static readonly Regex AbiCallbackRegex = new Regex(
+            @"typedef\s+([\w\s\*]+?)\s*\(\s*\*\s*(\w+)\s*\)\s*\(([^)]*)\)\s*;", RegexOptions.Singleline);
+        private static readonly Regex AbiAliasRegex = new Regex(
+            @"typedef\s+(?!struct\b|enum\b)([\w\s\*]+?)\s*\b(\w+)\s*;", RegexOptions.Singleline);
+        private static readonly Regex AbiPackRegex = new Regex(
+            @"#\s*pragma\s+pack\s*\(\s*(?:push\s*,\s*(\d+)|(pop))\s*\)");
+
+        /// <summary>The types of the C ABI: the aliases of the fundamental types, the structs passed
+        /// by value and the callbacks. They are the one hand written part of the C API that every
+        /// signature depends on, so they are read off the header that declares them
+        /// (bindings/c/include/ccommon.h) rather than repeated here.</summary>
+        private static List<object> ScanAbiTypes(string coreRoot)
+        {
+            var types = new List<object>();
+            string header = Path.Combine(coreRoot, "..", "bindings", "c", "include", "ccommon.h");
+            if (!File.Exists(header))
+            {
+                Log.Warning($"{header} not found: the description will not define the C ABI types.");
+                return types;
+            }
+
+            string text = CommentRegex.Replace(File.ReadAllText(header), "");
+            var found = new SortedDictionary<int, OrderedDict>();
+
+            foreach (Match match in AbiStructRegex.Matches(text))
+            {
+                var fields = new List<object>();
+                foreach (string declaration in match.Groups[1].Value.Split(';'))
+                {
+                    string field = string.Join(" ", declaration.Split((char[])null, StringSplitOptions.RemoveEmptyEntries));
+                    if (field.Length == 0)
+                    {
+                        continue;
+                    }
+                    int nameStart = field.LastIndexOfAny(new[] { ' ', '*' }) + 1;
+                    fields.Add(new OrderedDict
+                    {
+                        { "name", field.Substring(nameStart) },
+                        { "type", CTypeDesc(field.Substring(0, nameStart)) }
+                    });
+                }
+
+                var structure = new OrderedDict
+                {
+                    { "name", match.Groups[2].Value },
+                    { "kind", "struct" },
+                    { "fields", fields }
+                };
+                // The innermost #pragma pack in effect where the struct is declared.
+                var packs = new Stack<string>();
+                foreach (Match pack in AbiPackRegex.Matches(text.Substring(0, match.Index)))
+                {
+                    if (pack.Groups[2].Success)
+                    {
+                        if (packs.Count > 0)
+                        {
+                            packs.Pop();
+                        }
+                    }
+                    else
+                    {
+                        packs.Push(pack.Groups[1].Value);
+                    }
+                }
+                if (packs.Count > 0)
+                {
+                    structure.Add("pack", long.Parse(packs.Peek()));
+                }
+                found[match.Index] = structure;
+            }
+
+            // Without the structs, so that their fields are not taken for typedefs.
+            string flat = AbiStructRegex.Replace(text, m => new string(' ', m.Length));
+
+            foreach (Match match in AbiCallbackRegex.Matches(flat))
+            {
+                found[match.Index] = new OrderedDict
+                {
+                    { "name", match.Groups[2].Value },
+                    { "kind", "callback" },
+                    { "return_type", CTypeDesc(match.Groups[1].Value) },
+                    {
+                        "arguments", match.Groups[3].Value.Split(',')
+                            .Where(a => a.Trim().Length > 0 && a.Trim() != "void")
+                            .Select(a => (object) new OrderedDict { { "type", CTypeDesc(a) } })
+                            .ToList()
+                    }
+                };
+            }
+
+            foreach (Match match in AbiAliasRegex.Matches(AbiCallbackRegex.Replace(flat, m => new string(' ', m.Length))))
+            {
+                found[match.Index] = new OrderedDict
+                {
+                    { "name", match.Groups[2].Value },
+                    { "kind", "alias" },
+                    { "type", CTypeDesc(match.Groups[1].Value) }
+                };
+            }
+
+            types.AddRange(found.Values);
+            return types;
+        }
+
+        /// <summary>Describes a type as it is spelled in a C declaration.</summary>
+        private static OrderedDict CTypeDesc(string declaration)
+        {
+            int pointers = declaration.Count(c => c == '*');
+            List<string> words = declaration.Replace("*", " ")
+                .Split((char[])null, StringSplitOptions.RemoveEmptyEntries).ToList();
+            bool isConst = words.Remove("const");
+
+            var result = new OrderedDict { { "name", string.Join(" ", words) } };
+            if (pointers > 0)
+            {
+                result.Add("pointers", (long) pointers);
+            }
+            if (isConst)
+            {
+                result.Add("is_const", true);
+            }
+            return result;
         }
 
         /// <summary>Describes an argument from its C++ declaration, in the shape the parsed

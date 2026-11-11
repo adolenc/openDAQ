@@ -155,7 +155,8 @@ part of the exported API and have nothing to bind.
 ## What is written by hand, and why
 
 - **`ccommon.h`**: the ABI types. They mirror `coretypes/common.h` and change about as often as the
-  ABI does.
+  ABI does. The JSON generator reads them off this header into the `types` section of
+  `opendaq.json`, so a typedef added here is described there without further ado.
 - **`ccoretypes/base_object.h`**: `IUnknown` (`queryInterface`, `addRef`, `releaseRef`) and
   `IBaseObject` (`borrowInterface`, `dispose`, `getHashCode`, `equals`, `toString`,
   `createBaseObject`). Their names follow the rules, but the header adds inline conveniences
