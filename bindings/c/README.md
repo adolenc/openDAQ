@@ -65,7 +65,7 @@ removed by the next run.
 
 The bindings used to be generated from a list of headers kept by hand in `run_rtgen.sh` and
 `CMakeLists.txt`, with a number of files then corrected by hand. Relative to that state (upstream
-`main`), the C API grew from 1730 to 1837 functions. Everything below is now produced by the
+`main`), the C API grew from 1730 to 1835 functions. Everything below is now produced by the
 generator unless marked hand-written.
 
 **Interfaces that were not on the list** and are now discovered automatically:
@@ -146,7 +146,8 @@ The C API is the C++ API minus the following. `opendaq.json` does not describe t
 **Two factories declared under a preprocessor conditional**: `createWinDebugLoggerSink`
 (`#ifdef _WIN32`) and `createMiMallocAllocator` (`#ifdef OPENDAQ_MIMALLOC_SUPPORT`) only exist in
 some builds of the core. They are left out, so that the C bindings export the same functions on
-every platform and in every configuration. The generator finds such factories by itself
+every platform and in every configuration. (Upstream declared the first under `#ifdef _WIN32` by
+hand and had the second commented out.) The generator finds such factories by itself
 (`RTGen.Shared/PreprocessorConditions.cs`).
 
 **C++ conveniences with no ABI of their own**: templates, smart pointers and inline helpers are not
