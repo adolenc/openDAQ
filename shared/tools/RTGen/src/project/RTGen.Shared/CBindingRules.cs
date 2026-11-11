@@ -8,8 +8,8 @@ namespace RTGen.Shared
 {
     /// <summary>
     /// What the C bindings contain and how their symbols are named. The C generator emits by these rules
-    /// and the JSON generator records their outcome, so the API description always states exactly the
-    /// symbols the C library exports.
+    /// and the JSON generator describes their outcome, so the API description is a description of exactly
+    /// what the C library exports.
     /// </summary>
     internal static class CBindingRules
     {
@@ -75,6 +75,27 @@ namespace RTGen.Shared
         /// </summary>
         public static readonly ISet<string> EnumsWithUnprefixedOptions = new HashSet<string> { "CoreType", "LockingStrategy" };
 
+        /// <summary>
+        /// Arguments of the hand written functions whose C declaration is not the mechanical translation of
+        /// the C++ one, keyed by "Interface::method": the C++ type and the name of each argument as the C
+        /// header declares them. The interface queries return the object through a typed
+        /// <c>daqBaseObject**</c> where C++ has an untyped <c>void**</c>.
+        /// </summary>
+        public static readonly IDictionary<string, KeyValuePair<string, string>[]> HandWrittenArguments =
+            new Dictionary<string, KeyValuePair<string, string>[]>
+            {
+                ["IUnknown::queryInterface"] = new[]
+                {
+                    new KeyValuePair<string, string>("const IntfID&", "intfId"),
+                    new KeyValuePair<string, string>("IBaseObject**", "interfacePtr")
+                },
+                ["IBaseObject::borrowInterface"] = new[]
+                {
+                    new KeyValuePair<string, string>("const IntfID&", "intfId"),
+                    new KeyValuePair<string, string>("IBaseObject**", "interfacePtr")
+                }
+            };
+
         /// <summary>A function of the C bindings that has no counterpart in the C++ API.</summary>
         public class HandWrittenFactory
         {
@@ -129,6 +150,27 @@ namespace RTGen.Shared
             return $"{InterfaceTypeName(interfaceName)}_{memberName}";
         }
 
+        /// <summary>The C spelling of a type that appears in a signature.</summary>
+        /// <param name="cppName">Name in the C++ API, without namespace: "IString", "Bool", "SampleType".</param>
+        /// <param name="enumNames">Names of the enums of the API.</param>
+        public static string TypeName(string cppName, ISet<string> enumNames)
+        {
+            if (enumNames.Contains(cppName))
+            {
+                return EnumTypeName(cppName);
+            }
+            if (ValueTypeNames.TryGetValue(cppName, out string renamed))
+            {
+                return Prefix + renamed;
+            }
+            if (InterfaceNameRegex.IsMatch(cppName))
+            {
+                return InterfaceTypeName(cppName);
+            }
+            // C's own types (void, int) are spelled the same; openDAQ's value types get the prefix.
+            return char.IsLower(cppName[0]) ? cppName : Prefix + cppName;
+        }
+
         /// <summary>The C name of an enum: "SampleType" gives "daqSampleType".</summary>
         public static string EnumTypeName(string enumName)
         {
@@ -143,6 +185,16 @@ namespace RTGen.Shared
                        : Prefix + enumName + optionName;
         }
 
+        /// <summary>The C name of a status code. The core prefixes them with "OPENDAQ_", the C bindings
+        /// with "DAQ_": "OPENDAQ_ERR_NOTFOUND" gives "DAQ_ERR_NOTFOUND".</summary>
+        public static string StatusName(string coreName)
+        {
+            const string corePrefix = "OPENDAQ_";
+            return coreName.StartsWith(corePrefix, StringComparison.Ordinal)
+                       ? "DAQ_" + coreName.Substring(corePrefix.Length)
+                       : coreName;
+        }
+
         /// <summary>The C function that returns the interface id.</summary>
         public static string InterfaceIdSymbol(string interfaceName)
         {
@@ -155,10 +207,17 @@ namespace RTGen.Shared
         /// </summary>
         public static string FunctionSymbol(string interfaceName, string functionName)
         {
+            return MemberSymbol(interfaceName, FunctionMemberName(functionName));
+        }
+
+        /// <summary>The name a freestanding function goes by as a member of its interface:
+        /// "daqSetErrorInfo" gives "setErrorInfo".</summary>
+        public static string FunctionMemberName(string functionName)
+        {
             string name = functionName.StartsWith(Prefix, StringComparison.Ordinal) && functionName.Length > Prefix.Length
                               ? functionName.Substring(Prefix.Length)
                               : functionName;
-            return MemberSymbol(interfaceName, char.ToLowerInvariant(name[0]) + name.Substring(1));
+            return char.ToLowerInvariant(name[0]) + name.Substring(1);
         }
 
         /// <summary>Whether every type in the signature of the function can be spelled in C.</summary>

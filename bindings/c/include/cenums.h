@@ -39,6 +39,25 @@ extern "C"
         daqAddressReachabilityStatusUnreachable = 2
     } daqAddressReachabilityStatus;
 
+    typedef enum daqCCoreType
+    {
+        daqCtBool = 0,
+        daqCtInt = 1,
+        daqCtFloat = 2,
+        daqCtString = 3,
+        daqCtList = 4,
+        daqCtDict = 5,
+        daqCtRatio = 6,
+        daqCtProc = 7,
+        daqCtObject = 8,
+        daqCtBinaryData = 9,
+        daqCtFunc = 10,
+        daqCtComplexNumber = 11,
+        daqCtStruct = 12,
+        daqCtEnumeration = 13,
+        daqCtUndefined = 65535
+    } daqCCoreType;
+
     typedef enum daqComponentStatus
     {
         daqComponentStatusOk = 0,
@@ -78,25 +97,6 @@ extern "C"
         daqCoreEventIdDeviceOperationModeChanged = 180,
         daqCoreEventIdPropertyOrderChanged = 190
     } daqCoreEventId;
-
-    typedef enum daqCCoreType
-    {
-        daqCtBool = 0,
-        daqCtInt = 1,
-        daqCtFloat = 2,
-        daqCtString = 3,
-        daqCtList = 4,
-        daqCtDict = 5,
-        daqCtRatio = 6,
-        daqCtProc = 7,
-        daqCtObject = 8,
-        daqCtBinaryData = 9,
-        daqCtFunc = 10,
-        daqCtComplexNumber = 11,
-        daqCtStruct = 12,
-        daqCtEnumeration = 13,
-        daqCtUndefined = 65535
-    } daqCCoreType;
 
     typedef enum daqDataRuleType
     {

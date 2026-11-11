@@ -116,7 +116,7 @@ namespace RTGen.Json.Generators
             var parser = new CppParser();
             Dictionary<string, long> macros = ScanNumericMacros(coreRoot);
             var parserOptions = (IParserOptions)Options;
-            var exportedFunctions = new List<OrderedDict>();
+            var functions = new List<OrderedDict>();
             int parsedCount = 0;
             int failedCount = 0;
 
@@ -145,19 +145,18 @@ namespace RTGen.Json.Generators
 
                 coveredSources.Add(Path.GetFileName(header));
 
-                // The C bindings wrap a freestanding function under the name of the interface its
-                // header declares (the last one, should there be several).
+                // The C bindings expose a freestanding function as a member of the interface its
+                // header declares (the last one, should there be several), and leave out one whose
+                // signature C cannot express.
                 string owner = DictItems(data.GetList("interfaces"))
                     .Select(i => i.GetString("name"))
                     .LastOrDefault(name => name != HeaderSanitizer.PlaceholderInterface);
                 foreach (ExportedFunction function in exported)
                 {
-                    OrderedDict described = BuildExportedFunction(function, header, library);
                     if (owner != null && IsGeneratedForC(header) && CBindingRules.IsBindable(function))
                     {
-                        described.Add("c_symbol", CBindingRules.FunctionSymbol(owner, function.Name));
+                        functions.Add(BuildExportedFunction(function, owner, header, library));
                     }
-                    exportedFunctions.Add(described);
                 }
 
                 IDictionary<string, string> factoryConditions =
@@ -227,9 +226,9 @@ namespace RTGen.Json.Generators
             VerifyInterfaceIds(interfacesByName);
             AssignVtableSlots(interfaces, interfacesByName);
             string callingConvention = HoistCallingConvention(interfaces);
-            // Before the factories are nested, while each still says which header declares it.
-            AddCBindingNames(interfaces, factories.Values);
-            List<object> unmatchedFactories = NestFactories(factories, interfacesByName);
+            ApplyHandWrittenArguments(interfacesByName);
+            NestMembers("factories", factories.Values, interfacesByName);
+            NestMembers("functions", functions, interfacesByName);
 
             // The supplemental scan sweeps every header under the include roots, which
             // also finds internal enums (eval-value lexer/parser, sha1, type traits).
@@ -245,37 +244,38 @@ namespace RTGen.Json.Generators
                 }
             }
 
-            AddCEnumNames(enums.Values);
+            // Everything so far describes the C++ API. What is written out describes the C bindings:
+            // only what they contain, under the names it has there.
+            string unboundReason;
+            interfaces.RemoveAll(i => CBindingRules.IsUnbound(i.GetString("header"), out unboundReason));
+            List<object> errorCodes = ScanErrorCodes(coreRoot);
+            SpellInC(interfaces, enums.Values, errorCodes);
 
             var root = new OrderedDict
             {
                 { "schema", "opendaq-bindings/1" },
-                { "namespace", DefaultNamespace },
                 {
                     "abi", new OrderedDict
                     {
                         { "calling_convention", callingConvention == "stdcall"
                             ? "INTERFACE_FUNC: __stdcall on 32-bit Windows, platform default elsewhere"
                             : callingConvention },
-                        { "intf_id_scheme", "RFC 4122 UUIDv5, DNS namespace, name '<Interface>.<namespace>'" },
+                        { "intf_id_scheme", "RFC 4122 UUIDv5, DNS namespace, of the C++ interface name: "
+                                            + "'IString.daq' for daqString" },
                         { "vtable", "single inheritance, declaration order; absolute_vtable_slot indexes the "
                                     + "whole vtable, relative_vtable_slot only the interface's own methods" }
                     }
                 },
                 { "interfaces", interfaces.OrderBy(i => i.GetString("name"), StringComparer.Ordinal).ToList<object>() },
                 { "enums", enums.Values.OrderBy(e => e.GetString("name"), StringComparer.Ordinal).ToList<object>() },
-                { "functions", exportedFunctions
-                    .OrderBy(f => f.GetString("name"), StringComparer.Ordinal).ToList<object>() },
-                { "error_codes", ScanErrorCodes(coreRoot) }
+                { "error_codes", errorCodes }
             };
-            if (unmatchedFactories.Count > 0)
-            {
-                root.Add("factories", unmatchedFactories);
-            }
 
+            Func<string, int> count = key => interfaces.Sum(i => i.GetList(key)?.Count ?? 0);
             summary = $"Parsed {parsedCount} headers ({failedCount} parse failures, expected: see README.md); "
-                      + $"linked {interfaces.Count} interfaces, {enums.Count} enums, "
-                      + $"{factories.Count} factories, {((List<object>)root.Get("error_codes")).Count} error codes";
+                      + $"described {interfaces.Count} interfaces, {count("methods")} methods, "
+                      + $"{count("factories")} factories, {count("functions")} functions, {enums.Count} enums, "
+                      + $"{errorCodes.Count} status codes";
             return root;
         }
 
@@ -351,46 +351,41 @@ namespace RTGen.Json.Generators
             }
         }
 
-        /// <summary>Moves every factory into the interface it constructs (factories are
-        /// declared next to their main interface and act as its constructors). Provenance
-        /// is kept on the factory only when it differs from the interface's; factories
-        /// whose interface is unknown stay top-level.</summary>
-        private static List<object> NestFactories(Dictionary<string, OrderedDict> factories,
-                                                  Dictionary<string, OrderedDict> interfacesByName)
+        /// <summary>Moves every factory and every freestanding function into the interface it
+        /// belongs to: a factory to the interface it constructs, a function to the interface whose
+        /// header declares it. Provenance is kept on the member only when it differs from the
+        /// interface's. A member whose interface is unknown cannot be named and is left out.</summary>
+        private static void NestMembers(string key, IEnumerable<OrderedDict> members,
+                                        Dictionary<string, OrderedDict> interfacesByName)
         {
-            var unmatched = new List<object>();
-            foreach (OrderedDict factory in factories.Values
-                .OrderBy(f => f.GetString("name"), StringComparer.Ordinal))
+            foreach (OrderedDict member in members.OrderBy(m => m.GetString("name"), StringComparer.Ordinal))
             {
-                string interfaceName = factory.GetString("interface");
+                string interfaceName = member.GetString("interface");
                 OrderedDict iface;
                 if (!interfacesByName.TryGetValue(interfaceName, out iface))
                 {
-                    Log.Warning($"Factory {factory.GetString("name")}: constructed interface "
-                                + $"{interfaceName} not found, kept top-level.");
-                    unmatched.Add(factory);
+                    Log.Warning($"{member.GetString("name")}: interface {interfaceName} not found, left out.");
                     continue;
                 }
 
-                factory.Remove("interface");
-                if (factory.GetString("header") == iface.GetString("header"))
+                member.Remove("interface");
+                if (member.GetString("header") == iface.GetString("header"))
                 {
-                    factory.Remove("header");
+                    member.Remove("header");
                 }
-                if (factory.GetString("library") == iface.GetString("library"))
+                if (member.GetString("library") == iface.GetString("library"))
                 {
-                    factory.Remove("library");
+                    member.Remove("library");
                 }
 
-                List<object> list = iface.GetList("factories");
+                List<object> list = iface.GetList(key);
                 if (list == null)
                 {
                     list = new List<object>();
-                    iface.Add("factories", list);
+                    iface.Add(key, list);
                 }
-                list.Add(factory);
+                list.Add(member);
             }
-            return unmatched;
         }
 
         /// <summary>All type names appearing in method/factory signatures (including
@@ -480,23 +475,19 @@ namespace RTGen.Json.Generators
             return conventions.FirstOrDefault() ?? "stdcall";
         }
 
-        private static OrderedDict BuildExportedFunction(ExportedFunction function, string header, string library)
+        private static OrderedDict BuildExportedFunction(ExportedFunction function, string owner,
+                                                         string header, string library)
         {
-            var arguments = new List<object>();
-            foreach (KeyValuePair<string, string> argument in function.Arguments)
-            {
-                arguments.Add(new OrderedDict
-                {
-                    { "name", argument.Value },
-                    { "type", CppTypeDesc(argument.Key) }
-                });
-            }
-
             return new OrderedDict
             {
-                { "name", function.Name },
+                { "name", CBindingRules.FunctionMemberName(function.Name) },
                 { "return_type", CppTypeDesc(function.ReturnType) },
-                { "arguments", arguments },
+                { "interface", owner },
+                {
+                    "arguments", function.Arguments
+                        .Select(a => (object) BuildDeclaredArgument(a.Key, a.Value))
+                        .ToList()
+                },
                 { "library", library },
                 { "header", header }
             };
@@ -716,70 +707,117 @@ namespace RTGen.Json.Generators
             return !CBindingRules.IsUnbound(header, out reason) && !CBindingRules.IsHandWritten(header, out reason);
         }
 
-        /// <summary>Records the name everything has in the C bindings, by the rules the C generator
-        /// emits them with (<see cref="CBindingRules"/>). An entity without a C name is not part of
-        /// the C bindings.</summary>
-        private static void AddCBindingNames(List<OrderedDict> interfaces, IEnumerable<OrderedDict> factories)
+        /// <summary>Gives the hand written C functions whose declaration is not the mechanical
+        /// translation of the C++ one the arguments the C header declares.</summary>
+        private static void ApplyHandWrittenArguments(Dictionary<string, OrderedDict> interfacesByName)
         {
-            string reason;
-            foreach (OrderedDict iface in interfaces)
+            foreach (KeyValuePair<string, KeyValuePair<string, string>[]> entry in CBindingRules.HandWrittenArguments)
             {
-                if (CBindingRules.IsUnbound(iface.GetString("header"), out reason))
+                string[] parts = entry.Key.Split(new[] { "::" }, StringSplitOptions.None);
+                OrderedDict iface;
+                OrderedDict method = interfacesByName.TryGetValue(parts[0], out iface)
+                    ? DictItems(iface.GetList("methods")).FirstOrDefault(m => m.GetString("name") == parts[1])
+                    : null;
+                if (method == null)
                 {
+                    Log.Warning($"{entry.Key}: declared as hand written but not found in the core headers.");
                     continue;
                 }
-                string name = iface.GetString("name");
-                iface.Add("c_name", CBindingRules.InterfaceTypeName(name));
-                iface.Add("c_interface_id_symbol", CBindingRules.InterfaceIdSymbol(name));
-                foreach (OrderedDict method in DictItems(iface.GetList("methods")))
-                {
-                    method.Add("c_symbol", CBindingRules.MemberSymbol(name, method.GetString("name")));
-                }
-            }
-
-            foreach (OrderedDict factory in factories)
-            {
-                if (!CBindingRules.IsUnbound(factory.GetString("header"), out reason))
-                {
-                    factory.Set("c_symbol", CBindingRules.MemberSymbol(factory.GetString("interface"),
-                                                                       factory.GetString("name")));
-                }
+                method.Set("arguments", entry.Value
+                    .Select(a => BuildDeclaredArgument(a.Key, a.Value))
+                    .ToList<object>());
             }
         }
 
-        private static void AddCEnumNames(IEnumerable<OrderedDict> enums)
+        /// <summary>Renames everything from its name in the C++ API to its name in the C bindings,
+        /// by the rules the C generator emits them with (<see cref="CBindingRules"/>).</summary>
+        private static void SpellInC(List<OrderedDict> interfaces, IEnumerable<OrderedDict> enums,
+                                     List<object> errorCodes)
         {
+            var enumNames = new HashSet<string>(enums.Select(e => e.GetString("name")));
+
+            Action<OrderedDict> spellType = type =>
+            {
+                if (type == null)
+                {
+                    return;
+                }
+                type.Set("name", CBindingRules.TypeName(type.GetString("name"), enumNames));
+                foreach (string element in new[] { "key_type", "value_type", "sender_type", "args_type" })
+                {
+                    if (type.GetString(element) != null)
+                    {
+                        type.Set(element, CBindingRules.TypeName(type.GetString(element), enumNames));
+                    }
+                }
+            };
+
+            foreach (OrderedDict iface in interfaces)
+            {
+                foreach (string key in new[] { "methods", "factories", "functions" })
+                {
+                    foreach (OrderedDict member in DictItems(iface.GetList(key)))
+                    {
+                        spellType(member.GetDict("return_type"));
+                        foreach (OrderedDict argument in DictItems(member.GetList("arguments")))
+                        {
+                            spellType(argument.GetDict("type"));
+                        }
+                    }
+                }
+                iface.Set("name", CBindingRules.InterfaceTypeName(iface.GetString("name")));
+                if (iface.GetString("base") != null)
+                {
+                    iface.Set("base", CBindingRules.InterfaceTypeName(iface.GetString("base")));
+                }
+            }
+
             foreach (OrderedDict enumeration in enums)
             {
                 string name = enumeration.GetString("name");
-                enumeration.Add("c_name", CBindingRules.EnumTypeName(name));
                 foreach (OrderedDict option in DictItems(enumeration.GetList("options")))
                 {
-                    option.Add("c_name", CBindingRules.EnumOptionName(name, option.GetString("name")));
+                    option.Set("name", CBindingRules.EnumOptionName(name, option.GetString("name")));
                 }
+                enumeration.Set("name", CBindingRules.EnumTypeName(name));
             }
+
+            foreach (OrderedDict code in errorCodes.OfType<OrderedDict>())
+            {
+                code.Set("name", CBindingRules.StatusName(code.GetString("name")));
+            }
+        }
+
+        /// <summary>Describes an argument from its C++ declaration, in the shape the parsed
+        /// arguments have.</summary>
+        private static OrderedDict BuildDeclaredArgument(string declaration, string name)
+        {
+            OrderedDict type = CppTypeDesc(declaration);
+            bool isConst = type.Get("is_const") != null;
+            type.Remove("is_const");
+            if (declaration.Contains("&"))
+            {
+                type.Add("is_reference", true);
+            }
+
+            var argument = new OrderedDict
+            {
+                { "name", name },
+                { "type", type },
+                // An interface is passed as a pointer, so a pointer to that returns one.
+                { "direction", declaration.Count(c => c == '*') >= 2 ? "out" : "in" }
+            };
+            if (isConst)
+            {
+                argument.Add("is_const", true);
+            }
+            return argument;
         }
 
         private static OrderedDict BuildHandWrittenFactory(CBindingRules.HandWrittenFactory factory)
         {
-            var arguments = new List<object>
-            {
-                new OrderedDict
-                {
-                    { "name", "obj" },
-                    { "type", new OrderedDict { { "name", factory.Interface }, { "pointers", 2L } } },
-                    { "direction", "out" }
-                }
-            };
-            foreach (KeyValuePair<string, string> argument in factory.Arguments)
-            {
-                arguments.Add(new OrderedDict
-                {
-                    { "name", argument.Value },
-                    { "type", CppTypeDesc(argument.Key) },
-                    { "direction", "in" }
-                });
-            }
+            var arguments = new List<object> { BuildDeclaredArgument(factory.Interface + "**", "obj") };
+            arguments.AddRange(factory.Arguments.Select(a => (object) BuildDeclaredArgument(a.Key, a.Value)));
             return new OrderedDict
             {
                 { "name", factory.Name },
@@ -787,7 +825,6 @@ namespace RTGen.Json.Generators
                 { "interface", factory.Interface },
                 { "arguments", arguments },
                 { "doc", factory.Doc },
-                { "c_only", true },
                 { "library", "copendaq" },
                 { "header", "bindings/c/include/ccoretypes/factories.h" }
             };

@@ -14,8 +14,8 @@ interface in the core shows up here the next time the generator runs.
 ./run_rtgen.sh          # only regenerates, with the committed RTGen.C.dll (needs mono)
 ```
 
-`../json/opendaq.json` describes the same API in machine-readable form and names the C symbol of
-every method, factory and function. `../json/check_c_bindings.py` verifies that the two agree; run it
+`../json/opendaq.json` describes this C API in machine-readable form: exactly what the library
+exports, under the same names. `../json/check_c_bindings.py` verifies that the two agree; run it
 after regenerating.
 
 ## What is generated, and how it is named
@@ -42,8 +42,8 @@ options already carry the `ct` prefix) and `daqLockingStrategy` (`daqOwnLock`, .
 
 The rules live in one place,
 [`RTGen.Shared/CBindingRules.cs`](../../shared/tools/RTGen/src/project/RTGen.Shared/CBindingRules.cs),
-which is compiled into both the C generator and the JSON generator. That is why the JSON can state
-the C names instead of leaving them to be derived.
+which is compiled into both the C generator and the JSON generator, so that the JSON describes the
+C API under the names the C generator gives it.
 
 ### Files
 
@@ -127,7 +127,7 @@ and the log levels are the `daqLogLevel` enum.
 
 ## What is not in the C bindings, and why
 
-The C API is the C++ API minus the following. `opendaq.json` gives these no `c_name` / `c_symbol`.
+The C API is the C++ API minus the following. `opendaq.json` does not describe them either.
 
 **Six internal interfaces** (`UnboundHeaders` in `CBindingRules.cs`):
 
@@ -158,15 +158,16 @@ part of the exported API and have nothing to bind.
   ABI does.
 - **`ccoretypes/base_object.h`**: `IUnknown` (`queryInterface`, `addRef`, `releaseRef`) and
   `IBaseObject` (`borrowInterface`, `dispose`, `getHashCode`, `equals`, `toString`,
-  `createBaseObject`). Their names follow the rules, but their shape deliberately differs from a
-  mechanical translation: `queryInterface` / `borrowInterface` take the `daqIntfID` by value and
-  return a `daqBaseObject**`, `addRef` / `releaseRef` return `int`, and the header adds inline
-  conveniences (`daqAddRef`, `daqReleaseRef`, `DAQ_QUERY_INTERFACE`, ...).
+  `createBaseObject`). Their names follow the rules, but the header adds inline conveniences
+  (`daqAddRef`, `daqReleaseRef`, `DAQ_QUERY_INTERFACE`, ...), and two declarations deliberately
+  differ from a mechanical translation: `queryInterface` and `borrowInterface` return the object
+  through a typed `daqBaseObject** interfacePtr` where C++ has an untyped `void** obj`. Those two
+  are listed in `CBindingRules.HandWrittenArguments`, so that the JSON describes them as declared.
 - **`ccoretypes/factories.h`**:
   - `daqEventHandler_createEventHandler` adapts a C callback to `IEventHandler`
     (`private/c_event_handler_impl.h`). C++ builds event handlers from templates, so there is no
     exported function to wrap. It is listed in `CBindingRules.HandWrittenFactories` so that the JSON
-    knows about it.
+    describes it.
   - `daqSerializer_createJsonSerializer` and `daqSerializer_createJsonSerializerWithVersion`: the
     core declares these as plain functions in a header without an interface, which the C generator
     does not visit. A new factory of that kind has to be added here by hand;

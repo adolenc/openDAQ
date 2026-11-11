@@ -1,80 +1,76 @@
-# JSON metadata bindings
+# JSON description of the C bindings
 
-[`opendaq.json`](./opendaq.json) contains a machine-readable description of the
-openDAQ C++ API surface - COM-style interfaces with vtable positions,
-`extern "C"` factory symbols, enums and error codes. This is intended as an
-easily parsable up-to-date input for generating external language bindings, an
-alternative to RTGen.
+[`opendaq.json`](./opendaq.json) is a machine-readable description of the
+openDAQ C API (`bindings/c/`): every interface with its methods, factories and
+functions, the enums and the status codes. It describes exactly what the C
+library exports, under the names things have there, so that a binding for
+another language can be generated from this file alone.
+
+It also carries what makes up the shape of openDAQ underneath the C functions:
+the COM-style interface ids, the inheritance, and the position of every method
+in its vtable.
+
+## Names
+
+Everything is spelled as in C: an interface is its opaque handle type
+(`daqStreamReader`), a type in a signature is the C type (`daqCSizeT`,
+`daqSampleType`), an enumerator is the C enumerator (`daqSampleTypeFloat64`), a
+status code the C macro (`DAQ_ERR_NOTFOUND`).
+
+The C functions of an interface follow from its `name` by one rule, without
+exceptions:
+
+| In the JSON | C function |
+| --- | --- |
+| interface `daqStreamReader` | `daqStreamReader_getInterfaceId(daqIntfID* intfId)` returns its `id` |
+| `methods[]`: `read` | `daqStreamReader_read(daqStreamReader* self, <arguments>)` |
+| `factories[]`: `createStreamReader` | `daqStreamReader_createStreamReader(<arguments>)` |
+| `functions[]`: `setErrorInfo` of `daqErrorInfo` | `daqErrorInfo_setErrorInfo(<arguments>)` |
+
+`factories` are the constructors of objects that have the interface as their
+main one; their first argument returns the new object. `functions` are the
+functions the core declares next to an interface without making them methods
+(the error info attached to the calling thread, for one).
 
 ## Schema notes
 
-- The default `namespace` (`daq`) is declared once at top level; a type
-  carries its own `namespace` only when it differs (external `tf`, `spdlog`,
-  `std` types).
-- Methods are called through the vtable at `absolute_vtable_slot`, which
-  counts from the start of the whole vtable; `relative_vtable_slot` counts
-  only the interface's own methods, so the two differ by the size of the
-  inherited vtable (single inheritance, declaration order).
+- A type is its C `name` and its number of `pointers`. An argument marked
+  `is_reference` is a value type that C++ takes by const reference
+  (`const IntfID&`): the C function takes the value itself, a call through the
+  vtable passes its address.
+- Arguments carry their `direction` (`in`, `out` or `inout`), and where the
+  core headers state them a `default_value`, `allow_null`, `steals_reference`
+  and `is_polymorphic`.
 - Container types carry the element types the headers annotate them with:
-  `IList` has a `value_type`, `IDict` a `key_type` and a `value_type` (absent
-  when the header leaves the container untyped). `IEvent` likewise carries the
-  `sender_type` and `args_type` its handlers are called with.
-- `interfaces[].factories` are the constructors for objects that have the
-  corresponding interface as their main one.
-- `functions` are the freestanding `extern "C"` exports that are not tied to
-  an interface (the `daqSetErrorInfo`/`daqGetErrorInfo` error-info helpers and
-  the serializer-factory registry).
-- `error_codes` holds every status a call can return: the `OPENDAQ_ERR_*`
-  errors and the non-error statuses (`OPENDAQ_SUCCESS`, `OPENDAQ_NO_MORE_ITEMS`,
-  ...).
+  `daqList` has a `value_type`, `daqDict` a `key_type` and a `value_type`
+  (absent when the header leaves the container untyped). `daqEvent` likewise
+  carries the `sender_type` and `args_type` its handlers are called with.
+- `interfaces[].id` is the interface id and `base` the interface it extends.
+  Methods are listed in vtable order: `absolute_vtable_slot` counts from the
+  start of the whole vtable, `relative_vtable_slot` only the interface's own
+  methods, so the two differ by the size of the inherited vtable (single
+  inheritance, declaration order). The `abi` section states the calling
+  convention.
+- `error_codes` holds every status a call can return: the `DAQ_ERR_*` errors
+  and the non-error statuses (`DAQ_SUCCESS`, `DAQ_NO_MORE_ITEMS`, ...).
+- `library` and `header` say where in the core something is declared. A member
+  carries them only when they differ from its interface's.
+- `doc` is the documentation comment of the core header, which refers to
+  arguments by the names used here.
 
-## C bindings
+## What is described
 
-Languages that cannot call through vtables go through the C bindings
-(`bindings/c/`), which wrap this same surface. The JSON states the C name of
-everything the C library exports, so a binding generator never has to derive
-or guess one:
+Whatever the C bindings contain, and nothing else. The few parts of the C++ API
+that the C bindings leave out (internal interfaces whose signatures use C++
+only types, factories that exist in some builds only) do not appear;
+`bindings/c/README.md` lists them with the reasons.
 
-- `interfaces[].c_name` is the opaque handle type (`IStreamReader` →
-  `daqStreamReader`), `c_interface_id_symbol` the function returning the
-  interface's `id` (`daqStreamReader_getInterfaceId(daqIntfID*)`; it exists only
-  in the C library, as in C++ the ID is a static constant).
-- `methods[].c_symbol` is the function wrapping the method. It takes `self`, of
-  type `<c_name>*`, followed by the method's arguments:
-  `daqStreamReader_read(self, samples, count, timeoutMs, status)`.
-- `factories[].c_symbol` is the function wrapping the factory, with the
-  factory's own arguments. A factory marked `c_only` exists in the C bindings
-  alone. Factories the core only declares under a preprocessor conditional
-  (`createWinDebugLoggerSink`) are not listed at all, as they are not part of
-  the C bindings.
-- `functions[].c_symbol` is the function wrapping a freestanding function
-  (`daqSetErrorInfo` → `daqErrorInfo_setErrorInfo`).
-- `enums[].c_name` and `enums[].options[].c_name` are the C enum and its
-  enumerators.
-
-**Whatever has no `c_name` / `c_symbol` is not part of the C bindings.** That is
-the case for a handful of internal interfaces whose signatures use C++ only
-types; `bindings/c/README.md` lists them with the reasons.
-
-The names follow from the rules in
-[`CBindingRules.cs`](../../shared/tools/RTGen/src/project/RTGen.Shared/CBindingRules.cs),
-which is compiled into both this generator and the C bindings generator, and
-`check_c_bindings.py` verifies that the JSON and the C headers agree symbol for
-symbol.
-
-Argument types translate to C as follows: an interface `IFoo` is the opaque
-`daqFoo` with the same number of pointers; the aliases of C fundamental types
-get a `daqC` prefix (`Bool` → `daqCBool`, `Int` → `daqCInt`, `SizeT` →
-`daqCSizeT`, ...); other value types and enums a plain `daq` prefix
-(`ErrCode` → `daqErrCode`, `IntfID` → `daqIntfID`, `SampleType` →
-`daqSampleType`). A const reference to a value type (`const IntfID&`) is passed
-by value.
-
-## Known gaps
-
-- The two interfaces with overloaded methods (`IDataRuleCalcPrivate`,
-  `IScalingCalcPrivate`): MSVC lays out adjacent overloads in reverse
-  declaration order, so those slots are compiler-dependent.
+Both this file and the C bindings are generated from the core C++ headers, and
+name things by the same code,
+[`CBindingRules.cs`](../../shared/tools/RTGen/src/project/RTGen.Shared/CBindingRules.cs).
+`check_c_bindings.py` verifies the outcome: that every function described here
+is declared in the C headers with the same signature and the other way around,
+and that the enums and status codes agree by name and value.
 
 ## Regenerating the JSON
 

@@ -13,9 +13,10 @@ namespace RTGen.C
     /// the enums ("cenums.h") and the status codes ("cerrors.h").
     /// </summary>
     /// <remarks>
-    /// Both are taken from the linked API description the JSON generator builds, which already knows which
-    /// enums the API uses and what every status code evaluates to. Generating them keeps the C bindings
-    /// from falling behind the core, which the hand written copies they replace did.
+    /// Both are taken from the API description the JSON generator builds, which already knows which enums
+    /// the API uses, what every status code evaluates to, and what each of them is called in C. Generating
+    /// them keeps the C bindings from falling behind the core, which the hand written copies they replace
+    /// did.
     /// </remarks>
     internal static class CTreeHeaders
     {
@@ -76,7 +77,7 @@ namespace RTGen.C
 
             foreach (OrderedDict enumeration in api.GetList("enums").OfType<OrderedDict>())
             {
-                string name = enumeration.GetString("c_name");
+                string name = enumeration.GetString("name");
                 List<OrderedDict> options = enumeration.GetList("options").OfType<OrderedDict>().ToList();
 
                 sb.AppendLine();
@@ -87,7 +88,7 @@ namespace RTGen.C
                     // An option the core spells as an expression has no value in the description.
                     object value = options[i].Get("value") ?? options[i].Get("raw_value");
                     string separator = i == options.Count - 1 ? "" : ",";
-                    sb.AppendLine($"        {options[i].GetString("c_name")} = {value}{separator}");
+                    sb.AppendLine($"        {options[i].GetString("name")} = {value}{separator}");
                 }
                 sb.AppendLine($"    }} {name};");
             }
@@ -111,7 +112,7 @@ namespace RTGen.C
             sb.AppendLine();
 
             List<OrderedDict> codes = api.GetList("error_codes").OfType<OrderedDict>().ToList();
-            List<string> names = codes.Select(c => GetStatusName(c.GetString("name"))).ToList();
+            List<string> names = codes.Select(c => c.GetString("name")).ToList();
             int width = names.Max(n => n.Length);
             for (int i = 0; i < codes.Count; i++)
             {
@@ -119,15 +120,6 @@ namespace RTGen.C
                 sb.AppendLine($"#define {names[i].PadRight(width)} 0x{code:X8}u");
             }
             return sb.ToString();
-        }
-
-        /// <summary>The core prefixes its status codes with "OPENDAQ_", the C bindings with "DAQ_".</summary>
-        private static string GetStatusName(string coreName)
-        {
-            const string corePrefix = "OPENDAQ_";
-            return coreName.StartsWith(corePrefix, StringComparison.Ordinal)
-                       ? "DAQ_" + coreName.Substring(corePrefix.Length)
-                       : coreName;
         }
     }
 }
