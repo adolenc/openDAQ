@@ -43,10 +43,10 @@ or guess one:
   type `<c_name>*`, followed by the method's arguments:
   `daqStreamReader_read(self, samples, count, timeoutMs, status)`.
 - `factories[].c_symbol` is the function wrapping the factory, with the
-  factory's own arguments. A factory with a `condition` is only compiled into
-  the libraries when that preprocessor condition holds
-  (`createWinDebugLoggerSink`: `defined(_WIN32)`), so it cannot be relied on to
-  be present. A factory marked `c_only` exists in the C bindings alone.
+  factory's own arguments. A factory marked `c_only` exists in the C bindings
+  alone. Factories the core only declares under a preprocessor conditional
+  (`createWinDebugLoggerSink`) are not listed at all, as they are not part of
+  the C bindings.
 - `functions[].c_symbol` is the function wrapping a freestanding function
   (`daqSetErrorInfo` → `daqErrorInfo_setErrorInfo`).
 - `enums[].c_name` and `enums[].options[].c_name` are the C enum and its

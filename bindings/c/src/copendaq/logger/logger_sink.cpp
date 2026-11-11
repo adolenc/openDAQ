@@ -79,13 +79,3 @@ daqErrCode daqLoggerSink_createBasicFileLoggerSink(daqLoggerSink** obj, daqStrin
     *obj = reinterpret_cast<daqLoggerSink*>(ptr);
     return err;
 }
-
-#if defined(_WIN32)
-daqErrCode daqLoggerSink_createWinDebugLoggerSink(daqLoggerSink** obj)
-{
-    daq::ILoggerSink* ptr = nullptr;
-    daqErrCode err = daq::createWinDebugLoggerSink(&ptr);
-    *obj = reinterpret_cast<daqLoggerSink*>(ptr);
-    return err;
-}
-#endif

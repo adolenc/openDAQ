@@ -508,24 +508,6 @@
             }
           ],
           "c_symbol": "daqAllocator_createMallocAllocator"
-        },
-        {
-          "name": "createMiMallocAllocator",
-          "return_type": {
-            "name": "ErrCode"
-          },
-          "arguments": [
-            {
-              "name": "obj",
-              "type": {
-                "name": "IAllocator",
-                "pointers": 2
-              },
-              "direction": "out"
-            }
-          ],
-          "condition": "defined(OPENDAQ_MIMALLOC_SUPPORT)",
-          "c_symbol": "daqAllocator_createMiMallocAllocator"
         }
       ]
     },
@@ -20230,24 +20212,6 @@
             }
           ],
           "c_symbol": "daqLoggerSink_createStdOutLoggerSink"
-        },
-        {
-          "name": "createWinDebugLoggerSink",
-          "return_type": {
-            "name": "ErrCode"
-          },
-          "arguments": [
-            {
-              "name": "obj",
-              "type": {
-                "name": "ILoggerSink",
-                "pointers": 2
-              },
-              "direction": "out"
-            }
-          ],
-          "condition": "defined(_WIN32)",
-          "c_symbol": "daqLoggerSink_createWinDebugLoggerSink"
         }
       ]
     },

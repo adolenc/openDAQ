@@ -8,8 +8,8 @@ namespace RTGen.Shared
     /// <summary>Finds the factories a header declares only under a preprocessor condition.</summary>
     /// <remarks>
     /// The parser does not preserve conditionals, so to it a factory inside <c>#ifdef _WIN32</c> looks
-    /// like any other. Such a factory only exists in the core when the condition holds, and whatever is
-    /// generated for it has to be guarded by the same condition.
+    /// like any other. Such a factory only exists in the core when the condition holds, so the
+    /// generators need to know about it to leave it out.
     /// </remarks>
     internal static class PreprocessorConditions
     {

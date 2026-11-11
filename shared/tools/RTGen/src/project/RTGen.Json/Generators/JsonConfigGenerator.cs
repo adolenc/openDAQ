@@ -190,10 +190,10 @@ namespace RTGen.Json.Generators
                     factory.Set("library", library);
                     factory.Set("header", header);
                     string factoryName = factory.GetString("name");
-                    string condition;
-                    if (factoryConditions.TryGetValue(factoryName, out condition))
+                    if (factoryConditions.ContainsKey(factoryName))
                     {
-                        factory.Set("condition", condition);
+                        // Only exists in some builds of the core, so the C bindings leave it out.
+                        continue;
                     }
                     if (factories.ContainsKey(factoryName))
                     {

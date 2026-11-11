@@ -50,9 +50,6 @@ namespace RTGen.C.Generators
         protected GeneratorType _generatorType = GeneratorType.Header;
         /// <summary>Exact file to write, used when generating a whole tree at once.</summary>
         protected string _outputPathOverride;
-        /// <summary>Preprocessor condition of each factory the header declares conditionally.</summary>
-        protected IDictionary<string, string> _factoryConditions = new Dictionary<string, string>();
-
         /// <summary>Freestanding extern "C" functions the header declares next to its interface.</summary>
         protected IList<ExportedFunction> _exportedFunctions = new List<ExportedFunction>();
 
@@ -218,8 +215,20 @@ namespace RTGen.C.Generators
                     continue;
                 }
 
+                // A factory declared under a preprocessor conditional exists in some builds of the core
+                // only, so it is left out: the C bindings export the same functions everywhere.
                 IDictionary<string, string> factoryConditions =
                     PreprocessorConditions.OfFactories(File.ReadAllText(target.HeaderPath));
+                // Removed by position: factories of one interface compare equal to each other.
+                for (int i = parsed.Factories.Count - 1; i >= 0; i--)
+                {
+                    string factoryName = parsed.Factories[i].Name;
+                    if (factoryConditions.ContainsKey(factoryName))
+                    {
+                        Log.Info($"not bound {factoryName}: only declared when {factoryConditions[factoryName]}");
+                        parsed.Factories.RemoveAt(i);
+                    }
+                }
 
                 if (parsed.Classes.Count == 0 && parsed.Factories.Count == 0)
                 {
@@ -248,7 +257,6 @@ namespace RTGen.C.Generators
                         Options = fileOptions,
                         RtFile = parsed,
                         _outputPathOverride = output.Path,
-                        _factoryConditions = factoryConditions,
                         _exportedFunctions = exportedFunctions
                     };
                     generator.GenerateFile(templatePath);
@@ -693,17 +701,7 @@ namespace RTGen.C.Generators
                     return ReplaceVariable(variable, GeneratorType.Header, factoryClass, factory, templatePath);
                 });
 
-                //a factory that only exists under a preprocessor condition is declared under the same one
-                bool conditional = _factoryConditions.TryGetValue(factory.Name, out string condition);
-                if (conditional)
-                {
-                    methods.AppendLine($"#if {condition}");
-                }
                 methods.AppendLine(base.Indentation + generatedFactory);
-                if (conditional)
-                {
-                    methods.AppendLine("#endif");
-                }
             }
 
             AppendExportedFunctions(methods, GeneratorType.Header);
@@ -850,11 +848,6 @@ namespace RTGen.C.Generators
                     ReplaceVariable(m.Groups[1].Value, GeneratorType.Source, factoryClass, factory, templatePath)
                 );
 
-                bool conditional = _factoryConditions.TryGetValue(factory.Name, out string condition);
-                if (conditional)
-                {
-                    methods.AppendLine($"#if {condition}");
-                }
                 methods.AppendLine(generatedFactory);
                 methods.AppendLine("{");
                 methods.AppendLine(base.Indentation + objectPointer);
@@ -862,10 +855,6 @@ namespace RTGen.C.Generators
                 methods.AppendLine(base.Indentation + objectPointerCast);
                 methods.AppendLine(base.Indentation + returnErrorTemplate);
                 methods.AppendLine("}");
-                if (conditional)
-                {
-                    methods.AppendLine("#endif");
-                }
                 methods.AppendLine();
             }
             AppendExportedFunctions(methods, GeneratorType.Source);

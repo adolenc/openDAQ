@@ -41,16 +41,6 @@ daqErrCode daqAllocator_createMallocAllocator(daqAllocator** obj)
     return err;
 }
 
-#if defined(OPENDAQ_MIMALLOC_SUPPORT)
-daqErrCode daqAllocator_createMiMallocAllocator(daqAllocator** obj)
-{
-    daq::IAllocator* ptr = nullptr;
-    daqErrCode err = daq::createMiMallocAllocator(&ptr);
-    *obj = reinterpret_cast<daqAllocator*>(ptr);
-    return err;
-}
-#endif
-
 daqErrCode daqAllocator_createExternalAllocator(daqAllocator** obj, void* data, daqDeleter* deleter)
 {
     daq::IAllocator* ptr = nullptr;

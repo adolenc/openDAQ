@@ -49,9 +49,6 @@ extern "C"
     daqErrCode EXPORTED daqLoggerSink_createStdOutLoggerSink(daqLoggerSink** obj);
     daqErrCode EXPORTED daqLoggerSink_createRotatingFileLoggerSink(daqLoggerSink** obj, daqString* fileName, daqCSizeT maxFileByteSize, daqCSizeT maxFiles);
     daqErrCode EXPORTED daqLoggerSink_createBasicFileLoggerSink(daqLoggerSink** obj, daqString* fileName);
-#if defined(_WIN32)
-    daqErrCode EXPORTED daqLoggerSink_createWinDebugLoggerSink(daqLoggerSink** obj);
-#endif
 
 #ifdef __cplusplus
 }

@@ -89,10 +89,10 @@ They are now parsed through the sanitizer shared with the JSON generator:
   `daqSearchFilter_createVisiblePropertyFilter` / `createReadOnlyPropertyFilter` /
   `createNamePropertyFilter`
 
-**Factories declared under a preprocessor conditional** are generated under the same condition
-instead of being commented out by hand: `daqLoggerSink_createWinDebugLoggerSink`
-(`#if defined(_WIN32)`) and `daqAllocator_createMiMallocAllocator`
-(`#if defined(OPENDAQ_MIMALLOC_SUPPORT)`).
+**Headers with a factory under a preprocessor conditional** (`logger_sink.h`, `allocator.h`) are
+generated like any other; they used to be kept as hand-corrected copies, which is why
+`daqLoggerSink_getInterfaceId` was missing. The conditional factories themselves are left out, see
+below.
 
 **Freestanding functions** of the core are wrapped: the thread error info functions
 (`daqErrorInfo_setErrorInfo`, `extendErrorInfo`, `getErrorInfo`, `getErrorInfoList`,
@@ -142,6 +142,12 @@ The C API is the C++ API minus the following. `opendaq.json` gives these no `c_n
 
 **Two functions**: `daqRegisterSerializerFactory` and `daqGetSerializerFactory` take
 `daqDeserializerFactory`, a C++ function pointer type with no C declaration.
+
+**Two factories declared under a preprocessor conditional**: `createWinDebugLoggerSink`
+(`#ifdef _WIN32`) and `createMiMallocAllocator` (`#ifdef OPENDAQ_MIMALLOC_SUPPORT`) only exist in
+some builds of the core. They are left out, so that the C bindings export the same functions on
+every platform and in every configuration. The generator finds such factories by itself
+(`RTGen.Shared/PreprocessorConditions.cs`).
 
 **C++ conveniences with no ABI of their own**: templates, smart pointers and inline helpers are not
 part of the exported API and have nothing to bind.
