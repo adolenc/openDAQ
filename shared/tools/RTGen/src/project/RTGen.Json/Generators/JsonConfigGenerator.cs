@@ -266,7 +266,7 @@ namespace RTGen.Json.Generators
                                     + "whole vtable, relative_vtable_slot only the interface's own methods" }
                     }
                 },
-                { "types", ScanAbiTypes(coreRoot) },
+                { "types", ScanAbiTypes(coreRoot, new HashSet<string>(interfaces.Select(i => i.GetString("name")))) },
                 { "interfaces", interfaces.OrderBy(i => i.GetString("name"), StringComparer.Ordinal).ToList<object>() },
                 { "enums", enums.Values.OrderBy(e => e.GetString("name"), StringComparer.Ordinal).ToList<object>() },
                 { "error_codes", errorCodes }
@@ -801,8 +801,11 @@ namespace RTGen.Json.Generators
         /// <summary>The types of the C ABI: the aliases of the fundamental types, the structs passed
         /// by value and the callbacks. They are the one hand written part of the C API that every
         /// signature depends on, so they are read off the header that declares them
-        /// (bindings/c/include/ccommon.h) rather than repeated here.</summary>
-        private static List<object> ScanAbiTypes(string coreRoot)
+        /// (bindings/c/include/ccommon.h) rather than repeated here.
+        /// ccommon.h also declares the handles of the two root interfaces, daqUnknown and
+        /// daqBaseObject, as void, so that C converts any handle to them without a cast. They are
+        /// interfaces, described as such, and are left out here, so that no name is defined twice.</summary>
+        private static List<object> ScanAbiTypes(string coreRoot, ISet<string> interfaceNames)
         {
             var types = new List<object>();
             string header = Path.Combine(coreRoot, "..", "bindings", "c", "include", "ccommon.h");
@@ -891,7 +894,7 @@ namespace RTGen.Json.Generators
                 };
             }
 
-            types.AddRange(found.Values);
+            types.AddRange(found.Values.Where(t => !interfaceNames.Contains(t.GetString("name"))));
             return types;
         }
 

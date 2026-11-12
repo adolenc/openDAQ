@@ -39,7 +39,10 @@ functions the core declares next to an interface without making them methods
   own types (`daqCBool` is a `uint8_t`), the structs passed by value
   (`daqIntfID`, with their `fields` and, when packed, their `pack`), and the
   callbacks. Together with the interfaces and the enums they are every type
-  the file uses, apart from C's own.
+  the file uses, apart from C's own, and each name is defined once. (The
+  handles `daqUnknown` and `daqBaseObject` are interfaces here, although
+  `ccommon.h` declares them as `void` so that C converts any handle to them
+  without a cast; at the ABI a pointer is a pointer either way.)
 - A type is its C `name` and its number of `pointers`. An argument marked
   `is_reference` is a value type that C++ takes by const reference
   (`const IntfID&`): the C function takes the value itself, a call through the

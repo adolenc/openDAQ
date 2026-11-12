@@ -81,20 +81,6 @@
       }
     },
     {
-      "name": "daqUnknown",
-      "kind": "alias",
-      "type": {
-        "name": "void"
-      }
-    },
-    {
-      "name": "daqBaseObject",
-      "kind": "alias",
-      "type": {
-        "name": "void"
-      }
-    },
-    {
       "name": "daqComplexFloat64",
       "kind": "struct",
       "fields": [

@@ -9,7 +9,7 @@ partly by hand. This script reads the C headers and verifies that the two agree:
   * every function the JSON describes is declared, with the same return and argument types,
   * every function the headers declare is described by the JSON,
   * the enums and the status codes agree by name and by value,
-  * every type the JSON uses is one it defines.
+  * every type the JSON uses is one it defines, and it defines each only once.
 
 It is what lets a language binding be generated from the JSON alone. Exits non-zero, listing the
 differences, when the JSON and the headers disagree.
@@ -132,8 +132,11 @@ def main() -> int:
             problems.append(f"status {name}: {have} in the C headers, {want} in the JSON")
 
     # ---- the JSON is self-contained --------------------------------------------------------------
-    defined = (C_TYPES | {t["name"] for t in spec["types"]} | {i["name"] for i in spec["interfaces"]}
-               | {e["name"] for e in spec["enums"]})
+    definitions = ([t["name"] for t in spec["types"]] + [i["name"] for i in spec["interfaces"]]
+                   + [e["name"] for e in spec["enums"]])
+    for name in sorted({n for n in definitions if definitions.count(n) > 1}):
+        problems.append(f"type {name}: defined {definitions.count(name)} times by the JSON")
+    defined = C_TYPES | set(definitions)
     used: dict[str, str] = {}
 
     def use(type_desc: dict, where: str) -> None:
