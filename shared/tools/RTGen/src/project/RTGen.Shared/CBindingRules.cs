@@ -121,8 +121,35 @@ namespace RTGen.Shared
                       + "@param call The function to call with the sender and the arguments of the event.\n\n"
                       + "C++ creates event handlers from callables through templates, which have no exported "
                       + "symbol; this factory is provided by the C bindings."
-            }
+            },
+            WithUserData("IFunction", "createFunctionWithData", "FuncCallWithData", "a function", "the arguments and the result"),
+            WithUserData("IProcedure", "createProcedureWithData", "ProcCallWithData", "a procedure", "the arguments"),
+            WithUserData("IEventHandler", "createEventHandlerWithData", "EventCallWithData", "an event handler",
+                         "the sender and the arguments of the event")
         };
+
+        /// <summary>The factories that pair a C callback with data of the caller's own, which C++ has
+        /// no need for: its callables carry their state.</summary>
+        private static HandWrittenFactory WithUserData(string intf, string name, string callback, string what, string passed)
+        {
+            return new HandWrittenFactory
+            {
+                Interface = intf,
+                Name = name,
+                Arguments = new[]
+                {
+                    new KeyValuePair<string, string>(callback, "call"),
+                    new KeyValuePair<string, string>("void*", "userData"),
+                    new KeyValuePair<string, string>("FreeUserData", "freeUserData")
+                },
+                Doc = $"@brief Creates {what} that calls a C function with data of the caller's own.\n"
+                      + $"@param call The function to call with {passed}, and userData.\n"
+                      + "@param userData Passed to every call; owned by the created object.\n"
+                      + "@param freeUserData Called with userData once the object is destroyed, or if creating it "
+                      + "fails; may be null.\n\n"
+                      + "Provided by the C bindings, so that a callback can carry state."
+            };
+        }
 
         private static readonly Regex InterfaceNameRegex = new Regex(@"^I[A-Z]\w*$");
 

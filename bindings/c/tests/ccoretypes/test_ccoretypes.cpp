@@ -723,3 +723,117 @@ TEST_F(CCoretypesTest, VersionInfo)
     ASSERT_EQ(patch, 3u);
     daqUnknown_releaseRef(vi);
 }
+
+// The ...WithData factories: every call gets the user data, and the object frees it when destroyed.
+
+struct CallbackData
+{
+    int calls;
+    int frees;
+};
+
+static void freeCallbackData(void* userData)
+{
+    static_cast<CallbackData*>(userData)->frees++;
+}
+
+static daqErrCode funcCallWithData(daqBaseObject* params, daqBaseObject** result, void* userData)
+{
+    static_cast<CallbackData*>(userData)->calls++;
+    daqUnknown_addRef(params);
+    *result = params;
+    return 0;
+}
+
+TEST_F(CCoretypesTest, FunctionWithData)
+{
+    CallbackData data{};
+    daqFunction* f = nullptr;
+    ASSERT_EQ(daqFunction_createFunctionWithData(&f, funcCallWithData, &data, freeCallbackData), 0u);
+
+    daqCoreType* coreType = nullptr;
+    ASSERT_EQ(daqBaseObject_borrowInterface(f, DAQ_CORE_TYPE_INTF_ID, (daqBaseObject**) &coreType), 0u);
+    daqCCoreType ct = daqCtUndefined;
+    ASSERT_EQ(daqCoreType_getCoreType(coreType, &ct), 0u);
+    ASSERT_EQ(ct, daqCtFunc);
+
+    daqBaseObject* params = nullptr;
+    daqBaseObject_createBaseObject(&params);
+    daqBaseObject* result = nullptr;
+    for (int i = 0; i < 2; i++)
+    {
+        ASSERT_EQ(daqFunction_call(f, params, &result), 0u);
+        ASSERT_EQ(result, params);
+        daqUnknown_releaseRef(result);
+    }
+    ASSERT_EQ(data.calls, 2);
+
+    ASSERT_EQ(data.frees, 0);
+    daqUnknown_releaseRef(f);
+    ASSERT_EQ(data.frees, 1);
+    daqUnknown_releaseRef(params);
+}
+
+static daqErrCode procCallWithData(daqBaseObject*, void* userData)
+{
+    static_cast<CallbackData*>(userData)->calls++;
+    return DAQ_ERR_INVALIDSTATE;
+}
+
+TEST_F(CCoretypesTest, ProcedureWithData)
+{
+    CallbackData data{};
+    daqProcedure* p = nullptr;
+    ASSERT_EQ(daqProcedure_createProcedureWithData(&p, procCallWithData, &data, freeCallbackData), 0u);
+
+    daqCoreType* coreType = nullptr;
+    ASSERT_EQ(daqBaseObject_borrowInterface(p, DAQ_CORE_TYPE_INTF_ID, (daqBaseObject**) &coreType), 0u);
+    daqCCoreType ct = daqCtUndefined;
+    ASSERT_EQ(daqCoreType_getCoreType(coreType, &ct), 0u);
+    ASSERT_EQ(ct, daqCtProc);
+
+    ASSERT_EQ(daqProcedure_dispatch(p, nullptr), DAQ_ERR_INVALIDSTATE);
+    ASSERT_EQ(data.calls, 1);
+
+    daqUnknown_releaseRef(p);
+    ASSERT_EQ(data.frees, 1);
+}
+
+static void eventCallWithData(daqBaseObject* sender, daqBaseObject* args, void* userData)
+{
+    static_cast<CallbackData*>(userData)->calls++;
+    daqUnknown_releaseRef(sender);
+    daqUnknown_releaseRef(args);
+}
+
+TEST_F(CCoretypesTest, EventHandlerWithData)
+{
+    CallbackData data{};
+    daqEventHandler* eh = nullptr;
+    ASSERT_EQ(daqEventHandler_createEventHandlerWithData(&eh, eventCallWithData, &data, freeCallbackData), 0u);
+
+    daqBaseObject* sender = nullptr;
+    daqBaseObject_createBaseObject(&sender);
+    daqBaseObject* args = nullptr;
+    daqBaseObject_createBaseObject(&args);
+    ASSERT_EQ(daqEventHandler_handleEvent(eh, sender, (daqEventArgs*) args), 0u);
+    ASSERT_EQ(data.calls, 1);
+
+    daqUnknown_releaseRef(eh);
+    ASSERT_EQ(data.frees, 1);
+    daqUnknown_releaseRef(sender);
+    daqUnknown_releaseRef(args);
+}
+
+TEST_F(CCoretypesTest, WithDataFreesOnFailure)
+{
+    CallbackData data{};
+    daqFunction* f = nullptr;
+    ASSERT_EQ(daqFunction_createFunctionWithData(&f, nullptr, &data, freeCallbackData), DAQ_ERR_ARGUMENT_NULL);
+    ASSERT_EQ(data.frees, 1);
+    ASSERT_EQ(daqProcedure_createProcedureWithData(nullptr, procCallWithData, &data, freeCallbackData), DAQ_ERR_ARGUMENT_NULL);
+    ASSERT_EQ(data.frees, 2);
+    daqEventHandler* eh = nullptr;
+    ASSERT_EQ(daqEventHandler_createEventHandlerWithData(&eh, nullptr, &data, nullptr), DAQ_ERR_ARGUMENT_NULL);
+    ASSERT_EQ(data.frees, 2);
+}

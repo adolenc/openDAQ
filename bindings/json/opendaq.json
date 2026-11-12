@@ -157,6 +157,96 @@
       ]
     },
     {
+      "name": "daqFuncCallWithData",
+      "kind": "callback",
+      "return_type": {
+        "name": "daqErrCode"
+      },
+      "arguments": [
+        {
+          "type": {
+            "name": "daqBaseObject",
+            "pointers": 1
+          }
+        },
+        {
+          "type": {
+            "name": "daqBaseObject",
+            "pointers": 2
+          }
+        },
+        {
+          "type": {
+            "name": "void",
+            "pointers": 1
+          }
+        }
+      ]
+    },
+    {
+      "name": "daqProcCallWithData",
+      "kind": "callback",
+      "return_type": {
+        "name": "daqErrCode"
+      },
+      "arguments": [
+        {
+          "type": {
+            "name": "daqBaseObject",
+            "pointers": 1
+          }
+        },
+        {
+          "type": {
+            "name": "void",
+            "pointers": 1
+          }
+        }
+      ]
+    },
+    {
+      "name": "daqEventCallWithData",
+      "kind": "callback",
+      "return_type": {
+        "name": "void"
+      },
+      "arguments": [
+        {
+          "type": {
+            "name": "daqBaseObject",
+            "pointers": 1
+          }
+        },
+        {
+          "type": {
+            "name": "daqBaseObject",
+            "pointers": 1
+          }
+        },
+        {
+          "type": {
+            "name": "void",
+            "pointers": 1
+          }
+        }
+      ]
+    },
+    {
+      "name": "daqFreeUserData",
+      "kind": "callback",
+      "return_type": {
+        "name": "void"
+      },
+      "arguments": [
+        {
+          "type": {
+            "name": "void",
+            "pointers": 1
+          }
+        }
+      ]
+    },
+    {
       "name": "daqIntfID",
       "kind": "struct",
       "fields": [
@@ -13857,6 +13947,43 @@
           "doc": "@brief Creates an event handler that calls a C function.\n@param call The function to call with the sender and the arguments of the event.\n\nC++ creates event handlers from callables through templates, which have no exported symbol; this factory is provided by the C bindings.",
           "library": "copendaq",
           "header": "bindings/c/include/ccoretypes/factories.h"
+        },
+        {
+          "name": "createEventHandlerWithData",
+          "return_type": {
+            "name": "daqErrCode"
+          },
+          "arguments": [
+            {
+              "name": "obj",
+              "type": {
+                "name": "daqEventHandler",
+                "pointers": 2
+              }
+            },
+            {
+              "name": "call",
+              "type": {
+                "name": "daqEventCallWithData"
+              }
+            },
+            {
+              "name": "userData",
+              "type": {
+                "name": "void",
+                "pointers": 1
+              }
+            },
+            {
+              "name": "freeUserData",
+              "type": {
+                "name": "daqFreeUserData"
+              }
+            }
+          ],
+          "doc": "@brief Creates an event handler that calls a C function with data of the caller's own.\n@param call The function to call with the sender and the arguments of the event, and userData.\n@param userData Passed to every call; owned by the created object.\n@param freeUserData Called with userData once the object is destroyed, or if creating it fails; may be null.\n\nProvided by the C bindings, so that a callback can carry state.",
+          "library": "copendaq",
+          "header": "bindings/c/include/ccoretypes/factories.h"
         }
       ]
     },
@@ -14502,6 +14629,43 @@
               }
             }
           ]
+        },
+        {
+          "name": "createFunctionWithData",
+          "return_type": {
+            "name": "daqErrCode"
+          },
+          "arguments": [
+            {
+              "name": "obj",
+              "type": {
+                "name": "daqFunction",
+                "pointers": 2
+              }
+            },
+            {
+              "name": "call",
+              "type": {
+                "name": "daqFuncCallWithData"
+              }
+            },
+            {
+              "name": "userData",
+              "type": {
+                "name": "void",
+                "pointers": 1
+              }
+            },
+            {
+              "name": "freeUserData",
+              "type": {
+                "name": "daqFreeUserData"
+              }
+            }
+          ],
+          "doc": "@brief Creates a function that calls a C function with data of the caller's own.\n@param call The function to call with the arguments and the result, and userData.\n@param userData Passed to every call; owned by the created object.\n@param freeUserData Called with userData once the object is destroyed, or if creating it fails; may be null.\n\nProvided by the C bindings, so that a callback can carry state.",
+          "library": "copendaq",
+          "header": "bindings/c/include/ccoretypes/factories.h"
         }
       ]
     },
@@ -22305,6 +22469,43 @@
               }
             }
           ]
+        },
+        {
+          "name": "createProcedureWithData",
+          "return_type": {
+            "name": "daqErrCode"
+          },
+          "arguments": [
+            {
+              "name": "obj",
+              "type": {
+                "name": "daqProcedure",
+                "pointers": 2
+              }
+            },
+            {
+              "name": "call",
+              "type": {
+                "name": "daqProcCallWithData"
+              }
+            },
+            {
+              "name": "userData",
+              "type": {
+                "name": "void",
+                "pointers": 1
+              }
+            },
+            {
+              "name": "freeUserData",
+              "type": {
+                "name": "daqFreeUserData"
+              }
+            }
+          ],
+          "doc": "@brief Creates a procedure that calls a C function with data of the caller's own.\n@param call The function to call with the arguments, and userData.\n@param userData Passed to every call; owned by the created object.\n@param freeUserData Called with userData once the object is destroyed, or if creating it fails; may be null.\n\nProvided by the C bindings, so that a callback can carry state.",
+          "library": "copendaq",
+          "header": "bindings/c/include/ccoretypes/factories.h"
         }
       ]
     },

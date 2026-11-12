@@ -65,6 +65,13 @@ extern "C"
     typedef daqErrCode (*daqProcCall)(daqBaseObject*);
     typedef void (*daqEventCall)(daqBaseObject*, daqBaseObject*);
 
+    /* The same callbacks with a pointer to the caller's own data as their last argument, and the
+       function that releases that data (see the ...WithData factories in ccoretypes/factories.h). */
+    typedef daqErrCode (*daqFuncCallWithData)(daqBaseObject*, daqBaseObject**, void*);
+    typedef daqErrCode (*daqProcCallWithData)(daqBaseObject*, void*);
+    typedef void (*daqEventCallWithData)(daqBaseObject*, daqBaseObject*, void*);
+    typedef void (*daqFreeUserData)(void*);
+
     typedef struct daqIntfID
     {
         uint32_t Data1;
