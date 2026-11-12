@@ -44,9 +44,10 @@ functions the core declares next to an interface without making them methods
   `is_reference` is a value type that C++ takes by const reference
   (`const IntfID&`): the C function takes the value itself, a call through the
   vtable passes its address.
-- Arguments carry their `direction` (`in`, `out` or `inout`), and where the
-  core headers state them a `default_value`, `allow_null`, `steals_reference`
-  and `is_polymorphic`.
+- Arguments carry, where the core headers state them, a `default_value`,
+  `allow_null`, `steals_reference` and `is_polymorphic`. Whether the callee
+  reads or writes through a pointer is not recorded: the doc comment's
+  `@param[out]` says so for a human reader.
 - Container types carry the element types the headers annotate them with:
   `daqList` has a `value_type`, `daqDict` a `key_type` and a `value_type`
   (absent when the header leaves the container untyped). `daqEvent` likewise

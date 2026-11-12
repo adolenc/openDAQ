@@ -930,9 +930,7 @@ namespace RTGen.Json.Generators
             var argument = new OrderedDict
             {
                 { "name", name },
-                { "type", type },
-                // An interface is passed as a pointer, so a pointer to that returns one.
-                { "direction", declaration.Count(c => c == '*') >= 2 ? "out" : "in" }
+                { "type", type }
             };
             if (isConst)
             {
@@ -980,8 +978,7 @@ namespace RTGen.Json.Generators
                             new OrderedDict
                             {
                                 { "name", match.Groups[3].Value },
-                                { "type", new OrderedDict { { "name", match.Groups[2].Value }, { "pointers", 2L } } },
-                                { "direction", "out" }
+                                { "type", new OrderedDict { { "name", match.Groups[2].Value }, { "pointers", 2L } } }
                             }
                         };
                         foreach (string rawArg in match.Groups[4].Value.Split(','))
@@ -996,8 +993,7 @@ namespace RTGen.Json.Generators
                             var argument = new OrderedDict
                             {
                                 { "name", arg.Substring(nameStart) },
-                                { "type", CppTypeDesc(arg.Substring(0, nameStart)) },
-                                { "direction", "in" }
+                                { "type", CppTypeDesc(arg.Substring(0, nameStart)) }
                             };
                             if (declaration.Length > 1)
                             {

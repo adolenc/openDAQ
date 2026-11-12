@@ -136,15 +136,11 @@ namespace RTGen.Json.Generators
 
         private OrderedDict BuildMethod(IMethod method)
         {
-            Dictionary<string, string> documented = DocumentedDirections(method.Documentation);
             var result = new OrderedDict
             {
                 { "name", method.Name },
                 { "return_type", method.ReturnType != null ? BuildType(method.ReturnType) : null },
-                {
-                    "arguments",
-                    method.Arguments.Select(arg => BuildArgument(arg, documented)).ToList<object>()
-                }
+                { "arguments", method.Arguments.Select(BuildArgument).ToList<object>() }
             };
 
             if (!string.IsNullOrEmpty(method.CallingConvention))
@@ -161,35 +157,7 @@ namespace RTGen.Json.Generators
             return result;
         }
 
-        /// <summary>The direction the doc comment documents for each parameter. rtgen's
-        /// model only knows whether a tag is exactly @param[out], so @param[in,out] is
-        /// read back off the raw tag text - it is the only place the in-out parameters
-        /// (the readers' sample counts) are distinguishable from plain out ones.</summary>
-        private static Dictionary<string, string> DocumentedDirections(IDocComment doc)
-        {
-            var directions = new Dictionary<string, string>();
-            if (doc == null)
-            {
-                return directions;
-            }
-
-            foreach (IDocTag tag in doc.Tags)
-            {
-                var param = tag as IDocParam;
-                if (param == null || tag.TagType != TagType.Param)
-                {
-                    continue;
-                }
-                string raw = (param.RawText ?? string.Empty).Replace(" ", string.Empty);
-                string direction = raw.StartsWith("@param[in,out]", StringComparison.Ordinal)
-                    ? "inout"
-                    : param.IsOut ? "out" : "in";
-                directions[param.ParamName] = direction;
-            }
-            return directions;
-        }
-
-        private OrderedDict BuildArgument(IArgument arg, Dictionary<string, string> documented)
+        private OrderedDict BuildArgument(IArgument arg)
         {
             var result = new OrderedDict
             {
@@ -197,18 +165,6 @@ namespace RTGen.Json.Generators
                 { "type", BuildType(arg.Type) }
             };
 
-            // The pointer shape says whether the callee writes through the argument, but
-            // it cannot tell an argument the callee also reads: the readers' counts are
-            // annotated as arrays, which hides their out pointer. Only @param[in,out]
-            // documents that, so it wins over the shape.
-            string direction = arg.IsOutParam || arg.IsOutPointer ? "out" : "in";
-            string documentedDirection;
-            if (documented.TryGetValue(arg.Name, out documentedDirection)
-                && documentedDirection == "inout")
-            {
-                direction = "inout";
-            }
-            result.Add("direction", direction);
             if (arg.IsConst)
             {
                 result.Add("is_const", true);
@@ -305,7 +261,6 @@ namespace RTGen.Json.Generators
 
         private OrderedDict BuildFactory(IRTFactory factory)
         {
-            Dictionary<string, string> factoryDirections = DocumentedDirections(factory.Documentation);
             var result = new OrderedDict
             {
                 // The name is also the extern "C" symbol exported by the core library.
@@ -313,12 +268,7 @@ namespace RTGen.Json.Generators
                 // The factory macros always expand to functions returning daq::ErrCode.
                 { "return_type", new OrderedDict { { "name", "ErrCode" } } },
                 { "interface", factory.InterfaceName },
-                {
-                    "arguments",
-                    factory.Arguments
-                        .Select(arg => BuildArgument(arg, factoryDirections))
-                        .ToList<object>()
-                }
+                { "arguments", factory.Arguments.Select(BuildArgument).ToList<object>() }
             };
 
             if (factory.Options != FactoryOptions.None)
