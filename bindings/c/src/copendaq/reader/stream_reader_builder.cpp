@@ -12,6 +12,7 @@
 #include <copendaq/reader/stream_reader_builder.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/stream_reader_builder.h>
 
 #include <copendaq_private.h>
 
@@ -87,12 +88,12 @@ daqErrCode daqStreamReaderBuilder_getReadTimeoutType(daqStreamReaderBuilder* sel
     return reinterpret_cast<daq::IStreamReaderBuilder*>(self)->getReadTimeoutType(reinterpret_cast<daq::ReadTimeoutType*>(type));
 }
 
-daqErrCode daqStreamReaderBuilder_setSkipEvents(daqStreamReaderBuilder* self, daqBool skipEvents)
+daqErrCode daqStreamReaderBuilder_setSkipEvents(daqStreamReaderBuilder* self, daqCBool skipEvents)
 {
     return reinterpret_cast<daq::IStreamReaderBuilder*>(self)->setSkipEvents(skipEvents);
 }
 
-daqErrCode daqStreamReaderBuilder_getSkipEvents(daqStreamReaderBuilder* self, daqBool* skipEvents)
+daqErrCode daqStreamReaderBuilder_getSkipEvents(daqStreamReaderBuilder* self, daqCBool* skipEvents)
 {
     return reinterpret_cast<daq::IStreamReaderBuilder*>(self)->getSkipEvents(skipEvents);
 }

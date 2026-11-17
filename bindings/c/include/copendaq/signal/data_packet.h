@@ -44,22 +44,22 @@ extern "C"
     void EXPORTED daqDataPacket_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqDataPacket_getDataDescriptor(daqDataPacket* self, daqDataDescriptor** descriptor);
-    daqErrCode EXPORTED daqDataPacket_getSampleCount(daqDataPacket* self, daqSizeT* sampleCount);
+    daqErrCode EXPORTED daqDataPacket_getSampleCount(daqDataPacket* self, daqCSizeT* sampleCount);
     daqErrCode EXPORTED daqDataPacket_getOffset(daqDataPacket* self, daqNumber** offset);
     daqErrCode EXPORTED daqDataPacket_getData(daqDataPacket* self, void** address);
     daqErrCode EXPORTED daqDataPacket_getRawData(daqDataPacket* self, void** address);
-    daqErrCode EXPORTED daqDataPacket_getDataSize(daqDataPacket* self, daqSizeT* dataSize);
-    daqErrCode EXPORTED daqDataPacket_getRawDataSize(daqDataPacket* self, daqSizeT* rawDataSize);
+    daqErrCode EXPORTED daqDataPacket_getDataSize(daqDataPacket* self, daqCSizeT* dataSize);
+    daqErrCode EXPORTED daqDataPacket_getRawDataSize(daqDataPacket* self, daqCSizeT* rawDataSize);
     daqErrCode EXPORTED daqDataPacket_getDomainPacket(daqDataPacket* self, daqDataPacket** packet);
-    daqErrCode EXPORTED daqDataPacket_getPacketId(daqDataPacket* self, daqInt* packetId);
+    daqErrCode EXPORTED daqDataPacket_getPacketId(daqDataPacket* self, daqCInt* packetId);
     daqErrCode EXPORTED daqDataPacket_getLastValue(daqDataPacket* self, daqBaseObject** value, daqTypeManager* typeManager);
-    daqErrCode EXPORTED daqDataPacket_getValueByIndex(daqDataPacket* self, daqBaseObject** value, daqSizeT index, daqTypeManager* typeManager);
+    daqErrCode EXPORTED daqDataPacket_getValueByIndex(daqDataPacket* self, daqBaseObject** value, daqCSizeT index, daqTypeManager* typeManager);
     daqErrCode EXPORTED daqDataPacket_getRawLastValue(daqDataPacket* self, void** value);
-    daqErrCode EXPORTED daqDataPacket_getRawValueByIndex(daqDataPacket* self, void** value, daqSizeT index);
-    daqErrCode EXPORTED daqDataPacket_createDataPacket(daqDataPacket** obj, daqDataDescriptor* descriptor, daqSizeT sampleCount, daqNumber* offset);
-    daqErrCode EXPORTED daqDataPacket_createDataPacketWithExternalMemory(daqDataPacket** obj, daqDataPacket* domainPacket, daqDataDescriptor* descriptor, daqSizeT sampleCount, daqNumber* offset, void* externalMemory, daqDeleter* deleter, daqSizeT bufferSize);
-    daqErrCode EXPORTED daqDataPacket_createDataPacketWithDomain(daqDataPacket** obj, daqDataPacket* domainPacket, daqDataDescriptor* descriptor, daqSizeT sampleCount, daqNumber* offset);
-    daqErrCode EXPORTED daqDataPacket_createConstantDataPacketWithDomain(daqDataPacket** obj, daqDataPacket* domainPacket, daqDataDescriptor* descriptor, daqSizeT sampleCount, void* initialValue, void* otherValues, daqSizeT otherValueCount);
+    daqErrCode EXPORTED daqDataPacket_getRawValueByIndex(daqDataPacket* self, void** value, daqCSizeT index);
+    daqErrCode EXPORTED daqDataPacket_createDataPacket(daqDataPacket** obj, daqDataDescriptor* descriptor, daqCSizeT sampleCount, daqNumber* offset);
+    daqErrCode EXPORTED daqDataPacket_createDataPacketWithExternalMemory(daqDataPacket** obj, daqDataPacket* domainPacket, daqDataDescriptor* descriptor, daqCSizeT sampleCount, daqNumber* offset, void* externalMemory, daqDeleter* deleter, daqCSizeT bufferSize);
+    daqErrCode EXPORTED daqDataPacket_createDataPacketWithDomain(daqDataPacket** obj, daqDataPacket* domainPacket, daqDataDescriptor* descriptor, daqCSizeT sampleCount, daqNumber* offset);
+    daqErrCode EXPORTED daqDataPacket_createConstantDataPacketWithDomain(daqDataPacket** obj, daqDataPacket* domainPacket, daqDataDescriptor* descriptor, daqCSizeT sampleCount, void* initialValue, void* otherValues, daqCSizeT otherValueCount);
 
 #ifdef __cplusplus
 }

@@ -23,26 +23,35 @@ extern "C"
 
 #include <ccommon.h>
 
+    EXPORTED extern const daqIntfID DAQ_UNKNOWN_INTF_ID;
     EXPORTED extern const daqIntfID DAQ_BASE_OBJECT_INTF_ID;
+    void EXPORTED daqUnknown_getInterfaceId(daqIntfID* intfId);
+    void EXPORTED daqBaseObject_getInterfaceId(daqIntfID* intfId);
 
-    int EXPORTED daqBaseObject_addRef(daqBaseObject* self);
-    int EXPORTED daqBaseObject_releaseRef(daqBaseObject* self);
-    daqErrCode EXPORTED daqBaseObject_dispose(daqBaseObject* self);
-    daqErrCode EXPORTED daqBaseObject_getHashCode(daqBaseObject* self, daqSizeT* hashCode);
-    daqErrCode EXPORTED daqBaseObject_equals(daqBaseObject* self, daqBaseObject* other, daqBool* equal);
-    daqErrCode EXPORTED daqBaseObject_toString(daqBaseObject* self, daqCharPtr* str);
-    daqErrCode EXPORTED daqBaseObject_create(daqBaseObject** baseObject);
-    daqErrCode EXPORTED daqBaseObject_queryInterface(daqBaseObject* self, daqIntfID intfId, daqBaseObject** interfacePtr);
+    /* IUnknown. Reference counting and interface discovery, available on every openDAQ object. */
+    daqErrCode EXPORTED daqUnknown_queryInterface(daqUnknown* self, daqIntfID intfId, daqBaseObject** interfacePtr);
+    int EXPORTED daqUnknown_addRef(daqUnknown* self);
+    int EXPORTED daqUnknown_releaseRef(daqUnknown* self);
+
+    /* IBaseObject, which extends IUnknown. */
     daqErrCode EXPORTED daqBaseObject_borrowInterface(daqBaseObject* self, daqIntfID intfId, daqBaseObject** interfacePtr);
-    
-    static inline int daqAddRef(daqBaseObject* self)
+    daqErrCode EXPORTED daqBaseObject_dispose(daqBaseObject* self);
+    daqErrCode EXPORTED daqBaseObject_getHashCode(daqBaseObject* self, daqCSizeT* hashCode);
+    daqErrCode EXPORTED daqBaseObject_equals(daqBaseObject* self, daqBaseObject* other, daqCBool* equal);
+    daqErrCode EXPORTED daqBaseObject_toString(daqBaseObject* self, daqCCharPtr* str);
+    daqErrCode EXPORTED daqBaseObject_createBaseObject(daqBaseObject** baseObject);
+
+    /* Frees memory that openDAQ allocated for the caller, such as the string of daqBaseObject_toString. */
+    void EXPORTED daqBaseObject_freeMemory(void* ptr);
+
+    static inline int daqAddRef(daqUnknown* self)
     {
-        return daqBaseObject_addRef(self);
+        return daqUnknown_addRef(self);
     }
 
-    static inline int daqReleaseRef(daqBaseObject* self)
+    static inline int daqReleaseRef(daqUnknown* self)
     {
-        return daqBaseObject_releaseRef(self);
+        return daqUnknown_releaseRef(self);
     }
 
     static inline daqErrCode daqDispose(daqBaseObject* self)
@@ -50,24 +59,24 @@ extern "C"
         return daqBaseObject_dispose(self);
     }
 
-    static inline daqErrCode daqGetHashCode(daqBaseObject* self, daqSizeT* hashCode)
+    static inline daqErrCode daqGetHashCode(daqBaseObject* self, daqCSizeT* hashCode)
     {
         return daqBaseObject_getHashCode(self, hashCode);
     }
 
-    static inline daqErrCode daqEquals(daqBaseObject* self, daqBaseObject* other, daqBool* equal)
+    static inline daqErrCode daqEquals(daqBaseObject* self, daqBaseObject* other, daqCBool* equal)
     {
         return daqBaseObject_equals(self, other, equal);
     }
 
-    static inline daqErrCode daqToString(daqBaseObject* self, daqCharPtr* str)
+    static inline daqErrCode daqToString(daqBaseObject* self, daqCCharPtr* str)
     {
         return daqBaseObject_toString(self, str);
     }
 
-    static inline daqErrCode daqQueryInterface(daqBaseObject* self, daqIntfID intfId, daqBaseObject** interfacePtr)
+    static inline daqErrCode daqQueryInterface(daqUnknown* self, daqIntfID intfId, daqBaseObject** interfacePtr)
     {
-        return daqBaseObject_queryInterface(self, intfId, interfacePtr);
+        return daqUnknown_queryInterface(self, intfId, interfacePtr);
     }
 
     static inline daqErrCode daqBorrowInterface(daqBaseObject* self, daqIntfID intfId, daqBaseObject** interfacePtr)
@@ -75,10 +84,10 @@ extern "C"
         return daqBaseObject_borrowInterface(self, intfId, interfacePtr);
     }
 
-    static inline daqBaseObject* daqQueryInterfacePtr(daqBaseObject* self, daqIntfID intfId)
+    static inline daqBaseObject* daqQueryInterfacePtr(daqUnknown* self, daqIntfID intfId)
     {
         daqBaseObject* interfacePtr = NULL;
-        daqErrCode err = daqBaseObject_queryInterface(self, intfId, &interfacePtr);
+        daqErrCode err = daqUnknown_queryInterface(self, intfId, &interfacePtr);
         return err ? NULL : interfacePtr;
     }
 
@@ -89,7 +98,7 @@ extern "C"
         return err ? NULL : interfacePtr;
     }
 
-#define DAQ_QUERY_INTERFACE(obj, intfId) daqQueryInterfacePtr((daqBaseObject*)(obj), (intfId))
+#define DAQ_QUERY_INTERFACE(obj, intfId) daqQueryInterfacePtr((daqUnknown*)(obj), (intfId))
 #define DAQ_BORROW_INTERFACE(obj, intfId) daqBorrowInterfacePtr((daqBaseObject*)(obj), (intfId))
 #define DAQ_SUPPORTS_INTERFACE(obj, intfId) (daqBorrowInterfacePtr((daqBaseObject*)(obj), (intfId)) != NULL)
 

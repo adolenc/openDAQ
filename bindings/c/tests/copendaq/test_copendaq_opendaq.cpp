@@ -11,7 +11,7 @@ TEST_F(COpendaqOpendaqTest, ConfigProvider)
     daqConfigProvider* configProvider = nullptr;
     daqConfigProvider_createEnvConfigProvider(&configProvider);
     ASSERT_NE(configProvider, nullptr);
-    daqBaseObject_releaseRef(configProvider);
+    daqUnknown_releaseRef(configProvider);
 }
 
 TEST_F(COpendaqOpendaqTest, InstanceAndBuilder)
@@ -28,6 +28,6 @@ TEST_F(COpendaqOpendaqTest, InstanceAndBuilder)
     daqInstance_createInstance(&instance, ctx, nullptr);
     ASSERT_NE(instance, nullptr);
 
-    daqBaseObject_releaseRef(builder);
-    daqBaseObject_releaseRef(instance);
+    daqUnknown_releaseRef(builder);
+    daqUnknown_releaseRef(instance);
 }

@@ -5,17 +5,17 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 //
-//     RTGen (CGenerator v0.7.0) on 03.06.2025 22:48:17.
+//     RTGen (CGenerator v0.7.0).
 // </auto-generated>
 //------------------------------------------------------------------------------
 
 #include <copendaq/component/search_filter.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/search_filter.h>
 
 #include <copendaq_private.h>
 
-const daqIntfID DAQ_SEARCH_FILTER_INTF_ID = { daq::ISearchFilter::Id.Data1, daq::ISearchFilter::Id.Data2, daq::ISearchFilter::Id.Data3, daq::ISearchFilter::Id.Data4_UInt64 };
 
 
 daqErrCode daqSearchFilter_createVisibleSearchFilter(daqSearchFilter** obj)

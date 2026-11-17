@@ -12,6 +12,7 @@
 #include <copendaq/signal/rule_private.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/rule_private.h>
 
 #include <copendaq_private.h>
 

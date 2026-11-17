@@ -25,9 +25,25 @@ extern "C"
 
     typedef struct daqSerializer daqSerializer;
     typedef struct daqEventHandler daqEventHandler;
+    typedef struct daqFunction daqFunction;
+    typedef struct daqProcedure daqProcedure;
 
-    daqErrCode EXPORTED daqSerializer_createJsonSerializer(daqSerializer** obj, daqBool pretty);
+    /* The version of the openDAQ SDK the library was built from. */
+    void EXPORTED daqVersionInfo_getSdkVersion(daqCSizeT* major, daqCSizeT* minor, daqCSizeT* patch);
+
+    daqErrCode EXPORTED daqSerializer_createJsonSerializer(daqSerializer** obj, daqCBool pretty);
+    daqErrCode EXPORTED daqSerializer_createJsonSerializerWithVersion(daqSerializer** obj, daqCInt version, daqCBool pretty);
     daqErrCode EXPORTED daqEventHandler_createEventHandler(daqEventHandler** obj, daqEventCall call);
+
+    /*
+     * Like daqFunction_createFunction, daqProcedure_createProcedure and
+     * daqEventHandler_createEventHandler, but every call also gets userData. The object owns userData:
+     * once the object is destroyed, or if creating it fails, freeUserData (unless NULL) is called
+     * with it, exactly once. The arguments are passed as by the factories without user data.
+     */
+    daqErrCode EXPORTED daqFunction_createFunctionWithData(daqFunction** obj, daqFuncCallWithData call, void* userData, daqFreeUserData freeUserData);
+    daqErrCode EXPORTED daqProcedure_createProcedureWithData(daqProcedure** obj, daqProcCallWithData call, void* userData, daqFreeUserData freeUserData);
+    daqErrCode EXPORTED daqEventHandler_createEventHandlerWithData(daqEventHandler** obj, daqEventCallWithData call, void* userData, daqFreeUserData freeUserData);
 
 #ifdef __cplusplus
 }

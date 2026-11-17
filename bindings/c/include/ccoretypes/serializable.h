@@ -41,7 +41,7 @@ extern "C"
     void EXPORTED daqSerializable_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqSerializable_serialize(daqSerializable* self, daqSerializer* serializer);
-    daqErrCode EXPORTED daqSerializable_getSerializeId(daqSerializable* self, daqConstCharPtr* id);
+    daqErrCode EXPORTED daqSerializable_getSerializeId(daqSerializable* self, daqCConstCharPtr* id);
 
 #ifdef __cplusplus
 }

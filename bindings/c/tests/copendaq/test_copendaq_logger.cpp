@@ -21,7 +21,7 @@ TEST_F(COpendaqLoggerTest, Logger)
     daqLogger_getLevel(logger, &level);
     ASSERT_EQ(level, daqLogLevel::daqLogLevelDebug);
 
-    daqBaseObject_releaseRef(logger);
-    daqBaseObject_releaseRef(sink);
-    daqBaseObject_releaseRef(sinks);
+    daqUnknown_releaseRef(logger);
+    daqUnknown_releaseRef(sink);
+    daqUnknown_releaseRef(sinks);
 }

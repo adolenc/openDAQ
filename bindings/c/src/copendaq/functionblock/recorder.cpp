@@ -12,6 +12,7 @@
 #include <copendaq/functionblock/recorder.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/recorder.h>
 
 #include <copendaq_private.h>
 
@@ -32,7 +33,7 @@ daqErrCode daqRecorder_stopRecording(daqRecorder* self)
     return reinterpret_cast<daq::IRecorder*>(self)->stopRecording();
 }
 
-daqErrCode daqRecorder_getIsRecording(daqRecorder* self, daqBool* isRecording)
+daqErrCode daqRecorder_getIsRecording(daqRecorder* self, daqCBool* isRecording)
 {
     return reinterpret_cast<daq::IRecorder*>(self)->getIsRecording(isRecording);
 }

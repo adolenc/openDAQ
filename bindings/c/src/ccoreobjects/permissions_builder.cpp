@@ -12,6 +12,7 @@
 #include <ccoreobjects/permissions_builder.h>
 
 #include <opendaq/opendaq.h>
+#include <coreobjects/permissions_builder.h>
 
 #include <copendaq_private.h>
 
@@ -22,7 +23,7 @@ void daqPermissionsBuilder_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_PERMISSIONS_BUILDER_INTF_ID;
 }
 
-daqErrCode daqPermissionsBuilder_inherit(daqPermissionsBuilder* self, daqBool inherit)
+daqErrCode daqPermissionsBuilder_inherit(daqPermissionsBuilder* self, daqCBool inherit)
 {
     return reinterpret_cast<daq::IPermissionsBuilder*>(self)->inherit(inherit);
 }

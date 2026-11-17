@@ -46,7 +46,7 @@ extern "C"
     daqErrCode EXPORTED daqSyncInterface_getId(daqSyncInterface* self, daqString** id);
     daqErrCode EXPORTED daqSyncInterface_getSyncType(daqSyncInterface* self, daqString** syncType);
     daqErrCode EXPORTED daqSyncInterface_getReferenceDomainId(daqSyncInterface* self, daqString** referenceDomainId);
-    daqErrCode EXPORTED daqSyncInterface_getSourceSupported(daqSyncInterface* self, daqBool* canBeSource);
+    daqErrCode EXPORTED daqSyncInterface_getSourceSupported(daqSyncInterface* self, daqCBool* canBeSource);
     daqErrCode EXPORTED daqSyncInterface_setMode(daqSyncInterface* self, daqSyncMode mode);
     daqErrCode EXPORTED daqSyncInterface_getMode(daqSyncInterface* self, daqSyncMode* sourceMode);
     daqErrCode EXPORTED daqSyncInterface_getAvailableModes(daqSyncInterface* self, daqDict** availableModes);

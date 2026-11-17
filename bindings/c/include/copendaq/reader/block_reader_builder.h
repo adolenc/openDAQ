@@ -55,12 +55,12 @@ extern "C"
     daqErrCode EXPORTED daqBlockReaderBuilder_getDomainReadType(daqBlockReaderBuilder* self, daqSampleType* type);
     daqErrCode EXPORTED daqBlockReaderBuilder_setReadMode(daqBlockReaderBuilder* self, daqReadMode mode);
     daqErrCode EXPORTED daqBlockReaderBuilder_getReadMode(daqBlockReaderBuilder* self, daqReadMode* mode);
-    daqErrCode EXPORTED daqBlockReaderBuilder_setBlockSize(daqBlockReaderBuilder* self, daqSizeT size);
-    daqErrCode EXPORTED daqBlockReaderBuilder_getBlockSize(daqBlockReaderBuilder* self, daqSizeT* size);
-    daqErrCode EXPORTED daqBlockReaderBuilder_setOverlap(daqBlockReaderBuilder* self, daqSizeT overlap);
-    daqErrCode EXPORTED daqBlockReaderBuilder_getOverlap(daqBlockReaderBuilder* self, daqSizeT* overlap);
-    daqErrCode EXPORTED daqBlockReaderBuilder_setSkipEvents(daqBlockReaderBuilder* self, daqBool skipEvents);
-    daqErrCode EXPORTED daqBlockReaderBuilder_getSkipEvents(daqBlockReaderBuilder* self, daqBool* skipEvents);
+    daqErrCode EXPORTED daqBlockReaderBuilder_setBlockSize(daqBlockReaderBuilder* self, daqCSizeT size);
+    daqErrCode EXPORTED daqBlockReaderBuilder_getBlockSize(daqBlockReaderBuilder* self, daqCSizeT* size);
+    daqErrCode EXPORTED daqBlockReaderBuilder_setOverlap(daqBlockReaderBuilder* self, daqCSizeT overlap);
+    daqErrCode EXPORTED daqBlockReaderBuilder_getOverlap(daqBlockReaderBuilder* self, daqCSizeT* overlap);
+    daqErrCode EXPORTED daqBlockReaderBuilder_setSkipEvents(daqBlockReaderBuilder* self, daqCBool skipEvents);
+    daqErrCode EXPORTED daqBlockReaderBuilder_getSkipEvents(daqBlockReaderBuilder* self, daqCBool* skipEvents);
     daqErrCode EXPORTED daqBlockReaderBuilder_createBlockReaderBuilder(daqBlockReaderBuilder** obj);
 
 #ifdef __cplusplus

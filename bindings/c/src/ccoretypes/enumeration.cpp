@@ -12,6 +12,7 @@
 #include <ccoretypes/enumeration.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/enumeration.h>
 
 #include <copendaq_private.h>
 
@@ -32,7 +33,7 @@ daqErrCode daqEnumeration_getValue(daqEnumeration* self, daqString** value)
     return reinterpret_cast<daq::IEnumeration*>(self)->getValue(reinterpret_cast<daq::IString**>(value));
 }
 
-daqErrCode daqEnumeration_getIntValue(daqEnumeration* self, daqInt* value)
+daqErrCode daqEnumeration_getIntValue(daqEnumeration* self, daqCInt* value)
 {
     return reinterpret_cast<daq::IEnumeration*>(self)->getIntValue(value);
 }

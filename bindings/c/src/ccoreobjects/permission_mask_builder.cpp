@@ -12,6 +12,7 @@
 #include <ccoreobjects/permission_mask_builder.h>
 
 #include <opendaq/opendaq.h>
+#include <coreobjects/permission_mask_builder.h>
 
 #include <copendaq_private.h>
 
@@ -42,7 +43,7 @@ daqErrCode daqPermissionMaskBuilder_clear(daqPermissionMaskBuilder* self)
     return reinterpret_cast<daq::IPermissionMaskBuilder*>(self)->clear();
 }
 
-daqErrCode daqPermissionMaskBuilder_build(daqPermissionMaskBuilder* self, daqInt* permissionMask)
+daqErrCode daqPermissionMaskBuilder_build(daqPermissionMaskBuilder* self, daqCInt* permissionMask)
 {
     return reinterpret_cast<daq::IPermissionMaskBuilder*>(self)->build(permissionMask);
 }
@@ -55,7 +56,7 @@ daqErrCode daqPermissionMaskBuilder_createPermissionMaskBuilder(daqPermissionMas
     return err;
 }
 
-daqErrCode daqPermissionMaskBuilder_createPermissionMaskBuilderFromMask(daqPermissionMaskBuilder** obj, daqInt permissionMask)
+daqErrCode daqPermissionMaskBuilder_createPermissionMaskBuilderFromMask(daqPermissionMaskBuilder** obj, daqCInt permissionMask)
 {
     daq::IPermissionMaskBuilder* ptr = nullptr;
     daqErrCode err = daq::createPermissionMaskBuilderFromMask(&ptr, permissionMask);

@@ -43,9 +43,9 @@ extern "C"
 
     daqErrCode EXPORTED daqReaderStatus_getReadStatus(daqReaderStatus* self, daqReadStatus* status);
     daqErrCode EXPORTED daqReaderStatus_getEventPacket(daqReaderStatus* self, daqEventPacket** packet);
-    daqErrCode EXPORTED daqReaderStatus_getValid(daqReaderStatus* self, daqBool* valid);
+    daqErrCode EXPORTED daqReaderStatus_getValid(daqReaderStatus* self, daqCBool* valid);
     daqErrCode EXPORTED daqReaderStatus_getOffset(daqReaderStatus* self, daqNumber** offset);
-    daqErrCode EXPORTED daqReaderStatus_createReaderStatus(daqReaderStatus** obj, daqEventPacket* eventPacket, daqBool valid, daqNumber* offset);
+    daqErrCode EXPORTED daqReaderStatus_createReaderStatus(daqReaderStatus** obj, daqEventPacket* eventPacket, daqCBool valid, daqNumber* offset);
 
 #ifdef __cplusplus
 }

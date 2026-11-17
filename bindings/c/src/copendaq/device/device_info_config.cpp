@@ -12,6 +12,7 @@
 #include <copendaq/device/device_info_config.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/device_info_config.h>
 
 #include <copendaq_private.h>
 
@@ -92,7 +93,7 @@ daqErrCode daqDeviceInfoConfig_setProductInstanceUri(daqDeviceInfoConfig* self, 
     return reinterpret_cast<daq::IDeviceInfoConfig*>(self)->setProductInstanceUri(reinterpret_cast<daq::IString*>(productInstanceUri));
 }
 
-daqErrCode daqDeviceInfoConfig_setRevisionCounter(daqDeviceInfoConfig* self, daqInt revisionCounter)
+daqErrCode daqDeviceInfoConfig_setRevisionCounter(daqDeviceInfoConfig* self, daqCInt revisionCounter)
 {
     return reinterpret_cast<daq::IDeviceInfoConfig*>(self)->setRevisionCounter(revisionCounter);
 }
@@ -117,7 +118,7 @@ daqErrCode daqDeviceInfoConfig_setPlatform(daqDeviceInfoConfig* self, daqString*
     return reinterpret_cast<daq::IDeviceInfoConfig*>(self)->setPlatform(reinterpret_cast<daq::IString*>(platform));
 }
 
-daqErrCode daqDeviceInfoConfig_setPosition(daqDeviceInfoConfig* self, daqInt position)
+daqErrCode daqDeviceInfoConfig_setPosition(daqDeviceInfoConfig* self, daqCInt position)
 {
     return reinterpret_cast<daq::IDeviceInfoConfig*>(self)->setPosition(position);
 }

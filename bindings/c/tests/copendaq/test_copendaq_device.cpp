@@ -17,8 +17,8 @@ class COpendaqDeviceTest : public testing::Test
 
     void TearDown() override
     {
-        daqBaseObject_releaseRef(instance);
-        daqBaseObject_releaseRef(dev);
+        daqUnknown_releaseRef(instance);
+        daqUnknown_releaseRef(dev);
     }
 
 protected:
@@ -38,13 +38,13 @@ TEST_F(COpendaqDeviceTest, AddressInfo)
     daqString* type = nullptr;
     daqString_createString(&type, "Type");
     daqAddressInfoBuilder_setType(builder, type);
-    daqBaseObject_releaseRef(type);
+    daqUnknown_releaseRef(type);
     daqString* address = nullptr;
     daqString_createString(&address, "Address");
     daqAddressInfoBuilder_setAddress(builder, connectionString);
     daqAddressInfoBuilder_setAddress(builder, address);
-    daqBaseObject_releaseRef(address);
-    daqBaseObject_releaseRef(connectionString);
+    daqUnknown_releaseRef(address);
+    daqUnknown_releaseRef(connectionString);
 
     daqAddressInfo* addressInfo = nullptr;
     daqAddressInfoBuilder_build(builder, &addressInfo);
@@ -54,9 +54,9 @@ TEST_F(COpendaqDeviceTest, AddressInfo)
     daqAddressInfo_getConnectionString(addressInfo, &connectionStringOut);
     ASSERT_NE(connectionStringOut, nullptr);
 
-    daqBaseObject_releaseRef(connectionStringOut);
-    daqBaseObject_releaseRef(addressInfo);
-    daqBaseObject_releaseRef(builder);
+    daqUnknown_releaseRef(connectionStringOut);
+    daqUnknown_releaseRef(addressInfo);
+    daqUnknown_releaseRef(builder);
 }
 
 TEST_F(COpendaqDeviceTest, DeviceInfo)
@@ -67,17 +67,17 @@ TEST_F(COpendaqDeviceTest, DeviceInfo)
     daqString* connectionString = nullptr;
     daqDeviceInfo_getConnectionString(deviceInfo, &connectionString);
     ASSERT_NE(connectionString, nullptr);
-    daqConstCharPtr connectionStringStr = nullptr;
+    daqCConstCharPtr connectionStringStr = nullptr;
     daqString_getCharPtr(connectionString, &connectionStringStr);
 
     daqString* name = nullptr;
     daqDeviceInfo_getName(deviceInfo, &name);
-    daqConstCharPtr nameStr = nullptr;
+    daqCConstCharPtr nameStr = nullptr;
     daqString_getCharPtr(name, &nameStr);
 
-    daqBaseObject_releaseRef(name);
-    daqBaseObject_releaseRef(connectionString);
-    daqBaseObject_releaseRef(deviceInfo);
+    daqUnknown_releaseRef(name);
+    daqUnknown_releaseRef(connectionString);
+    daqUnknown_releaseRef(deviceInfo);
 }
 
 TEST_F(COpendaqDeviceTest, IoFolderConfig)
@@ -95,7 +95,7 @@ TEST_F(COpendaqDeviceTest, IoFolderConfig)
     daqFolderConfig_createIoFolder(&folderConfig, ctx, nullptr, localId);
     ASSERT_NE(folderConfig, nullptr);
 
-    daqBaseObject_releaseRef(localId);
-    daqBaseObject_releaseRef(folderConfig);
-    daqBaseObject_releaseRef(ctx);
+    daqUnknown_releaseRef(localId);
+    daqUnknown_releaseRef(folderConfig);
+    daqUnknown_releaseRef(ctx);
 }

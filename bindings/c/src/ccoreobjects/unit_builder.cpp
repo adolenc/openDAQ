@@ -12,6 +12,7 @@
 #include <ccoreobjects/unit_builder.h>
 
 #include <opendaq/opendaq.h>
+#include <coreobjects/unit_builder.h>
 
 #include <copendaq_private.h>
 
@@ -27,12 +28,12 @@ daqErrCode daqUnitBuilder_build(daqUnitBuilder* self, daqUnit** unit)
     return reinterpret_cast<daq::IUnitBuilder*>(self)->build(reinterpret_cast<daq::IUnit**>(unit));
 }
 
-daqErrCode daqUnitBuilder_setId(daqUnitBuilder* self, daqInt id)
+daqErrCode daqUnitBuilder_setId(daqUnitBuilder* self, daqCInt id)
 {
     return reinterpret_cast<daq::IUnitBuilder*>(self)->setId(id);
 }
 
-daqErrCode daqUnitBuilder_getId(daqUnitBuilder* self, daqInt* id)
+daqErrCode daqUnitBuilder_getId(daqUnitBuilder* self, daqCInt* id)
 {
     return reinterpret_cast<daq::IUnitBuilder*>(self)->getId(id);
 }

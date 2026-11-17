@@ -12,6 +12,7 @@
 #include <copendaq/modulemanager/context_internal.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/context_internal.h>
 
 #include <copendaq_private.h>
 
@@ -25,4 +26,9 @@ void daqContextInternal_getInterfaceId(daqIntfID* intfId)
 daqErrCode daqContextInternal_moveModuleManager(daqContextInternal* self, daqModuleManager** manager)
 {
     return reinterpret_cast<daq::IContextInternal*>(self)->moveModuleManager(reinterpret_cast<daq::IModuleManager**>(manager));
+}
+
+daqErrCode daqContextInternal_setRootDevice(daqContextInternal* self, daqBaseObject* device)
+{
+    return reinterpret_cast<daq::IContextInternal*>(self)->setRootDevice(reinterpret_cast<daq::IBaseObject*>(device));
 }

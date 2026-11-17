@@ -12,6 +12,7 @@
 #include <ccoreobjects/argument_info.h>
 
 #include <opendaq/opendaq.h>
+#include <coreobjects/argument_info.h>
 
 #include <copendaq_private.h>
 
@@ -27,22 +28,22 @@ daqErrCode daqArgumentInfo_getName(daqArgumentInfo* self, daqString** name)
     return reinterpret_cast<daq::IArgumentInfo*>(self)->getName(reinterpret_cast<daq::IString**>(name));
 }
 
-daqErrCode daqArgumentInfo_getType(daqArgumentInfo* self, daqCoreType* type)
+daqErrCode daqArgumentInfo_getType(daqArgumentInfo* self, daqCCoreType* type)
 {
     return reinterpret_cast<daq::IArgumentInfo*>(self)->getType(reinterpret_cast<daq::CoreType*>(type));
 }
 
-daqErrCode daqArgumentInfo_getItemType(daqArgumentInfo* self, daqCoreType* itemType)
+daqErrCode daqArgumentInfo_getItemType(daqArgumentInfo* self, daqCCoreType* itemType)
 {
     return reinterpret_cast<daq::IArgumentInfo*>(self)->getItemType(reinterpret_cast<daq::CoreType*>(itemType));
 }
 
-daqErrCode daqArgumentInfo_getKeyType(daqArgumentInfo* self, daqCoreType* keyType)
+daqErrCode daqArgumentInfo_getKeyType(daqArgumentInfo* self, daqCCoreType* keyType)
 {
     return reinterpret_cast<daq::IArgumentInfo*>(self)->getKeyType(reinterpret_cast<daq::CoreType*>(keyType));
 }
 
-daqErrCode daqArgumentInfo_createArgumentInfo(daqArgumentInfo** obj, daqString* name, daqCoreType type)
+daqErrCode daqArgumentInfo_createArgumentInfo(daqArgumentInfo** obj, daqString* name, daqCCoreType type)
 {
     daq::IArgumentInfo* ptr = nullptr;
     daqErrCode err = daq::createArgumentInfo(&ptr, reinterpret_cast<daq::IString*>(name), static_cast<daq::CoreType>(type));
@@ -50,7 +51,7 @@ daqErrCode daqArgumentInfo_createArgumentInfo(daqArgumentInfo** obj, daqString* 
     return err;
 }
 
-daqErrCode daqArgumentInfo_createListArgumentInfo(daqArgumentInfo** obj, daqString* name, daqCoreType itemType)
+daqErrCode daqArgumentInfo_createListArgumentInfo(daqArgumentInfo** obj, daqString* name, daqCCoreType itemType)
 {
     daq::IArgumentInfo* ptr = nullptr;
     daqErrCode err = daq::createListArgumentInfo(&ptr, reinterpret_cast<daq::IString*>(name), static_cast<daq::CoreType>(itemType));
@@ -58,7 +59,7 @@ daqErrCode daqArgumentInfo_createListArgumentInfo(daqArgumentInfo** obj, daqStri
     return err;
 }
 
-daqErrCode daqArgumentInfo_createDictArgumentInfo(daqArgumentInfo** obj, daqString* name, daqCoreType keyType, daqCoreType itemType)
+daqErrCode daqArgumentInfo_createDictArgumentInfo(daqArgumentInfo** obj, daqString* name, daqCCoreType keyType, daqCCoreType itemType)
 {
     daq::IArgumentInfo* ptr = nullptr;
     daqErrCode err = daq::createDictArgumentInfo(&ptr, reinterpret_cast<daq::IString*>(name), static_cast<daq::CoreType>(keyType), static_cast<daq::CoreType>(itemType));

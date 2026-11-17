@@ -40,7 +40,7 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_PERMISSIONS_INTF_ID;
     void EXPORTED daqPermissions_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqPermissions_getInherited(daqPermissions* self, daqBool* isInherited);
+    daqErrCode EXPORTED daqPermissions_getInherited(daqPermissions* self, daqCBool* isInherited);
     daqErrCode EXPORTED daqPermissions_getAllowed(daqPermissions* self, daqDict** permissions);
     daqErrCode EXPORTED daqPermissions_getDenied(daqPermissions* self, daqDict** permissions);
 

@@ -12,6 +12,7 @@
 #include <copendaq/device/network_interface.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/network_interface.h>
 
 #include <copendaq_private.h>
 

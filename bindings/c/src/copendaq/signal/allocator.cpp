@@ -12,6 +12,7 @@
 #include <copendaq/signal/allocator.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/allocator.h>
 
 #include <copendaq_private.h>
 
@@ -22,7 +23,7 @@ void daqAllocator_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_ALLOCATOR_INTF_ID;
 }
 
-daqErrCode daqAllocator_allocate(daqAllocator* self, daqDataDescriptor* descriptor, daqSizeT bytes, daqSizeT align, void** address)
+daqErrCode daqAllocator_allocate(daqAllocator* self, daqDataDescriptor* descriptor, daqCSizeT bytes, daqCSizeT align, void** address)
 {
     return reinterpret_cast<daq::IAllocator*>(self)->allocate(reinterpret_cast<daq::IDataDescriptor*>(descriptor), bytes, align, address);
 }
@@ -39,14 +40,6 @@ daqErrCode daqAllocator_createMallocAllocator(daqAllocator** obj)
     *obj = reinterpret_cast<daqAllocator*>(ptr);
     return err;
 }
-
-// daqErrCode daqAllocator_createMiMallocAllocator(daqAllocator** obj)
-// {
-//     daq::IAllocator* ptr = nullptr;
-//     daqErrCode err = daq::createMiMallocAllocator(&ptr);
-//     *obj = reinterpret_cast<daqAllocator*>(ptr);
-//     return err;
-// }
 
 daqErrCode daqAllocator_createExternalAllocator(daqAllocator** obj, void* data, daqDeleter* deleter)
 {

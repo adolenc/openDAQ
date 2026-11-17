@@ -12,6 +12,7 @@
 #include <copendaq/reader/multi_reader_status.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/multi_reader_status.h>
 
 #include <copendaq_private.h>
 
@@ -32,7 +33,7 @@ daqErrCode daqMultiReaderStatus_getMainDescriptor(daqMultiReaderStatus* self, da
     return reinterpret_cast<daq::IMultiReaderStatus*>(self)->getMainDescriptor(reinterpret_cast<daq::IEventPacket**>(descriptor));
 }
 
-daqErrCode daqMultiReaderStatus_createMultiReaderStatus(daqMultiReaderStatus** obj, daqEventPacket* mainDescriptor, daqDict* eventPackets, daqBool valid, daqNumber* offset)
+daqErrCode daqMultiReaderStatus_createMultiReaderStatus(daqMultiReaderStatus** obj, daqEventPacket* mainDescriptor, daqDict* eventPackets, daqCBool valid, daqNumber* offset)
 {
     daq::IMultiReaderStatus* ptr = nullptr;
     daqErrCode err = daq::createMultiReaderStatus(&ptr, reinterpret_cast<daq::IEventPacket*>(mainDescriptor), reinterpret_cast<daq::IDict*>(eventPackets), valid, reinterpret_cast<daq::INumber*>(offset));

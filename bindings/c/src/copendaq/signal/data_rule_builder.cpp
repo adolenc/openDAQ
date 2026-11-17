@@ -12,6 +12,7 @@
 #include <copendaq/signal/data_rule_builder.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/data_rule_builder.h>
 
 #include <copendaq_private.h>
 

@@ -12,6 +12,7 @@
 #include <ccoretypes/simple_type.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/simple_type.h>
 
 #include <copendaq_private.h>
 
@@ -22,7 +23,7 @@ void daqSimpleType_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_SIMPLE_TYPE_INTF_ID;
 }
 
-daqErrCode daqSimpleType_createSimpleType(daqSimpleType** obj, daqCoreType coreType)
+daqErrCode daqSimpleType_createSimpleType(daqSimpleType** obj, daqCCoreType coreType)
 {
     daq::ISimpleType* ptr = nullptr;
     daqErrCode err = daq::createSimpleType(&ptr, static_cast<daq::CoreType>(coreType));

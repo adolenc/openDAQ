@@ -12,6 +12,7 @@
 #include <copendaq/logger/logger_sink_last_message_private.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/logger_sink_last_message_private.h>
 
 #include <copendaq_private.h>
 
@@ -27,7 +28,7 @@ daqErrCode daqLastMessageLoggerSinkPrivate_getLastMessage(daqLastMessageLoggerSi
     return reinterpret_cast<daq::ILastMessageLoggerSinkPrivate*>(self)->getLastMessage(reinterpret_cast<daq::IString**>(lastMessage));
 }
 
-daqErrCode daqLastMessageLoggerSinkPrivate_waitForMessage(daqLastMessageLoggerSinkPrivate* self, daqSizeT timeoutMs, daqBool* success)
+daqErrCode daqLastMessageLoggerSinkPrivate_waitForMessage(daqLastMessageLoggerSinkPrivate* self, daqCSizeT timeoutMs, daqCBool* success)
 {
     return reinterpret_cast<daq::ILastMessageLoggerSinkPrivate*>(self)->waitForMessage(timeoutMs, success);
 }

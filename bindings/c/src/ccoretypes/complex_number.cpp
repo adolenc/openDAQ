@@ -12,6 +12,7 @@
 #include <ccoretypes/complex_number.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/complex_number.h>
 
 #include <copendaq_private.h>
 
@@ -22,31 +23,27 @@ void daqComplexNumber_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_COMPLEX_NUMBER_INTF_ID;
 }
 
-/*
 daqErrCode daqComplexNumber_getValue(daqComplexNumber* self, daqComplexFloat64* value)
 {
     return reinterpret_cast<daq::IComplexNumber*>(self)->getValue(reinterpret_cast<daq::ComplexFloat64*>(value));
 }
-*/
 
-/*
-daqErrCode daqComplexNumber_equalsValue(daqComplexNumber* self, daqComplexFloat64 value, daqBool* equal)
+daqErrCode daqComplexNumber_equalsValue(daqComplexNumber* self, daqComplexFloat64 value, daqCBool* equal)
 {
-    return reinterpret_cast<daq::IComplexNumber*>(self)->equalsValue(static_cast<daq::ComplexFloat64>(value), equal);
+    return reinterpret_cast<daq::IComplexNumber*>(self)->equalsValue(copendaq::utils::toDaqComplexFloat64(value), equal);
 }
-*/
 
-daqErrCode daqComplexNumber_getReal(daqComplexNumber* self, daqFloat* real)
+daqErrCode daqComplexNumber_getReal(daqComplexNumber* self, daqCFloat* real)
 {
     return reinterpret_cast<daq::IComplexNumber*>(self)->getReal(real);
 }
 
-daqErrCode daqComplexNumber_getImaginary(daqComplexNumber* self, daqFloat* imaginary)
+daqErrCode daqComplexNumber_getImaginary(daqComplexNumber* self, daqCFloat* imaginary)
 {
     return reinterpret_cast<daq::IComplexNumber*>(self)->getImaginary(imaginary);
 }
 
-daqErrCode daqComplexNumber_createComplexNumber(daqComplexNumber** obj, daqFloat real, daqFloat imaginary)
+daqErrCode daqComplexNumber_createComplexNumber(daqComplexNumber** obj, daqCFloat real, daqCFloat imaginary)
 {
     daq::IComplexNumber* ptr = nullptr;
     daqErrCode err = daq::createComplexNumber(&ptr, real, imaginary);

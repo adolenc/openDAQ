@@ -12,6 +12,7 @@
 #include <ccoreobjects/coercer.h>
 
 #include <opendaq/opendaq.h>
+#include <coreobjects/coercer.h>
 
 #include <copendaq_private.h>
 

@@ -5,7 +5,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 //
-//     RTGen (CGenerator v0.7.0) on 03.06.2025 22:48:17.
+//     RTGen (CGenerator v0.7.0).
 // </auto-generated>
 //------------------------------------------------------------------------------
 
@@ -35,16 +35,15 @@ extern "C"
 #include <ccommon.h>
 
     typedef struct daqSearchFilter daqSearchFilter;
-    typedef struct daqComponent daqComponent;
     typedef struct daqList daqList;
     typedef struct daqString daqString;
-    typedef struct daqFunction daqFunction;
+
 
     daqErrCode EXPORTED daqSearchFilter_createVisibleSearchFilter(daqSearchFilter** obj);
     daqErrCode EXPORTED daqSearchFilter_createRequiredTagsSearchFilter(daqSearchFilter** obj, daqList* requiredTags);
     daqErrCode EXPORTED daqSearchFilter_createExcludedTagsSearchFilter(daqSearchFilter** obj, daqList* excludedTags);
     daqErrCode EXPORTED daqSearchFilter_createInterfaceIdSearchFilter(daqSearchFilter** obj, daqIntfID intfId);
-    daqErrCode EXPORTED daqSearchFilter_createLocalIdSearchFilter(daqSearchFilter** obj, daqString* localId);    
+    daqErrCode EXPORTED daqSearchFilter_createLocalIdSearchFilter(daqSearchFilter** obj, daqString* localId);
 
 #ifdef __cplusplus
 }

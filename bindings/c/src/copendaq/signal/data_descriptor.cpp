@@ -12,6 +12,7 @@
 #include <copendaq/signal/data_descriptor.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/data_descriptor.h>
 
 #include <copendaq_private.h>
 
@@ -77,12 +78,12 @@ daqErrCode daqDataDescriptor_getMetadata(daqDataDescriptor* self, daqDict** meta
     return reinterpret_cast<daq::IDataDescriptor*>(self)->getMetadata(reinterpret_cast<daq::IDict**>(metadata));
 }
 
-daqErrCode daqDataDescriptor_getSampleSize(daqDataDescriptor* self, daqSizeT* sampleSize)
+daqErrCode daqDataDescriptor_getSampleSize(daqDataDescriptor* self, daqCSizeT* sampleSize)
 {
     return reinterpret_cast<daq::IDataDescriptor*>(self)->getSampleSize(sampleSize);
 }
 
-daqErrCode daqDataDescriptor_getRawSampleSize(daqDataDescriptor* self, daqSizeT* rawSampleSize)
+daqErrCode daqDataDescriptor_getRawSampleSize(daqDataDescriptor* self, daqCSizeT* rawSampleSize)
 {
     return reinterpret_cast<daq::IDataDescriptor*>(self)->getRawSampleSize(rawSampleSize);
 }

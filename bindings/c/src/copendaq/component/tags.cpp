@@ -12,6 +12,7 @@
 #include <copendaq/component/tags.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/tags.h>
 
 #include <copendaq_private.h>
 
@@ -27,12 +28,12 @@ daqErrCode daqTags_getList(daqTags* self, daqList** value)
     return reinterpret_cast<daq::ITags*>(self)->getList(reinterpret_cast<daq::IList**>(value));
 }
 
-daqErrCode daqTags_contains(daqTags* self, daqString* name, daqBool* value)
+daqErrCode daqTags_contains(daqTags* self, daqString* name, daqCBool* value)
 {
     return reinterpret_cast<daq::ITags*>(self)->contains(reinterpret_cast<daq::IString*>(name), value);
 }
 
-daqErrCode daqTags_query(daqTags* self, daqString* query, daqBool* value)
+daqErrCode daqTags_query(daqTags* self, daqString* query, daqCBool* value)
 {
     return reinterpret_cast<daq::ITags*>(self)->query(reinterpret_cast<daq::IString*>(query), value);
 }

@@ -12,6 +12,7 @@
 #include <ccoretypes/event.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/event.h>
 
 #include <copendaq_private.h>
 
@@ -42,7 +43,7 @@ daqErrCode daqEvent_clear(daqEvent* self)
     return reinterpret_cast<daq::IEvent*>(self)->clear();
 }
 
-daqErrCode daqEvent_getSubscriberCount(daqEvent* self, daqSizeT* count)
+daqErrCode daqEvent_getSubscriberCount(daqEvent* self, daqCSizeT* count)
 {
     return reinterpret_cast<daq::IEvent*>(self)->getSubscriberCount(count);
 }

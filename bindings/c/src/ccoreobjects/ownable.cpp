@@ -12,6 +12,7 @@
 #include <ccoreobjects/ownable.h>
 
 #include <opendaq/opendaq.h>
+#include <coreobjects/ownable.h>
 
 #include <copendaq_private.h>
 

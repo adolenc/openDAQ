@@ -12,6 +12,7 @@
 #include <copendaq/synchronization/synchronization.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/synchronization.h>
 
 #include <copendaq_private.h>
 

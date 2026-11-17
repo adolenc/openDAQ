@@ -12,6 +12,7 @@
 #include <copendaq/reader/stream_reader.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/stream_reader.h>
 
 #include <copendaq_private.h>
 
@@ -22,17 +23,17 @@ void daqStreamReader_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_STREAM_READER_INTF_ID;
 }
 
-daqErrCode daqStreamReader_read(daqStreamReader* self, void* samples, daqSizeT* count, daqSizeT timeoutMs, daqReaderStatus** status)
+daqErrCode daqStreamReader_read(daqStreamReader* self, void* samples, daqCSizeT* count, daqCSizeT timeoutMs, daqReaderStatus** status)
 {
     return reinterpret_cast<daq::IStreamReader*>(self)->read(samples, count, timeoutMs, reinterpret_cast<daq::IReaderStatus**>(status));
 }
 
-daqErrCode daqStreamReader_readWithDomain(daqStreamReader* self, void* samples, void* domain, daqSizeT* count, daqSizeT timeoutMs, daqReaderStatus** status)
+daqErrCode daqStreamReader_readWithDomain(daqStreamReader* self, void* samples, void* domain, daqCSizeT* count, daqCSizeT timeoutMs, daqReaderStatus** status)
 {
     return reinterpret_cast<daq::IStreamReader*>(self)->readWithDomain(samples, domain, count, timeoutMs, reinterpret_cast<daq::IReaderStatus**>(status));
 }
 
-daqErrCode daqStreamReader_skipSamples(daqStreamReader* self, daqSizeT* count, daqReaderStatus** status)
+daqErrCode daqStreamReader_skipSamples(daqStreamReader* self, daqCSizeT* count, daqReaderStatus** status)
 {
     return reinterpret_cast<daq::IStreamReader*>(self)->skipSamples(count, reinterpret_cast<daq::IReaderStatus**>(status));
 }

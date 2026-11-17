@@ -45,8 +45,8 @@ extern "C"
 
     daqErrCode EXPORTED daqPropertyObjectClass_getParentName(daqPropertyObjectClass* self, daqString** parentName);
     daqErrCode EXPORTED daqPropertyObjectClass_getProperty(daqPropertyObjectClass* self, daqString* propertyName, daqProperty** property);
-    daqErrCode EXPORTED daqPropertyObjectClass_hasProperty(daqPropertyObjectClass* self, daqString* propertyName, daqBool* hasProperty);
-    daqErrCode EXPORTED daqPropertyObjectClass_getProperties(daqPropertyObjectClass* self, daqBool includeInherited, daqList** properties);
+    daqErrCode EXPORTED daqPropertyObjectClass_hasProperty(daqPropertyObjectClass* self, daqString* propertyName, daqCBool* hasProperty);
+    daqErrCode EXPORTED daqPropertyObjectClass_getProperties(daqPropertyObjectClass* self, daqCBool includeInherited, daqList** properties);
     daqErrCode EXPORTED daqPropertyObjectClass_createPropertyObjectClassFromBuilder(daqPropertyObjectClass** obj, daqPropertyObjectClassBuilder* builder);
 
 #ifdef __cplusplus

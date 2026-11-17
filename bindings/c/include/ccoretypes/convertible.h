@@ -39,9 +39,9 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_CONVERTIBLE_INTF_ID;
     void EXPORTED daqConvertible_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqConvertible_toFloat(daqConvertible* self, daqFloat* val);
-    daqErrCode EXPORTED daqConvertible_toInt(daqConvertible* self, daqInt* val);
-    daqErrCode EXPORTED daqConvertible_toBool(daqConvertible* self, daqBool* val);
+    daqErrCode EXPORTED daqConvertible_toFloat(daqConvertible* self, daqCFloat* val);
+    daqErrCode EXPORTED daqConvertible_toInt(daqConvertible* self, daqCInt* val);
+    daqErrCode EXPORTED daqConvertible_toBool(daqConvertible* self, daqCBool* val);
 
 #ifdef __cplusplus
 }

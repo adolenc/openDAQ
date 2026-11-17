@@ -48,13 +48,13 @@ extern "C"
     daqErrCode EXPORTED daqSerializedObject_readList(daqSerializedObject* self, daqString* key, daqBaseObject* context, daqFunction* factoryCallback, daqList** list);
     daqErrCode EXPORTED daqSerializedObject_readObject(daqSerializedObject* self, daqString* key, daqBaseObject* context, daqFunction* factoryCallback, daqBaseObject** obj);
     daqErrCode EXPORTED daqSerializedObject_readString(daqSerializedObject* self, daqString* key, daqString** string);
-    daqErrCode EXPORTED daqSerializedObject_readBool(daqSerializedObject* self, daqString* key, daqBool* boolean);
-    daqErrCode EXPORTED daqSerializedObject_readFloat(daqSerializedObject* self, daqString* key, daqFloat* real);
-    daqErrCode EXPORTED daqSerializedObject_readInt(daqSerializedObject* self, daqString* key, daqInt* integer);
-    daqErrCode EXPORTED daqSerializedObject_hasKey(daqSerializedObject* self, daqString* key, daqBool* hasKey);
+    daqErrCode EXPORTED daqSerializedObject_readBool(daqSerializedObject* self, daqString* key, daqCBool* boolean);
+    daqErrCode EXPORTED daqSerializedObject_readFloat(daqSerializedObject* self, daqString* key, daqCFloat* real);
+    daqErrCode EXPORTED daqSerializedObject_readInt(daqSerializedObject* self, daqString* key, daqCInt* integer);
+    daqErrCode EXPORTED daqSerializedObject_hasKey(daqSerializedObject* self, daqString* key, daqCBool* hasKey);
     daqErrCode EXPORTED daqSerializedObject_getKeys(daqSerializedObject* self, daqList** list);
-    daqErrCode EXPORTED daqSerializedObject_getType(daqSerializedObject* self, daqString* key, daqCoreType* type);
-    daqErrCode EXPORTED daqSerializedObject_isRoot(daqSerializedObject* self, daqBool* isRoot);
+    daqErrCode EXPORTED daqSerializedObject_getType(daqSerializedObject* self, daqString* key, daqCCoreType* type);
+    daqErrCode EXPORTED daqSerializedObject_isRoot(daqSerializedObject* self, daqCBool* isRoot);
     daqErrCode EXPORTED daqSerializedObject_toJson(daqSerializedObject* self, daqString** jsonString);
 
 #ifdef __cplusplus

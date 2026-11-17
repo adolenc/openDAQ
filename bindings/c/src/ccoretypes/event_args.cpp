@@ -12,6 +12,7 @@
 #include <ccoretypes/event_args.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/event_args.h>
 
 #include <copendaq_private.h>
 
@@ -22,7 +23,7 @@ void daqEventArgs_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_EVENT_ARGS_INTF_ID;
 }
 
-daqErrCode daqEventArgs_getEventId(daqEventArgs* self, daqInt* id)
+daqErrCode daqEventArgs_getEventId(daqEventArgs* self, daqCInt* id)
 {
     return reinterpret_cast<daq::IEventArgs*>(self)->getEventId(id);
 }
@@ -32,7 +33,7 @@ daqErrCode daqEventArgs_getEventName(daqEventArgs* self, daqString** name)
     return reinterpret_cast<daq::IEventArgs*>(self)->getEventName(reinterpret_cast<daq::IString**>(name));
 }
 
-daqErrCode daqEventArgs_createEventArgs(daqEventArgs** obj, daqInt eventId, daqString* eventName)
+daqErrCode daqEventArgs_createEventArgs(daqEventArgs** obj, daqCInt eventId, daqString* eventName)
 {
     daq::IEventArgs* ptr = nullptr;
     daqErrCode err = daq::createEventArgs(&ptr, eventId, reinterpret_cast<daq::IString*>(eventName));

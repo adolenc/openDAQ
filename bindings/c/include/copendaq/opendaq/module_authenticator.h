@@ -42,7 +42,7 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_MODULE_AUTHENTICATOR_INTF_ID;
     void EXPORTED daqModuleAuthenticator_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqModuleAuthenticator_authenticateModuleBinary(daqModuleAuthenticator* self, daqBool* binaryValid, daqString** vendorKey, daqString* binaryPath);
+    daqErrCode EXPORTED daqModuleAuthenticator_authenticateModuleBinary(daqModuleAuthenticator* self, daqCBool* binaryValid, daqString** vendorKey, daqString* binaryPath);
     daqErrCode EXPORTED daqModuleAuthenticator_setLogger(daqModuleAuthenticator* self, daqLogger* logger);
     daqErrCode EXPORTED daqModuleAuthenticator_createFunctionModuleAuthenticator(daqModuleAuthenticator** obj, daqFunction* function);
 

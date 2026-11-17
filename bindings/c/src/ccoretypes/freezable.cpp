@@ -12,6 +12,7 @@
 #include <ccoretypes/freezable.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/freezable.h>
 
 #include <copendaq_private.h>
 
@@ -27,7 +28,7 @@ daqErrCode daqFreezable_freeze(daqFreezable* self)
     return reinterpret_cast<daq::IFreezable*>(self)->freeze();
 }
 
-daqErrCode daqFreezable_isFrozen(daqFreezable* self, daqBool* isFrozen)
+daqErrCode daqFreezable_isFrozen(daqFreezable* self, daqCBool* isFrozen)
 {
     return reinterpret_cast<daq::IFreezable*>(self)->isFrozen(isFrozen);
 }

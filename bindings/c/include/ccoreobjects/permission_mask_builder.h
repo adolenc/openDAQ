@@ -43,9 +43,9 @@ extern "C"
     daqErrCode EXPORTED daqPermissionMaskBuilder_write(daqPermissionMaskBuilder* self);
     daqErrCode EXPORTED daqPermissionMaskBuilder_execute(daqPermissionMaskBuilder* self);
     daqErrCode EXPORTED daqPermissionMaskBuilder_clear(daqPermissionMaskBuilder* self);
-    daqErrCode EXPORTED daqPermissionMaskBuilder_build(daqPermissionMaskBuilder* self, daqInt* permissionMask);
+    daqErrCode EXPORTED daqPermissionMaskBuilder_build(daqPermissionMaskBuilder* self, daqCInt* permissionMask);
     daqErrCode EXPORTED daqPermissionMaskBuilder_createPermissionMaskBuilder(daqPermissionMaskBuilder** obj);
-    daqErrCode EXPORTED daqPermissionMaskBuilder_createPermissionMaskBuilderFromMask(daqPermissionMaskBuilder** obj, daqInt permissionMask);
+    daqErrCode EXPORTED daqPermissionMaskBuilder_createPermissionMaskBuilderFromMask(daqPermissionMaskBuilder** obj, daqCInt permissionMask);
 
 #ifdef __cplusplus
 }

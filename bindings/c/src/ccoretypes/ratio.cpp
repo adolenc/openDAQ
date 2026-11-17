@@ -12,6 +12,7 @@
 #include <ccoretypes/ratio.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/ratio.h>
 
 #include <copendaq_private.h>
 
@@ -22,12 +23,12 @@ void daqRatio_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_RATIO_INTF_ID;
 }
 
-daqErrCode daqRatio_getNumerator(daqRatio* self, daqInt* numerator)
+daqErrCode daqRatio_getNumerator(daqRatio* self, daqCInt* numerator)
 {
     return reinterpret_cast<daq::IRatio*>(self)->getNumerator(numerator);
 }
 
-daqErrCode daqRatio_getDenominator(daqRatio* self, daqInt* denominator)
+daqErrCode daqRatio_getDenominator(daqRatio* self, daqCInt* denominator)
 {
     return reinterpret_cast<daq::IRatio*>(self)->getDenominator(denominator);
 }
@@ -37,7 +38,7 @@ daqErrCode daqRatio_simplify(daqRatio* self, daqRatio** simplifiedRatio)
     return reinterpret_cast<daq::IRatio*>(self)->simplify(reinterpret_cast<daq::IRatio**>(simplifiedRatio));
 }
 
-daqErrCode daqRatio_createRatio(daqRatio** obj, daqInt numerator, daqInt denominator)
+daqErrCode daqRatio_createRatio(daqRatio** obj, daqCInt numerator, daqCInt denominator)
 {
     daq::IRatio* ptr = nullptr;
     daqErrCode err = daq::createRatio(&ptr, numerator, denominator);

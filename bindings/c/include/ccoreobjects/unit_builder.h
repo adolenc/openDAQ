@@ -42,8 +42,8 @@ extern "C"
     void EXPORTED daqUnitBuilder_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqUnitBuilder_build(daqUnitBuilder* self, daqUnit** unit);
-    daqErrCode EXPORTED daqUnitBuilder_setId(daqUnitBuilder* self, daqInt id);
-    daqErrCode EXPORTED daqUnitBuilder_getId(daqUnitBuilder* self, daqInt* id);
+    daqErrCode EXPORTED daqUnitBuilder_setId(daqUnitBuilder* self, daqCInt id);
+    daqErrCode EXPORTED daqUnitBuilder_getId(daqUnitBuilder* self, daqCInt* id);
     daqErrCode EXPORTED daqUnitBuilder_setSymbol(daqUnitBuilder* self, daqString* symbol);
     daqErrCode EXPORTED daqUnitBuilder_getSymbol(daqUnitBuilder* self, daqString** symbol);
     daqErrCode EXPORTED daqUnitBuilder_setName(daqUnitBuilder* self, daqString* name);

@@ -12,6 +12,7 @@
 #include <copendaq/reader/sample_reader.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/sample_reader.h>
 
 #include <copendaq_private.h>
 

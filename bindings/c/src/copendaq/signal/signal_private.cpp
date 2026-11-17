@@ -12,6 +12,7 @@
 #include <copendaq/signal/signal_private.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/signal_private.h>
 
 #include <copendaq_private.h>
 
@@ -27,7 +28,7 @@ daqErrCode daqSignalPrivate_clearDomainSignalWithoutNotification(daqSignalPrivat
     return reinterpret_cast<daq::ISignalPrivate*>(self)->clearDomainSignalWithoutNotification();
 }
 
-daqErrCode daqSignalPrivate_enableKeepLastValue(daqSignalPrivate* self, daqBool enabled)
+daqErrCode daqSignalPrivate_enableKeepLastValue(daqSignalPrivate* self, daqCBool enabled)
 {
     return reinterpret_cast<daq::ISignalPrivate*>(self)->enableKeepLastValue(enabled);
 }
@@ -37,7 +38,7 @@ daqErrCode daqSignalPrivate_getSignalSerializeId(daqSignalPrivate* self, daqStri
     return reinterpret_cast<daq::ISignalPrivate*>(self)->getSignalSerializeId(reinterpret_cast<daq::IString**>(serializeId));
 }
 
-daqErrCode daqSignalPrivate_getKeepLastValue(daqSignalPrivate* self, daqBool* keepLastValue)
+daqErrCode daqSignalPrivate_getKeepLastValue(daqSignalPrivate* self, daqCBool* keepLastValue)
 {
     return reinterpret_cast<daq::ISignalPrivate*>(self)->getKeepLastValue(keepLastValue);
 }

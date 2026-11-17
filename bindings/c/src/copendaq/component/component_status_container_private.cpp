@@ -12,6 +12,7 @@
 #include <copendaq/component/component_status_container_private.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/component_status_container_private.h>
 
 #include <copendaq_private.h>
 

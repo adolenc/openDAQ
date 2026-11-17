@@ -12,6 +12,7 @@
 #include <copendaq/context/context.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/context.h>
 
 #include <copendaq_private.h>
 

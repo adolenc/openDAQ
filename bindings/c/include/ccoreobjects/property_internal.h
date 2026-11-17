@@ -64,32 +64,32 @@ extern "C"
     daqErrCode EXPORTED daqPropertyInternal_getReadOnlyUnresolved(daqPropertyInternal* self, daqBoolean** readOnly);
     daqErrCode EXPORTED daqPropertyInternal_getSelectionValuesUnresolved(daqPropertyInternal* self, daqBaseObject** values);
     daqErrCode EXPORTED daqPropertyInternal_getReferencedPropertyUnresolved(daqPropertyInternal* self, daqEvalValue** propertyEval);
-    daqErrCode EXPORTED daqPropertyInternal_getValueTypeUnresolved(daqPropertyInternal* self, daqCoreType* coreType);
+    daqErrCode EXPORTED daqPropertyInternal_getValueTypeUnresolved(daqPropertyInternal* self, daqCCoreType* coreType);
     daqErrCode EXPORTED daqPropertyInternal_getClassOnPropertyValueRead(daqPropertyInternal* self, daqEvent** event);
     daqErrCode EXPORTED daqPropertyInternal_getClassOnPropertyValueWrite(daqPropertyInternal* self, daqEvent** event);
-    daqErrCode EXPORTED daqPropertyInternal_getValueTypeNoLock(daqPropertyInternal* self, daqCoreType* type);
-    daqErrCode EXPORTED daqPropertyInternal_getKeyTypeNoLock(daqPropertyInternal* self, daqCoreType* type);
-    daqErrCode EXPORTED daqPropertyInternal_getItemTypeNoLock(daqPropertyInternal* self, daqCoreType* type);
+    daqErrCode EXPORTED daqPropertyInternal_getValueTypeNoLock(daqPropertyInternal* self, daqCCoreType* type);
+    daqErrCode EXPORTED daqPropertyInternal_getKeyTypeNoLock(daqPropertyInternal* self, daqCCoreType* type);
+    daqErrCode EXPORTED daqPropertyInternal_getItemTypeNoLock(daqPropertyInternal* self, daqCCoreType* type);
     daqErrCode EXPORTED daqPropertyInternal_getDescriptionNoLock(daqPropertyInternal* self, daqString** description);
     daqErrCode EXPORTED daqPropertyInternal_getUnitNoLock(daqPropertyInternal* self, daqUnit** unit);
     daqErrCode EXPORTED daqPropertyInternal_getMinValueNoLock(daqPropertyInternal* self, daqNumber** min);
     daqErrCode EXPORTED daqPropertyInternal_getMaxValueNoLock(daqPropertyInternal* self, daqNumber** max);
     daqErrCode EXPORTED daqPropertyInternal_getDefaultValueNoLock(daqPropertyInternal* self, daqBaseObject** value);
     daqErrCode EXPORTED daqPropertyInternal_getSuggestedValuesNoLock(daqPropertyInternal* self, daqList** values);
-    daqErrCode EXPORTED daqPropertyInternal_getVisibleNoLock(daqPropertyInternal* self, daqBool* visible);
-    daqErrCode EXPORTED daqPropertyInternal_getReadOnlyNoLock(daqPropertyInternal* self, daqBool* readOnly);
+    daqErrCode EXPORTED daqPropertyInternal_getVisibleNoLock(daqPropertyInternal* self, daqCBool* visible);
+    daqErrCode EXPORTED daqPropertyInternal_getReadOnlyNoLock(daqPropertyInternal* self, daqCBool* readOnly);
     daqErrCode EXPORTED daqPropertyInternal_getSelectionValuesNoLock(daqPropertyInternal* self, daqBaseObject** values);
     daqErrCode EXPORTED daqPropertyInternal_getReferencedPropertyNoLock(daqPropertyInternal* self, daqProperty** propertyEval);
-    daqErrCode EXPORTED daqPropertyInternal_getIsReferencedNoLock(daqPropertyInternal* self, daqBool* isReferenced);
+    daqErrCode EXPORTED daqPropertyInternal_getIsReferencedNoLock(daqPropertyInternal* self, daqCBool* isReferenced);
     daqErrCode EXPORTED daqPropertyInternal_getValidatorNoLock(daqPropertyInternal* self, daqValidator** validator);
     daqErrCode EXPORTED daqPropertyInternal_getCoercerNoLock(daqPropertyInternal* self, daqCoercer** coercer);
     daqErrCode EXPORTED daqPropertyInternal_getCallableInfoNoLock(daqPropertyInternal* self, daqCallableInfo** callable);
     daqErrCode EXPORTED daqPropertyInternal_getStructTypeNoLock(daqPropertyInternal* self, daqStructType** structType);
     daqErrCode EXPORTED daqPropertyInternal_overrideDefaultValue(daqPropertyInternal* self, daqBaseObject* newDefaultValue);
     daqErrCode EXPORTED daqPropertyInternal_setValueProtected(daqPropertyInternal* self, daqBaseObject* newValue);
-    daqErrCode EXPORTED daqPropertyInternal_getHasOnReadListeners(daqPropertyInternal* self, daqBool* hasListeners);
-    daqErrCode EXPORTED daqPropertyInternal_getHasOnGetSuggestedValuesListeners(daqPropertyInternal* self, daqBool* hasListeners);
-    daqErrCode EXPORTED daqPropertyInternal_getHasOnGetSelectionValuesListeners(daqPropertyInternal* self, daqBool* hasListeners);
+    daqErrCode EXPORTED daqPropertyInternal_getHasOnReadListeners(daqPropertyInternal* self, daqCBool* hasListeners);
+    daqErrCode EXPORTED daqPropertyInternal_getHasOnGetSuggestedValuesListeners(daqPropertyInternal* self, daqCBool* hasListeners);
+    daqErrCode EXPORTED daqPropertyInternal_getHasOnGetSelectionValuesListeners(daqPropertyInternal* self, daqCBool* hasListeners);
 
 #ifdef __cplusplus
 }

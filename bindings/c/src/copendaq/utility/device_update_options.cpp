@@ -12,6 +12,7 @@
 #include <copendaq/utility/device_update_options.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/device_update_options.h>
 
 #include <copendaq_private.h>
 

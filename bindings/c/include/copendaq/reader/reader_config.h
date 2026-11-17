@@ -46,7 +46,7 @@ extern "C"
     daqErrCode EXPORTED daqReaderConfig_getInputPorts(daqReaderConfig* self, daqList** ports);
     daqErrCode EXPORTED daqReaderConfig_getReadTimeoutType(daqReaderConfig* self, daqReadTimeoutType* timeoutType);
     daqErrCode EXPORTED daqReaderConfig_markAsInvalid(daqReaderConfig* self);
-    daqErrCode EXPORTED daqReaderConfig_getIsValid(daqReaderConfig* self, daqBool* isValid);
+    daqErrCode EXPORTED daqReaderConfig_getIsValid(daqReaderConfig* self, daqCBool* isValid);
 
 #ifdef __cplusplus
 }

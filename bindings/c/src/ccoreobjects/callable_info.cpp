@@ -12,6 +12,7 @@
 #include <ccoreobjects/callable_info.h>
 
 #include <opendaq/opendaq.h>
+#include <coreobjects/callable_info.h>
 
 #include <copendaq_private.h>
 
@@ -22,7 +23,7 @@ void daqCallableInfo_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_CALLABLE_INFO_INTF_ID;
 }
 
-daqErrCode daqCallableInfo_getReturnType(daqCallableInfo* self, daqCoreType* type)
+daqErrCode daqCallableInfo_getReturnType(daqCallableInfo* self, daqCCoreType* type)
 {
     return reinterpret_cast<daq::ICallableInfo*>(self)->getReturnType(reinterpret_cast<daq::CoreType*>(type));
 }
@@ -32,12 +33,12 @@ daqErrCode daqCallableInfo_getArguments(daqCallableInfo* self, daqList** argumen
     return reinterpret_cast<daq::ICallableInfo*>(self)->getArguments(reinterpret_cast<daq::IList**>(argumentInfo));
 }
 
-daqErrCode daqCallableInfo_isConst(daqCallableInfo* self, daqBool* constFlag)
+daqErrCode daqCallableInfo_isConst(daqCallableInfo* self, daqCBool* constFlag)
 {
     return reinterpret_cast<daq::ICallableInfo*>(self)->isConst(constFlag);
 }
 
-daqErrCode daqCallableInfo_createCallableInfo(daqCallableInfo** obj, daqList* argumentInfo, daqCoreType returnType, daqBool constFlag)
+daqErrCode daqCallableInfo_createCallableInfo(daqCallableInfo** obj, daqList* argumentInfo, daqCCoreType returnType, daqCBool constFlag)
 {
     daq::ICallableInfo* ptr = nullptr;
     daqErrCode err = daq::createCallableInfo(&ptr, reinterpret_cast<daq::IList*>(argumentInfo), static_cast<daq::CoreType>(returnType), constFlag);

@@ -12,6 +12,7 @@
 #include <copendaq/synchronization/sync_interface.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/sync_interface.h>
 
 #include <copendaq_private.h>
 
@@ -37,7 +38,7 @@ daqErrCode daqSyncInterface_getReferenceDomainId(daqSyncInterface* self, daqStri
     return reinterpret_cast<daq::ISyncInterface*>(self)->getReferenceDomainId(reinterpret_cast<daq::IString**>(referenceDomainId));
 }
 
-daqErrCode daqSyncInterface_getSourceSupported(daqSyncInterface* self, daqBool* canBeSource)
+daqErrCode daqSyncInterface_getSourceSupported(daqSyncInterface* self, daqCBool* canBeSource)
 {
     return reinterpret_cast<daq::ISyncInterface*>(self)->getSourceSupported(canBeSource);
 }

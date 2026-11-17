@@ -60,11 +60,11 @@ extern "C"
     daqErrCode EXPORTED daqModule_getAvailableServerTypes(daqModule* self, daqDict** serverTypes);
     daqErrCode EXPORTED daqModule_createServer(daqModule* self, daqServer** server, daqString* serverTypeId, daqDevice* rootDevice, daqPropertyObject* config);
     daqErrCode EXPORTED daqModule_createStreaming(daqModule* self, daqStreaming** streaming, daqString* connectionString, daqPropertyObject* config);
-    daqErrCode EXPORTED daqModule_completeServerCapability(daqModule* self, daqBool* succeeded, daqServerCapability* source, daqServerCapabilityConfig* target);
+    daqErrCode EXPORTED daqModule_completeServerCapability(daqModule* self, daqCBool* succeeded, daqServerCapability* source, daqServerCapabilityConfig* target);
     daqErrCode EXPORTED daqModule_getAvailableStreamingTypes(daqModule* self, daqDict** streamingTypes);
-    daqErrCode EXPORTED daqModule_loadLicense(daqModule* self, daqBool* succeeded, daqDict* licenseConfig);
+    daqErrCode EXPORTED daqModule_loadLicense(daqModule* self, daqCBool* succeeded, daqDict* licenseConfig);
     daqErrCode EXPORTED daqModule_getLicenseConfig(daqModule* self, daqDict** licenseConfig);
-    daqErrCode EXPORTED daqModule_licenseLoaded(daqModule* self, daqBool* loaded);
+    daqErrCode EXPORTED daqModule_licenseLoaded(daqModule* self, daqCBool* loaded);
 
 #ifdef __cplusplus
 }

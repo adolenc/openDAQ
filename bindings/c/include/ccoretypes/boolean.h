@@ -39,10 +39,10 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_BOOLEAN_INTF_ID;
     void EXPORTED daqBoolean_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqBoolean_getValue(daqBoolean* self, daqBool* value);
-    daqErrCode EXPORTED daqBoolean_equalsValue(daqBoolean* self, daqBool value, daqBool* equal);
-    daqErrCode EXPORTED daqBoolean_createBoolean(daqBoolean** obj, daqBool value);
-    daqErrCode EXPORTED daqBoolean_createBoolObject(daqBoolean** obj, daqBool value);
+    daqErrCode EXPORTED daqBoolean_getValue(daqBoolean* self, daqCBool* value);
+    daqErrCode EXPORTED daqBoolean_equalsValue(daqBoolean* self, daqCBool value, daqCBool* equal);
+    daqErrCode EXPORTED daqBoolean_createBoolean(daqBoolean** obj, daqCBool value);
+    daqErrCode EXPORTED daqBoolean_createBoolObject(daqBoolean** obj, daqCBool value);
 
 #ifdef __cplusplus
 }

@@ -44,22 +44,22 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_MULTI_READER_INTF_ID;
     void EXPORTED daqMultiReader_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqMultiReader_read(daqMultiReader* self, void* samples, daqSizeT* count, daqSizeT timeoutMs, daqMultiReaderStatus** status);
-    daqErrCode EXPORTED daqMultiReader_readWithDomain(daqMultiReader* self, void* samples, void* domain, daqSizeT* count, daqSizeT timeoutMs, daqMultiReaderStatus** status);
-    daqErrCode EXPORTED daqMultiReader_skipSamples(daqMultiReader* self, daqSizeT* count, daqMultiReaderStatus** status);
+    daqErrCode EXPORTED daqMultiReader_read(daqMultiReader* self, void* samples, daqCSizeT* count, daqCSizeT timeoutMs, daqMultiReaderStatus** status);
+    daqErrCode EXPORTED daqMultiReader_readWithDomain(daqMultiReader* self, void* samples, void* domain, daqCSizeT* count, daqCSizeT timeoutMs, daqMultiReaderStatus** status);
+    daqErrCode EXPORTED daqMultiReader_skipSamples(daqMultiReader* self, daqCSizeT* count, daqMultiReaderStatus** status);
     daqErrCode EXPORTED daqMultiReader_getTickResolution(daqMultiReader* self, daqRatio** resolution);
     daqErrCode EXPORTED daqMultiReader_getOrigin(daqMultiReader* self, daqString** origin);
     daqErrCode EXPORTED daqMultiReader_getOffset(daqMultiReader* self, void* domainStart);
-    daqErrCode EXPORTED daqMultiReader_getIsSynchronized(daqMultiReader* self, daqBool* isSynchronized);
-    daqErrCode EXPORTED daqMultiReader_getCommonSampleRate(daqMultiReader* self, daqInt* commonSampleRate);
-    daqErrCode EXPORTED daqMultiReader_setActive(daqMultiReader* self, daqBool isActive);
-    daqErrCode EXPORTED daqMultiReader_getActive(daqMultiReader* self, daqBool* isActive);
+    daqErrCode EXPORTED daqMultiReader_getIsSynchronized(daqMultiReader* self, daqCBool* isSynchronized);
+    daqErrCode EXPORTED daqMultiReader_getCommonSampleRate(daqMultiReader* self, daqCInt* commonSampleRate);
+    daqErrCode EXPORTED daqMultiReader_setActive(daqMultiReader* self, daqCBool isActive);
+    daqErrCode EXPORTED daqMultiReader_getActive(daqMultiReader* self, daqCBool* isActive);
     daqErrCode EXPORTED daqMultiReader_addInput(daqMultiReader* self, daqComponent* input);
     daqErrCode EXPORTED daqMultiReader_removeInput(daqMultiReader* self, daqString* id);
-    daqErrCode EXPORTED daqMultiReader_setInputUsed(daqMultiReader* self, daqString* id, daqBool isUsed);
-    daqErrCode EXPORTED daqMultiReader_getInputUsed(daqMultiReader* self, daqString* id, daqBool* isUsed);
+    daqErrCode EXPORTED daqMultiReader_setInputUsed(daqMultiReader* self, daqString* id, daqCBool isUsed);
+    daqErrCode EXPORTED daqMultiReader_getInputUsed(daqMultiReader* self, daqString* id, daqCBool* isUsed);
     daqErrCode EXPORTED daqMultiReader_createMultiReader(daqMultiReader** obj, daqList* signals, daqSampleType valueReadType, daqSampleType domainReadType, daqReadMode mode, daqReadTimeoutType timeoutType);
-    daqErrCode EXPORTED daqMultiReader_createMultiReaderEx(daqMultiReader** obj, daqList* signals, daqSampleType valueReadType, daqSampleType domainReadType, daqReadMode mode, daqReadTimeoutType timeoutType, daqInt requiredCommonSampleRate, daqBool startOnFullUnitOfDomain, daqSizeT minReadCount);
+    daqErrCode EXPORTED daqMultiReader_createMultiReaderEx(daqMultiReader** obj, daqList* signals, daqSampleType valueReadType, daqSampleType domainReadType, daqReadMode mode, daqReadTimeoutType timeoutType, daqCInt requiredCommonSampleRate, daqCBool startOnFullUnitOfDomain, daqCSizeT minReadCount);
     daqErrCode EXPORTED daqMultiReader_createMultiReaderFromExisting(daqMultiReader** obj, daqMultiReader* invalidatedReader, daqSampleType valueReadType, daqSampleType domainReadType);
 
 #ifdef __cplusplus

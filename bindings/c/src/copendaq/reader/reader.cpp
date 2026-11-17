@@ -12,6 +12,7 @@
 #include <copendaq/reader/reader.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/reader.h>
 
 #include <copendaq_private.h>
 
@@ -22,7 +23,7 @@ void daqReader_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_READER_INTF_ID;
 }
 
-daqErrCode daqReader_getAvailableCount(daqReader* self, daqSizeT* count)
+daqErrCode daqReader_getAvailableCount(daqReader* self, daqCSizeT* count)
 {
     return reinterpret_cast<daq::IReader*>(self)->getAvailableCount(count);
 }
@@ -37,7 +38,7 @@ daqErrCode daqReader_setExternalListener(daqReader* self, daqInputPortNotificati
     return reinterpret_cast<daq::IReader*>(self)->setExternalListener(reinterpret_cast<daq::IInputPortNotifications*>(listener));
 }
 
-daqErrCode daqReader_getEmpty(daqReader* self, daqBool* empty)
+daqErrCode daqReader_getEmpty(daqReader* self, daqCBool* empty)
 {
     return reinterpret_cast<daq::IReader*>(self)->getEmpty(empty);
 }

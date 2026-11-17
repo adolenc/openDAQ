@@ -45,7 +45,7 @@ extern "C"
     void EXPORTED daqDimension_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqDimension_getName(daqDimension* self, daqString** name);
-    daqErrCode EXPORTED daqDimension_getSize(daqDimension* self, daqSizeT* size);
+    daqErrCode EXPORTED daqDimension_getSize(daqDimension* self, daqCSizeT* size);
     daqErrCode EXPORTED daqDimension_getUnit(daqDimension* self, daqUnit** unit);
     daqErrCode EXPORTED daqDimension_getLabels(daqDimension* self, daqList** labels);
     daqErrCode EXPORTED daqDimension_getRule(daqDimension* self, daqDimensionRule** rule);

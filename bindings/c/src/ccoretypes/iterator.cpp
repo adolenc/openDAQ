@@ -12,6 +12,7 @@
 #include <ccoretypes/iterator.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/iterator.h>
 
 #include <copendaq_private.h>
 

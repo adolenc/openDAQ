@@ -12,6 +12,7 @@
 #include <ccoretypes/event_handler.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/event_handler.h>
 
 #include <copendaq_private.h>
 

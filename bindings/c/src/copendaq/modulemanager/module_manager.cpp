@@ -12,6 +12,7 @@
 #include <copendaq/modulemanager/module_manager.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/module_manager.h>
 
 #include <copendaq_private.h>
 
@@ -42,7 +43,7 @@ daqErrCode daqModuleManager_loadModule(daqModuleManager* self, daqString* path, 
     return reinterpret_cast<daq::IModuleManager*>(self)->loadModule(reinterpret_cast<daq::IString*>(path), reinterpret_cast<daq::IModule**>(module));
 }
 
-daqErrCode daqModuleManager_setAuthenticatedOnly(daqModuleManager* self, daqBool authenticatedOnly)
+daqErrCode daqModuleManager_setAuthenticatedOnly(daqModuleManager* self, daqCBool authenticatedOnly)
 {
     return reinterpret_cast<daq::IModuleManager*>(self)->setAuthenticatedOnly(authenticatedOnly);
 }

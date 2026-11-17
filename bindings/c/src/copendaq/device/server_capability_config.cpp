@@ -12,6 +12,7 @@
 #include <copendaq/device/server_capability_config.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/server_capability_config.h>
 
 #include <copendaq_private.h>
 
@@ -62,7 +63,7 @@ daqErrCode daqServerCapabilityConfig_setConnectionType(daqServerCapabilityConfig
     return reinterpret_cast<daq::IServerCapabilityConfig*>(self)->setConnectionType(reinterpret_cast<daq::IString*>(type));
 }
 
-daqErrCode daqServerCapabilityConfig_setCoreEventsEnabled(daqServerCapabilityConfig* self, daqBool enabled)
+daqErrCode daqServerCapabilityConfig_setCoreEventsEnabled(daqServerCapabilityConfig* self, daqCBool enabled)
 {
     return reinterpret_cast<daq::IServerCapabilityConfig*>(self)->setCoreEventsEnabled(enabled);
 }

@@ -12,6 +12,7 @@
 #include <copendaq/device/io_folder_config.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/io_folder_config.h>
 
 #include <copendaq_private.h>
 

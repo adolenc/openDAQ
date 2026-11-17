@@ -60,8 +60,8 @@ extern "C"
     daqErrCode EXPORTED daqDataDescriptor_getPostScaling(daqDataDescriptor* self, daqScaling** scaling);
     daqErrCode EXPORTED daqDataDescriptor_getStructFields(daqDataDescriptor* self, daqList** structFields);
     daqErrCode EXPORTED daqDataDescriptor_getMetadata(daqDataDescriptor* self, daqDict** metadata);
-    daqErrCode EXPORTED daqDataDescriptor_getSampleSize(daqDataDescriptor* self, daqSizeT* sampleSize);
-    daqErrCode EXPORTED daqDataDescriptor_getRawSampleSize(daqDataDescriptor* self, daqSizeT* rawSampleSize);
+    daqErrCode EXPORTED daqDataDescriptor_getSampleSize(daqDataDescriptor* self, daqCSizeT* sampleSize);
+    daqErrCode EXPORTED daqDataDescriptor_getRawSampleSize(daqDataDescriptor* self, daqCSizeT* rawSampleSize);
     daqErrCode EXPORTED daqDataDescriptor_getReferenceDomainInfo(daqDataDescriptor* self, daqReferenceDomainInfo** referenceDomainInfo);
     daqErrCode EXPORTED daqDataDescriptor_createDataDescriptorFromBuilder(daqDataDescriptor** obj, daqDataDescriptorBuilder* builder);
 

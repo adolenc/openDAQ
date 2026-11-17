@@ -42,7 +42,7 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_PERMISSIONS_BUILDER_INTF_ID;
     void EXPORTED daqPermissionsBuilder_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqPermissionsBuilder_inherit(daqPermissionsBuilder* self, daqBool inherit);
+    daqErrCode EXPORTED daqPermissionsBuilder_inherit(daqPermissionsBuilder* self, daqCBool inherit);
     daqErrCode EXPORTED daqPermissionsBuilder_assign(daqPermissionsBuilder* self, daqString* groupId, daqPermissionMaskBuilder* permissions);
     daqErrCode EXPORTED daqPermissionsBuilder_allow(daqPermissionsBuilder* self, daqString* groupId, daqPermissionMaskBuilder* permissions);
     daqErrCode EXPORTED daqPermissionsBuilder_deny(daqPermissionsBuilder* self, daqString* groupId, daqPermissionMaskBuilder* permissions);

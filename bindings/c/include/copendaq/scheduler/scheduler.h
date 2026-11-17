@@ -49,14 +49,14 @@ extern "C"
     daqErrCode EXPORTED daqScheduler_scheduleGraph(daqScheduler* self, daqTaskGraph* graph, daqAwaitable** awaitable);
     daqErrCode EXPORTED daqScheduler_stop(daqScheduler* self);
     daqErrCode EXPORTED daqScheduler_waitAll(daqScheduler* self);
-    daqErrCode EXPORTED daqScheduler_isMultiThreaded(daqScheduler* self, daqBool* multiThreaded);
-    daqErrCode EXPORTED daqScheduler_runMainLoop(daqScheduler* self, daqSizeT loopTime);
-    daqErrCode EXPORTED daqScheduler_isMainLoopSet(daqScheduler* self, daqBool* isSet);
+    daqErrCode EXPORTED daqScheduler_isMultiThreaded(daqScheduler* self, daqCBool* multiThreaded);
+    daqErrCode EXPORTED daqScheduler_runMainLoop(daqScheduler* self, daqCSizeT loopTime);
+    daqErrCode EXPORTED daqScheduler_isMainLoopSet(daqScheduler* self, daqCBool* isSet);
     daqErrCode EXPORTED daqScheduler_stopMainLoop(daqScheduler* self);
     daqErrCode EXPORTED daqScheduler_runMainLoopIteration(daqScheduler* self);
     daqErrCode EXPORTED daqScheduler_scheduleWorkOnMainLoop(daqScheduler* self, daqWork* work);
-    daqErrCode EXPORTED daqScheduler_createScheduler(daqScheduler** obj, daqLogger* logger, daqSizeT numWorkers);
-    daqErrCode EXPORTED daqScheduler_createSchedulerWithMainLoop(daqScheduler** obj, daqLogger* logger, daqSizeT numWorkers, daqBool useMainLoop);
+    daqErrCode EXPORTED daqScheduler_createScheduler(daqScheduler** obj, daqLogger* logger, daqCSizeT numWorkers);
+    daqErrCode EXPORTED daqScheduler_createSchedulerWithMainLoop(daqScheduler** obj, daqLogger* logger, daqCSizeT numWorkers, daqCBool useMainLoop);
 
 #ifdef __cplusplus
 }

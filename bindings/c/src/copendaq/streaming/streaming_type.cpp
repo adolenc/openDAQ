@@ -12,6 +12,7 @@
 #include <copendaq/streaming/streaming_type.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/streaming_type.h>
 
 #include <copendaq_private.h>
 

@@ -12,6 +12,7 @@
 #include <ccoretypes/type_manager.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/type_manager.h>
 
 #include <copendaq_private.h>
 
@@ -42,7 +43,7 @@ daqErrCode daqTypeManager_getTypes(daqTypeManager* self, daqList** types)
     return reinterpret_cast<daq::ITypeManager*>(self)->getTypes(reinterpret_cast<daq::IList**>(types));
 }
 
-daqErrCode daqTypeManager_hasType(daqTypeManager* self, daqString* typeName, daqBool* hasType)
+daqErrCode daqTypeManager_hasType(daqTypeManager* self, daqString* typeName, daqCBool* hasType)
 {
     return reinterpret_cast<daq::ITypeManager*>(self)->hasType(reinterpret_cast<daq::IString*>(typeName), hasType);
 }

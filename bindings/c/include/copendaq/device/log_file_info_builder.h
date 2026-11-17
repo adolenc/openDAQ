@@ -50,8 +50,8 @@ extern "C"
     daqErrCode EXPORTED daqLogFileInfoBuilder_setId(daqLogFileInfoBuilder* self, daqString* id);
     daqErrCode EXPORTED daqLogFileInfoBuilder_getDescription(daqLogFileInfoBuilder* self, daqString** description);
     daqErrCode EXPORTED daqLogFileInfoBuilder_setDescription(daqLogFileInfoBuilder* self, daqString* description);
-    daqErrCode EXPORTED daqLogFileInfoBuilder_getSize(daqLogFileInfoBuilder* self, daqSizeT* size);
-    daqErrCode EXPORTED daqLogFileInfoBuilder_setSize(daqLogFileInfoBuilder* self, daqSizeT size);
+    daqErrCode EXPORTED daqLogFileInfoBuilder_getSize(daqLogFileInfoBuilder* self, daqCSizeT* size);
+    daqErrCode EXPORTED daqLogFileInfoBuilder_setSize(daqLogFileInfoBuilder* self, daqCSizeT size);
     daqErrCode EXPORTED daqLogFileInfoBuilder_getEncoding(daqLogFileInfoBuilder* self, daqString** encoding);
     daqErrCode EXPORTED daqLogFileInfoBuilder_setEncoding(daqLogFileInfoBuilder* self, daqString* encoding);
     daqErrCode EXPORTED daqLogFileInfoBuilder_getLastModified(daqLogFileInfoBuilder* self, daqString** lastModified);

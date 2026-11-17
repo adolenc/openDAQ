@@ -5,7 +5,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 //
-//     RTGen (CGenerator v0.7.0) on 03.06.2025 17:17:59.
+//     RTGen (CGenerator v0.7.0).
 // </auto-generated>
 //------------------------------------------------------------------------------
 
@@ -39,6 +39,7 @@ extern "C"
     typedef struct daqString daqString;
 
     EXPORTED extern const daqIntfID DAQ_SERIALIZER_INTF_ID;
+    void EXPORTED daqSerializer_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqSerializer_startTaggedObject(daqSerializer* self, daqSerializable* obj);
     daqErrCode EXPORTED daqSerializer_startObject(daqSerializer* self);
@@ -46,19 +47,19 @@ extern "C"
     daqErrCode EXPORTED daqSerializer_startList(daqSerializer* self);
     daqErrCode EXPORTED daqSerializer_endList(daqSerializer* self);
     daqErrCode EXPORTED daqSerializer_getOutput(daqSerializer* self, daqString** serialized);
-    daqErrCode EXPORTED daqSerializer_key(daqSerializer* self, daqConstCharPtr string);
+    daqErrCode EXPORTED daqSerializer_key(daqSerializer* self, daqCConstCharPtr string);
     daqErrCode EXPORTED daqSerializer_keyStr(daqSerializer* self, daqString* name);
-    daqErrCode EXPORTED daqSerializer_keyRaw(daqSerializer* self, daqConstCharPtr string, daqSizeT length);
-    daqErrCode EXPORTED daqSerializer_writeInt(daqSerializer* self, daqInt integer);
-    daqErrCode EXPORTED daqSerializer_writeBool(daqSerializer* self, daqBool boolean);
-    daqErrCode EXPORTED daqSerializer_writeFloat(daqSerializer* self, daqFloat real);
-    daqErrCode EXPORTED daqSerializer_writeString(daqSerializer* self, daqConstCharPtr string, daqSizeT length);
+    daqErrCode EXPORTED daqSerializer_keyRaw(daqSerializer* self, daqCConstCharPtr string, daqCSizeT length);
+    daqErrCode EXPORTED daqSerializer_writeInt(daqSerializer* self, daqCInt integer);
+    daqErrCode EXPORTED daqSerializer_writeBool(daqSerializer* self, daqCBool boolean);
+    daqErrCode EXPORTED daqSerializer_writeFloat(daqSerializer* self, daqCFloat real);
+    daqErrCode EXPORTED daqSerializer_writeString(daqSerializer* self, daqCConstCharPtr string, daqCSizeT length);
     daqErrCode EXPORTED daqSerializer_writeNull(daqSerializer* self);
     daqErrCode EXPORTED daqSerializer_reset(daqSerializer* self);
-    daqErrCode EXPORTED daqSerializer_isComplete(daqSerializer* self, daqBool* complete);
+    daqErrCode EXPORTED daqSerializer_isComplete(daqSerializer* self, daqCBool* complete);
     daqErrCode EXPORTED daqSerializer_getUser(daqSerializer* self, daqBaseObject** user);
     daqErrCode EXPORTED daqSerializer_setUser(daqSerializer* self, daqBaseObject* user);
-    daqErrCode EXPORTED daqSerializer_getVersion(daqSerializer* self, daqInt* version);
+    daqErrCode EXPORTED daqSerializer_getVersion(daqSerializer* self, daqCInt* version);
 
 #ifdef __cplusplus
 }

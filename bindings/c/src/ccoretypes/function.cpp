@@ -5,17 +5,23 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 //
-//     RTGen (CGenerator v0.7.0) on 03.06.2025 17:17:52.
+//     RTGen (CGenerator v0.7.0).
 // </auto-generated>
 //------------------------------------------------------------------------------
 
 #include <ccoretypes/function.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/function.h>
 
 #include <copendaq_private.h>
 
 const daqIntfID DAQ_FUNCTION_INTF_ID = { daq::IFunction::Id.Data1, daq::IFunction::Id.Data2, daq::IFunction::Id.Data3, daq::IFunction::Id.Data4_UInt64 };
+
+void daqFunction_getInterfaceId(daqIntfID* intfId)
+{
+    *intfId = DAQ_FUNCTION_INTF_ID;
+}
 
 daqErrCode daqFunction_call(daqFunction* self, daqBaseObject* params, daqBaseObject** result)
 {
@@ -25,7 +31,7 @@ daqErrCode daqFunction_call(daqFunction* self, daqBaseObject* params, daqBaseObj
 daqErrCode daqFunction_createFunction(daqFunction** obj, daqFuncCall value)
 {
     daq::IFunction* ptr = nullptr;
-    daqErrCode err = daq::createFunction(&ptr, reinterpret_cast<daq::FuncCall>(value)); //UB but works
+    daqErrCode err = daq::createFunction(&ptr, reinterpret_cast<daq::FuncCall>(value));
     *obj = reinterpret_cast<daqFunction*>(ptr);
     return err;
 }

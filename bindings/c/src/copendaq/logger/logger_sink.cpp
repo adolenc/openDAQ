@@ -5,17 +5,23 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 //
-//     RTGen (CGenerator v0.7.0) on 03.06.2025 22:54:18.
+//     RTGen (CGenerator v0.7.0).
 // </auto-generated>
 //------------------------------------------------------------------------------
 
 #include <copendaq/logger/logger_sink.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/logger_sink.h>
 
 #include <copendaq_private.h>
 
 const daqIntfID DAQ_LOGGER_SINK_INTF_ID = { daq::ILoggerSink::Id.Data1, daq::ILoggerSink::Id.Data2, daq::ILoggerSink::Id.Data3, daq::ILoggerSink::Id.Data4_UInt64 };
+
+void daqLoggerSink_getInterfaceId(daqIntfID* intfId)
+{
+    *intfId = DAQ_LOGGER_SINK_INTF_ID;
+}
 
 daqErrCode daqLoggerSink_setLevel(daqLoggerSink* self, daqLogLevel level)
 {
@@ -27,7 +33,7 @@ daqErrCode daqLoggerSink_getLevel(daqLoggerSink* self, daqLogLevel* level)
     return reinterpret_cast<daq::ILoggerSink*>(self)->getLevel(reinterpret_cast<daq::LogLevel*>(level));
 }
 
-daqErrCode daqLoggerSink_shouldLog(daqLoggerSink* self, daqLogLevel level, daqBool* willLog)
+daqErrCode daqLoggerSink_shouldLog(daqLoggerSink* self, daqLogLevel level, daqCBool* willLog)
 {
     return reinterpret_cast<daq::ILoggerSink*>(self)->shouldLog(static_cast<daq::LogLevel>(level), willLog);
 }
@@ -58,7 +64,7 @@ daqErrCode daqLoggerSink_createStdOutLoggerSink(daqLoggerSink** obj)
     return err;
 }
 
-daqErrCode daqLoggerSink_createRotatingFileLoggerSink(daqLoggerSink** obj, daqString* fileName, daqSizeT maxFileByteSize, daqSizeT maxFiles)
+daqErrCode daqLoggerSink_createRotatingFileLoggerSink(daqLoggerSink** obj, daqString* fileName, daqCSizeT maxFileByteSize, daqCSizeT maxFiles)
 {
     daq::ILoggerSink* ptr = nullptr;
     daqErrCode err = daq::createRotatingFileLoggerSink(&ptr, reinterpret_cast<daq::IString*>(fileName), maxFileByteSize, maxFiles);
@@ -73,13 +79,3 @@ daqErrCode daqLoggerSink_createBasicFileLoggerSink(daqLoggerSink** obj, daqStrin
     *obj = reinterpret_cast<daqLoggerSink*>(ptr);
     return err;
 }
-
-#ifdef _WIN32
-daqErrCode daqLoggerSink_createWinDebugLoggerSink(daqLoggerSink** obj)
-{
-    daq::ILoggerSink* ptr = nullptr;
-    daqErrCode err = daq::createWinDebugLoggerSink(&ptr);
-    *obj = reinterpret_cast<daqLoggerSink*>(ptr);
-    return err;
-}
-#endif

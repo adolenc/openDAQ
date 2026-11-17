@@ -55,8 +55,8 @@ extern "C"
     daqErrCode EXPORTED daqStreamReaderBuilder_getReadMode(daqStreamReaderBuilder* self, daqReadMode* mode);
     daqErrCode EXPORTED daqStreamReaderBuilder_setReadTimeoutType(daqStreamReaderBuilder* self, daqReadTimeoutType type);
     daqErrCode EXPORTED daqStreamReaderBuilder_getReadTimeoutType(daqStreamReaderBuilder* self, daqReadTimeoutType* type);
-    daqErrCode EXPORTED daqStreamReaderBuilder_setSkipEvents(daqStreamReaderBuilder* self, daqBool skipEvents);
-    daqErrCode EXPORTED daqStreamReaderBuilder_getSkipEvents(daqStreamReaderBuilder* self, daqBool* skipEvents);
+    daqErrCode EXPORTED daqStreamReaderBuilder_setSkipEvents(daqStreamReaderBuilder* self, daqCBool skipEvents);
+    daqErrCode EXPORTED daqStreamReaderBuilder_getSkipEvents(daqStreamReaderBuilder* self, daqCBool* skipEvents);
     daqErrCode EXPORTED daqStreamReaderBuilder_setInputPortNotificationMethod(daqStreamReaderBuilder* self, daqPacketReadyNotification notificationMethod);
     daqErrCode EXPORTED daqStreamReaderBuilder_getInputPortNotificationMethod(daqStreamReaderBuilder* self, daqPacketReadyNotification* notificationMethod);
     daqErrCode EXPORTED daqStreamReaderBuilder_createStreamReaderBuilder(daqStreamReaderBuilder** obj);

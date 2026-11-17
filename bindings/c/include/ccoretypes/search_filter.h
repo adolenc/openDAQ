@@ -40,8 +40,8 @@ extern "C"
     EXPORTED extern const daqIntfID DAQ_SEARCH_FILTER_INTF_ID;
     void EXPORTED daqSearchFilter_getInterfaceId(daqIntfID* intfId);
 
-    daqErrCode EXPORTED daqSearchFilter_acceptsObject(daqSearchFilter* self, daqBaseObject* obj, daqBool* accepts);
-    daqErrCode EXPORTED daqSearchFilter_visitChildren(daqSearchFilter* self, daqBaseObject* obj, daqBool* visit);
+    daqErrCode EXPORTED daqSearchFilter_acceptsObject(daqSearchFilter* self, daqBaseObject* obj, daqCBool* accepts);
+    daqErrCode EXPORTED daqSearchFilter_visitChildren(daqSearchFilter* self, daqBaseObject* obj, daqCBool* visit);
     daqErrCode EXPORTED daqSearchFilter_createAnySearchFilter(daqSearchFilter** obj);
     daqErrCode EXPORTED daqSearchFilter_createAndSearchFilter(daqSearchFilter** obj, daqSearchFilter* left, daqSearchFilter* right);
     daqErrCode EXPORTED daqSearchFilter_createOrSearchFilter(daqSearchFilter** obj, daqSearchFilter* left, daqSearchFilter* right);

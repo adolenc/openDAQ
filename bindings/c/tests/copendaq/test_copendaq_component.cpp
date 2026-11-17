@@ -25,17 +25,17 @@ class COpendaqComponentTest : public testing::Test
 
         daqContext_createContext(&ctx, nullptr, logger, typeManager, nullptr, nullptr, options, discoveryServers);
 
-        daqBaseObject_releaseRef(discoveryServers);
-        daqBaseObject_releaseRef(options);
-        daqBaseObject_releaseRef(typeManager);
-        daqBaseObject_releaseRef(logger);
-        daqBaseObject_releaseRef(sink);
-        daqBaseObject_releaseRef(sinks);
+        daqUnknown_releaseRef(discoveryServers);
+        daqUnknown_releaseRef(options);
+        daqUnknown_releaseRef(typeManager);
+        daqUnknown_releaseRef(logger);
+        daqUnknown_releaseRef(sink);
+        daqUnknown_releaseRef(sinks);
     }
 
     void TearDown() override
     {
-        daqBaseObject_releaseRef(ctx);
+        daqUnknown_releaseRef(ctx);
     }
 
 protected:
@@ -58,8 +58,8 @@ TEST_F(COpendaqComponentTest, ComponentPrivate)
 
     daqComponent_setName(component, name);
     daqComponent_setDescription(component, desc);
-    daqComponent_setActive(component, True);
-    daqComponent_setVisible(component, True);
+    daqComponent_setActive(component, daqTrue);
+    daqComponent_setVisible(component, daqTrue);
 
     daqComponentPrivate* priv = nullptr;
     daqBaseObject_borrowInterface(component, DAQ_COMPONENT_PRIVATE_INTF_ID, (void**) &priv);
@@ -74,21 +74,21 @@ TEST_F(COpendaqComponentTest, ComponentPrivate)
 
     daqComponent_setName(component, newName);
     daqComponent_setDescription(component, newDesc);
-    daqComponent_setActive(component, False);
-    daqComponent_setVisible(component, False);
+    daqComponent_setActive(component, daqFalse);
+    daqComponent_setVisible(component, daqFalse);
 
     daqString* outName = nullptr;
     daqComponent_getName(component, &outName);
     daqString* outDesc = nullptr;
     daqComponent_getDescription(component, &outDesc);
-    daqBool active = False;
+    daqCBool active = daqFalse;
     daqComponent_getActive(component, &active);
-    daqBool visible = False;
+    daqCBool visible = daqFalse;
     daqComponent_getVisible(component, &visible);
 
-    daqConstCharPtr nameStr = nullptr;
+    daqCConstCharPtr nameStr = nullptr;
     daqString_getCharPtr(outName, &nameStr);
-    daqConstCharPtr descStr = nullptr;
+    daqCConstCharPtr descStr = nullptr;
     daqString_getCharPtr(outDesc, &descStr);
 
     ASSERT_STREQ(nameStr, "Name");
@@ -96,14 +96,14 @@ TEST_F(COpendaqComponentTest, ComponentPrivate)
     ASSERT_TRUE(active);
     ASSERT_TRUE(visible);
 
-    daqBaseObject_releaseRef(outName);
-    daqBaseObject_releaseRef(outDesc);
-    daqBaseObject_releaseRef(newDesc);
-    daqBaseObject_releaseRef(newName);
-    daqBaseObject_releaseRef(desc);
-    daqBaseObject_releaseRef(name);
-    daqBaseObject_releaseRef(component);
-    daqBaseObject_releaseRef(id);
+    daqUnknown_releaseRef(outName);
+    daqUnknown_releaseRef(outDesc);
+    daqUnknown_releaseRef(newDesc);
+    daqUnknown_releaseRef(newName);
+    daqUnknown_releaseRef(desc);
+    daqUnknown_releaseRef(name);
+    daqUnknown_releaseRef(component);
+    daqUnknown_releaseRef(id);
 }
 
 TEST_F(COpendaqComponentTest, ComponentStatusContainer)
@@ -124,9 +124,9 @@ TEST_F(COpendaqComponentTest, ComponentStatusContainer)
 
     ASSERT_NE(priv, nullptr);
 
-    daqBaseObject_releaseRef(status);
-    daqBaseObject_releaseRef(component);
-    daqBaseObject_releaseRef(id);
+    daqUnknown_releaseRef(status);
+    daqUnknown_releaseRef(component);
+    daqUnknown_releaseRef(id);
 }
 
 TEST_F(COpendaqComponentTest, Component)
@@ -144,23 +144,23 @@ TEST_F(COpendaqComponentTest, Component)
 
     daqString* childLocalId = nullptr;
     daqComponent_getLocalId(child, &childLocalId);
-    daqConstCharPtr childLocalIdStr = nullptr;
+    daqCConstCharPtr childLocalIdStr = nullptr;
     daqString_getCharPtr(childLocalId, &childLocalIdStr);
 
     daqString* childGlobalId = nullptr;
     daqComponent_getGlobalId(child, &childGlobalId);
-    daqConstCharPtr childGlobalIdStr = nullptr;
+    daqCConstCharPtr childGlobalIdStr = nullptr;
     daqString_getCharPtr(childGlobalId, &childGlobalIdStr);
 
     ASSERT_STREQ(childLocalIdStr, "child");
     ASSERT_STREQ(childGlobalIdStr, "/parent/child");
 
-    daqBaseObject_releaseRef(childGlobalId);
-    daqBaseObject_releaseRef(childLocalId);
-    daqBaseObject_releaseRef(child);
-    daqBaseObject_releaseRef(component);
-    daqBaseObject_releaseRef(idc);
-    daqBaseObject_releaseRef(id);
+    daqUnknown_releaseRef(childGlobalId);
+    daqUnknown_releaseRef(childLocalId);
+    daqUnknown_releaseRef(child);
+    daqUnknown_releaseRef(component);
+    daqUnknown_releaseRef(idc);
+    daqUnknown_releaseRef(id);
 }
 
 TEST_F(COpendaqComponentTest, Folder)
@@ -181,7 +181,7 @@ TEST_F(COpendaqComponentTest, Folder)
     daqFolder* f = nullptr;
     daqBaseObject_borrowInterface(folder, DAQ_FOLDER_INTF_ID, (void**) &f);
 
-    daqBool empty = false;
+    daqCBool empty = false;
     daqFolder_isEmpty(f, &empty);
     ASSERT_EQ(empty, false);
 
@@ -189,10 +189,10 @@ TEST_F(COpendaqComponentTest, Folder)
     daqFolder_isEmpty(f, &empty);
     ASSERT_EQ(empty, true);
 
-    daqBaseObject_releaseRef(component);
-    daqBaseObject_releaseRef(folder);
-    daqBaseObject_releaseRef(itemId);
-    daqBaseObject_releaseRef(folderId);
+    daqUnknown_releaseRef(component);
+    daqUnknown_releaseRef(folder);
+    daqUnknown_releaseRef(itemId);
+    daqUnknown_releaseRef(folderId);
 }
 
 TEST_F(COpendaqComponentTest, Removable)
@@ -207,13 +207,13 @@ TEST_F(COpendaqComponentTest, Removable)
     daqBaseObject_borrowInterface(component, DAQ_REMOVABLE_INTF_ID, (void**) &rm);
 
     daqRemovable_remove(rm);
-    daqBool isRemoved = False;
+    daqCBool isRemoved = daqFalse;
     daqRemovable_isRemoved(rm, &isRemoved);
 
-    ASSERT_EQ(isRemoved, True);
+    ASSERT_EQ(isRemoved, daqTrue);
 
-    daqBaseObject_releaseRef(component);
-    daqBaseObject_releaseRef(id);
+    daqUnknown_releaseRef(component);
+    daqUnknown_releaseRef(id);
 }
 
 TEST_F(COpendaqComponentTest, Tags)
@@ -229,10 +229,10 @@ TEST_F(COpendaqComponentTest, Tags)
 
     daqTagsPrivate_add(priv, tag);
 
-    daqBool result = false;
+    daqCBool result = false;
     daqTags_contains(tags, tag, &result);
 
     ASSERT_TRUE(result);
-    daqBaseObject_releaseRef(tag);
-    daqBaseObject_releaseRef(tags);
+    daqUnknown_releaseRef(tag);
+    daqUnknown_releaseRef(tags);
 }

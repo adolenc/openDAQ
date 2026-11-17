@@ -12,6 +12,7 @@
 #include <copendaq/synchronization/sync_component_private.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/sync_component_private.h>
 
 #include <copendaq_private.h>
 
@@ -22,7 +23,7 @@ void daqSyncComponentPrivate_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_SYNC_COMPONENT_PRIVATE_INTF_ID;
 }
 
-daqErrCode daqSyncComponentPrivate_setSyncLocked(daqSyncComponentPrivate* self, daqBool synchronizationLocked)
+daqErrCode daqSyncComponentPrivate_setSyncLocked(daqSyncComponentPrivate* self, daqCBool synchronizationLocked)
 {
     return reinterpret_cast<daq::ISyncComponentPrivate*>(self)->setSyncLocked(synchronizationLocked);
 }

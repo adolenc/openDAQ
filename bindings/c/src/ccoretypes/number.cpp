@@ -12,6 +12,7 @@
 #include <ccoretypes/number.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/number.h>
 
 #include <copendaq_private.h>
 
@@ -22,12 +23,12 @@ void daqNumber_getInterfaceId(daqIntfID* intfId)
     *intfId = DAQ_NUMBER_INTF_ID;
 }
 
-daqErrCode daqNumber_getFloatValue(daqNumber* self, daqFloat* value)
+daqErrCode daqNumber_getFloatValue(daqNumber* self, daqCFloat* value)
 {
     return reinterpret_cast<daq::INumber*>(self)->getFloatValue(value);
 }
 
-daqErrCode daqNumber_getIntValue(daqNumber* self, daqInt* value)
+daqErrCode daqNumber_getIntValue(daqNumber* self, daqCInt* value)
 {
     return reinterpret_cast<daq::INumber*>(self)->getIntValue(value);
 }

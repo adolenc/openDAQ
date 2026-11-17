@@ -12,6 +12,7 @@
 #include <copendaq/component/removable.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/removable.h>
 
 #include <copendaq_private.h>
 
@@ -27,7 +28,7 @@ daqErrCode daqRemovable_remove(daqRemovable* self)
     return reinterpret_cast<daq::IRemovable*>(self)->remove();
 }
 
-daqErrCode daqRemovable_isRemoved(daqRemovable* self, daqBool* removed)
+daqErrCode daqRemovable_isRemoved(daqRemovable* self, daqCBool* removed)
 {
     return reinterpret_cast<daq::IRemovable*>(self)->isRemoved(removed);
 }

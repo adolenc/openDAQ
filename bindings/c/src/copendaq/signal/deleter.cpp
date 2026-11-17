@@ -12,6 +12,7 @@
 #include <copendaq/signal/deleter.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/deleter.h>
 
 #include <copendaq_private.h>
 

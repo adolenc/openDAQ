@@ -12,6 +12,7 @@
 #include <ccoretypes/dictobject.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/dictobject.h>
 
 #include <copendaq_private.h>
 
@@ -47,12 +48,12 @@ daqErrCode daqDict_clear(daqDict* self)
     return reinterpret_cast<daq::IDict*>(self)->clear();
 }
 
-daqErrCode daqDict_getCount(daqDict* self, daqSizeT* size)
+daqErrCode daqDict_getCount(daqDict* self, daqCSizeT* size)
 {
     return reinterpret_cast<daq::IDict*>(self)->getCount(size);
 }
 
-daqErrCode daqDict_hasKey(daqDict* self, daqBaseObject* key, daqBool* hasKey)
+daqErrCode daqDict_hasKey(daqDict* self, daqBaseObject* key, daqCBool* hasKey)
 {
     return reinterpret_cast<daq::IDict*>(self)->hasKey(reinterpret_cast<daq::IBaseObject*>(key), hasKey);
 }

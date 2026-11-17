@@ -41,8 +41,8 @@ extern "C"
     void EXPORTED daqEndUpdateEventArgs_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqEndUpdateEventArgs_getProperties(daqEndUpdateEventArgs* self, daqList** properties);
-    daqErrCode EXPORTED daqEndUpdateEventArgs_getIsParentUpdating(daqEndUpdateEventArgs* self, daqBool* isParentUpdating);
-    daqErrCode EXPORTED daqEndUpdateEventArgs_createEndUpdateEventArgs(daqEndUpdateEventArgs** obj, daqList* properties, daqBool isParentUpdating);
+    daqErrCode EXPORTED daqEndUpdateEventArgs_getIsParentUpdating(daqEndUpdateEventArgs* self, daqCBool* isParentUpdating);
+    daqErrCode EXPORTED daqEndUpdateEventArgs_createEndUpdateEventArgs(daqEndUpdateEventArgs** obj, daqList* properties, daqCBool isParentUpdating);
 
 #ifdef __cplusplus
 }

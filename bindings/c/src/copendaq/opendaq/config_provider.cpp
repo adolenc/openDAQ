@@ -12,6 +12,7 @@
 #include <copendaq/opendaq/config_provider.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/config_provider.h>
 
 #include <copendaq_private.h>
 

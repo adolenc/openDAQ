@@ -5,7 +5,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 //
-//     RTGen (CGenerator v0.7.0) on 03.06.2025 22:05:19.
+//     RTGen (CGenerator v0.7.0).
 // </auto-generated>
 //------------------------------------------------------------------------------
 
@@ -38,14 +38,15 @@ extern "C"
     typedef struct daqProperty daqProperty;
 
     EXPORTED extern const daqIntfID DAQ_PROPERTY_VALUE_EVENT_ARGS_INTF_ID;
+    void EXPORTED daqPropertyValueEventArgs_getInterfaceId(daqIntfID* intfId);
 
     daqErrCode EXPORTED daqPropertyValueEventArgs_getProperty(daqPropertyValueEventArgs* self, daqProperty** property);
     daqErrCode EXPORTED daqPropertyValueEventArgs_getValue(daqPropertyValueEventArgs* self, daqBaseObject** value);
     daqErrCode EXPORTED daqPropertyValueEventArgs_setValue(daqPropertyValueEventArgs* self, daqBaseObject* value);
     daqErrCode EXPORTED daqPropertyValueEventArgs_getPropertyEventType(daqPropertyValueEventArgs* self, daqPropertyEventType* changeType);
-    daqErrCode EXPORTED daqPropertyValueEventArgs_getIsUpdating(daqPropertyValueEventArgs* self, daqBool* isUpdating);
+    daqErrCode EXPORTED daqPropertyValueEventArgs_getIsUpdating(daqPropertyValueEventArgs* self, daqCBool* isUpdating);
     daqErrCode EXPORTED daqPropertyValueEventArgs_getOldValue(daqPropertyValueEventArgs* self, daqBaseObject** value);
-    daqErrCode EXPORTED daqPropertyValueEventArgs_createPropertyValueEventArgs(daqPropertyValueEventArgs** obj, daqProperty* prop, daqBaseObject* value, daqBaseObject* oldValue, daqPropertyEventType type, daqBool isUpdating);
+    daqErrCode EXPORTED daqPropertyValueEventArgs_createPropertyValueEventArgs(daqPropertyValueEventArgs** obj, daqProperty* prop, daqBaseObject* value, daqBaseObject* oldValue, daqPropertyEventType type, daqCBool isUpdating);
 
 #ifdef __cplusplus
 }

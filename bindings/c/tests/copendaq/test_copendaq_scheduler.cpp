@@ -4,9 +4,9 @@
 
 using COpendaqSchedulerTest = testing::Test;
 
-static daqBool taskCalled = False;
-static daqBool taskGraphCalled = False;
-static daqBool functionCalled = False;
+static daqCBool taskCalled = daqFalse;
+static daqCBool taskGraphCalled = daqFalse;
+static daqCBool functionCalled = daqFalse;
 
 daqErrCode procedureTask(daqBaseObject*)
 {
@@ -82,24 +82,24 @@ TEST_F(COpendaqSchedulerTest, Scheduler)
 
     daqScheduler_waitAll(scheduler);
 
-    ASSERT_EQ(taskCalled, True);
-    ASSERT_EQ(functionCalled, True);
-    ASSERT_EQ(taskGraphCalled, True);
+    ASSERT_EQ(taskCalled, daqTrue);
+    ASSERT_EQ(functionCalled, daqTrue);
+    ASSERT_EQ(taskGraphCalled, daqTrue);
 
-    daqBaseObject_releaseRef(awaitable2);
-    daqBaseObject_releaseRef(function);
+    daqUnknown_releaseRef(awaitable2);
+    daqUnknown_releaseRef(function);
 
-    daqBaseObject_releaseRef(awaitable);
-    daqBaseObject_releaseRef(task2);
-    daqBaseObject_releaseRef(name);
-    daqBaseObject_releaseRef(taskProc);
+    daqUnknown_releaseRef(awaitable);
+    daqUnknown_releaseRef(task2);
+    daqUnknown_releaseRef(name);
+    daqUnknown_releaseRef(taskProc);
 
-    daqBaseObject_releaseRef(taskGraph);
-    daqBaseObject_releaseRef(procGraph);
-    daqBaseObject_releaseRef(nameGraph);
+    daqUnknown_releaseRef(taskGraph);
+    daqUnknown_releaseRef(procGraph);
+    daqUnknown_releaseRef(nameGraph);
 
-    daqBaseObject_releaseRef(scheduler);
-    daqBaseObject_releaseRef(logger);
-    daqBaseObject_releaseRef(sink);
-    daqBaseObject_releaseRef(sinks);
+    daqUnknown_releaseRef(scheduler);
+    daqUnknown_releaseRef(logger);
+    daqUnknown_releaseRef(sink);
+    daqUnknown_releaseRef(sinks);
 }

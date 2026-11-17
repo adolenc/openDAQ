@@ -12,6 +12,7 @@
 #include <copendaq/signal/dimension.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/dimension.h>
 
 #include <copendaq_private.h>
 
@@ -27,7 +28,7 @@ daqErrCode daqDimension_getName(daqDimension* self, daqString** name)
     return reinterpret_cast<daq::IDimension*>(self)->getName(reinterpret_cast<daq::IString**>(name));
 }
 
-daqErrCode daqDimension_getSize(daqDimension* self, daqSizeT* size)
+daqErrCode daqDimension_getSize(daqDimension* self, daqCSizeT* size)
 {
     return reinterpret_cast<daq::IDimension*>(self)->getSize(size);
 }

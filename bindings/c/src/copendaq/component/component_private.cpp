@@ -12,6 +12,7 @@
 #include <copendaq/component/component_private.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/component_private.h>
 
 #include <copendaq_private.h>
 
@@ -62,7 +63,7 @@ daqErrCode daqComponentPrivate_getComponentConfig(daqComponentPrivate* self, daq
     return reinterpret_cast<daq::IComponentPrivate*>(self)->getComponentConfig(reinterpret_cast<daq::IPropertyObject**>(config));
 }
 
-daqErrCode daqComponentPrivate_setParentActive(daqComponentPrivate* self, daqBool parentActive, daqBool onUpdate)
+daqErrCode daqComponentPrivate_setParentActive(daqComponentPrivate* self, daqCBool parentActive, daqCBool onUpdate)
 {
     return reinterpret_cast<daq::IComponentPrivate*>(self)->setParentActive(parentActive, onUpdate);
 }

@@ -12,6 +12,7 @@
 #include <ccoreobjects/end_update_event_args.h>
 
 #include <opendaq/opendaq.h>
+#include <coreobjects/end_update_event_args.h>
 
 #include <copendaq_private.h>
 
@@ -27,12 +28,12 @@ daqErrCode daqEndUpdateEventArgs_getProperties(daqEndUpdateEventArgs* self, daqL
     return reinterpret_cast<daq::IEndUpdateEventArgs*>(self)->getProperties(reinterpret_cast<daq::IList**>(properties));
 }
 
-daqErrCode daqEndUpdateEventArgs_getIsParentUpdating(daqEndUpdateEventArgs* self, daqBool* isParentUpdating)
+daqErrCode daqEndUpdateEventArgs_getIsParentUpdating(daqEndUpdateEventArgs* self, daqCBool* isParentUpdating)
 {
     return reinterpret_cast<daq::IEndUpdateEventArgs*>(self)->getIsParentUpdating(isParentUpdating);
 }
 
-daqErrCode daqEndUpdateEventArgs_createEndUpdateEventArgs(daqEndUpdateEventArgs** obj, daqList* properties, daqBool isParentUpdating)
+daqErrCode daqEndUpdateEventArgs_createEndUpdateEventArgs(daqEndUpdateEventArgs** obj, daqList* properties, daqCBool isParentUpdating)
 {
     daq::IEndUpdateEventArgs* ptr = nullptr;
     daqErrCode err = daq::createEndUpdateEventArgs(&ptr, reinterpret_cast<daq::IList*>(properties), isParentUpdating);

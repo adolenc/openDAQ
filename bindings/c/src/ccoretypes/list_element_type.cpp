@@ -12,6 +12,7 @@
 #include <ccoretypes/list_element_type.h>
 
 #include <opendaq/opendaq.h>
+#include <coretypes/list_element_type.h>
 
 #include <copendaq_private.h>
 
@@ -24,5 +25,5 @@ void daqListElementType_getInterfaceId(daqIntfID* intfId)
 
 daqErrCode daqListElementType_getElementInterfaceId(daqListElementType* self, daqIntfID* id)
 {
-    return reinterpret_cast<daq::IListElementType*>(self)->getElementInterfaceId(copendaq::utils::toDaqIntfId(id));
+    return reinterpret_cast<daq::IListElementType*>(self)->getElementInterfaceId(reinterpret_cast<daq::IntfID*>(id));
 }

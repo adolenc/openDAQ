@@ -12,6 +12,7 @@
 #include <copendaq/reader/reader_config.h>
 
 #include <opendaq/opendaq.h>
+#include <opendaq/reader_config.h>
 
 #include <copendaq_private.h>
 
@@ -47,7 +48,7 @@ daqErrCode daqReaderConfig_markAsInvalid(daqReaderConfig* self)
     return reinterpret_cast<daq::IReaderConfig*>(self)->markAsInvalid();
 }
 
-daqErrCode daqReaderConfig_getIsValid(daqReaderConfig* self, daqBool* isValid)
+daqErrCode daqReaderConfig_getIsValid(daqReaderConfig* self, daqCBool* isValid)
 {
     return reinterpret_cast<daq::IReaderConfig*>(self)->getIsValid(isValid);
 }
