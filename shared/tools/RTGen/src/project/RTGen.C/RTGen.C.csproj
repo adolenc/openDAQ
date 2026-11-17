@@ -42,12 +42,36 @@
     <Reference Include="RTGen.Library">
       <HintPath>..\bin\Debug\RTGen.Library.dll</HintPath>
     </Reference>
+    <Reference Include="RTGen.Cpp">
+      <HintPath>..\bin\Debug\RTGen.Cpp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CBatchGeneration.cs" />
+    <Compile Include="CBatchParser.cs" />
     <Compile Include="CCompositionRoot.cs" />
+    <Compile Include="CTreeHeaders.cs" />
     <Compile Include="Generators\CGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\RTGen.Shared\HeaderSanitizer.cs">
+      <Link>Shared\HeaderSanitizer.cs</Link>
+    </Compile>
+    <Compile Include="..\RTGen.Shared\PreprocessorConditions.cs">
+      <Link>Shared\PreprocessorConditions.cs</Link>
+    </Compile>
+    <Compile Include="..\RTGen.Shared\CBindingRules.cs">
+      <Link>Shared\CBindingRules.cs</Link>
+    </Compile>
+    <Compile Include="..\RTGen.Json\Generators\JsonConfigGenerator.cs">
+      <Link>Json\JsonConfigGenerator.cs</Link>
+    </Compile>
+    <Compile Include="..\RTGen.Json\Generators\JsonGenerator.cs">
+      <Link>Json\JsonGenerator.cs</Link>
+    </Compile>
+    <Compile Include="..\RTGen.Json\Generators\JsonModel.cs">
+      <Link>Json\JsonModel.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
